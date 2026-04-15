@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Challenge — FlagAtlas</title>
+<meta name="description" content="A new mystery flag every day. Guess the country in 6 attempts. Build your streak!">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:       #0f1f3d;
+    --navy-mid:   #162847;
+    --navy-light: #1e3460;
+    --teal:       #0d9488;
+    --teal-light: #14b8a6;
+    --gold:       #f59e0b;
+    --cream:      #fef9f0;
+    --text-light: #e2e8f0;
+    --text-muted: #94a3b8;
+    --green:      #34d399;
+    --red:        #f43f5e;
+    --amber:      #fbbf24;
+    --radius:     16px;
+    --radius-sm:  10px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:'DM Sans',sans-serif;
+    background:var(--navy);
+    color:var(--text-light);
+    min-height:100vh;
+    overflow-x:hidden;
+  }
+  body::before {
+    content:''; position:fixed; inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);
+    background-size:40px 40px;
+    pointer-events:none; z-index:0;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position:relative; z-index:10;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:1rem 1.5rem;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .nav-logo { display:flex; align-items:center; gap:0.5rem; text-decoration:none; }
+  .nav-logo-icon { width:32px; height:32px; background:var(--teal); border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:16px; }
+  .nav-logo-text { font-family:'Playfair Display',serif; font-size:1.25rem; font-weight:700; color:var(--cream); }
+  .nav-logo-text span { color:var(--teal-light); }
+  .nav-back { font-size:0.82rem; color:var(--text-muted); text-decoration:none; transition:color 0.15s; }
+  .nav-back:hover { color:var(--teal-light); }
+
+  /* ── PAGE ── */
+  .page {
+    position:relative; z-index:1;
+    max-width:560px; margin:0 auto;
+    padding:1.5rem 1.5rem 4rem;
+    display:flex; flex-direction:column; align-items:center; gap:1.4rem;
+  }
+
+  /* ── DATE HEADER ── */
+  .date-header { text-align:center; }
+  .date-label {
+    font-size:0.72rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--teal-light); margin-bottom:0.3rem;
+  }
+  .date-full {
+    font-family:'Playfair Display',serif;
+    font-size:1.5rem; font-weight:700; color:var(--cream);
+  }
+
+  /* ── STREAK BAR ── */
+  .streak-bar {
+    display:flex; gap:1.5rem; justify-content:center;
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:var(--radius); padding:0.9rem 1.5rem;
+    width:100%;
+  }
+  .streak-item { text-align:center; }
+  .streak-num {
+    font-family:'Playfair Display',serif;
+    font-size:1.6rem; font-weight:700; color:var(--gold); line-height:1;
+  }
+  .streak-label { font-size:0.68rem; color:var(--text-muted); letter-spacing:0.08em; text-transform:uppercase; margin-top:0.15rem; }
+
+  /* ── FLAG DISPLAY ── */
+  .flag-wrap {
+    width:100%; border-radius:var(--radius); overflow:hidden;
+    background:rgba(0,0,0,0.3);
+    border:1px solid rgba(255,255,255,0.08);
+    position:relative;
+  }
+  .flag-wrap img {
+    width:100%; display:block; max-height:240px; object-fit:contain;
+    padding:1.2rem; background:rgba(0,0,0,0.2);
+  }
+  /* blur overlay — removed when solved */
+  .flag-blur-overlay {
+    position:absolute; inset:0;
+    backdrop-filter:blur(0px);
+    transition:backdrop-filter 0.6s ease;
+    pointer-events:none;
+  }
+  .flag-blur-overlay.blurred { backdrop-filter:blur(18px); }
+
+  /* attempts counter dots */
+  .attempt-dots {
+    display:flex; gap:0.4rem; justify-content:center;
+    padding:0.8rem 0 0;
+  }
+  .attempt-dot {
+    width:10px; height:10px; border-radius:50%;
+    background:rgba(255,255,255,0.1);
+    border:1px solid rgba(255,255,255,0.15);
+    transition:all 0.3s ease;
+  }
+  .attempt-dot.used   { background:var(--red);   border-color:var(--red); }
+  .attempt-dot.active { background:var(--gold);  border-color:var(--gold); animation:pulse-dot 1s ease infinite; }
+  .attempt-dot.won    { background:var(--green); border-color:var(--green); }
+  @keyframes pulse-dot { 0%,100%{transform:scale(1)} 50%{transform:scale(1.3)} }
+
+  /* ── HINTS ── */
+  .hints-row {
+    display:flex; gap:0.6rem; width:100%; flex-wrap:wrap;
+  }
+  .hint-chip {
+    display:flex; align-items:center; gap:0.4rem;
+    padding:0.4rem 0.8rem;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:100px;
+    font-size:0.78rem; color:var(--text-muted);
+    transition:all 0.4s ease;
+  }
+  .hint-chip.revealed {
+    background:rgba(20,184,166,0.12);
+    border-color:rgba(20,184,166,0.3);
+    color:var(--text-light);
+  }
+  .hint-chip .hint-icon { font-size:0.9rem; }
+  .hint-chip .hint-label { font-weight:600; }
+  .hint-chip .hint-val { color:var(--teal-light); }
+
+  /* ── GUESS LOG ── */
+  .guess-log {
+    width:100%; display:flex; flex-direction:column; gap:0.5rem;
+    min-height:60px;
+  }
+  .guess-row {
+    display:flex; align-items:center; gap:0.7rem;
+    padding:0.6rem 0.9rem;
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.07);
+    border-radius:var(--radius-sm);
+    animation:slide-in 0.25s ease both;
+  }
+  @keyframes slide-in {
+    from { opacity:0; transform:translateX(-12px); }
+    to   { opacity:1; transform:translateX(0); }
+  }
+  .guess-row img {
+    width:36px; height:24px; object-fit:cover;
+    border-radius:3px; flex-shrink:0;
+  }
+  .guess-row-name { font-size:0.88rem; color:var(--text-light); flex:1; }
+  .guess-row-badge {
+    font-size:0.72rem; font-weight:600; padding:0.2rem 0.6rem;
+    border-radius:100px; white-space:nowrap;
+  }
+  .badge-wrong    { background:rgba(244,63,94,0.15);   color:var(--red);   border:1px solid rgba(244,63,94,0.3); }
+  .badge-close    { background:rgba(251,191,36,0.15);  color:var(--amber); border:1px solid rgba(251,191,36,0.3); }
+  .badge-correct  { background:rgba(52,211,153,0.15);  color:var(--green); border:1px solid rgba(52,211,153,0.3); }
+
+  /* ── INPUT AREA ── */
+  .input-area { width:100%; position:relative; }
+
+  #guessInput {
+    width:100%; padding:0.85rem 1rem;
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:var(--radius-sm);
+    color:var(--text-light); font-family:'DM Sans',sans-serif; font-size:0.95rem;
+    outline:none; transition:border-color 0.2s;
+  }
+  #guessInput:focus { border-color:var(--gold); }
+  #guessInput::placeholder { color:var(--text-muted); }
+  #guessInput:disabled { opacity:0.4; cursor:default; }
+
+  /* autocomplete dropdown */
+  .autocomplete {
+    position:absolute; top:calc(100% + 4px); left:0; right:0; z-index:50;
+    background:var(--navy-mid);
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:var(--radius-sm);
+    overflow:hidden; max-height:220px; overflow-y:auto;
+    box-shadow:0 8px 32px rgba(0,0,0,0.4);
+  }
+  .autocomplete-item {
+    display:flex; align-items:center; gap:0.6rem;
+    padding:0.65rem 1rem; cursor:pointer;
+    transition:background 0.12s;
+    font-size:0.88rem;
+  }
+  .autocomplete-item:hover, .autocomplete-item.focused {
+    background:rgba(255,255,255,0.07);
+  }
+  .autocomplete-item img {
+    width:32px; height:21px; object-fit:cover; border-radius:3px; flex-shrink:0;
+  }
+
+  .btn-guess {
+    width:100%; margin-top:0.6rem; padding:0.85rem;
+    background:var(--gold); border:none; border-radius:var(--radius-sm);
+    color:var(--navy); font-family:'DM Sans',sans-serif;
+    font-size:1rem; font-weight:700; cursor:pointer;
+    transition:transform 0.15s, opacity 0.15s;
+    letter-spacing:0.01em;
+  }
+  .btn-guess:hover:not(:disabled) { transform:translateY(-2px); opacity:0.9; }
+  .btn-guess:disabled { opacity:0.35; cursor:default; }
+
+  /* error shake */
+  @keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+  .shake { animation:shake 0.35s ease; }
+
+  /* ── RESULT PANEL ── */
+  .result-panel {
+    display:none; width:100%;
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .result-panel.visible { display:block; }
+
+  .result-flag-strip {
+    width:100%; height:120px; overflow:hidden; position:relative;
+  }
+  .result-flag-strip img {
+    width:100%; height:100%; object-fit:cover; filter:brightness(0.55);
+  }
+  .result-flag-strip-overlay {
+    position:absolute; inset:0;
+    background:linear-gradient(to bottom,transparent 30%,rgba(22,40,71,1) 100%);
+  }
+  .result-flag-name {
+    position:absolute; bottom:0.8rem; left:1.4rem;
+    font-family:'Playfair Display',serif;
+    font-size:1.8rem; font-weight:900; color:var(--cream); font-style:italic;
+  }
+
+  .result-body { padding:1.2rem 1.4rem 1.4rem; }
+
+  .result-outcome {
+    display:flex; align-items:center; gap:0.6rem;
+    margin-bottom:0.8rem;
+  }
+  .result-outcome-emoji { font-size:1.6rem; }
+  .result-outcome-text {
+    font-family:'Playfair Display',serif;
+    font-size:1.3rem; font-weight:700; color:var(--cream);
+  }
+  .result-outcome-sub { font-size:0.82rem; color:var(--text-muted); }
+
+  .result-fact {
+    font-size:0.85rem; color:var(--text-light); line-height:1.6;
+    padding:0.8rem; background:rgba(255,255,255,0.04);
+    border-left:2px solid var(--teal-light);
+    border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+    margin-bottom:1rem;
+  }
+
+  .result-actions { display:flex; gap:0.6rem; }
+
+  .btn-share {
+    flex:1; padding:0.75rem;
+    background:var(--teal); border:none; border-radius:var(--radius-sm);
+    color:#fff; font-family:'DM Sans',sans-serif; font-size:0.9rem; font-weight:600;
+    cursor:pointer; transition:transform 0.15s, opacity 0.15s;
+    display:flex; align-items:center; justify-content:center; gap:0.4rem;
+  }
+  .btn-share:hover { transform:translateY(-2px); opacity:0.9; }
+  .btn-share.copied { background:var(--green); }
+
+  .btn-explore {
+    padding:0.75rem 1rem;
+    background:transparent; border:1px solid rgba(255,255,255,0.15);
+    border-radius:var(--radius-sm);
+    color:var(--text-muted); font-family:'DM Sans',sans-serif; font-size:0.9rem;
+    text-decoration:none; display:flex; align-items:center;
+    transition:all 0.15s; white-space:nowrap;
+  }
+  .btn-explore:hover { border-color:rgba(255,255,255,0.3); color:var(--text-light); }
+
+  /* ── NEXT FLAG COUNTDOWN ── */
+  .countdown-row {
+    display:flex; align-items:center; justify-content:center; gap:0.5rem;
+    font-size:0.8rem; color:var(--text-muted); margin-top:0.8rem;
+  }
+  .countdown-time { font-weight:600; color:var(--gold); font-size:0.88rem; }
+
+  /* ── TOAST ── */
+  .toast {
+    position:fixed; bottom:2rem; left:50%; transform:translateX(-50%) translateY(20px);
+    background:var(--cream); color:var(--navy);
+    padding:0.6rem 1.2rem; border-radius:100px;
+    font-size:0.85rem; font-weight:600;
+    opacity:0; transition:all 0.25s ease;
+    pointer-events:none; z-index:100; white-space:nowrap;
+  }
+  .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <div class="nav-logo-icon">🌍</div>
+    <span class="nav-logo-text">Flag<span>Atlas</span></span>
+  </a>
+  <a class="nav-back" href="index.html">← All tools</a>
+</nav>
+
+<div class="page">
+
+  <!-- DATE -->
+  <div class="date-header">
+    <div class="date-label">📅 Daily Flag Challenge</div>
+    <div class="date-full" id="dateLabel"></div>
+  </div>
+
+  <!-- STREAK BAR -->
+  <div class="streak-bar">
+    <div class="streak-item">
+      <div class="streak-num" id="streakNum">0</div>
+      <div class="streak-label">🔥 Streak</div>
+    </div>
+    <div class="streak-item">
+      <div class="streak-num" id="bestStreakNum">0</div>
+      <div class="streak-label">Best streak</div>
+    </div>
+    <div class="streak-item">
+      <div class="streak-num" id="playedNum">0</div>
+      <div class="streak-label">Played</div>
+    </div>
+    <div class="streak-item">
+      <div class="streak-num" id="winPctNum">0%</div>
+      <div class="streak-label">Win rate</div>
+    </div>
+  </div>
+
+  <!-- FLAG -->
+  <div class="flag-wrap">
+    <img id="flagImg" src="" alt="Today's mystery flag">
+    <div class="flag-blur-overlay blurred" id="flagBlur"></div>
+    <div class="attempt-dots" id="attemptDots"></div>
+  </div>
+
+  <!-- HINTS -->
+  <div class="hints-row" id="hintsRow">
+    <div class="hint-chip" id="hintContinent">
+      <span class="hint-icon">🌍</span>
+      <span class="hint-label">Continent:</span>
+      <span class="hint-val">?</span>
+    </div>
+    <div class="hint-chip" id="hintPopulation">
+      <span class="hint-icon">👥</span>
+      <span class="hint-label">Population:</span>
+      <span class="hint-val">?</span>
+    </div>
+    <div class="hint-chip" id="hintInitial">
+      <span class="hint-icon">🔤</span>
+      <span class="hint-label">Starts with:</span>
+      <span class="hint-val">?</span>
+    </div>
+    <div class="hint-chip" id="hintCapital">
+      <span class="hint-icon">🏛️</span>
+      <span class="hint-label">Capital:</span>
+      <span class="hint-val">?</span>
+    </div>
+  </div>
+
+  <!-- GUESS LOG -->
+  <div class="guess-log" id="guessLog"></div>
+
+  <!-- INPUT -->
+  <div class="input-area" id="inputArea">
+    <input type="text" id="guessInput" placeholder="Type a country name…" autocomplete="off" spellcheck="false">
+    <div class="autocomplete" id="autocomplete" style="display:none"></div>
+    <button class="btn-guess" id="btnGuess">Make my guess</button>
+  </div>
+
+  <!-- RESULT -->
+  <div class="result-panel" id="resultPanel">
+    <div class="result-flag-strip">
+      <img id="resultFlagImg" src="" alt="">
+      <div class="result-flag-strip-overlay"></div>
+      <div class="result-flag-name" id="resultFlagName"></div>
+    </div>
+    <div class="result-body">
+      <div class="result-outcome">
+        <span class="result-outcome-emoji" id="resultEmoji"></span>
+        <div>
+          <div class="result-outcome-text" id="resultText"></div>
+          <div class="result-outcome-sub" id="resultSub"></div>
+        </div>
+      </div>
+      <div class="result-fact" id="resultFact"></div>
+      <div class="result-actions">
+        <button class="btn-share" id="btnShare">📋 Share result</button>
+        <a class="btn-explore" href="explorer.html">Explore →</a>
+      </div>
+      <div class="countdown-row">
+        Next flag in: <span class="countdown-time" id="countdown">--:--:--</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── COUNTRIES DATA ────────────────────────────────────────────────────────
+const COUNTRIES = [
+  {code:"gb",name:"United Kingdom",capital:"London",continent:"Europe",population:67000000,funFact:"The UK drives on the left — a tradition from sword-carrying travellers who needed their right hand free.",symbolism:"The Union Jack combines the crosses of St George, St Andrew, and St Patrick."},
+  {code:"fr",name:"France",capital:"Paris",continent:"Europe",population:68000000,funFact:"France is the most visited country in the world, welcoming over 90 million tourists a year.",symbolism:"Blue represents freedom, white stands for equality, and red symbolises brotherhood."},
+  {code:"de",name:"Germany",capital:"Berlin",continent:"Europe",population:84000000,funFact:"Germany has over 1,500 types of beer and around 1,300 breweries.",symbolism:"Black, red, and gold are the colours of the German democratic movement from the 19th century."},
+  {code:"it",name:"Italy",capital:"Rome",continent:"Europe",population:60000000,funFact:"Italy has more UNESCO World Heritage Sites than any other country in the world.",symbolism:"The green, white, and red tricolore was inspired by France during Napoleon's Italian campaign."},
+  {code:"es",name:"Spain",capital:"Madrid",continent:"Europe",population:47000000,funFact:"Spain hosts La Tomatina — a festival where thousands of people throw tomatoes at each other.",symbolism:"Red and yellow date back to the kingdoms of Castile and Aragon."},
+  {code:"pt",name:"Portugal",capital:"Lisbon",continent:"Europe",population:10000000,funFact:"Portugal is the oldest country in Europe with unchanged borders, established in 1139.",symbolism:"Green represents hope; red symbolises the blood of those who died for the country."},
+  {code:"nl",name:"Netherlands",capital:"Amsterdam",continent:"Europe",population:17000000,funFact:"The Netherlands has more bicycles than people — about 23 million bikes for 17 million people!",symbolism:"The Dutch tricolour inspired many other flags, including France's."},
+  {code:"be",name:"Belgium",capital:"Brussels",continent:"Europe",population:11000000,funFact:"Belgium invented French fries — they actually originated in Belgium in the late 17th century.",symbolism:"Black, yellow, and red come from the coat of arms of the Duchy of Brabant."},
+  {code:"ch",name:"Switzerland",capital:"Bern",continent:"Europe",population:8700000,funFact:"Switzerland is one of only two countries with a square flag.",symbolism:"The white cross on red has been Switzerland's emblem since the 14th century."},
+  {code:"at",name:"Austria",capital:"Vienna",continent:"Europe",population:9000000,funFact:"Austria is the birthplace of Mozart, Freud, and the croissant.",symbolism:"Legend says the red-white-red design came from a duke's blood-soaked tunic after battle."},
+  {code:"se",name:"Sweden",capital:"Stockholm",continent:"Europe",population:10000000,funFact:"Sweden has around 221,800 islands.",symbolism:"The Nordic cross represents Christianity; blue and yellow come from the Swedish coat of arms."},
+  {code:"no",name:"Norway",capital:"Oslo",continent:"Europe",population:5400000,funFact:"In Norway's summer, the sun never fully sets above the Arctic Circle.",symbolism:"The red, white, and blue Nordic cross reflects Norway's ties to Denmark and Sweden."},
+  {code:"dk",name:"Denmark",capital:"Copenhagen",continent:"Europe",population:5900000,funFact:"The Dannebrog is the oldest national flag still in use anywhere in the world.",symbolism:"According to legend, the flag fell from the sky during a battle in Estonia in 1219."},
+  {code:"fi",name:"Finland",capital:"Helsinki",continent:"Europe",population:5500000,funFact:"Finland has more saunas than cars — about 3 million saunas for 5.5 million people.",symbolism:"Blue represents the country's many lakes; white symbolises the snow-covered landscape."},
+  {code:"is",name:"Iceland",capital:"Reykjavik",continent:"Europe",population:370000,funFact:"Iceland has no mosquitoes — the climate is too cold for them to survive.",symbolism:"Blue for the mountains, white for ice and snow, red for the volcanic fires beneath."},
+  {code:"ie",name:"Ireland",capital:"Dublin",continent:"Europe",population:5000000,funFact:"Halloween originated in Ireland from the ancient Celtic festival of Samhain.",symbolism:"Green for Catholic Irish, orange for Protestant Irish, white symbolises peace between them."},
+  {code:"pl",name:"Poland",capital:"Warsaw",continent:"Europe",population:38000000,funFact:"Poland has 17 Nobel Prize winners, including Marie Curie who won it twice.",symbolism:"White represents the white eagle of Polish heraldry, red stands for the blood of fighters."},
+  {code:"cz",name:"Czech Republic",capital:"Prague",continent:"Europe",population:10800000,funFact:"The Czech Republic has the highest beer consumption per capita in the world.",symbolism:"Blue was added to distinguish the flag from Poland's. The triangle points toward Bohemia."},
+  {code:"hu",name:"Hungary",capital:"Budapest",continent:"Europe",population:10000000,funFact:"Hungary invented the Rubik's Cube, the ballpoint pen, and the hologram.",symbolism:"Red stands for strength, white for faithfulness, and green for hope."},
+  {code:"ro",name:"Romania",capital:"Bucharest",continent:"Europe",population:19000000,funFact:"Romania's flag is nearly identical to Chad's — only a tiny shade difference in the blue tells them apart.",symbolism:"Blue for liberty, yellow for justice, red for fraternity — inspired by France's revolution."},
+  {code:"gr",name:"Greece",capital:"Athens",continent:"Europe",population:10700000,funFact:"Greece has more archaeological museums than any other country in the world.",symbolism:"The nine stripes represent the syllables of the motto 'Freedom or Death'."},
+  {code:"tr",name:"Turkey",capital:"Ankara",continent:"Europe",population:84000000,funFact:"Turkey produces about 75% of the world's hazelnuts.",symbolism:"Legend says the crescent reflected in pools of blood after a great battle."},
+  {code:"ua",name:"Ukraine",capital:"Kyiv",continent:"Europe",population:44000000,funFact:"Ukraine is the largest country located entirely within Europe.",symbolism:"Blue represents the sky; yellow symbolises the vast golden wheat fields."},
+  {code:"hr",name:"Croatia",capital:"Zagreb",continent:"Europe",population:4000000,funFact:"The necktie was invented in Croatia — Croatian soldiers wore them in the 17th century.",symbolism:"Red, white, and blue are Pan-Slavic colours with a historic chequered coat of arms."},
+  {code:"rs",name:"Serbia",capital:"Belgrade",continent:"Europe",population:7000000,funFact:"Serbia is the world's largest exporter of raspberries, producing about 30% of global supply.",symbolism:"Pan-Slavic colours with a double-headed eagle from medieval Serbian heraldry."},
+  {code:"al",name:"Albania",capital:"Tirana",continent:"Europe",population:2800000,funFact:"Albania has over 170,000 bunkers built by its former communist government.",symbolism:"The black double-headed eagle is one of Europe's oldest heraldic symbols."},
+  {code:"ge",name:"Georgia",capital:"Tbilisi",continent:"Asia",population:3700000,funFact:"Georgia is where wine was first made — winemaking dates back at least 8,000 years.",symbolism:"The Five Cross Flag dates to medieval times and represents Christ and the four evangelists."},
+  {code:"am",name:"Armenia",capital:"Yerevan",continent:"Asia",population:3000000,funFact:"Armenia was the first country to adopt Christianity as its state religion, in 301 AD.",symbolism:"Red for the blood shed over centuries, blue for the sky, orange for creativity."},
+  {code:"az",name:"Azerbaijan",capital:"Baku",continent:"Asia",population:10000000,funFact:"Azerbaijan means 'Land of Fire' — it has produced oil since ancient times.",symbolism:"Blue for Turkic heritage, red for progress, green for Islam."},
+  {code:"cn",name:"China",capital:"Beijing",continent:"Asia",population:1400000000,funFact:"China invented paper, printing, gunpowder, and the compass.",symbolism:"Red represents the revolution; the large star stands for the Communist Party."},
+  {code:"jp",name:"Japan",capital:"Tokyo",continent:"Asia",population:125000000,funFact:"Japan has the world's oldest company, founded in 578 AD.",symbolism:"The red circle is the sun — Japan's name means 'origin of the sun'."},
+  {code:"in",name:"India",capital:"New Delhi",continent:"Asia",population:1400000000,funFact:"India invented the number zero and the decimal system.",symbolism:"The blue Ashoka Chakra has 24 spokes representing the 24 hours of the day."},
+  {code:"kr",name:"South Korea",capital:"Seoul",continent:"Asia",population:52000000,funFact:"South Korea has the fastest average internet speed in the world.",symbolism:"The Taegeuk symbol represents balance of cosmic forces — similar to yin and yang."},
+  {code:"id",name:"Indonesia",capital:"Jakarta",continent:"Asia",population:277000000,funFact:"Indonesia is made up of over 17,000 islands.",symbolism:"Red and white have been used since the 13th-century Majapahit Empire."},
+  {code:"my",name:"Malaysia",capital:"Kuala Lumpur",continent:"Asia",population:33000000,funFact:"Malaysia has the world's oldest tropical rainforest, estimated at 130 million years old.",symbolism:"14 stripes and a 14-pointed star represent the 13 states plus federal government."},
+  {code:"ph",name:"Philippines",capital:"Manila",continent:"Asia",population:113000000,funFact:"The Philippines is made up of 7,641 islands and has over 170 languages.",symbolism:"The sun and three stars represent the main island groups."},
+  {code:"vn",name:"Vietnam",capital:"Hanoi",continent:"Asia",population:97000000,funFact:"Vietnam is the world's largest exporter of cashew nuts.",symbolism:"The yellow star represents the five social classes united under the revolution."},
+  {code:"th",name:"Thailand",capital:"Bangkok",continent:"Asia",population:70000000,funFact:"Thailand is the world's largest exporter of rice.",symbolism:"Blue represents the monarchy — King Vajiravudh added it in World War I solidarity."},
+  {code:"sg",name:"Singapore",capital:"Singapore",continent:"Asia",population:5900000,funFact:"Singapore is one of only three city-states in the world.",symbolism:"Five stars stand for democracy, peace, progress, justice, and equality."},
+  {code:"pk",name:"Pakistan",capital:"Islamabad",continent:"Asia",population:231000000,funFact:"Pakistan has the second-largest salt mine in the world.",symbolism:"Green represents Islam; white stands for the religious minorities of Pakistan."},
+  {code:"bd",name:"Bangladesh",capital:"Dhaka",continent:"Asia",population:169000000,funFact:"Bangladesh is home to the world's largest mangrove forest — the Sundarbans.",symbolism:"The red disc represents the rising sun and the blood shed for independence."},
+  {code:"np",name:"Nepal",capital:"Kathmandu",continent:"Asia",population:30000000,funFact:"Nepal's flag is the only national flag in the world that is not rectangular.",symbolism:"The only non-rectangular flag — two stacked triangles representing two royal houses."},
+  {code:"bt",name:"Bhutan",capital:"Thimphu",continent:"Asia",population:780000,funFact:"Bhutan measures success using 'Gross National Happiness' instead of GDP.",symbolism:"The white dragon (Druk) represents the country's name — 'Land of the Thunder Dragon'."},
+  {code:"mn",name:"Mongolia",capital:"Ulaanbaatar",continent:"Asia",population:3300000,funFact:"Mongolia has the lowest population density of any country in the world.",symbolism:"The soyombo symbol represents fire, sun, moon, earth, water, and yin-yang."},
+  {code:"kz",name:"Kazakhstan",capital:"Astana",continent:"Asia",population:19000000,funFact:"Kazakhstan is the world's largest landlocked country.",symbolism:"The steppe eagle represents freedom, power, and foresight."},
+  {code:"af",name:"Afghanistan",capital:"Kabul",continent:"Asia",population:40000000,funFact:"Afghanistan is believed to be the origin of the first cultivated grapes.",symbolism:"Black for the past, red for independence, green for hope and Islam."},
+  {code:"ir",name:"Iran",capital:"Tehran",continent:"Asia",population:85000000,funFact:"Iran (ancient Persia) is considered the birthplace of chess.",symbolism:"The emblem is a stylised 'Allah' in the shape of a tulip."},
+  {code:"iq",name:"Iraq",capital:"Baghdad",continent:"Asia",population:40000000,funFact:"Iraq is home to ancient Mesopotamia — where writing was invented.",symbolism:"The takbir — 'God is Greatest' — is written in green Kufic script."},
+  {code:"sa",name:"Saudi Arabia",capital:"Riyadh",continent:"Asia",population:35000000,funFact:"Saudi Arabia is the largest country in the world without a river.",symbolism:"The flag is never flown at half-mast, as doing so disrespects the holy text written on it."},
+  {code:"ae",name:"United Arab Emirates",capital:"Abu Dhabi",continent:"Asia",population:9900000,funFact:"The UAE is home to the Burj Khalifa — the world's tallest building at 828 metres.",symbolism:"Green for fertility, white for neutrality, black for oil, red for the UAE."},
+  {code:"il",name:"Israel",capital:"Jerusalem",continent:"Asia",population:9300000,funFact:"Israel has the highest concentration of tech startups outside Silicon Valley.",symbolism:"The blue stripes resemble a tallit (Jewish prayer shawl). The Star of David is an ancient Jewish symbol."},
+  {code:"jo",name:"Jordan",capital:"Amman",continent:"Asia",population:10300000,funFact:"Jordan's Petra, carved from rose-red rock, is one of the New Seven Wonders of the World.",symbolism:"The seven-pointed star represents faith, humanity, national spirit, humility, virtue, justice, and aspirations."},
+  {code:"lb",name:"Lebanon",capital:"Beirut",continent:"Asia",population:6800000,funFact:"Lebanon is one of the oldest wine-producing regions in the world, dating back 5,000 years.",symbolism:"The Cedar of Lebanon is mentioned 75 times in the Bible and symbolises immortality."},
+  {code:"za",name:"South Africa",capital:"Pretoria",continent:"Africa",population:60000000,funFact:"South Africa is the only country to have voluntarily dismantled its nuclear weapons.",symbolism:"Designed in one week before the 1994 elections — the Y-shape represents unity in diversity."},
+  {code:"eg",name:"Egypt",capital:"Cairo",continent:"Africa",population:103000000,funFact:"Egypt has more Facebook users than any other country in Africa.",symbolism:"The Eagle of Saladin is an ancient symbol of Arab strength and courage."},
+  {code:"ng",name:"Nigeria",capital:"Abuja",continent:"Africa",population:218000000,funFact:"Nigeria's flag was designed by a 23-year-old student who won a national competition and received £100.",symbolism:"Green represents agriculture and forests; white stands for peace and unity."},
+  {code:"et",name:"Ethiopia",capital:"Addis Ababa",continent:"Africa",population:120000000,funFact:"Ethiopia was never colonised by a European power and its colours inspired dozens of African flags.",symbolism:"Green for the land, yellow for peace, red for heroism."},
+  {code:"ke",name:"Kenya",capital:"Nairobi",continent:"Africa",population:54000000,funFact:"Kenyan athletes have won more Olympic marathon medals than any other country.",symbolism:"The Maasai shield and crossed spears represent the defence of freedom."},
+  {code:"tz",name:"Tanzania",capital:"Dodoma",continent:"Africa",population:63000000,funFact:"Tanzania contains Africa's highest peak — Mount Kilimanjaro at 5,895 metres.",symbolism:"The diagonal stripe is a distinctive design; yellow represents the mineral wealth."},
+  {code:"gh",name:"Ghana",capital:"Accra",continent:"Africa",population:32000000,funFact:"Ghana was the first sub-Saharan African country to gain independence, in 1957.",symbolism:"The black star represents African freedom — it directly inspired Jamaica's flag star."},
+  {code:"ma",name:"Morocco",capital:"Rabat",continent:"Africa",population:37000000,funFact:"Morocco has the world's oldest university — al-Qarawiyyin, founded in 859 AD.",symbolism:"The green pentagram (Seal of Solomon) represents the link between God and the nation."},
+  {code:"dz",name:"Algeria",capital:"Algiers",continent:"Africa",population:44000000,funFact:"Algeria is the largest country in Africa.",symbolism:"Green represents Islam and hope; the crescent and star are symbols of Islam."},
+  {code:"ug",name:"Uganda",capital:"Kampala",continent:"Africa",population:47000000,funFact:"The source of the Nile — the world's longest river — is in Uganda at Lake Victoria.",symbolism:"The grey crowned crane is known for its gentle nature and beauty."},
+  {code:"sn",name:"Senegal",capital:"Dakar",continent:"Africa",population:17000000,funFact:"Senegal is the westernmost country on the African mainland.",symbolism:"Green represents Islam and hope; the star represents unity."},
+  {code:"cm",name:"Cameroon",capital:"Yaoundé",continent:"Africa",population:27000000,funFact:"Cameroon is called 'Africa in miniature' — it has every climate zone found across the continent.",symbolism:"Pan-African colours with a central star representing unity."},
+  {code:"ci",name:"Côte d'Ivoire",capital:"Yamoussoukro",continent:"Africa",population:27000000,funFact:"Côte d'Ivoire produces about 40% of the world's cocoa supply.",symbolism:"Exactly the same colours as Ireland but in reverse order."},
+  {code:"sd",name:"Sudan",capital:"Khartoum",continent:"Africa",population:44000000,funFact:"Sudan has more ancient pyramids than Egypt — over 200 of them.",symbolism:"Pan-Arab colours: red for revolution, white for peace, black for Sudan."},
+  {code:"mz",name:"Mozambique",capital:"Maputo",continent:"Africa",population:32000000,funFact:"Mozambique is the only country whose flag features a modern weapon — an AK-47 rifle.",symbolism:"The AK-47, book, and hoe represent defence, education, and agriculture."},
+  {code:"zw",name:"Zimbabwe",capital:"Harare",continent:"Africa",population:15000000,funFact:"Victoria Falls — shared with Zambia — is the world's largest curtain of falling water.",symbolism:"The Zimbabwe Bird is a famous stone carving from the ancient city of Great Zimbabwe."},
+  {code:"rw",name:"Rwanda",capital:"Kigali",continent:"Africa",population:13000000,funFact:"Rwanda has more women in parliament than any other country in the world.",symbolism:"The rising sun represents enlightenment and the end of darkness."},
+  {code:"mg",name:"Madagascar",capital:"Antananarivo",continent:"Africa",population:27000000,funFact:"Madagascar is home to 90% of the world's lemur species.",symbolism:"White and red are traditional colours of the Merina kingdom, used for centuries."},
+  {code:"us",name:"United States",capital:"Washington D.C.",continent:"Americas",population:333000000,funFact:"The 50-star US flag has been in use since 1960 — the longest unchanged version in its history.",symbolism:"13 stripes for the original colonies; 50 stars for the 50 states."},
+  {code:"ca",name:"Canada",capital:"Ottawa",continent:"Americas",population:38000000,funFact:"Canada has the world's longest coastline — over 202,000 km.",symbolism:"The maple leaf has symbolised Canada since the 1700s."},
+  {code:"mx",name:"Mexico",capital:"Mexico City",continent:"Americas",population:130000000,funFact:"Mexico City sinks about 10 centimetres every year — it's built on a dried-up lake bed.",symbolism:"The eagle eating a snake comes from an Aztec prophecy that led to the founding of their capital."},
+  {code:"br",name:"Brazil",capital:"Brasília",continent:"Americas",population:215000000,funFact:"Brazil's flag globe shows the exact night sky over Rio de Janeiro at the moment it became a republic.",symbolism:"Green for forests, yellow for gold, blue for the sky. The motto reads 'Order and Progress'."},
+  {code:"ar",name:"Argentina",capital:"Buenos Aires",continent:"Americas",population:46000000,funFact:"Argentina is the birthplace of tango, Lionel Messi, and dulce de leche.",symbolism:"The Sun of May represents the Inca sun god Inti and the May Revolution of 1810."},
+  {code:"cl",name:"Chile",capital:"Santiago",continent:"Americas",population:19000000,funFact:"Chile stretches 4,300 km from north to south — the longest country in the world.",symbolism:"Red for blood spilled for independence, white for the Andes, blue for the sky."},
+  {code:"co",name:"Colombia",capital:"Bogotá",continent:"Americas",population:51000000,funFact:"Colombia has coastlines on both the Pacific Ocean and the Caribbean Sea.",symbolism:"Yellow for the gold of the New World, blue for the sea, red for the blood of independence fighters."},
+  {code:"ve",name:"Venezuela",capital:"Caracas",continent:"Americas",population:29000000,funFact:"Venezuela has the world's largest proven oil reserves.",symbolism:"Eight stars in an arc represent the original eight provinces that signed independence."},
+  {code:"pe",name:"Peru",capital:"Lima",continent:"Americas",population:33000000,funFact:"Peru is home to Machu Picchu and Lake Titicaca — the world's highest navigable lake.",symbolism:"Red and white were the colours of Inca warriors."},
+  {code:"cu",name:"Cuba",capital:"Havana",continent:"Americas",population:11000000,funFact:"Cuba has the highest literacy rate in the Americas — over 99%.",symbolism:"The red triangle symbolises equality, fraternity, and liberty."},
+  {code:"jm",name:"Jamaica",capital:"Kingston",continent:"Americas",population:3000000,funFact:"Jamaica is the birthplace of reggae music and Usain Bolt.",symbolism:"One of only two flags with no red, white, or blue. Black, gold, and green were deliberately chosen."},
+  {code:"ht",name:"Haiti",capital:"Port-au-Prince",continent:"Americas",population:11400000,funFact:"Haiti was the world's first Black republic, gaining independence in 1804.",symbolism:"Revolutionaries tore the white stripe from the French tricolore — removing the white colonisers."},
+  {code:"gt",name:"Guatemala",capital:"Guatemala City",continent:"Americas",population:17000000,funFact:"Guatemala is the birthplace of chocolate — the Maya were the first to cultivate cacao.",symbolism:"The quetzal bird represents liberty — it was the symbol of freedom for the Maya people."},
+  {code:"pa",name:"Panama",capital:"Panama City",continent:"Americas",population:4300000,funFact:"Panama is the only place where you can see the sun rise over the Pacific and set over the Atlantic.",symbolism:"Blue stands for the Conservative Party, red for the Liberal Party, white represents peace."},
+  {code:"tt",name:"Trinidad and Tobago",capital:"Port of Spain",continent:"Americas",population:1400000,funFact:"Trinidad and Tobago is the birthplace of the steelpan — the only acoustic instrument invented in the 20th century.",symbolism:"Black represents strength; the diagonal design is unique among Caribbean nations."},
+  {code:"au",name:"Australia",capital:"Canberra",continent:"Oceania",population:26000000,funFact:"Australia's flag was chosen through the world's first public flag design competition in 1901.",symbolism:"The Commonwealth Star has seven points — six for the states and one for all territories."},
+  {code:"nz",name:"New Zealand",capital:"Wellington",continent:"Oceania",population:5100000,funFact:"New Zealand was the first country to give women the right to vote, in 1893.",symbolism:"The four red stars of the Southern Cross are only visible from the Southern Hemisphere."},
+  {code:"pg",name:"Papua New Guinea",capital:"Port Moresby",continent:"Oceania",population:10000000,funFact:"Papua New Guinea has over 800 languages — more than any other country on Earth.",symbolism:"The Bird of Paradise represents PNG's extraordinary wildlife and beauty."},
+  {code:"fj",name:"Fiji",capital:"Suva",continent:"Oceania",population:920000,funFact:"Fiji has over 300 islands, of which about 110 are inhabited.",symbolism:"Light blue represents the Pacific Ocean. The shield shows sugarcane, a dove, and a lion."},
+  {code:"ws",name:"Samoa",capital:"Apia",continent:"Oceania",population:220000,funFact:"Samoa is one of the first countries in the world to see each new day.",symbolism:"The Southern Cross represents Samoa's location in the vast Pacific Ocean."},
+  {code:"to",name:"Tonga",capital:"Nuku'alofa",continent:"Oceania",population:100000,funFact:"Tonga is the only monarchy in the Pacific and has never been fully colonised.",symbolism:"The red cross represents Christianity, which was adopted by King George Tupou I."},
+];
+
+function flagUrl(code,size) { return `https://flagcdn.com/${size||'w320'}/${code}.png`; }
+
+function formatPop(n) {
+  if(n>=1000000000) return (n/1000000000).toFixed(1)+'B';
+  if(n>=1000000)    return (n/1000000).toFixed(1)+'M';
+  if(n>=1000)       return Math.round(n/1000)+'K';
+  return n.toString();
+}
+
+// ── DATE & DAILY SEED ─────────────────────────────────────────────────────
+function getTodayKey() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+function getDailyCountry() {
+  const epoch = new Date('2024-01-01');
+  const today = new Date(); today.setHours(0,0,0,0);
+  const dayIdx = Math.floor((today - epoch) / 86400000) % COUNTRIES.length;
+  return COUNTRIES[dayIdx];
+}
+
+function formatDateLabel(d) {
+  return d.toLocaleDateString('en-GB', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+}
+
+// ── STORAGE ───────────────────────────────────────────────────────────────
+const STORE_KEY = 'flagatlas_daily';
+function getStore() { try { return JSON.parse(localStorage.getItem(STORE_KEY)||'{}'); } catch(e) { return {}; } }
+function setStore(v) { try { localStorage.setItem(STORE_KEY,JSON.stringify(v)); } catch(e){} }
+
+// ── STATE ─────────────────────────────────────────────────────────────────
+const MAX_ATTEMPTS = 6;
+const HINT_SCHEDULE = [0,1,3,5]; // after attempt 0,1,3,5 reveal hints
+
+let daily, todayKey, guesses, done, acFocusIdx;
+
+// ── INIT ──────────────────────────────────────────────────────────────────
+function init() {
+  const today = new Date();
+  todayKey = getTodayKey();
+  daily = getDailyCountry();
+
+  document.getElementById('dateLabel').textContent = formatDateLabel(today);
+  document.getElementById('flagImg').src = flagUrl(daily.code,'w640');
+
+  buildAttemptDots();
+  loadStats();
+
+  const store = getStore();
+  const saved = store[todayKey];
+
+  if (saved) {
+    // resume today's game
+    guesses = saved.guesses || [];
+    done    = saved.done    || false;
+    guesses.forEach(g => renderGuessRow(g, false));
+    updateDots();
+    applyHints();
+    if (done) {
+      showResult(saved.won, guesses.length);
+      document.getElementById('flagBlur').classList.remove('blurred');
+      document.getElementById('inputArea').style.display = 'none';
+    }
+  } else {
+    guesses = [];
+    done    = false;
+  }
+}
+
+// ── ATTEMPT DOTS ──────────────────────────────────────────────────────────
+function buildAttemptDots() {
+  const el = document.getElementById('attemptDots');
+  el.innerHTML = '';
+  for(let i=0;i<MAX_ATTEMPTS;i++){
+    const d = document.createElement('div');
+    d.className = 'attempt-dot';
+    d.id = `dot-${i}`;
+    el.appendChild(d);
+  }
+}
+
+function updateDots() {
+  for(let i=0;i<MAX_ATTEMPTS;i++){
+    const d = document.getElementById(`dot-${i}`);
+    d.className = 'attempt-dot';
+    if(i < guesses.length) {
+      d.classList.add(guesses[i].correct ? 'won' : 'used');
+    } else if(i === guesses.length && !done) {
+      d.classList.add('active');
+    }
+  }
+}
+
+// ── HINTS ─────────────────────────────────────────────────────────────────
+function applyHints() {
+  const n = guesses.length;
+  // hint 1: continent (after attempt 1)
+  if(n >= 1) revealHint('hintContinent', daily.continent);
+  // hint 2: population size (after attempt 2)
+  if(n >= 2) revealHint('hintPopulation', formatPop(daily.population)+' people');
+  // hint 3: first letter (after attempt 3)
+  if(n >= 3) revealHint('hintInitial', daily.name[0].toUpperCase() + '...');
+  // hint 4: capital (after attempt 5 - last resort)
+  if(n >= 5) revealHint('hintCapital', daily.capital);
+}
+
+function revealHint(id, value) {
+  const el = document.getElementById(id);
+  if(!el) return;
+  el.classList.add('revealed');
+  el.querySelector('.hint-val').textContent = value;
+}
+
+// ── AUTOCOMPLETE ──────────────────────────────────────────────────────────
+const input = document.getElementById('guessInput');
+const acEl  = document.getElementById('autocomplete');
+acFocusIdx  = -1;
+
+input.addEventListener('input', () => {
+  const q = input.value.trim().toLowerCase();
+  if(q.length < 2) { acEl.style.display='none'; return; }
+  const matches = COUNTRIES
+    .filter(c => c.name.toLowerCase().includes(q))
+    .slice(0,8);
+  if(!matches.length) { acEl.style.display='none'; return; }
+  acEl.innerHTML = '';
+  acFocusIdx = -1;
+  matches.forEach((c,i) => {
+    const item = document.createElement('div');
+    item.className = 'autocomplete-item';
+    item.innerHTML = `<img src="${flagUrl(c.code)}" alt="${c.name}"> ${c.name}`;
+    item.addEventListener('mousedown', e => {
+      e.preventDefault();
+      input.value = c.name;
+      acEl.style.display='none';
+    });
+    acEl.appendChild(item);
+  });
+  acEl.style.display = 'block';
+});
+
+input.addEventListener('keydown', e => {
+  const items = acEl.querySelectorAll('.autocomplete-item');
+  if(e.key==='ArrowDown') {
+    e.preventDefault();
+    acFocusIdx = Math.min(acFocusIdx+1, items.length-1);
+    items.forEach((it,i)=>it.classList.toggle('focused',i===acFocusIdx));
+  } else if(e.key==='ArrowUp') {
+    e.preventDefault();
+    acFocusIdx = Math.max(acFocusIdx-1,0);
+    items.forEach((it,i)=>it.classList.toggle('focused',i===acFocusIdx));
+  } else if(e.key==='Enter') {
+    e.preventDefault();
+    if(acFocusIdx>=0 && items[acFocusIdx]) {
+      input.value = items[acFocusIdx].textContent.trim();
+      acEl.style.display='none';
+    } else {
+      submitGuess();
+    }
+  } else if(e.key==='Escape') {
+    acEl.style.display='none';
+  }
+});
+
+document.addEventListener('click', e => {
+  if(!acEl.contains(e.target) && e.target!==input) acEl.style.display='none';
+});
+
+// ── GUESS SUBMIT ──────────────────────────────────────────────────────────
+document.getElementById('btnGuess').addEventListener('click', submitGuess);
+
+function submitGuess() {
+  if(done) return;
+  const raw  = input.value.trim();
+  const norm = raw.toLowerCase();
+  const match = COUNTRIES.find(c => c.name.toLowerCase() === norm);
+
+  if(!match) {
+    showToast('Country not found — check your spelling!');
+    input.classList.add('shake');
+    setTimeout(()=>input.classList.remove('shake'),400);
+    return;
+  }
+  if(guesses.find(g=>g.code===match.code)) {
+    showToast("You've already guessed that one!");
+    return;
+  }
+
+  acEl.style.display = 'none';
+  input.value = '';
+
+  const isCorrect = match.code === daily.code;
+  // badge: correct / same continent / wrong
+  const badgeType = isCorrect ? 'correct'
+    : match.continent === daily.continent ? 'close' : 'wrong';
+  const badgeText = isCorrect ? '✓ Correct!'
+    : match.continent === daily.continent ? '🔥 Same continent!'
+    : '✗ Wrong';
+
+  const guess = { code:match.code, name:match.name, badgeType, badgeText, correct:isCorrect };
+  guesses.push(guess);
+
+  renderGuessRow(guess, true);
+  updateDots();
+  applyHints();
+
+  const won  = isCorrect;
+  const lost = !won && guesses.length >= MAX_ATTEMPTS;
+
+  if(won || lost) {
+    done = true;
+    document.getElementById('flagBlur').classList.remove('blurred');
+    document.getElementById('inputArea').style.display = 'none';
+    setTimeout(()=>showResult(won, guesses.length), 600);
+    saveResult(won);
+  } else {
+    saveProgress();
+  }
+}
+
+function renderGuessRow(g, animate) {
+  const log = document.getElementById('guessLog');
+  const row = document.createElement('div');
+  row.className = 'guess-row';
+  if(!animate) row.style.animation='none';
+  row.innerHTML = `
+    <img src="${flagUrl(g.code)}" alt="${g.name}">
+    <span class="guess-row-name">${g.name}</span>
+    <span class="guess-row-badge badge-${g.badgeType}">${g.badgeText}</span>`;
+  log.appendChild(row);
+  row.scrollIntoView({ behavior:'smooth', block:'nearest' });
+}
+
+// ── SAVE ──────────────────────────────────────────────────────────────────
+function saveProgress() {
+  const store = getStore();
+  store[todayKey] = { guesses, done:false };
+  setStore(store);
+}
+
+function saveResult(won) {
+  const store = getStore();
+  store[todayKey] = { guesses, done:true, won };
+
+  // streak logic
+  const yesterday = new Date(); yesterday.setDate(yesterday.getDate()-1);
+  const yKey = `${yesterday.getFullYear()}-${String(yesterday.getMonth()+1).padStart(2,'0')}-${String(yesterday.getDate()).padStart(2,'0')}`;
+  const hadYesterday = store[yKey]?.won;
+
+  store.streak     = (won && hadYesterday) ? (store.streak||0)+1 : won ? 1 : 0;
+  store.bestStreak = Math.max(store.bestStreak||0, store.streak||0);
+  store.played     = (store.played||0)+1;
+  store.wins       = (store.wins||0) + (won?1:0);
+  setStore(store);
+  loadStats();
+}
+
+function loadStats() {
+  const s = getStore();
+  document.getElementById('streakNum').textContent    = s.streak     || 0;
+  document.getElementById('bestStreakNum').textContent = s.bestStreak || 0;
+  document.getElementById('playedNum').textContent    = s.played     || 0;
+  const pct = s.played ? Math.round((s.wins/s.played)*100) : 0;
+  document.getElementById('winPctNum').textContent = pct+'%';
+}
+
+// ── RESULT ────────────────────────────────────────────────────────────────
+function showResult(won, attemptCount) {
+  const panel = document.getElementById('resultPanel');
+  panel.classList.add('visible');
+
+  document.getElementById('resultFlagImg').src = flagUrl(daily.code,'w640');
+  document.getElementById('resultFlagName').textContent = daily.name;
+
+  let emoji, text, sub;
+  if(won) {
+    if(attemptCount===1)      { emoji='🏆'; text='Incredible!';   sub='First attempt — you are a flag legend.'; }
+    else if(attemptCount===2) { emoji='⚡'; text='Outstanding!';   sub='Got it in two — seriously impressive.'; }
+    else if(attemptCount===3) { emoji='🎯'; text='Excellent!';     sub='Three attempts — that is great work.'; }
+    else if(attemptCount===4) { emoji='✅'; text='Well done!';     sub='Four guesses — solid flag knowledge.'; }
+    else if(attemptCount===5) { emoji='😅'; text='Made it!';       sub='Cut it close — but you got there.'; }
+    else                      { emoji='😤'; text='Just in time!';  sub='Last guess — what a rescue!'; }
+  } else {
+    emoji='😔'; text='Unlucky today!'; sub=`The flag was ${daily.name}. Come back tomorrow!`;
+  }
+
+  document.getElementById('resultEmoji').textContent = emoji;
+  document.getElementById('resultText').textContent  = text;
+  document.getElementById('resultSub').textContent   = sub;
+  document.getElementById('resultFact').textContent  = daily.funFact;
+
+  startCountdown();
+}
+
+// ── SHARE ─────────────────────────────────────────────────────────────────
+document.getElementById('btnShare').addEventListener('click', () => {
+  const won = guesses[guesses.length-1]?.correct;
+  const squares = guesses.map(g => {
+    if(g.correct)                    return '🟩';
+    if(g.badgeType==='close')        return '🟨';
+    return '🟥';
+  }).join('');
+  const score = won ? guesses.length : 'X';
+  const text = `FlagAtlas Daily — ${getTodayKey()}\n${score}/${MAX_ATTEMPTS}\n${squares}\nflagatlas.netlify.app`;
+
+  if(navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(()=>{
+      document.getElementById('btnShare').textContent = '✓ Copied!';
+      document.getElementById('btnShare').classList.add('copied');
+      setTimeout(()=>{
+        document.getElementById('btnShare').textContent = '📋 Share result';
+        document.getElementById('btnShare').classList.remove('copied');
+      }, 2000);
+    });
+  } else {
+    showToast('Copy: '+text);
+  }
+});
+
+// ── COUNTDOWN ─────────────────────────────────────────────────────────────
+function startCountdown() {
+  function update() {
+    const now   = new Date();
+    const next  = new Date(); next.setHours(24,0,0,0);
+    const diff  = next - now;
+    const h = String(Math.floor(diff/3600000)).padStart(2,'0');
+    const m = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+    const s = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+    document.getElementById('countdown').textContent = `${h}:${m}:${s}`;
+  }
+  update();
+  setInterval(update, 1000);
+}
+
+// ── TOAST ─────────────────────────────────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2500);
+}
+
+// ── GO ────────────────────────────────────────────────────────────────────
+init();
+</script>
+</body>
+</html>
