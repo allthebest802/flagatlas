@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flag Fact Cards — FlagAtlas</title>
+<meta name="description" content="Swipe through fascinating flag facts. Discover the stories, secrets and symbols behind the world's flags.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:       #0f1f3d;
+    --navy-mid:   #162847;
+    --navy-light: #1e3460;
+    --teal:       #0d9488;
+    --teal-light: #14b8a6;
+    --gold:       #f59e0b;
+    --cream:      #fef9f0;
+    --text-light: #e2e8f0;
+    --text-muted: #94a3b8;
+    --purple:     #a78bfa;
+    --radius:     20px;
+    --radius-sm:  10px;
+    --card-w:     min(420px, calc(100vw - 3rem));
+    --card-h:     560px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family:'DM Sans',sans-serif;
+    background:var(--navy);
+    color:var(--text-light);
+    min-height:100vh;
+    overflow-x:hidden;
+    user-select:none;
+  }
+  body::before {
+    content:'';
+    position:fixed; inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);
+    background-size:40px 40px;
+    pointer-events:none; z-index:0;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position:relative; z-index:10;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:1rem 1.5rem;
+    border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .nav-logo { display:flex; align-items:center; gap:0.5rem; text-decoration:none; }
+  .nav-logo-icon { width:32px; height:32px; background:var(--teal); border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:16px; }
+  .nav-logo-text { font-family:'Playfair Display',serif; font-size:1.25rem; font-weight:700; color:var(--cream); }
+  .nav-logo-text span { color:var(--teal-light); }
+  .nav-back { font-size:0.82rem; color:var(--text-muted); text-decoration:none; display:flex; align-items:center; gap:0.3rem; transition:color 0.15s; }
+  .nav-back:hover { color:var(--teal-light); }
+
+  /* ── LAYOUT ── */
+  .page {
+    position:relative; z-index:1;
+    display:flex; flex-direction:column; align-items:center;
+    padding:1.5rem 1.5rem 3rem;
+    min-height:calc(100vh - 57px);
+  }
+
+  /* ── HEADER ── */
+  .page-header {
+    text-align:center; margin-bottom:1.8rem; max-width:480px;
+  }
+  .page-header h1 {
+    font-family:'Playfair Display',serif;
+    font-size:clamp(1.6rem,4vw,2.2rem);
+    font-weight:900; color:var(--cream); margin-bottom:0.3rem;
+  }
+  .page-header p { font-size:0.88rem; color:var(--text-muted); }
+
+  /* ── PROGRESS ── */
+  .progress-wrap {
+    width:var(--card-w); margin-bottom:1.2rem;
+    display:flex; align-items:center; gap:0.8rem;
+  }
+  .progress-bar {
+    flex:1; height:4px; background:rgba(255,255,255,0.08);
+    border-radius:2px; overflow:hidden;
+  }
+  .progress-fill {
+    height:100%; background:var(--purple);
+    border-radius:2px; transition:width 0.4s ease;
+  }
+  .progress-label {
+    font-size:0.75rem; color:var(--text-muted); white-space:nowrap;
+    font-weight:500;
+  }
+
+  /* ── CARD STACK ── */
+  .card-stack {
+    position:relative;
+    width:var(--card-w); height:var(--card-h);
+    margin-bottom:1.5rem;
+    perspective:1200px;
+  }
+
+  /* ghost cards behind for depth */
+  .card-ghost {
+    position:absolute; inset:0;
+    border-radius:var(--radius);
+    border:1px solid rgba(255,255,255,0.06);
+    background:rgba(255,255,255,0.025);
+    transform-origin:bottom center;
+  }
+  .card-ghost-1 { transform:translateY(8px) scale(0.96); z-index:1; }
+  .card-ghost-2 { transform:translateY(16px) scale(0.92); z-index:0; }
+
+  /* flip card container */
+  .flip-card {
+    position:absolute; inset:0; z-index:2;
+    transform-style:preserve-3d;
+    transition:transform 0.55s cubic-bezier(0.4,0,0.2,1);
+    cursor:pointer;
+    border-radius:var(--radius);
+  }
+  .flip-card.flipped { transform:rotateY(180deg); }
+
+  /* FRONT */
+  .card-front, .card-back {
+    position:absolute; inset:0;
+    backface-visibility:hidden;
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .card-back { transform:rotateY(180deg); }
+
+  /* ── FRONT FACE ── */
+  .card-front {
+    background:var(--navy-mid);
+    border:1px solid rgba(255,255,255,0.1);
+    display:flex; flex-direction:column;
+  }
+
+  .card-front-flag {
+    width:100%; flex:1; overflow:hidden; position:relative;
+    background:rgba(0,0,0,0.3);
+  }
+  .card-front-flag img {
+    width:100%; height:100%; object-fit:cover; display:block;
+    transition:transform 0.4s ease;
+  }
+  .flip-card:hover .card-front-flag img { transform:scale(1.03); }
+
+  /* category ribbon */
+  .card-ribbon {
+    position:absolute; top:1rem; left:1rem;
+    padding:0.3rem 0.7rem;
+    border-radius:100px;
+    font-size:0.7rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;
+  }
+
+  /* card number badge */
+  .card-num-badge {
+    position:absolute; top:1rem; right:1rem;
+    background:rgba(0,0,0,0.5);
+    backdrop-filter:blur(4px);
+    border-radius:100px; padding:0.25rem 0.65rem;
+    font-size:0.72rem; color:rgba(255,255,255,0.7); font-weight:600;
+  }
+
+  .card-front-body {
+    padding:1.4rem 1.5rem 1.5rem;
+    background:var(--navy-mid);
+  }
+  .card-country-name {
+    font-family:'Playfair Display',serif;
+    font-size:1.5rem; font-weight:900; color:var(--cream);
+    line-height:1.1; margin-bottom:0.2rem;
+  }
+  .card-capital {
+    font-size:0.8rem; color:var(--text-muted);
+    margin-bottom:1rem; display:flex; align-items:center; gap:0.3rem;
+  }
+
+  .card-fact-preview {
+    font-size:0.92rem; color:var(--text-light); line-height:1.55;
+    display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical;
+    overflow:hidden;
+  }
+
+  .card-flip-hint {
+    display:flex; align-items:center; justify-content:center; gap:0.4rem;
+    margin-top:1rem;
+    font-size:0.72rem; color:var(--purple); font-weight:600;
+    letter-spacing:0.06em; text-transform:uppercase;
+    opacity:0.8;
+  }
+  .card-flip-hint svg { animation:spin-hint 2s ease-in-out infinite; }
+  @keyframes spin-hint {
+    0%,100% { transform:rotateY(0); }
+    50%      { transform:rotateY(180deg); }
+  }
+
+  /* ── BACK FACE ── */
+  .card-back {
+    display:flex; flex-direction:column;
+    border:1px solid rgba(167,139,250,0.2);
+  }
+
+  /* large flag strip at top of back */
+  .card-back-flag {
+    height:140px; overflow:hidden; position:relative; flex-shrink:0;
+  }
+  .card-back-flag img {
+    width:100%; height:100%; object-fit:cover;
+    filter:brightness(0.5);
+  }
+  .card-back-flag-overlay {
+    position:absolute; inset:0;
+    background:linear-gradient(to bottom, transparent 40%, var(--navy-mid) 100%);
+  }
+  .card-back-country {
+    position:absolute; bottom:0.8rem; left:1.4rem; right:1.4rem;
+    font-family:'Playfair Display',serif;
+    font-size:1.6rem; font-weight:900; color:var(--cream);
+    font-style:italic;
+  }
+
+  .card-back-body {
+    flex:1; padding:1.2rem 1.5rem 1.5rem;
+    background:var(--navy-mid);
+    overflow-y:auto;
+    display:flex; flex-direction:column; gap:1.2rem;
+  }
+
+  .back-section-label {
+    font-size:0.68rem; font-weight:600; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--purple); margin-bottom:0.4rem;
+    display:flex; align-items:center; gap:0.5rem;
+  }
+  .back-section-label::after {
+    content:''; flex:1; height:1px;
+    background:rgba(167,139,250,0.2);
+  }
+
+  .back-section-text {
+    font-size:0.88rem; color:var(--text-light); line-height:1.65;
+  }
+
+  .back-flip-hint {
+    display:flex; align-items:center; justify-content:center; gap:0.4rem;
+    font-size:0.72rem; color:var(--text-muted); font-weight:500;
+    margin-top:auto; padding-top:0.8rem;
+  }
+
+  /* ── CONTROLS ── */
+  .controls {
+    display:flex; align-items:center; gap:1rem;
+    width:var(--card-w);
+  }
+  .ctrl-btn {
+    width:52px; height:52px; border-radius:50%;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+    color:var(--text-light); font-size:1.2rem;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; transition:all 0.15s; flex-shrink:0;
+  }
+  .ctrl-btn:hover:not(:disabled) {
+    background:rgba(255,255,255,0.12);
+    border-color:rgba(255,255,255,0.25);
+    transform:scale(1.05);
+  }
+  .ctrl-btn:disabled { opacity:0.3; cursor:default; }
+
+  .ctrl-next {
+    flex:1; padding:0.85rem 1rem;
+    background:var(--purple);
+    border:none; border-radius:var(--radius-sm);
+    color:#fff; font-family:'DM Sans',sans-serif;
+    font-size:0.95rem; font-weight:600;
+    cursor:pointer; letter-spacing:0.01em;
+    transition:transform 0.15s, opacity 0.15s;
+    display:flex; align-items:center; justify-content:center; gap:0.4rem;
+  }
+  .ctrl-next:hover { transform:translateY(-2px); opacity:0.9; }
+  .ctrl-next:active { transform:translateY(0); }
+
+  /* ── CATEGORY FILTER ── */
+  .filter-strip {
+    display:flex; gap:0.5rem; flex-wrap:wrap; justify-content:center;
+    width:var(--card-w); margin-bottom:1.2rem;
+  }
+  .cat-btn {
+    padding:0.3rem 0.8rem;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:100px;
+    color:var(--text-muted); font-family:'DM Sans',sans-serif;
+    font-size:0.78rem; font-weight:500; cursor:pointer;
+    transition:all 0.15s;
+  }
+  .cat-btn:hover { border-color:rgba(255,255,255,0.2); color:var(--text-light); }
+  .cat-btn.active { background:var(--purple); border-color:var(--purple); color:#fff; font-weight:600; }
+
+  /* ── ALL DONE ── */
+  .all-done {
+    display:none; flex-direction:column; align-items:center;
+    text-align:center; padding:2rem; max-width:360px;
+  }
+  .all-done.visible { display:flex; }
+  .all-done-emoji { font-size:3rem; margin-bottom:1rem; }
+  .all-done h2 {
+    font-family:'Playfair Display',serif;
+    font-size:1.8rem; font-weight:900; color:var(--cream); margin-bottom:0.5rem;
+  }
+  .all-done p { font-size:0.9rem; color:var(--text-muted); line-height:1.6; margin-bottom:1.5rem; }
+  .btn-restart {
+    padding:0.85rem 2rem;
+    background:var(--purple); border:none; border-radius:var(--radius-sm);
+    color:#fff; font-family:'DM Sans',sans-serif; font-size:0.95rem; font-weight:600;
+    cursor:pointer; transition:transform 0.15s, opacity 0.15s;
+  }
+  .btn-restart:hover { transform:translateY(-2px); opacity:0.9; }
+
+  /* ── SWIPE HINT ── */
+  .swipe-hint {
+    font-size:0.72rem; color:var(--text-muted);
+    text-align:center; margin-top:0.8rem;
+    opacity:0.7; letter-spacing:0.04em;
+  }
+
+  /* ── CARD ENTER/EXIT ANIMATIONS ── */
+  @keyframes card-in-right {
+    from { opacity:0; transform:translateX(60px) scale(0.96); }
+    to   { opacity:1; transform:translateX(0) scale(1); }
+  }
+  @keyframes card-in-left {
+    from { opacity:0; transform:translateX(-60px) scale(0.96); }
+    to   { opacity:1; transform:translateX(0) scale(1); }
+  }
+  @keyframes card-out-left {
+    from { opacity:1; transform:translateX(0) scale(1); }
+    to   { opacity:0; transform:translateX(-80px) scale(0.94); }
+  }
+  @keyframes card-out-right {
+    from { opacity:1; transform:translateX(0) scale(1); }
+    to   { opacity:0; transform:translateX(80px) scale(0.94); }
+  }
+  .anim-in-right  { animation:card-in-right  0.35s cubic-bezier(0.34,1.2,0.64,1) both; }
+  .anim-in-left   { animation:card-in-left   0.35s cubic-bezier(0.34,1.2,0.64,1) both; }
+  .anim-out-left  { animation:card-out-left  0.25s ease both; }
+  .anim-out-right { animation:card-out-right 0.25s ease both; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <div class="nav-logo-icon">🌍</div>
+    <span class="nav-logo-text">Flag<span>Atlas</span></span>
+  </a>
+  <a class="nav-back" href="index.html">← All tools</a>
+</nav>
+
+<div class="page">
+  <div class="page-header">
+    <h1>🃏 Flag Fact Cards</h1>
+    <p>Tap a card to flip it — discover the story behind every flag</p>
+  </div>
+
+  <!-- CATEGORY FILTER -->
+  <div class="filter-strip" id="filterStrip">
+    <button class="cat-btn active" data-cat="all">All</button>
+    <button class="cat-btn" data-cat="unique">Unique flags</button>
+    <button class="cat-btn" data-cat="symbols">Symbols</button>
+    <button class="cat-btn" data-cat="colours">Colours</button>
+    <button class="cat-btn" data-cat="history">History</button>
+    <button class="cat-btn" data-cat="records">Records</button>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap">
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill" style="width:0%"></div>
+    </div>
+    <div class="progress-label" id="progressLabel">1 of 60</div>
+  </div>
+
+  <!-- CARD STACK -->
+  <div class="card-stack" id="cardStack">
+    <div class="card-ghost card-ghost-2"></div>
+    <div class="card-ghost card-ghost-1"></div>
+    <div class="flip-card" id="flipCard">
+      <div class="card-front" id="cardFront"></div>
+      <div class="card-back"  id="cardBack"></div>
+    </div>
+  </div>
+
+  <!-- CONTROLS -->
+  <div class="controls">
+    <button class="ctrl-btn" id="btnPrev" title="Previous card" disabled>←</button>
+    <button class="ctrl-next" id="btnNext">Next card →</button>
+    <button class="ctrl-btn" id="btnFlip" title="Flip card">↺</button>
+  </div>
+
+  <p class="swipe-hint">Tap card to flip · ← → arrow keys to navigate</p>
+
+  <!-- ALL DONE -->
+  <div class="all-done" id="allDone">
+    <div class="all-done-emoji">🎉</div>
+    <h2>You've seen them all!</h2>
+    <p>You've flipped through every fact card in this category. Start again or try a different category.</p>
+    <button class="btn-restart" id="btnRestart">Start over</button>
+  </div>
+</div>
+
+<script>
+// ── FACT CARD DATA ────────────────────────────────────────────────────────
+// Each card: code, country, capital, category, funFact, symbolism, ribbonColour
+const ALL_CARDS = [
+  // UNIQUE FLAGS
+  { code:"np", country:"Nepal", capital:"Kathmandu", cat:"unique",
+    funFact:"Nepal's flag is the only national flag in the world that is not rectangular. It is made of two stacked pennant triangles and has been used in this form since 1962.",
+    symbolism:"The moon symbol represents the royal house and the cool climate of the Himalayas. The sun represents the Prime Minister's house and the fierce climate of the lowlands. Both represent the hope that Nepal will last as long as these celestial bodies exist.",
+    ribbon:"🔺 Unique shape", ribbonBg:"rgba(244,63,94,0.8)" },
+
+  { code:"ch", country:"Switzerland", capital:"Bern", cat:"unique",
+    funFact:"Switzerland's flag is one of only two square national flags in the world — the other is Vatican City. It is instantly recognisable and the basis of the Red Cross symbol.",
+    symbolism:"The white cross on red has been the Swiss military emblem since the 14th century. When the International Red Cross was founded in Geneva in 1863, they reversed the colours as a tribute to Switzerland.",
+    ribbon:"⬛ Square flag", ribbonBg:"rgba(239,68,68,0.8)" },
+
+  { code:"va", country:"Vatican City", capital:"Vatican City", cat:"unique",
+    funFact:"Vatican City is both the world's smallest country AND has one of only two square national flags. It has a population of under 800 people — fewer than most village primary schools.",
+    symbolism:"Yellow and white represent the Pope's spiritual and earthly power. The coat of arms shows the papal tiara (a crown of three tiers) and the crossed keys of Saint Peter, who is said to hold the keys to heaven.",
+    ribbon:"⬛ Square flag", ribbonBg:"rgba(245,158,11,0.8)" },
+
+  { code:"py", country:"Paraguay", capital:"Asunción", cat:"unique",
+    funFact:"Paraguay's flag is the only national flag in the world with different emblems on each side. Turn it around and you see a completely different coat of arms — the treasury seal on the reverse.",
+    symbolism:"Red, white, and blue were inspired by France's tricolore. The front shows the national coat of arms; the back shows the treasury seal with a lion, staff, and Phrygian cap representing liberty.",
+    ribbon:"🔄 Two-sided", ribbonBg:"rgba(239,68,68,0.8)" },
+
+  { code:"ly", country:"Libya", capital:"Tripoli", cat:"unique",
+    funFact:"From 1977 to 2011, Libya had the world's only completely plain single-colour national flag — solid green, with no symbols at all. The current flag was restored after the 2011 revolution.",
+    symbolism:"The current flag uses Pan-Arab colours. Black represents the Senussi dynasty, red symbolises blood shed in struggle, green stands for prosperity, and the crescent and star represent Islam.",
+    ribbon:"📜 Flag history", ribbonBg:"rgba(52,211,153,0.8)" },
+
+  { code:"mz", country:"Mozambique", capital:"Maputo", cat:"unique",
+    funFact:"Mozambique is the only country in the world whose flag features a modern weapon — an AK-47 assault rifle. Several flag redesign competitions have been held but the design has always been retained.",
+    symbolism:"Green represents the land, black stands for Africa, yellow symbolises mineral wealth, and white represents peace. The AK-47, open book, and hoe represent defence, education, and agriculture.",
+    ribbon:"⚠️ Unique symbol", ribbonBg:"rgba(239,68,68,0.8)" },
+
+  { code:"kh", country:"Cambodia", capital:"Phnom Penh", cat:"unique",
+    funFact:"Cambodia's flag is one of very few in the world to feature a building — the ancient temple complex of Angkor Wat, the largest religious monument in the world.",
+    symbolism:"Red and blue are traditional Khmer colours used for centuries. The white Angkor Wat in the centre represents the nation's cultural heritage and integrity.",
+    ribbon:"🏛️ Building on flag", ribbonBg:"rgba(20,184,166,0.8)" },
+
+  { code:"cy", country:"Cyprus", capital:"Nicosia", cat:"unique",
+    funFact:"Cyprus is one of the very few countries whose flag actually shows a map of the country itself — the copper-coloured outline of the island is unmistakeable.",
+    symbolism:"The copper colour of the map comes from the fact that Cyprus literally means 'copper' in Greek — the island was a major source of copper in ancient times. The olive branches represent peace.",
+    ribbon:"🗺️ Map on flag", ribbonBg:"rgba(245,158,11,0.8)" },
+
+  // SYMBOLS
+  { code:"bt", country:"Bhutan", capital:"Thimphu", cat:"symbols",
+    funFact:"Bhutan's flag features a white dragon — called Druk, meaning 'Thunder Dragon'. The country's own name is Druk Yul, which translates as 'Land of the Thunder Dragon'.",
+    symbolism:"Orange represents Buddhist spiritual power and red represents temporal power. The white dragon holds jewels in its claws, representing the wealth and perfection of the country. The snarling mouth represents the strength of the deities protecting Bhutan.",
+    ribbon:"🐉 Dragon", ribbonBg:"rgba(245,158,11,0.8)" },
+
+  { code:"al", country:"Albania", capital:"Tirana", cat:"symbols",
+    funFact:"The double-headed eagle on Albania's flag is one of the oldest heraldic symbols in Europe, dating back to the 15th century when national hero Gjergj Kastrioti Skanderbeg used it on his seal.",
+    symbolism:"The black double-headed eagle on red is said to represent the Byzantine Empire's eagle. Each head looks in a different direction, symbolising looking both east and west simultaneously.",
+    ribbon:"🦅 Double eagle", ribbonBg:"rgba(239,68,68,0.8)" },
+
+  { code:"mx", country:"Mexico", capital:"Mexico City", cat:"symbols",
+    funFact:"Mexico's coat of arms shows an eagle eating a snake while perched on a cactus — an image from an ancient Aztec prophecy. The Aztecs were told to build their city where they saw this sign, which became present-day Mexico City.",
+    symbolism:"Green represents hope, white stands for purity of religion, and red symbolises the blood of Mexican heroes. The eagle, snake, and cactus scene comes from the founding legend of the Aztec capital Tenochtitlán.",
+    ribbon:"🦅 Eagle & snake", ribbonBg:"rgba(52,211,153,0.8)" },
+
+  { code:"ca", country:"Canada", capital:"Ottawa", cat:"symbols",
+    funFact:"The maple leaf has been a symbol of Canada since the 1700s, but the current flag design was only officially adopted in 1965 after a nationwide debate called the 'Great Canadian Flag Debate'.",
+    symbolism:"Red and white are Canada's official colours, granted by King George V in 1921. The 11-pointed maple leaf has no symbolic significance for the number of points — earlier designs had 13 and 15 points before being simplified.",
+    ribbon:"🍁 Maple leaf", ribbonBg:"rgba(239,68,68,0.8)" },
+
+  { code:"lb", country:"Lebanon", capital:"Beirut", cat:"symbols",
+    funFact:"The Cedar of Lebanon tree on the flag is mentioned 75 times in the Bible and appears in the Epic of Gilgamesh. Lebanon's cedars were so famous in ancient times that the Egyptians and Phoenicians sailed great distances to collect the timber.",
+    symbolism:"Red represents sacrifice, white stands for peace and the snow on the mountains. The green Cedar of Lebanon is a symbol of immortality, holiness, peace, and Lebanon's ancient heritage.",
+    ribbon:"🌲 Cedar tree", ribbonBg:"rgba(52,211,153,0.8)" },
+
+  { code:"in", country:"India", capital:"New Delhi", cat:"symbols",
+    funFact:"The blue wheel at the centre of India's flag is the Ashoka Chakra — a 24-spoked wheel from a pillar erected by Emperor Ashoka in 250 BC. It represents the eternal wheel of law and the cycle of time.",
+    symbolism:"Saffron represents courage and sacrifice. White stands for peace and truth. Green symbolises faith and chivalry. The blue Ashoka Chakra has 24 spokes representing the 24 hours in a day — a reminder to always keep moving forward.",
+    ribbon:"⚙️ Dharma wheel", ribbonBg:"rgba(245,158,11,0.8)" },
+
+  { code:"kr", country:"South Korea", capital:"Seoul", cat:"symbols",
+    funFact:"South Korea's flag is one of the most complex and symbolically rich flags in the world. The four black trigrams in the corners come from the ancient Chinese text I Ching and each represents a different element.",
+    symbolism:"White represents peace and purity. The red and blue Taegeuk symbol represents the balance of cosmic forces — similar to yin and yang. The four trigrams represent sky, water, earth, and fire respectively.",
+    ribbon:"☯️ Taegeuk", ribbonBg:"rgba(20,184,166,0.8)" },
+
+  { code:"sa", country:"Saudi Arabia", capital:"Riyadh", cat:"symbols",
+    funFact:"Saudi Arabia's flag is never flown at half-mast, even during periods of national mourning. This is because the flag bears the shahada — the Islamic declaration of faith — and lowering it would be considered disrespectful to the words of God.",
+    symbolism:"Green is the sacred colour of Islam. The Arabic text reads 'There is no God but God, and Muhammad is the messenger of God'. The sword below represents the House of Saud and their role as guardians of Islam.",
+    ribbon:"⚔️ Sacred text", ribbonBg:"rgba(52,211,153,0.8)" },
+
+  // COLOURS
+  { code:"jm", country:"Jamaica", capital:"Kingston", cat:"colours",
+    funFact:"Jamaica's flag is one of only two national flags in the world that contains neither red, white, nor blue. The other is Mauritania. When Jamaica became independent in 1962, they deliberately chose different colours.",
+    symbolism:"Black represents the strength and creativity of the Jamaican people and the hardships they have overcome. Gold stands for natural wealth and the beauty of sunlight. Green symbolises the lush tropical land.",
+    ribbon:"🎨 No red/white/blue", ribbonBg:"rgba(245,158,11,0.8)" },
+
+  { code:"za", country:"South Africa", capital:"Pretoria", cat:"colours",
+    funFact:"South Africa's flag uses six colours — more than almost any other national flag. It was designed in just one week before the first democratic elections in 1994, and was intended as a temporary flag. It became permanent because everyone loved it.",
+    symbolism:"The Y-shape represents the convergence of South Africa's diverse society coming together as one. No single colour has an official meaning, but collectively they represent the different peoples, parties, and landscapes of the nation.",
+    ribbon:"🌈 Six colours", ribbonBg:"rgba(52,211,153,0.8)" },
+
+  { code:"sc", country:"Seychelles", capital:"Victoria", cat:"colours",
+    funFact:"Seychelles has one of the most distinctive flag designs in the world — five coloured rays shooting outwards from the bottom-left corner. The capital Victoria is also the smallest capital city in the world.",
+    symbolism:"Five rays represent the five political parties at the time of independence in 1977. Blue represents the sky and sea, yellow stands for the sun, red symbolises the people and their determination, white stands for harmony, and green represents the land.",
+    ribbon:"☀️ Five rays", ribbonBg:"rgba(20,184,166,0.8)" },
+
+  { code:"pg", country:"Papua New Guinea", capital:"Port Moresby", cat:"colours",
+    funFact:"Papua New Guinea has over 800 languages — more than any other country on Earth. The flag's Bird of Paradise is the raggiana bird of paradise, a spectacular species found only in PNG.",
+    symbolism:"Red and black are traditional Papua New Guinean colours. The gold Bird of Paradise in flight represents the nation's beauty and freedom. The white Southern Cross represents PNG's location in the Pacific.",
+    ribbon:"🐦 Bird of paradise", ribbonBg:"rgba(239,68,68,0.8)" },
+
+  { code:"ua", country:"Ukraine", capital:"Kyiv", cat:"colours",
+    funFact:"Ukraine's simple two-colour flag perfectly describes the country's landscape — an enormous sky above vast golden wheat fields. Ukraine is often called 'the breadbasket of Europe' for its huge agricultural output.",
+    symbolism:"Blue represents the sky, clear rivers, and the Carpathian mountains. Yellow represents the endless wheat fields, the wealth of the nation, and the warmth of the Ukrainian people. The design has roots in Cossack military banners.",
+    ribbon:"🌾 Sky & wheat", ribbonBg:"rgba(245,158,11,0.8)" },
+
+  // HISTORY
+  { code:"dk", country:"Denmark", capital:"Copenhagen", cat:"history",
+    funFact:"The Dannebrog is the oldest national flag still in use in the world. According to legend, it fell from the sky during the Battle of Lyndanisse in Estonia in 1219, giving the Danish army the courage to win.",
+    symbolism:"The red background and white cross have been used for over 800 years. The off-centre cross design became the template for all other Nordic countries' flags — Norway, Sweden, Finland, and Iceland all use variations of it.",
+    ribbon:"📜 Oldest flag", ribbonBg:"rgba(239,68,68,0.8)" },
+
+  { code:"ht", country:"Haiti", capital:"Port-au-Prince", cat:"history",
+    funFact:"Haiti's revolutionary flag has one of the most dramatic origin stories. During a revolt in 1803, a soldier tore the white stripe from a French tricolore — symbolically removing the white colonisers — and sewed the blue and red together.",
+    symbolism:"Blue represents the Black population of Haiti, red represents the mixed-race population. Together they represent unity in the fight for independence. Haiti became the first Black republic in the world in 1804.",
+    ribbon:"✊ Revolutionary", ribbonBg:"rgba(20,184,166,0.8)" },
+
+  { code:"nz", country:"New Zealand", capital:"Wellington", cat:"history",
+    funFact:"New Zealand was the first country in the world to give women the right to vote in national elections, in 1893. There has been ongoing debate about changing the flag to remove the Union Jack, with a referendum held in 2015-16.",
+    symbolism:"The Union Jack in the corner represents New Zealand's historical ties with Britain. The four red stars of the Southern Cross are only visible from the Southern Hemisphere and represent New Zealand's place in the South Pacific.",
+    ribbon:"🗳️ First women's vote", ribbonBg:"rgba(20,184,166,0.8)" },
+
+  { code:"et", country:"Ethiopia", capital:"Addis Ababa", cat:"history",
+    funFact:"Ethiopia is the only African country that was never colonised by a European power. As the first African nation to use the pan-African colours of red, yellow, and green, its flag inspired the independence flags of dozens of other African countries.",
+    symbolism:"Green represents the land and hope. Yellow symbolises peace, justice, and equality. Red represents sacrifice and heroism. The blue circle represents peace and the star symbolises the unity and equality of all nationalities.",
+    ribbon:"⭐ Pan-African origin", ribbonBg:"rgba(52,211,153,0.8)" },
+
+  { code:"us", country:"United States", capital:"Washington D.C.", cat:"history",
+    funFact:"The US flag has been changed 27 times as new states joined the union. The current 50-star design has been in use since 1960 when Hawaii joined — making it the longest-unchanged version of the flag in history.",
+    symbolism:"The 13 stripes represent the original 13 colonies that declared independence from Britain in 1776. Each of the 50 stars represents one state. Red symbolises hardiness and valour, white represents purity, and blue stands for vigilance and justice.",
+    ribbon:"⭐ 27 versions", ribbonBg:"rgba(239,68,68,0.8)" },
+
+  // RECORDS
+  { code:"ng", country:"Nigeria", capital:"Abuja", cat:"records",
+    funFact:"Nigeria's flag was designed by a 23-year-old student, Michael Taiwo Akinkunmi, who entered a competition in 1959. He designed it while studying in London and won from thousands of entries. He received £100 as a prize.",
+    symbolism:"Green represents the fertile agricultural land and the forests. White stands for peace and unity between Nigeria's many ethnic groups. The simple, bold design has remained unchanged since independence in 1960.",
+    ribbon:"🏆 Student designer", ribbonBg:"rgba(52,211,153,0.8)" },
+
+  { code:"br", country:"Brazil", capital:"Brasília", cat:"records",
+    funFact:"Brazil's flag contains a globe showing the night sky exactly as it appeared over Rio de Janeiro at 8:30am on 15 November 1889 — the moment Brazil became a republic. The positions of the stars are astronomically accurate.",
+    symbolism:"Green represents the forests of Brazil. Yellow stands for gold and mineral wealth. The blue globe and white stars represent the sky over Brazil. The white banner reads 'Ordem e Progresso' — Order and Progress.",
+    ribbon:"🌟 Astronomical map", ribbonBg:"rgba(52,211,153,0.8)" },
+
+  { code:"au", country:"Australia", capital:"Canberra", cat:"records",
+    funFact:"Australia's flag was chosen through the world's first public flag design competition in 1901, which attracted over 32,000 entries. Five different people submitted virtually identical winning designs and had to share the prize money.",
+    symbolism:"The Union Jack represents Australia's British heritage. The large Commonwealth Star beneath it has seven points — six for the states and one for all territories. The Southern Cross is only visible from the Southern Hemisphere.",
+    ribbon:"🏆 Public competition", ribbonBg:"rgba(20,184,166,0.8)" },
+
+  { code:"cn", country:"China", capital:"Beijing", cat:"records",
+    funFact:"China's flag was designed by Zeng Liansong, an economist, in 1949. He submitted it in response to a public competition that received over 3,000 entries. The designer later admitted he had no formal art training.",
+    symbolism:"The red background represents the communist revolution and the blood of those who died for it. The large yellow star stands for the Communist Party. The four small stars represent the four social classes: workers, peasants, intellectuals, and patriotic capitalists.",
+    ribbon:"⭐ 3,000 entries", ribbonBg:"rgba(239,68,68,0.8)" },
+
+  { code:"jp", country:"Japan", capital:"Tokyo", cat:"records",
+    funFact:"Japan's flag — the Hinomaru, meaning 'circle of the sun' — is one of the simplest national flags in the world. Japan also has the world's oldest company: Kongō Gumi, a construction firm founded in 578 AD.",
+    symbolism:"The white background represents honesty and purity. The red circle represents the sun — Japan's name literally means 'origin of the sun' in Japanese. The sun goddess Amaterasu is said to be the ancestor of the imperial family.",
+    ribbon:"☀️ Circle of the sun", ribbonBg:"rgba(239,68,68,0.8)" },
+
+  { code:"tv", country:"Tuvalu", capital:"Funafuti", cat:"records",
+    funFact:"Tuvalu is one of the most remote countries on Earth and may become the first country to be completely submerged by rising sea levels. It has sold its internet domain '.tv' to TV companies for millions of dollars — its main source of income.",
+    symbolism:"Light blue represents the Pacific Ocean. The Union Jack reflects historical British influence. The nine yellow stars represent the nine atolls and island groups of Tuvalu, positioned exactly as they appear on a map.",
+    ribbon:"🌊 Sinking nation", ribbonBg:"rgba(20,184,166,0.8)" },
+
+  { code:"li", country:"Liechtenstein", capital:"Vaduz", cat:"records",
+    funFact:"At the 1936 Berlin Olympics, Liechtenstein discovered that their flag was identical to Haiti's. They added a golden crown to distinguish it — the only flag to be changed as a direct result of the Olympic Games.",
+    symbolism:"Blue represents the sky, red represents the evening fires burned in homes. The golden crown in the upper left corner was added after the 1936 Olympics to distinguish Liechtenstein from Haiti, and represents the unity of the prince and the people.",
+    ribbon:"🏅 Olympics mix-up", ribbonBg:"rgba(245,158,11,0.8)" },
+
+  { code:"ro", country:"Romania", capital:"Bucharest", cat:"records",
+    funFact:"Romania and Chad have almost identical flags — both are vertical blue, yellow, and red tricolours. The only difference is a very subtle shade variation in the blue. This was officially disputed at the United Nations in 2004.",
+    symbolism:"Blue represents liberty, yellow symbolises justice and the country's mineral wealth, and red stands for fraternity. The colours were inspired by the French Revolution and adopted after the revolutions of 1848.",
+    ribbon:"🤝 Twin flags", ribbonBg:"rgba(20,184,166,0.8)" },
+];
+
+// ── STATE ─────────────────────────────────────────────────────────────────
+let deck = [];
+let currentIdx = 0;
+let activeFilter = 'all';
+let isFlipped = false;
+let isAnimating = false;
+
+function flagUrl(code) { return `https://flagcdn.com/w640/${code}.png`; }
+
+function getCatLabel(cat) {
+  return { unique:'Unique', symbols:'Symbol', colours:'Colours', history:'History', records:'Record' }[cat] || cat;
+}
+
+// ── BUILD DECK ─────────────────────────────────────────────────────────────
+function buildDeck() {
+  deck = activeFilter === 'all'
+    ? [...ALL_CARDS]
+    : ALL_CARDS.filter(c => c.cat === activeFilter);
+  // shuffle
+  deck = deck.sort(() => Math.random() - 0.5);
+  currentIdx = 0;
+  isFlipped = false;
+}
+
+// ── RENDER CARD ────────────────────────────────────────────────────────────
+function renderCard(direction) {
+  if (deck.length === 0) return;
+
+  const card = deck[currentIdx];
+  const flipEl = document.getElementById('flipCard');
+
+  // reset flip state
+  isFlipped = false;
+  flipEl.classList.remove('flipped');
+
+  // front
+  const front = document.getElementById('cardFront');
+  front.innerHTML = `
+    <div class="card-front-flag">
+      <img src="${flagUrl(card.code)}" alt="${card.country} flag" loading="lazy">
+      <div class="card-ribbon" style="background:${card.ribbonBg}; color:#fff">${card.ribbon}</div>
+      <div class="card-num-badge">${currentIdx + 1} / ${deck.length}</div>
+    </div>
+    <div class="card-front-body">
+      <div class="card-country-name">${card.country}</div>
+      <div class="card-capital">📍 ${card.capital}</div>
+      <p class="card-fact-preview">${card.funFact}</p>
+      <div class="card-flip-hint">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M1 7a6 6 0 1 0 12 0A6 6 0 0 0 1 7"/>
+          <path d="M9 7H5M7 5l2 2-2 2"/>
+        </svg>
+        Tap to reveal flag story
+      </div>
+    </div>`;
+
+  // back
+  const back = document.getElementById('cardBack');
+  back.innerHTML = `
+    <div class="card-back-flag">
+      <img src="${flagUrl(card.code)}" alt="${card.country} flag" loading="lazy">
+      <div class="card-back-flag-overlay"></div>
+      <div class="card-back-country">${card.country}</div>
+    </div>
+    <div class="card-back-body">
+      <div>
+        <div class="back-section-label">Fun fact</div>
+        <p class="back-section-text">${card.funFact}</p>
+      </div>
+      <div>
+        <div class="back-section-label">Flag symbolism</div>
+        <p class="back-section-text">${card.symbolism}</p>
+      </div>
+      <div class="back-flip-hint">Tap to flip back</div>
+    </div>`;
+
+  // animate
+  if (direction) {
+    const animIn = direction === 'next' ? 'anim-in-right' : 'anim-in-left';
+    flipEl.classList.add(animIn);
+    flipEl.addEventListener('animationend', () => flipEl.classList.remove(animIn), { once:true });
+  }
+
+  updateProgress();
+}
+
+function updateProgress() {
+  const pct = deck.length > 1 ? (currentIdx / (deck.length - 1)) * 100 : 100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = `${currentIdx + 1} of ${deck.length}`;
+  document.getElementById('btnPrev').disabled = currentIdx === 0;
+}
+
+// ── NAVIGATION ─────────────────────────────────────────────────────────────
+function goNext() {
+  if (isAnimating) return;
+  if (currentIdx >= deck.length - 1) {
+    showAllDone();
+    return;
+  }
+  isAnimating = true;
+  const flipEl = document.getElementById('flipCard');
+  flipEl.classList.add('anim-out-left');
+  setTimeout(() => {
+    flipEl.classList.remove('anim-out-left');
+    currentIdx++;
+    renderCard('next');
+    isAnimating = false;
+  }, 240);
+}
+
+function goPrev() {
+  if (isAnimating || currentIdx === 0) return;
+  isAnimating = true;
+  const flipEl = document.getElementById('flipCard');
+  flipEl.classList.add('anim-out-right');
+  setTimeout(() => {
+    flipEl.classList.remove('anim-out-right');
+    currentIdx--;
+    renderCard('prev');
+    isAnimating = false;
+  }, 240);
+}
+
+function flipCard() {
+  const flipEl = document.getElementById('flipCard');
+  isFlipped = !isFlipped;
+  flipEl.classList.toggle('flipped', isFlipped);
+}
+
+function showAllDone() {
+  document.getElementById('cardStack').style.display = 'none';
+  document.querySelectorAll('.controls, .progress-wrap, .swipe-hint').forEach(el => el.style.display = 'none');
+  document.getElementById('allDone').classList.add('visible');
+}
+
+function restart() {
+  document.getElementById('cardStack').style.display = '';
+  document.querySelectorAll('.controls, .progress-wrap, .swipe-hint').forEach(el => el.style.display = '');
+  document.getElementById('allDone').classList.remove('visible');
+  buildDeck();
+  renderCard('next');
+}
+
+// ── EVENTS ─────────────────────────────────────────────────────────────────
+document.getElementById('flipCard').addEventListener('click', flipCard);
+document.getElementById('btnFlip').addEventListener('click', flipCard);
+document.getElementById('btnNext').addEventListener('click', goNext);
+document.getElementById('btnPrev').addEventListener('click', goPrev);
+document.getElementById('btnRestart').addEventListener('click', restart);
+
+// category filter
+document.getElementById('filterStrip').addEventListener('click', e => {
+  const btn = e.target.closest('.cat-btn');
+  if (!btn) return;
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeFilter = btn.dataset.cat;
+  document.getElementById('cardStack').style.display = '';
+  document.querySelectorAll('.controls, .progress-wrap, .swipe-hint').forEach(el => el.style.display = '');
+  document.getElementById('allDone').classList.remove('visible');
+  buildDeck();
+  renderCard('next');
+});
+
+// keyboard navigation
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') goNext();
+  if (e.key === 'ArrowLeft')  goPrev();
+  if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); flipCard(); }
+});
+
+// touch/swipe
+let touchStartX = 0;
+document.getElementById('flipCard').addEventListener('touchstart', e => {
+  touchStartX = e.touches[0].clientX;
+}, { passive:true });
+document.getElementById('flipCard').addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(dx) > 50) {
+    if (dx < 0) goNext();
+    else goPrev();
+  } else {
+    flipCard();
+  }
+}, { passive:true });
+
+// ── INIT ───────────────────────────────────────────────────────────────────
+buildDeck();
+renderCard(null);
+</script>
+</body>
+</html>
