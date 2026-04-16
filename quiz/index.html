@@ -286,10 +286,6 @@
     background:rgba(244,63,94,0.2);
     border-color:var(--red); color:#fff;
   }
-  .answer-btn .btn-flag {
-    width:32px; height:21px; object-fit:cover;
-    border-radius:3px; flex-shrink:0;
-  }
   .answer-key {
     width:22px; height:22px; border-radius:5px;
     background:rgba(255,255,255,0.1);
@@ -719,7 +715,6 @@ function nextQuestion() {
     btn.style.animationDelay = (i * 0.06) + 's';
     btn.innerHTML = `
       <span class="answer-key">${keys[i]}</span>
-      <img class="btn-flag" src="${flagUrl(opt.code)}" alt="" loading="lazy">
       ${opt.name}`;
     btn.addEventListener('click', () => handleAnswer(btn, opt.code === currentCountry.code, opt));
     grid.appendChild(btn);
@@ -735,8 +730,7 @@ function handleAnswer(btn, isCorrect, chosen) {
 
   // mark correct answer green always
   btns.forEach(b => {
-    const img = b.querySelector('.btn-flag');
-    if (img && img.src.includes(currentCountry.code)) b.classList.add('correct');
+    if (b.textContent.trim().replace(/^[ABCD]\s*/,'') === currentCountry.name) b.classList.add('correct');
   });
 
   const fb = document.getElementById('feedbackOverlay');
