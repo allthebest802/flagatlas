@@ -3,8 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Flag Explorer — FlagAtlas</title>
-<meta name="description" content="Browse all 195 world flags. Discover capitals, fun facts, and the hidden meaning behind every colour and symbol.">
+<title>Flag Explorer — Browse All 195 World Flags | FlagAtlas</title>
+<meta name="description" content="Browse every flag in the world. Tap any flag to discover its capital, population, hidden symbolism, and fascinating fun facts. Free flag explorer for kids and families.">
+<meta name="keywords" content="flag explorer, world flags, country flags, flag meanings, flag symbolism, flags of the world, capitals of the world, geography for kids">
+<meta name="author" content="FlagAtlas">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://flagatlas.co.uk/explorer.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://flagatlas.co.uk/explorer.html">
+<meta property="og:title" content="Flag Explorer — Browse All 195 World Flags | FlagAtlas">
+<meta property="og:description" content="Browse every flag in the world. Tap any flag to discover its capital, population, hidden symbolism, and fascinating fun facts.">
+<meta property="og:image" content="https://flagatlas.co.uk/og-image.png">
+<meta property="og:site_name" content="FlagAtlas">
+<meta property="og:locale" content="en_GB">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://flagatlas.co.uk/explorer.html">
+<meta name="twitter:title" content="Flag Explorer — Browse All 195 World Flags | FlagAtlas">
+<meta name="twitter:description" content="Browse every flag in the world. Tap any flag to discover its capital, population, hidden symbolism, and fascinating fun facts.">
+<meta name="twitter:image" content="https://flagatlas.co.uk/og-image.png">
+
+<!-- JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Flag Explorer",
+  "url": "https://flagatlas.co.uk/explorer.html",
+  "description": "Browse all 195 world flags with facts, symbolism, capitals and population data.",
+  "applicationCategory": "EducationalApplication",
+  "isPartOf": { "@type": "WebSite", "name": "FlagAtlas", "url": "https://flagatlas.co.uk/" },
+  "audience": { "@type": "Audience", "audienceType": "Children, Families, Students" },
+  "inLanguage": "en-GB",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -316,6 +352,8 @@
   @media (min-width:901px) {
     .panel-overlay { display:none; }
   }
+  footer { position:relative; z-index:1; text-align:center; padding:1.5rem; border-top:1px solid rgba(255,255,255,0.06); color:var(--text-muted); font-size:0.8rem; margin-top:2rem; }
+  footer a { color:var(--teal-light); text-decoration:none; }
 </style>
 </head>
 <body>
@@ -616,5 +654,6 @@ searchEl.addEventListener('input', () => {
 // init
 renderGrid();
 </script>
+<footer><p>FlagAtlas — free educational tools for everyone &nbsp;·&nbsp; <a href="index.html">Home</a> &nbsp;·&nbsp; <a href="privacy.html">Privacy &amp; Terms</a></p></footer>
 </body>
 </html>

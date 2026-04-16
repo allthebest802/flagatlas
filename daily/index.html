@@ -3,8 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Daily Challenge — FlagAtlas</title>
-<meta name="description" content="A new mystery flag every day. Guess the country in 6 attempts. Build your streak!">
+<title>Daily Flag Challenge — Guess Today's Flag | FlagAtlas</title>
+<meta name="description" content="A new mystery flag every day. Guess the country in up to 6 attempts — hints unlock as you go. Build your daily streak and share your results. Free for everyone.">
+<meta name="keywords" content="daily flag challenge, flag wordle, flag guessing game, daily geography quiz, flag of the day, country guessing game, flag streak">
+<meta name="author" content="FlagAtlas">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://flagatlas.co.uk/daily.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://flagatlas.co.uk/daily.html">
+<meta property="og:title" content="Daily Flag Challenge — Guess Today's Flag | FlagAtlas">
+<meta property="og:description" content="A new mystery flag every day. Guess the country in up to 6 attempts. Build your streak — free for everyone.">
+<meta property="og:image" content="https://flagatlas.co.uk/og-image.png">
+<meta property="og:site_name" content="FlagAtlas">
+<meta property="og:locale" content="en_GB">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://flagatlas.co.uk/daily.html">
+<meta name="twitter:title" content="Daily Flag Challenge — Guess Today's Flag | FlagAtlas">
+<meta name="twitter:description" content="A new mystery flag every day. Guess the country in up to 6 attempts. Build your streak — free for everyone.">
+<meta name="twitter:image" content="https://flagatlas.co.uk/og-image.png">
+
+<!-- JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Daily Flag Challenge",
+  "url": "https://flagatlas.co.uk/daily.html",
+  "description": "A daily flag guessing game — one new mystery flag every day, up to 6 attempts with progressive hints.",
+  "applicationCategory": "GameApplication",
+  "isPartOf": { "@type": "WebSite", "name": "FlagAtlas", "url": "https://flagatlas.co.uk/" },
+  "audience": { "@type": "Audience", "audienceType": "Children, Families, Students" },
+  "inLanguage": "en-GB",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "GBP" }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -316,6 +352,8 @@
     pointer-events:none; z-index:100; white-space:nowrap;
   }
   .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+  footer { position:relative; z-index:1; text-align:center; padding:1.5rem; border-top:1px solid rgba(255,255,255,0.06); color:var(--text-muted); font-size:0.8rem; margin-top:2rem; }
+  footer a { color:var(--teal-light); text-decoration:none; }
 </style>
 </head>
 <body>
@@ -869,5 +907,6 @@ function showToast(msg) {
 // ── GO ────────────────────────────────────────────────────────────────────
 init();
 </script>
+<footer><p>FlagAtlas — free educational tools for everyone &nbsp;·&nbsp; <a href="index.html">Home</a> &nbsp;·&nbsp; <a href="privacy.html">Privacy &amp; Terms</a></p></footer>
 </body>
 </html>

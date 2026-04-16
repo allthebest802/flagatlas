@@ -4,7 +4,49 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FlagAtlas — Explore the World's Flags</title>
-<meta name="description" content="Discover, learn, and play with every flag in the world. Daily challenges, speed quizzes, fact cards and more — free for everyone.">
+<meta name="description" content="Discover, learn, and play with every flag in the world. Daily challenges, speed quizzes, fact cards and more — free for kids and families.">
+<meta name="keywords" content="flags of the world, flag quiz, flag explorer, world flags for kids, daily flag challenge, flag facts, geography quiz, learn country flags">
+<meta name="author" content="FlagAtlas">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://flagatlas.co.uk/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://flagatlas.co.uk/">
+<meta property="og:title" content="FlagAtlas — Explore the World's Flags">
+<meta property="og:description" content="Discover, learn, and play with every flag in the world. Daily challenges, speed quizzes, fact cards and more — free for kids and families.">
+<meta property="og:image" content="https://flagatlas.co.uk/og-image.png">
+<meta property="og:site_name" content="FlagAtlas">
+<meta property="og:locale" content="en_GB">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://flagatlas.co.uk/">
+<meta name="twitter:title" content="FlagAtlas — Explore the World's Flags">
+<meta name="twitter:description" content="Discover, learn, and play with every flag in the world. Daily challenges, speed quizzes, fact cards and more — free for kids and families.">
+<meta name="twitter:image" content="https://flagatlas.co.uk/og-image.png">
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "FlagAtlas",
+  "url": "https://flagatlas.co.uk/",
+  "description": "Free educational flag tools for kids and families — daily challenges, quizzes, explorer, fact cards and more.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "FlagAtlas",
+    "url": "https://flagatlas.co.uk/"
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://flagatlas.co.uk/explorer.html?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -173,63 +215,7 @@
     margin-top: 0.2rem;
   }
 
-  /* ── SCROLLING FLAG STRIP ── */
-  .flag-strip-wrap {
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-    padding: 1.5rem 0;
-    margin: 1rem 0 3rem;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-  }
 
-  .flag-strip-wrap::before,
-  .flag-strip-wrap::after {
-    content: '';
-    position: absolute;
-    top: 0; bottom: 0;
-    width: 80px;
-    z-index: 2;
-    pointer-events: none;
-  }
-  .flag-strip-wrap::before { left: 0; background: linear-gradient(90deg, var(--navy), transparent); }
-  .flag-strip-wrap::after  { right: 0; background: linear-gradient(-90deg, var(--navy), transparent); }
-
-  .flag-strip {
-    display: flex;
-    gap: 1rem;
-    animation: scroll-flags 40s linear infinite;
-    width: max-content;
-  }
-
-  .flag-strip:hover { animation-play-state: paused; }
-
-  @keyframes scroll-flags {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
-
-  .flag-chip {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 100px;
-    padding: 0.4rem 0.8rem 0.4rem 0.5rem;
-    white-space: nowrap;
-    font-size: 0.82rem;
-    color: var(--text-muted);
-  }
-
-  .flag-chip img {
-    width: 28px;
-    height: 18px;
-    object-fit: cover;
-    border-radius: 3px;
-    display: block;
-  }
 
   /* ── SECTION TITLE ── */
   .section-title {
@@ -452,12 +438,7 @@
   </div>
 </section>
 
-<!-- SCROLLING FLAG STRIP -->
-<div class="flag-strip-wrap">
-  <div class="flag-strip" id="flagStrip">
-    <!-- populated by JS -->
-  </div>
-</div>
+
 
 <!-- TOOL CARDS -->
 <section class="tools-section">
@@ -527,35 +508,9 @@
 </section>
 
 <footer>
-  <p>FlagAtlas — free educational tools for everyone &nbsp;·&nbsp; <a href="#">About</a></p>
+  <p>FlagAtlas — free educational tools for everyone &nbsp;·&nbsp; <a href="privacy.html">Privacy &amp; Terms</a></p>
 </footer>
 
-<script src="flags-data.js"></script>
-<script>
-  // ── Scrolling flag strip ──
-  const STRIP_COUNTRIES = [
-    'gb','fr','de','jp','br','au','ca','in','za','mx',
-    'ng','kr','eg','ar','se','no','dk','fi','is','ie',
-    'nl','be','ch','gr','tr','cn','us','it','es','pt',
-    'nz','ke','gh','ma','th','sg','il','sa','ua','pl',
-    'bt','np','mv','fj','cu','jm','ht','bb','pa','qa'
-  ];
 
-  const strip = document.getElementById('flagStrip');
-  if (strip) {
-    const doubled = [...STRIP_COUNTRIES, ...STRIP_COUNTRIES];
-    doubled.forEach(code => {
-      const country = FLAGATLAS_DATA.getByCode(code);
-      if (!country) return;
-      const chip = document.createElement('div');
-      chip.className = 'flag-chip';
-      chip.innerHTML = `
-        <img src="${FLAGATLAS_DATA.getFlagUrl(code)}" alt="${country.name} flag" loading="lazy">
-        ${country.name}
-      `;
-      strip.appendChild(chip);
-    });
-  }
-</script>
 </body>
 </html>
