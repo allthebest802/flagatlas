@@ -181,6 +181,7 @@
     color:var(--text-light);
   }
   .hint-chip .hint-icon { font-size:0.9rem; }
+  .hint-locked { font-style:italic; opacity:0.45; font-size:0.72rem; }
   .hint-chip .hint-label { font-weight:600; }
   .hint-chip .hint-val { color:var(--teal-light); }
 
@@ -405,22 +406,22 @@
     <div class="hint-chip" id="hintContinent">
       <span class="hint-icon">🌍</span>
       <span class="hint-label">Continent:</span>
-      <span class="hint-val">?</span>
+      <span class="hint-val hint-locked">unlocks guess 1</span>
     </div>
     <div class="hint-chip" id="hintPopulation">
       <span class="hint-icon">👥</span>
       <span class="hint-label">Population:</span>
-      <span class="hint-val">?</span>
+      <span class="hint-val hint-locked">unlocks guess 2</span>
     </div>
     <div class="hint-chip" id="hintInitial">
       <span class="hint-icon">🔤</span>
       <span class="hint-label">Starts with:</span>
-      <span class="hint-val">?</span>
+      <span class="hint-val hint-locked">unlocks guess 3</span>
     </div>
     <div class="hint-chip" id="hintCapital">
       <span class="hint-icon">🏛️</span>
       <span class="hint-label">Capital:</span>
-      <span class="hint-val">?</span>
+      <span class="hint-val hint-locked">unlocks guess 5</span>
     </div>
   </div>
 
@@ -671,8 +672,20 @@ function applyHints() {
 function revealHint(id, value) {
   const el = document.getElementById(id);
   if(!el) return;
-  el.classList.add('revealed');
-  el.querySelector('.hint-val').textContent = value;
+  const valEl = el.querySelector('.hint-val');
+  if(valEl.classList.contains('hint-locked')) {
+    // not yet revealed - animate
+    el.classList.add('revealed');
+    valEl.classList.remove('hint-locked');
+    valEl.textContent = value;
+    // flash animation
+    valEl.style.transition = 'all 0.3s ease';
+    valEl.style.opacity = '0';
+    setTimeout(() => { valEl.style.opacity = '1'; }, 50);
+  } else {
+    el.classList.add('revealed');
+    valEl.textContent = value;
+  }
 }
 
 // ── AUTOCOMPLETE ──────────────────────────────────────────────────────────
