@@ -712,8 +712,8 @@ function buildChallengeHTML(type, c) {
     const isTrue = coinFlip || !otherC;
     question = `True or false? "${shownText}"`;
     options = [
-      { text: '✅ True — that's this flag', isCorrect: isTrue },
-      { text: '❌ False — that's wrong', isCorrect: !isTrue }
+      { text: "✅ True", isCorrect: isTrue },
+      { text: "❌ False", isCorrect: !isTrue }
     ];
     explanation = isTrue
       ? `Correct! That is indeed the symbolism for ${c.name}'s flag.`
