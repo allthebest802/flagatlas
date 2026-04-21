@@ -288,18 +288,6 @@
     <button class="btn-learn-prev" id="btnLearnPrev" disabled>←</button>
     <button class="btn-learn-next" id="btnLearnNext"></button>
   </div>
-</div>    <div class="quiz-title" id="quizTitle">Flag Quiz</div>
-  </div>
-  <div class="quiz-hud">
-    <div class="quiz-hud-item"><div class="quiz-hud-num" id="qScore">0</div><div class="quiz-hud-label">Correct</div></div>
-    <div class="quiz-hud-item"><div class="quiz-hud-num" id="qNum">1</div><div class="quiz-hud-label">Question</div></div>
-    <div class="quiz-hud-item"><div class="quiz-hud-num" id="qTotal">10</div><div class="quiz-hud-label">Total</div></div>
-  </div>
-  <div class="quiz-flag-wrap quiz-feedback" id="quizFlagWrap">
-    <img id="quizFlagImg" src="" alt="Quiz flag">
-    <div class="quiz-feedback-overlay" id="quizFeedback"></div>
-  </div>
-  <div class="quiz-answers" id="quizAnswers"></div>
 </div>
 
 <!-- ══ RESULT SCREEN ══ -->
@@ -562,6 +550,7 @@ function markCompleted(id) { const s = getStore(); s[`completed_${id}`] = true; 
 // ── STATE ─────────────────────────────────────────────────────────────────
 let activeContinentId = null;
 let learnCountries = [], learnIdx = 0;
+let learnScore = 0, challengeAnswered = false;
 
 
 // ── SCREENS ───────────────────────────────────────────────────────────────
@@ -660,7 +649,9 @@ function renderLearnCard() {
   next.style.display = 'none';
 
   const card = document.getElementById('learnCard');
+  card.className = '';
   void card.offsetWidth;
+  card.className = 'learn-card';
   card.innerHTML = `
     <div class="learn-flag-wrap">
       <img src="${flagUrl(c.code)}" alt="${c.name} flag" loading="lazy">
@@ -699,7 +690,9 @@ function pickChallengeType(country) {
 }
 
 function otherCountries(exclude, n) {
-  return shuffle(learnCountries.filter(c => c.code !== exclude.code)).slice(0, n);
+  const pool = learnCountries.filter(c => c.code !== exclude.code);
+  const full = pool.length >= n ? pool : [...pool, ...ALL_COUNTRIES.filter(c => c.code !== exclude.code && !pool.find(p=>p.code===c.code))];
+  return shuffle(full).slice(0, n);
 }
 
 function buildChallengeHTML(type, c) {
@@ -728,11 +721,11 @@ function buildChallengeHTML(type, c) {
       : `That was actually the symbolism for ${otherC ? otherC.name : 'another country'}. ${c.name}'s flag: ${c.symbolism}`;
 
   } else { // funfact — which fact is real?
-    const otherFacts = otherCountries(c, 2).map(x => x.funFact);
-    const opts = shuffle([{ text: c.funFact, isCorrect: true }, ...otherFacts.map(f => ({ text: f, isCorrect: false }))]);
-    question = `Which fact is true about ${c.name}?`;
+    const others = otherCountries(c, 2);
+    const opts = shuffle([{ text: c.funFact, isCorrect: true }, ...others.map(x => ({ text: x.funFact, isCorrect: false }))]);
+    question = `Which of these is a true fact about ${c.name}?`;
     options = opts;
-    explanation = `✓ The true fact: "${c.funFact}"`;
+    explanation = `The true fact: "${c.funFact}"`;
   }
 
   const twoCol = options.length === 2;
