@@ -696,8 +696,7 @@ function nextQuestion() {
 
   // flag image
   const img = document.getElementById('flagImg');
-  img.classList.add('flash');
-  img.onload = () => img.classList.remove('flash');
+  img.classList.remove('flash');
   img.src = flagUrl(currentCountry.code);
   img.alt = 'Mystery flag';
 
@@ -719,7 +718,6 @@ function nextQuestion() {
     btn.style.animationDelay = (i * 0.06) + 's';
     btn.innerHTML = `
       <span class="answer-key">${keys[i]}</span>
-      <img class="btn-flag" src="${flagUrl(opt.code)}" alt="" loading="lazy">
       ${opt.name}`;
     btn.addEventListener('click', () => handleAnswer(btn, opt.code === currentCountry.code, opt));
     grid.appendChild(btn);
