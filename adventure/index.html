@@ -165,55 +165,7 @@
   .btn-learn-next { flex:1; padding:0.85rem; border:none; border-radius:var(--radius-sm); font-family:'DM Sans',sans-serif; font-size:0.95rem; font-weight:600; cursor:pointer; transition:transform 0.15s, opacity 0.15s; }
   .btn-learn-next:hover { transform:translateY(-2px); opacity:0.9; }
 
-  /* ══════════════════════════════════════
-     QUIZ SCREEN
-  ══════════════════════════════════════ */
-  #quizScreen {
-    position:relative; z-index:1;
-    max-width:560px; margin:0 auto;
-    padding:1.5rem 1.5rem 4rem;
-    display:flex; flex-direction:column; align-items:center; gap:1.2rem;
-  }
-
-  .quiz-header { width:100%; text-align:center; }
-  .quiz-continent-label { font-size:0.72rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-muted); margin-bottom:0.3rem; }
-  .quiz-title { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:900; color:var(--cream); }
-
-  .quiz-hud { display:flex; justify-content:space-between; align-items:center; width:100%; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:var(--radius-sm); padding:0.7rem 1.2rem; }
-  .quiz-hud-item { text-align:center; }
-  .quiz-hud-num { font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:700; color:var(--cream); line-height:1; }
-  .quiz-hud-label { font-size:0.68rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.06em; }
-
-  .quiz-flag-wrap { width:100%; border-radius:var(--radius); overflow:hidden; background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.08); }
-  .quiz-flag-wrap img { width:100%; max-height:220px; object-fit:contain; padding:1rem; display:block; background:rgba(0,0,0,0.2); transition:opacity 0.15s; }
-  .quiz-flag-wrap img.flash { opacity:0; }
-
-  .quiz-feedback { position:relative; }
-  .quiz-feedback-overlay { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:2.5rem; opacity:0; transition:opacity 0.15s; pointer-events:none; border-radius:var(--radius); }
-  .quiz-feedback-overlay.show-correct { opacity:1; background:rgba(52,211,153,0.25); }
-  .quiz-feedback-overlay.show-wrong   { opacity:1; background:rgba(244,63,94,0.25); }
-
-  .quiz-answers { display:grid; grid-template-columns:1fr 1fr; gap:0.6rem; width:100%; }
-  .quiz-answer-btn {
-    padding:0.85rem 0.8rem;
-    background:rgba(255,255,255,0.05);
-    border:1px solid rgba(255,255,255,0.1);
-    border-radius:var(--radius-sm);
-    color:var(--text-light); font-family:'DM Sans',sans-serif;
-    font-size:0.88rem; font-weight:500; cursor:pointer;
-    text-align:left; display:flex; align-items:center; gap:0.5rem;
-    transition:background 0.12s, border-color 0.12s, transform 0.1s;
-    animation:pop-in 0.25s ease both;
-  }
-  @keyframes pop-in { from{opacity:0;transform:scale(0.93)} to{opacity:1;transform:scale(1)} }
-  .quiz-answer-btn:hover:not(:disabled) { background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.2); transform:translateY(-1px); }
-  .quiz-answer-btn:disabled { cursor:default; }
-  .quiz-answer-btn.correct { background:rgba(52,211,153,0.18); border-color:var(--green); color:#fff; }
-  .quiz-answer-btn.wrong   { background:rgba(244,63,94,0.18);  border-color:var(--red);   color:#fff; }
-  .quiz-answer-key { width:22px; height:22px; border-radius:5px; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; font-size:0.68rem; font-weight:700; color:var(--text-muted); flex-shrink:0; }
-
-  @keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
-  .shake { animation:shake 0.35s ease; }
+  
 
   /* ══════════════════════════════════════
      RESULT SCREEN
@@ -254,6 +206,42 @@
   /* toast */
   .toast { position:fixed; bottom:2rem; left:50%; transform:translateX(-50%) translateY(20px); background:var(--cream); color:var(--navy); padding:0.6rem 1.2rem; border-radius:100px; font-size:0.85rem; font-weight:600; opacity:0; transition:all 0.25s ease; pointer-events:none; z-index:100; white-space:nowrap; }
   .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
+  /* ══════════════════════════════════════
+     INLINE CHALLENGE
+  ══════════════════════════════════════ */
+  .challenge-block {
+    margin-top:1.1rem;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:var(--radius);
+    padding:1.1rem 1.3rem 1.3rem;
+    animation:slide-up 0.3s ease both;
+  }
+  .challenge-label {
+    font-size:0.68rem; font-weight:700; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--text-muted);
+    margin-bottom:0.6rem; display:flex; align-items:center; gap:0.5rem;
+  }
+  .challenge-label::after { content:''; flex:1; height:1px; background:rgba(255,255,255,0.07); }
+  .challenge-question { font-size:1rem; font-weight:600; color:var(--cream); margin-bottom:0.85rem; line-height:1.4; }
+  .challenge-options { display:flex; flex-direction:column; gap:0.45rem; }
+  .challenge-options.two-col { display:grid; grid-template-columns:1fr 1fr; gap:0.45rem; }
+  .challenge-opt {
+    padding:0.72rem 1rem; background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1); border-radius:var(--radius-sm);
+    color:var(--text-light); font-family:'DM Sans',sans-serif;
+    font-size:0.88rem; font-weight:500; cursor:pointer; text-align:left;
+    transition:background 0.12s, border-color 0.12s, transform 0.1s;
+  }
+  .challenge-opt:hover:not(:disabled) { background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.22); transform:translateY(-1px); }
+  .challenge-opt:disabled { cursor:default; }
+  .challenge-opt.opt-correct { background:rgba(52,211,153,0.18); border-color:var(--green); color:#fff; }
+  .challenge-opt.opt-wrong   { background:rgba(244,63,94,0.18);  border-color:var(--red);   color:#fff; }
+  .challenge-feedback { margin-top:0.85rem; font-size:0.87rem; line-height:1.5; padding:0.65rem 0.9rem; border-radius:var(--radius-sm); display:none; }
+  .challenge-feedback.fb-correct { display:block; background:rgba(52,211,153,0.1); color:var(--green); border:1px solid rgba(52,211,153,0.25); }
+  .challenge-feedback.fb-wrong   { display:block; background:rgba(244,63,94,0.08); color:#fca5a5; border:1px solid rgba(244,63,94,0.22); }
+
 </style>
 </head>
 <body>
@@ -300,13 +288,7 @@
     <button class="btn-learn-prev" id="btnLearnPrev" disabled>←</button>
     <button class="btn-learn-next" id="btnLearnNext"></button>
   </div>
-</div>
-
-<!-- ══ QUIZ SCREEN ══ -->
-<div class="screen" id="quizScreen">
-  <div class="quiz-header">
-    <div class="quiz-continent-label" id="quizContinentLabel"></div>
-    <div class="quiz-title" id="quizTitle">Flag Quiz</div>
+</div>    <div class="quiz-title" id="quizTitle">Flag Quiz</div>
   </div>
   <div class="quiz-hud">
     <div class="quiz-hud-item"><div class="quiz-hud-num" id="qScore">0</div><div class="quiz-hud-label">Correct</div></div>
@@ -327,7 +309,7 @@
   <div class="result-screen-sub" id="resultSub"></div>
   <div class="result-score-row">
     <div class="result-score-box accent"><div class="result-score-num" id="rScore"></div><div class="result-score-label">Correct</div></div>
-    <div class="result-score-box"><div class="result-score-num" id="rTotal"></div><div class="result-score-label">Questions</div></div>
+    <div class="result-score-box"><div class="result-score-num" id="rTotal"></div><div class="result-score-label">Flags</div></div>
     <div class="result-score-box"><div class="result-score-num" id="rPct"></div><div class="result-score-label">Score</div></div>
   </div>
   <div class="unlock-banner" id="unlockBanner">
@@ -580,9 +562,7 @@ function markCompleted(id) { const s = getStore(); s[`completed_${id}`] = true; 
 // ── STATE ─────────────────────────────────────────────────────────────────
 let activeContinentId = null;
 let learnCountries = [], learnIdx = 0;
-let quizCountries = [], quizIdx = 0, quizScore = 0, quizAnswering = false;
-const QUIZ_Q = 10;
-const PASS_SCORE = 7;
+
 
 // ── SCREENS ───────────────────────────────────────────────────────────────
 function showScreen(id) {
@@ -655,6 +635,8 @@ function startLearn(continentId) {
   const conf = CONTINENTS.find(c => c.id === continentId);
   learnCountries = byContinent(continentId);
   learnIdx = 0;
+  learnScore = 0;
+  challengeAnswered = false;
 
   document.getElementById('learnTitle').textContent = conf.emoji + ' ' + conf.label;
   document.getElementById('learnScreen').style.setProperty('--learn-color', conf.color);
@@ -667,22 +649,18 @@ function startLearn(continentId) {
 function renderLearnCard() {
   const c = learnCountries[learnIdx];
   const conf = CONTINENTS.find(x => x.id === activeContinentId);
+  challengeAnswered = false;
 
   document.getElementById('learnProgressLabel').textContent = `${learnIdx+1} of ${learnCountries.length}`;
   document.getElementById('learnProgressFill').style.width = ((learnIdx+1)/learnCountries.length*100) + '%';
   document.getElementById('btnLearnPrev').disabled = learnIdx === 0;
 
-  const isLast = learnIdx === learnCountries.length - 1;
+  // Hide next button until challenge answered
   const next = document.getElementById('btnLearnNext');
-  next.textContent = isLast ? `Take the quiz! →` : `Next flag →`;
-  next.style.background = isLast ? conf.color : conf.color;
-  next.style.color = '#fff';
-  next.style.border = 'none';
+  next.style.display = 'none';
 
   const card = document.getElementById('learnCard');
-  card.className = 'learn-card';
-  void card.offsetWidth; // retrigger animation
-  card.className = 'learn-card';
+  void card.offsetWidth;
   card.innerHTML = `
     <div class="learn-flag-wrap">
       <img src="${flagUrl(c.code)}" alt="${c.name} flag" loading="lazy">
@@ -699,15 +677,124 @@ function renderLearnCard() {
         <div class="learn-fact-label">Did you know?</div>
         <div class="learn-fact-text">${c.funFact}</div>
       </div>
+      ${buildChallenge(c)}
+    </div>`;
+
+  // Wire up challenge buttons
+  card.querySelectorAll('.challenge-opt').forEach(btn => {
+    btn.addEventListener('click', () => handleChallengeAnswer(btn));
+  });
+}
+
+// ── CHALLENGE BUILDER ────────────────────────────────────────────────────
+function buildChallenge(country) {
+  const type = pickChallengeType(country);
+  return buildChallengeHTML(type, country);
+}
+
+function pickChallengeType(country) {
+  // Cycle through types based on index for variety
+  const types = ['capital', 'symbolism', 'funfact', 'capital', 'symbolism'];
+  return types[learnIdx % types.length];
+}
+
+function otherCountries(exclude, n) {
+  return shuffle(learnCountries.filter(c => c.code !== exclude.code)).slice(0, n);
+}
+
+function buildChallengeHTML(type, c) {
+  let question, options, correct, explanation;
+
+  if (type === 'capital') {
+    const wrong = otherCountries(c, 3).map(x => x.capital);
+    const opts = shuffle([c.capital, ...wrong]);
+    question = `What is the capital of ${c.name}?`;
+    options = opts.map(o => ({ text: o, isCorrect: o === c.capital }));
+    explanation = `The capital of ${c.name} is <strong>${c.capital}</strong>.`;
+
+  } else if (type === 'symbolism') {
+    // True/false: is this the correct symbolism?
+    const coinFlip = Math.random() > 0.5;
+    const otherC = otherCountries(c, 1)[0];
+    const shownText = coinFlip ? c.symbolism : (otherC ? otherC.symbolism : c.symbolism);
+    const isTrue = coinFlip || !otherC;
+    question = `True or false? "${shownText}"`;
+    options = [
+      { text: '✅ True — that's this flag', isCorrect: isTrue },
+      { text: '❌ False — that's wrong', isCorrect: !isTrue }
+    ];
+    explanation = isTrue
+      ? `Correct! That is indeed the symbolism for ${c.name}'s flag.`
+      : `That was actually the symbolism for ${otherC ? otherC.name : 'another country'}. ${c.name}'s flag: ${c.symbolism}`;
+
+  } else { // funfact — which fact is real?
+    const otherFacts = otherCountries(c, 2).map(x => x.funFact);
+    const opts = shuffle([{ text: c.funFact, isCorrect: true }, ...otherFacts.map(f => ({ text: f, isCorrect: false }))]);
+    question = `Which fact is true about ${c.name}?`;
+    options = opts;
+    explanation = `✓ The true fact: "${c.funFact}"`;
+  }
+
+  const twoCol = options.length === 2;
+  const optionsHTML = options.map((o, i) =>
+    `<button class="challenge-opt" data-correct="${o.isCorrect}" style="animation-delay:${i*0.06}s">${o.text}</button>`
+  ).join('');
+
+  return `
+    <div class="challenge-block">
+      <div class="challenge-label">🎯 Quick challenge</div>
+      <div class="challenge-question">${question}</div>
+      <div class="challenge-options${twoCol ? ' two-col' : ''}">${optionsHTML}</div>
+      <div class="challenge-feedback" id="challengeFeedback" data-explanation="${explanation.replace(/"/g,"'")}">${explanation}</div>
     </div>`;
 }
 
+function handleChallengeAnswer(btn) {
+  if (challengeAnswered) return;
+  challengeAnswered = true;
+
+  const isCorrect = btn.dataset.correct === 'true';
+  const block = btn.closest('.challenge-block');
+  const feedback = block.querySelector('.challenge-feedback');
+  const explanation = feedback.dataset.explanation;
+
+  // Disable all options
+  block.querySelectorAll('.challenge-opt').forEach(b => {
+    b.disabled = true;
+    if (b.dataset.correct === 'true') b.classList.add('opt-correct');
+  });
+
+  if (isCorrect) {
+    btn.classList.add('opt-correct');
+    feedback.className = 'challenge-feedback fb-correct';
+    feedback.innerHTML = '✓ Correct! ' + explanation;
+    learnScore++;
+  } else {
+    btn.classList.add('opt-wrong');
+    feedback.className = 'challenge-feedback fb-wrong';
+    feedback.innerHTML = '✗ Not quite. ' + explanation;
+    block.classList.add('shake');
+    setTimeout(() => block.classList.remove('shake'), 400);
+  }
+
+  // Show the next button
+  const isLast = learnIdx === learnCountries.length - 1;
+  const next = document.getElementById('btnLearnNext');
+  const conf = CONTINENTS.find(x => x.id === activeContinentId);
+  next.style.display = '';
+  next.textContent = isLast ? `Finish ${conf.label} →` : `Next flag →`;
+  next.style.background = conf.color;
+  next.style.color = '#fff';
+  next.style.border = 'none';
+}
+
 document.getElementById('btnLearnNext').addEventListener('click', () => {
+  if (!challengeAnswered) return;
   if (learnIdx < learnCountries.length - 1) {
     learnIdx++;
     renderLearnCard();
   } else {
-    startQuiz(activeContinentId);
+    showContinentResult();
   }
 });
 
@@ -717,147 +804,55 @@ document.getElementById('btnLearnPrev').addEventListener('click', () => {
 
 document.getElementById('learnBack').addEventListener('click', renderMap);
 
-// ══ QUIZ ══════════════════════════════════════════════════════════════════
-function startQuiz(continentId) {
-  activeContinentId = continentId;
-  const conf = CONTINENTS.find(c => c.id === continentId);
-  const pool = byContinent(continentId);
-
-  quizCountries = shuffle(pool).slice(0, Math.min(QUIZ_Q, pool.length));
-  quizIdx = 0; quizScore = 0; quizAnswering = false;
-
-  document.getElementById('quizContinentLabel').textContent = conf.emoji + ' ' + conf.label;
-  document.getElementById('qTotal').textContent = quizCountries.length;
-
-  renderQuizQuestion();
-  showScreen('quizScreen');
-}
-
-function renderQuizQuestion() {
-  const current = quizCountries[quizIdx];
-  const conf = CONTINENTS.find(c => c.id === activeContinentId);
-  quizAnswering = false;
-
-  document.getElementById('qNum').textContent  = quizIdx + 1;
-  document.getElementById('qScore').textContent = quizScore;
-
-  const img = document.getElementById('quizFlagImg');
-  img.classList.add('flash');
-  img.onload = () => img.classList.remove('flash');
-  img.src = flagUrl(current.code);
-
-  document.getElementById('quizFeedback').className = 'quiz-feedback-overlay';
-  document.getElementById('quizFeedback').textContent = '';
-
-  // 4 options: correct + 3 wrong from same continent or all countries
-  const pool = byContinent(activeContinentId).filter(c => c.code !== current.code);
-  const wrong = shuffle(pool.length >= 3 ? pool : ALL_COUNTRIES.filter(c => c.code !== current.code)).slice(0,3);
-  const options = shuffle([current, ...wrong]);
-
-  const grid = document.getElementById('quizAnswers');
-  grid.innerHTML = '';
-  const keys = ['A','B','C','D'];
-
-  options.forEach((opt, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'quiz-answer-btn';
-    btn.style.animationDelay = (i*0.06)+'s';
-    btn.innerHTML = `<span class="quiz-answer-key">${keys[i]}</span>${opt.name}`;
-    btn.addEventListener('click', () => handleQuizAnswer(btn, opt.code === current.code, current));
-    grid.appendChild(btn);
-  });
-}
-
-function handleQuizAnswer(btn, isCorrect, current) {
-  if (quizAnswering) return;
-  quizAnswering = true;
-
-  const btns = document.querySelectorAll('.quiz-answer-btn');
-  btns.forEach(b => {
-    b.disabled = true;
-    if (b.textContent.replace(/^[ABCD]/,'').trim() === current.name) b.classList.add('correct');
-  });
-
-  const fb = document.getElementById('quizFeedback');
-
-  if (isCorrect) {
-    btn.classList.add('correct');
-    fb.className = 'quiz-feedback-overlay show-correct';
-    fb.textContent = '✓';
-    quizScore++;
-    document.getElementById('qScore').textContent = quizScore;
-  } else {
-    btn.classList.add('wrong');
-    fb.className = 'quiz-feedback-overlay show-wrong';
-    fb.textContent = '✗';
-    document.getElementById('quizAnswers').classList.add('shake');
-    setTimeout(()=>document.getElementById('quizAnswers').classList.remove('shake'),400);
-  }
-
-  setTimeout(() => {
-    fb.className = 'quiz-feedback-overlay';
-    quizIdx++;
-    if (quizIdx >= quizCountries.length) {
-      showQuizResult();
-    } else {
-      renderQuizQuestion();
-    }
-  }, 750);
-}
-
-// ── KEYBOARD SHORTCUTS ────────────────────────────────────────────────────
-document.addEventListener('keydown', e => {
-  const map = {'a':0,'b':1,'c':2,'d':3,'1':0,'2':1,'3':2,'4':3};
-  const idx = map[e.key.toLowerCase()];
-  if (idx !== undefined) {
-    const btns = document.querySelectorAll('.quiz-answer-btn:not(:disabled)');
-    if (btns[idx]) btns[idx].click();
-  }
-});
-
-// ══ RESULT ════════════════════════════════════════════════════════════════
-function showQuizResult() {
-  const total   = quizCountries.length;
-  const passed  = quizScore >= PASS_SCORE;
-  const conf    = CONTINENTS.find(c => c.id === activeContinentId);
+// ══ CONTINENT RESULT ══════════════════════════════════════════════════════
+function showContinentResult() {
+  const total = learnCountries.length;
+  const conf  = CONTINENTS.find(c => c.id === activeContinentId);
   const nextIdx = CONTINENTS.findIndex(c => c.id === activeContinentId) + 1;
-  const nextCont= CONTINENTS[nextIdx];
+  const nextCont = CONTINENTS[nextIdx];
+  const pct = Math.round(learnScore / total * 100);
 
   let emoji, title, sub;
-  if (quizScore === total)   { emoji='🏆'; title='Perfect score!';    sub=`You got every single ${conf.label} flag right. Incredible!`; }
-  else if (quizScore >= 9)   { emoji='⭐'; title='Outstanding!';      sub=`${quizScore}/${total} — you really know your ${conf.label} flags.`; }
-  else if (passed)           { emoji='✅'; title='Quiz passed!';      sub=`${quizScore}/${total} — well done, you passed the ${conf.label} quiz!`; }
-  else                       { emoji='📚'; title='Not quite!';        sub=`${quizScore}/${total} — you need ${PASS_SCORE} to pass. Have another look at the flags and try again!`; }
+  if (pct === 100)     { emoji='🏆'; title='Perfect!';         sub=`You nailed every challenge in ${conf.label}!`; }
+  else if (pct >= 70)  { emoji='⭐'; title='Great work!';      sub=`${learnScore}/${total} correct — you really know your ${conf.label} flags.`; }
+  else if (pct >= 50)  { emoji='👍'; title='Well done!';       sub=`${learnScore}/${total} correct — a solid run through ${conf.label}.`; }
+  else                 { emoji='📚'; title='Keep exploring!';  sub=`${learnScore}/${total} correct — try again to improve your score!`; }
 
-  document.getElementById('resultEmoji').textContent  = emoji;
-  document.getElementById('resultTitle').textContent  = title;
-  document.getElementById('resultSub').textContent    = sub;
-  document.getElementById('rScore').textContent  = quizScore;
+  document.getElementById('resultEmoji').textContent = emoji;
+  document.getElementById('resultTitle').textContent = title;
+  document.getElementById('resultSub').textContent   = sub;
+  document.getElementById('rScore').textContent  = learnScore;
   document.getElementById('rTotal').textContent  = total;
-  document.getElementById('rPct').textContent    = Math.round(quizScore/total*100) + '%';
+  document.getElementById('rPct').textContent    = pct + '%';
 
+  markCompleted(activeContinentId);
   const banner = document.getElementById('unlockBanner');
-  if (passed) {
-    markCompleted(activeContinentId);
-    if (nextCont) {
-      banner.classList.add('visible');
-      document.getElementById('unlockText').textContent = `You've unlocked ${nextCont.emoji} ${nextCont.label}! Head back to the map to continue your adventure.`;
-    } else {
-      banner.classList.add('visible');
-      document.getElementById('unlockText').textContent = `You've completed every continent! You're a true flag explorer. 🌍🌎🌏`;
-    }
+  if (nextCont) {
+    banner.classList.add('visible');
+    document.getElementById('unlockText').textContent = `You've unlocked ${nextCont.emoji} ${nextCont.label}! Head back to the map to continue your adventure.`;
   } else {
-    banner.classList.remove('visible');
+    banner.classList.add('visible');
+    document.getElementById('unlockText').textContent = `You've completed every continent! You're a true flag explorer. 🌍🌎🌏`;
   }
 
-  document.getElementById('btnTryAgain').style.background = passed ? conf.color : 'var(--red)';
-  document.getElementById('btnTryAgain').textContent = passed ? 'Play again' : 'Try again';
-
+  document.getElementById('btnTryAgain').style.background = conf.color;
+  document.getElementById('btnTryAgain').textContent = 'Try again';
   showScreen('resultScreen');
 }
 
-document.getElementById('btnTryAgain').addEventListener('click', () => startQuiz(activeContinentId));
+document.getElementById('btnTryAgain').addEventListener('click', () => startLearn(activeContinentId));
 document.getElementById('btnBackMap').addEventListener('click', renderMap);
+
+// ── KEYBOARD SHORTCUT ─────────────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('learnScreen').classList.contains('active')) return;
+  const map = {'1':0,'2':1,'3':2,'4':3};
+  const idx = map[e.key];
+  if (idx !== undefined) {
+    const btns = document.querySelectorAll('.challenge-opt:not(:disabled)');
+    if (btns[idx]) btns[idx].click();
+  }
+});
 
 // ── TOAST ─────────────────────────────────────────────────────────────────
 function showToast(msg) {
