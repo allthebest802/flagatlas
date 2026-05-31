@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>World Cup 2026 Flag Quiz — FlagAtlas</title>
+<meta name="description" content="Test yourself on all 48 World Cup 2026 nations. How many flags can you identify? Free flag quiz covering every team from England to Ecuador, Japan to Jamaica. No signup needed.">
+<meta name="keywords" content="world cup 2026 flag quiz, world cup flags, 2026 FIFA world cup countries, flag quiz, world cup nations flags, football flag quiz">
+<link rel="canonical" href="https://flagatlas.co.uk/worldcup.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0f1f3d;
+    --navy-mid: #162847;
+    --navy-light: #1e3460;
+    --teal: #0d9488;
+    --teal-light: #14b8a6;
+    --gold: #f59e0b;
+    --gold-light: #fbbf24;
+    --cream: #fef9f0;
+    --text-light: #e2e8f0;
+    --text-muted: #94a3b8;
+    --red: #ef4444;
+    --green: #22c55e;
+    --radius: 16px;
+    --radius-sm: 10px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--text-light);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  nav {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+  }
+
+  .nav-logo-icon {
+    width: 36px; height: 36px;
+    background: var(--teal);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+
+  .nav-logo-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 700;
+    color: var(--cream); letter-spacing: -0.01em;
+  }
+
+  .nav-logo-text span { color: var(--teal-light); }
+
+  .nav-back {
+    font-size: 0.85rem; color: var(--text-muted);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 0.3rem;
+  }
+  .nav-back:hover { color: var(--teal-light); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative; z-index: 1;
+    text-align: center;
+    padding: 3rem 1.5rem 2rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .wc-badge {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: rgba(245,158,11,0.15);
+    border: 1px solid rgba(245,158,11,0.3);
+    color: var(--gold-light);
+    font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.35rem 0.9rem; border-radius: 100px;
+    margin-bottom: 1.2rem;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 6vw, 3.2rem);
+    font-weight: 900; line-height: 1.1;
+    color: var(--cream); margin-bottom: 0.8rem;
+  }
+
+  .hero h1 em { font-style: italic; color: var(--gold); }
+
+  .hero p {
+    font-size: 1rem; color: var(--text-muted);
+    line-height: 1.6; max-width: 480px;
+    margin: 0 auto 2rem;
+  }
+
+  /* ── QUIZ WRAPPER ── */
+  .quiz-wrap {
+    position: relative; z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 1.5rem 5rem;
+  }
+
+  /* ── START SCREEN ── */
+  .start-screen {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    text-align: center;
+  }
+
+  .mode-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+  }
+
+  .mode-card {
+    background: rgba(255,255,255,0.04);
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-sm);
+    padding: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+  }
+
+  .mode-card:hover, .mode-card.selected {
+    border-color: var(--teal-light);
+    background: rgba(20,184,166,0.1);
+  }
+
+  .mode-card .mode-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+  .mode-card .mode-name { font-weight: 600; color: var(--cream); margin-bottom: 0.2rem; }
+  .mode-card .mode-desc { font-size: 0.82rem; color: var(--text-muted); }
+
+  .btn-start {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--teal);
+    color: white;
+    border: none; border-radius: 100px;
+    padding: 0.9rem 2.5rem;
+    font-size: 1rem; font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-start:hover { background: var(--teal-light); }
+
+  /* ── PROGRESS BAR ── */
+  .progress-bar-wrap {
+    background: rgba(255,255,255,0.08);
+    border-radius: 100px; height: 6px;
+    margin-bottom: 1.5rem; overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    height: 100%; border-radius: 100px;
+    background: linear-gradient(90deg, var(--teal), var(--teal-light));
+    transition: width 0.4s ease;
+  }
+
+  /* ── SCORE BAR ── */
+  .score-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 1.2rem;
+    font-size: 0.85rem; color: var(--text-muted);
+  }
+
+  .score-bar .q-num { font-weight: 600; color: var(--text-light); }
+  .score-bar .score { color: var(--gold); font-weight: 600; }
+
+  /* ── QUESTION CARD ── */
+  .question-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius);
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .flag-display {
+    font-size: 6rem;
+    line-height: 1;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .question-label {
+    font-size: 0.85rem; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+  }
+
+  .continent-hint {
+    display: inline-block;
+    font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.2rem 0.7rem; border-radius: 100px;
+    margin-bottom: 0.5rem;
+    background: rgba(20,184,166,0.15);
+    border: 1px solid rgba(20,184,166,0.25);
+    color: var(--teal-light);
+  }
+
+  /* ── ANSWERS GRID ── */
+  .answers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .answer-btn {
+    background: rgba(255,255,255,0.05);
+    border: 1.5px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius-sm);
+    padding: 0.9rem 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 500;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: left;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+
+  .answer-btn:hover:not(:disabled) {
+    background: rgba(20,184,166,0.12);
+    border-color: var(--teal-light);
+    color: var(--cream);
+  }
+
+  .answer-btn.correct {
+    background: rgba(34,197,94,0.15);
+    border-color: var(--green);
+    color: var(--green);
+  }
+
+  .answer-btn.wrong {
+    background: rgba(239,68,68,0.12);
+    border-color: var(--red);
+    color: var(--red);
+  }
+
+  .answer-btn:disabled { cursor: default; }
+
+  /* ── FEEDBACK ── */
+  .feedback {
+    text-align: center;
+    padding: 0.8rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-top: 1rem;
+    display: none;
+  }
+
+  .feedback.show { display: block; }
+  .feedback.correct { background: rgba(34,197,94,0.12); color: var(--green); }
+  .feedback.wrong { background: rgba(239,68,68,0.1); color: var(--red); }
+
+  .next-btn {
+    display: block; width: 100%;
+    background: var(--teal);
+    color: white; border: none;
+    border-radius: var(--radius-sm);
+    padding: 0.85rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem; font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background 0.2s;
+    display: none;
+  }
+
+  .next-btn.show { display: block; }
+  .next-btn:hover { background: var(--teal-light); }
+
+  /* ── RESULTS ── */
+  .results-screen {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    text-align: center;
+  }
+
+  .results-emoji { font-size: 4rem; margin-bottom: 1rem; display: block; }
+
+  .results-score {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem; font-weight: 900;
+    color: var(--gold); margin-bottom: 0.3rem;
+  }
+
+  .results-label {
+    font-size: 0.9rem; color: var(--text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .results-msg {
+    font-size: 1.05rem; color: var(--cream);
+    margin-bottom: 2rem; line-height: 1.6;
+  }
+
+  .missed-section {
+    text-align: left;
+    background: rgba(239,68,68,0.06);
+    border: 1px solid rgba(239,68,68,0.15);
+    border-radius: var(--radius-sm);
+    padding: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .missed-title {
+    font-size: 0.78rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--red); margin-bottom: 0.8rem;
+  }
+
+  .missed-list {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+  }
+
+  .missed-tag {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+  }
+
+  .btn-retry {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--gold);
+    color: var(--navy);
+    border: none; border-radius: 100px;
+    padding: 0.85rem 2rem;
+    font-size: 0.95rem; font-weight: 700;
+    cursor: pointer;
+    margin-right: 0.75rem;
+    font-family: 'DM Sans', sans-serif;
+    transition: background 0.2s;
+  }
+  .btn-retry:hover { background: var(--gold-light); }
+
+  .btn-explore {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(255,255,255,0.08);
+    color: var(--text-light);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 100px;
+    padding: 0.85rem 2rem;
+    font-size: 0.95rem; font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+    transition: background 0.2s;
+  }
+  .btn-explore:hover { background: rgba(255,255,255,0.14); }
+
+  /* ── BROWSE ALL ── */
+  .browse-section {
+    margin-top: 3rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 2.5rem;
+  }
+
+  .browse-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 700;
+    color: var(--cream); margin-bottom: 0.4rem;
+  }
+
+  .browse-sub {
+    font-size: 0.88rem; color: var(--text-muted);
+    margin-bottom: 1.2rem;
+  }
+
+  .continent-block { margin-bottom: 1.5rem; }
+
+  .continent-label {
+    font-size: 0.72rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 0.6rem;
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+
+  .team-chips {
+    display: flex; flex-wrap: wrap; gap: 0.45rem;
+  }
+
+  .team-chip {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text-light);
+    text-decoration: none;
+    padding: 0.3rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    transition: all 0.15s;
+  }
+
+  .team-chip:hover {
+    background: rgba(20,184,166,0.15);
+    border-color: var(--teal-light);
+    color: var(--cream);
+  }
+
+  footer {
+    position: relative; z-index: 1;
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    color: var(--text-muted); font-size: 0.82rem;
+  }
+
+  footer a { color: var(--teal-light); text-decoration: none; }
+
+  @media (max-width: 500px) {
+    .mode-grid { grid-template-columns: 1fr; }
+    .answers-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <div class="nav-logo-icon">🌍</div>
+    <span class="nav-logo-text">Flag<span>Atlas</span></span>
+  </a>
+  <a class="nav-back" href="index.html">← Back to home</a>
+</nav>
+
+<section class="hero">
+  <div class="wc-badge">⚽ FIFA World Cup 2026 · Starts 11 June</div>
+  <h1>Know Their <em>Flags?</em></h1>
+  <p>48 nations. 6 continents. One tournament. Test yourself on every World Cup 2026 flag — from England to Ecuador, Japan to Morocco.</p>
+</section>
+
+<div class="quiz-wrap">
+
+  <!-- START SCREEN -->
+  <div id="startScreen" class="start-screen">
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--cream);margin-bottom:0.5rem;">Choose your mode</h2>
+    <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:1.5rem;">Pick how you want to be tested</p>
+
+    <div class="mode-grid">
+      <div class="mode-card selected" onclick="selectMode('all')" id="modeAll">
+        <div class="mode-icon">🌍</div>
+        <div class="mode-name">All 48 Teams</div>
+        <div class="mode-desc">Every World Cup nation — the full challenge</div>
+      </div>
+      <div class="mode-card" onclick="selectMode('europe')" id="modeEurope">
+        <div class="mode-icon">🏆</div>
+        <div class="mode-name">Europe Only</div>
+        <div class="mode-desc">16 UEFA nations — trickier than you think</div>
+      </div>
+      <div class="mode-card" onclick="selectMode('hosts')" id="modeHosts">
+        <div class="mode-icon">⭐</div>
+        <div class="mode-name">Hosts + Americas</div>
+        <div class="mode-desc">USA, Canada, Mexico + South/Central America</div>
+      </div>
+      <div class="mode-card" onclick="selectMode('africa_asia')" id="modeAfricaAsia">
+        <div class="mode-icon">🌏</div>
+        <div class="mode-name">Africa &amp; Asia</div>
+        <div class="mode-desc">17 nations — how well do you know them?</div>
+      </div>
+    </div>
+
+    <button class="btn-start" onclick="startQuiz()">⚽ Start Quiz →</button>
+  </div>
+
+  <!-- QUIZ SCREEN (hidden initially) -->
+  <div id="quizScreen" style="display:none;">
+    <div class="score-bar">
+      <span class="q-num" id="qNum">Question 1 of 12</span>
+      <span class="score" id="scoreDisplay">Score: 0</span>
+    </div>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="progressBar" style="width:0%"></div>
+    </div>
+
+    <div class="question-card">
+      <span class="flag-display" id="flagDisplay">🏳</span>
+      <div class="question-label">Which country is this?</div>
+      <div class="continent-hint" id="continentHint">Europe</div>
+    </div>
+
+    <div class="answers-grid" id="answersGrid"></div>
+
+    <div class="feedback" id="feedback"></div>
+    <button class="next-btn" id="nextBtn" onclick="nextQuestion()">Next question →</button>
+  </div>
+
+  <!-- RESULTS SCREEN (hidden initially) -->
+  <div id="resultsScreen" class="results-screen" style="display:none;">
+    <span class="results-emoji" id="resultsEmoji">🏆</span>
+    <div class="results-score" id="resultsScore">0/12</div>
+    <div class="results-label" id="resultsLabel">World Cup Flag Quiz</div>
+    <div class="results-msg" id="resultsMsg"></div>
+
+    <div class="missed-section" id="missedSection" style="display:none;">
+      <div class="missed-title">❌ Ones to learn</div>
+      <div class="missed-list" id="missedList"></div>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;">
+      <button class="btn-retry" onclick="retryQuiz()">🔄 Try again</button>
+      <a class="btn-explore" href="explorer.html">🌐 Explore all flags</a>
+    </div>
+  </div>
+
+  <!-- BROWSE ALL TEAMS -->
+  <div class="browse-section" id="browseSection">
+    <div class="browse-title">All 48 World Cup 2026 Nations</div>
+    <p class="browse-sub">Click any country to explore its flag, capital and facts in the Flag Explorer</p>
+
+    <div class="continent-block">
+      <div class="continent-label" style="color:#fbbf24;">⭐ Host Nations</div>
+      <div class="team-chips">
+        <a class="team-chip" href="explorer.html?q=United States">🇺🇸 USA</a>
+        <a class="team-chip" href="explorer.html?q=Canada">🇨🇦 Canada</a>
+        <a class="team-chip" href="explorer.html?q=Mexico">🇲🇽 Mexico</a>
+      </div>
+    </div>
+
+    <div class="continent-block">
+      <div class="continent-label" style="color:#14b8a6;">🌍 Europe · 16 teams</div>
+      <div class="team-chips">
+        <a class="team-chip" href="explorer.html?q=England">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</a>
+        <a class="team-chip" href="explorer.html?q=France">🇫🇷 France</a>
+        <a class="team-chip" href="explorer.html?q=Germany">🇩🇪 Germany</a>
+        <a class="team-chip" href="explorer.html?q=Spain">🇪🇸 Spain</a>
+        <a class="team-chip" href="explorer.html?q=Portugal">🇵🇹 Portugal</a>
+        <a class="team-chip" href="explorer.html?q=Netherlands">🇳🇱 Netherlands</a>
+        <a class="team-chip" href="explorer.html?q=Belgium">🇧🇪 Belgium</a>
+        <a class="team-chip" href="explorer.html?q=Croatia">🇭🇷 Croatia</a>
+        <a class="team-chip" href="explorer.html?q=Switzerland">🇨🇭 Switzerland</a>
+        <a class="team-chip" href="explorer.html?q=Austria">🇦🇹 Austria</a>
+        <a class="team-chip" href="explorer.html?q=Scotland">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland</a>
+        <a class="team-chip" href="explorer.html?q=Norway">🇳🇴 Norway</a>
+        <a class="team-chip" href="explorer.html?q=Turkey">🇹🇷 Türkiye</a>
+        <a class="team-chip" href="explorer.html?q=Bosnia and Herzegovina">🇧🇦 Bosnia</a>
+        <a class="team-chip" href="explorer.html?q=Sweden">🇸🇪 Sweden</a>
+        <a class="team-chip" href="explorer.html?q=Czech Republic">🇨🇿 Czechia</a>
+      </div>
+    </div>
+
+    <div class="continent-block">
+      <div class="continent-label" style="color:#34d399;">🌎 South America · 6 teams</div>
+      <div class="team-chips">
+        <a class="team-chip" href="explorer.html?q=Argentina">🇦🇷 Argentina</a>
+        <a class="team-chip" href="explorer.html?q=Brazil">🇧🇷 Brazil</a>
+        <a class="team-chip" href="explorer.html?q=Colombia">🇨🇴 Colombia</a>
+        <a class="team-chip" href="explorer.html?q=Uruguay">🇺🇾 Uruguay</a>
+        <a class="team-chip" href="explorer.html?q=Ecuador">🇪🇨 Ecuador</a>
+        <a class="team-chip" href="explorer.html?q=Paraguay">🇵🇾 Paraguay</a>
+      </div>
+    </div>
+
+    <div class="continent-block">
+      <div class="continent-label" style="color:#f43f5e;">🌍 Africa · 9 teams</div>
+      <div class="team-chips">
+        <a class="team-chip" href="explorer.html?q=Morocco">🇲🇦 Morocco</a>
+        <a class="team-chip" href="explorer.html?q=Senegal">🇸🇳 Senegal</a>
+        <a class="team-chip" href="explorer.html?q=Egypt">🇪🇬 Egypt</a>
+        <a class="team-chip" href="explorer.html?q=Algeria">🇩🇿 Algeria</a>
+        <a class="team-chip" href="explorer.html?q=Ghana">🇬🇭 Ghana</a>
+        <a class="team-chip" href="explorer.html?q=Ivory Coast">🇨🇮 Ivory Coast</a>
+        <a class="team-chip" href="explorer.html?q=South Africa">🇿🇦 South Africa</a>
+        <a class="team-chip" href="explorer.html?q=Tunisia">🇹🇳 Tunisia</a>
+        <a class="team-chip" href="explorer.html?q=Cape Verde">🇨🇻 Cape Verde</a>
+        <a class="team-chip" href="explorer.html?q=DR Congo">🇨🇩 DR Congo</a>
+      </div>
+    </div>
+
+    <div class="continent-block">
+      <div class="continent-label" style="color:#a78bfa;">🌏 Asia · 9 teams</div>
+      <div class="team-chips">
+        <a class="team-chip" href="explorer.html?q=Japan">🇯🇵 Japan</a>
+        <a class="team-chip" href="explorer.html?q=South Korea">🇰🇷 South Korea</a>
+        <a class="team-chip" href="explorer.html?q=Australia">🇦🇺 Australia</a>
+        <a class="team-chip" href="explorer.html?q=Iran">🇮🇷 Iran</a>
+        <a class="team-chip" href="explorer.html?q=Saudi Arabia">🇸🇦 Saudi Arabia</a>
+        <a class="team-chip" href="explorer.html?q=Qatar">🇶🇦 Qatar</a>
+        <a class="team-chip" href="explorer.html?q=Jordan">🇯🇴 Jordan</a>
+        <a class="team-chip" href="explorer.html?q=Uzbekistan">🇺🇿 Uzbekistan</a>
+        <a class="team-chip" href="explorer.html?q=Iraq">🇮🇶 Iraq</a>
+      </div>
+    </div>
+
+    <div class="continent-block">
+      <div class="continent-label" style="color:#fbbf24;">🌎 CONCACAF &amp; Oceania · 6 teams</div>
+      <div class="team-chips">
+        <a class="team-chip" href="explorer.html?q=Costa Rica">🇨🇷 Costa Rica</a>
+        <a class="team-chip" href="explorer.html?q=Panama">🇵🇦 Panama</a>
+        <a class="team-chip" href="explorer.html?q=Curacao">🇨🇼 Curaçao</a>
+        <a class="team-chip" href="explorer.html?q=Haiti">🇭🇹 Haiti</a>
+        <a class="team-chip" href="explorer.html?q=Honduras">🇭🇳 Honduras</a>
+        <a class="team-chip" href="explorer.html?q=New Zealand">🇳🇿 New Zealand</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>FlagAtlas — free educational tools for everyone &nbsp;·&nbsp; <a href="privacy.html">Privacy &amp; Terms</a> &nbsp;·&nbsp; <a href="index.html">← All tools</a></p>
+</footer>
+
+<script>
+// ── ALL 48 TEAMS ─────────────────────────────────────────────────────────────
+const ALL_TEAMS = [
+  // Hosts
+  {name:"United States", emoji:"🇺🇸", continent:"Host"},
+  {name:"Canada", emoji:"🇨🇦", continent:"Host"},
+  {name:"Mexico", emoji:"🇲🇽", continent:"Host"},
+  // Europe
+  {name:"England", emoji:"🏴󠁧󠁢󠁥󠁮󠁧󠁿", continent:"Europe"},
+  {name:"France", emoji:"🇫🇷", continent:"Europe"},
+  {name:"Germany", emoji:"🇩🇪", continent:"Europe"},
+  {name:"Spain", emoji:"🇪🇸", continent:"Europe"},
+  {name:"Portugal", emoji:"🇵🇹", continent:"Europe"},
+  {name:"Netherlands", emoji:"🇳🇱", continent:"Europe"},
+  {name:"Belgium", emoji:"🇧🇪", continent:"Europe"},
+  {name:"Croatia", emoji:"🇭🇷", continent:"Europe"},
+  {name:"Switzerland", emoji:"🇨🇭", continent:"Europe"},
+  {name:"Austria", emoji:"🇦🇹", continent:"Europe"},
+  {name:"Scotland", emoji:"🏴󠁧󠁢󠁳󠁣󠁴󠁿", continent:"Europe"},
+  {name:"Norway", emoji:"🇳🇴", continent:"Europe"},
+  {name:"Turkey", emoji:"🇹🇷", continent:"Europe"},
+  {name:"Bosnia and Herzegovina", emoji:"🇧🇦", continent:"Europe"},
+  {name:"Sweden", emoji:"🇸🇪", continent:"Europe"},
+  {name:"Czechia", emoji:"🇨🇿", continent:"Europe"},
+  // South America
+  {name:"Argentina", emoji:"🇦🇷", continent:"South America"},
+  {name:"Brazil", emoji:"🇧🇷", continent:"South America"},
+  {name:"Colombia", emoji:"🇨🇴", continent:"South America"},
+  {name:"Uruguay", emoji:"🇺🇾", continent:"South America"},
+  {name:"Ecuador", emoji:"🇪🇨", continent:"South America"},
+  {name:"Paraguay", emoji:"🇵🇾", continent:"South America"},
+  // Africa
+  {name:"Morocco", emoji:"🇲🇦", continent:"Africa"},
+  {name:"Senegal", emoji:"🇸🇳", continent:"Africa"},
+  {name:"Egypt", emoji:"🇪🇬", continent:"Africa"},
+  {name:"Algeria", emoji:"🇩🇿", continent:"Africa"},
+  {name:"Ghana", emoji:"🇬🇭", continent:"Africa"},
+  {name:"Ivory Coast", emoji:"🇨🇮", continent:"Africa"},
+  {name:"South Africa", emoji:"🇿🇦", continent:"Africa"},
+  {name:"Tunisia", emoji:"🇹🇳", continent:"Africa"},
+  {name:"Cape Verde", emoji:"🇨🇻", continent:"Africa"},
+  {name:"DR Congo", emoji:"🇨🇩", continent:"Africa"},
+  // Asia
+  {name:"Japan", emoji:"🇯🇵", continent:"Asia"},
+  {name:"South Korea", emoji:"🇰🇷", continent:"Asia"},
+  {name:"Australia", emoji:"🇦🇺", continent:"Asia"},
+  {name:"Iran", emoji:"🇮🇷", continent:"Asia"},
+  {name:"Saudi Arabia", emoji:"🇸🇦", continent:"Asia"},
+  {name:"Qatar", emoji:"🇶🇦", continent:"Asia"},
+  {name:"Jordan", emoji:"🇯🇴", continent:"Asia"},
+  {name:"Uzbekistan", emoji:"🇺🇿", continent:"Asia"},
+  {name:"Iraq", emoji:"🇮🇶", continent:"Asia"},
+  // CONCACAF + Oceania
+  {name:"Costa Rica", emoji:"🇨🇷", continent:"Americas"},
+  {name:"Panama", emoji:"🇵🇦", continent:"Americas"},
+  {name:"Curaçao", emoji:"🇨🇼", continent:"Americas"},
+  {name:"Haiti", emoji:"🇭🇹", continent:"Americas"},
+  {name:"Honduras", emoji:"🇭🇳", continent:"Americas"},
+  {name:"New Zealand", emoji:"🇳🇿", continent:"Americas"},
+];
+
+const MODES = {
+  all: ALL_TEAMS,
+  europe: ALL_TEAMS.filter(t => t.continent === 'Europe'),
+  hosts: ALL_TEAMS.filter(t => ['Host','South America','Americas'].includes(t.continent)),
+  africa_asia: ALL_TEAMS.filter(t => ['Africa','Asia'].includes(t.continent)),
+};
+
+let selectedMode = 'all';
+let questions = [];
+let currentQ = 0;
+let score = 0;
+let answered = false;
+let missed = [];
+
+function selectMode(mode) {
+  selectedMode = mode;
+  document.querySelectorAll('.mode-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById('mode' + mode.charAt(0).toUpperCase() + mode.slice(1)).classList.add('selected');
+}
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function buildQuestions(pool) {
+  const shuffled = shuffle(pool);
+  const qs = shuffled.slice(0, Math.min(12, shuffled.length));
+  return qs.map(correct => {
+    // Get 3 wrong answers from pool
+    const others = shuffle(pool.filter(t => t.name !== correct.name));
+    const wrongs = others.slice(0, 3);
+    const opts = shuffle([correct, ...wrongs]);
+    return { correct, opts };
+  });
+}
+
+function startQuiz() {
+  const pool = MODES[selectedMode];
+  questions = buildQuestions(pool);
+  currentQ = 0;
+  score = 0;
+  missed = [];
+  answered = false;
+
+  document.getElementById('startScreen').style.display = 'none';
+  document.getElementById('resultsScreen').style.display = 'none';
+  document.getElementById('quizScreen').style.display = 'block';
+
+  renderQuestion();
+}
+
+function renderQuestion() {
+  answered = false;
+  const q = questions[currentQ];
+  const total = questions.length;
+
+  document.getElementById('qNum').textContent = `Question ${currentQ + 1} of ${total}`;
+  document.getElementById('scoreDisplay').textContent = `Score: ${score}`;
+  document.getElementById('progressBar').style.width = `${(currentQ / total) * 100}%`;
+  document.getElementById('flagDisplay').textContent = q.correct.emoji;
+  document.getElementById('continentHint').textContent = q.correct.continent;
+
+  const grid = document.getElementById('answersGrid');
+  grid.innerHTML = '';
+
+  q.opts.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'answer-btn';
+    btn.innerHTML = `<span>${opt.emoji}</span><span>${opt.name}</span>`;
+    btn.onclick = () => checkAnswer(opt, q.correct, btn);
+    grid.appendChild(btn);
+  });
+
+  document.getElementById('feedback').className = 'feedback';
+  document.getElementById('feedback').textContent = '';
+  document.getElementById('nextBtn').className = 'next-btn';
+}
+
+function checkAnswer(chosen, correct, btn) {
+  if (answered) return;
+  answered = true;
+
+  const allBtns = document.querySelectorAll('.answer-btn');
+  allBtns.forEach(b => b.disabled = true);
+
+  const feedback = document.getElementById('feedback');
+
+  if (chosen.name === correct.name) {
+    score++;
+    btn.classList.add('correct');
+    feedback.textContent = '✓ Correct! Well done.';
+    feedback.className = 'feedback correct show';
+    document.getElementById('scoreDisplay').textContent = `Score: ${score}`;
+  } else {
+    btn.classList.add('wrong');
+    // Highlight correct answer
+    allBtns.forEach(b => {
+      if (b.textContent.includes(correct.name)) b.classList.add('correct');
+    });
+    feedback.textContent = `✗ It was ${correct.emoji} ${correct.name}`;
+    feedback.className = 'feedback wrong show';
+    missed.push(correct);
+  }
+
+  document.getElementById('nextBtn').className = 'next-btn show';
+}
+
+function nextQuestion() {
+  currentQ++;
+  if (currentQ >= questions.length) {
+    showResults();
+  } else {
+    renderQuestion();
+  }
+}
+
+function showResults() {
+  document.getElementById('quizScreen').style.display = 'none';
+  document.getElementById('resultsScreen').style.display = 'block';
+
+  const total = questions.length;
+  const pct = Math.round((score / total) * 100);
+
+  document.getElementById('resultsScore').textContent = `${score}/${total}`;
+  document.getElementById('resultsLabel').textContent = `World Cup 2026 Flag Quiz`;
+
+  let emoji, msg;
+  if (pct === 100) { emoji = '🏆'; msg = 'Perfect score! You know every World Cup 2026 flag. Share your result and challenge a friend.'; }
+  else if (pct >= 80) { emoji = '⭐'; msg = 'Great result! You know your World Cup flags well. A few slipped through — check the ones to learn below.'; }
+  else if (pct >= 60) { emoji = '🌍'; msg = 'Solid effort! You got most of them. Head to the Flag Explorer to brush up on the ones you missed.'; }
+  else if (pct >= 40) { emoji = '📚'; msg = 'Good start! Flags from Africa and Asia are tricky. Try the Flag Explorer to learn them before the tournament begins.'; }
+  else { emoji = '🌱'; msg = 'Room to grow — but you\'ve made a start! The Flag Explorer has all 195 flags with facts and stories to help you learn.'; }
+
+  document.getElementById('resultsEmoji').textContent = emoji;
+  document.getElementById('resultsMsg').textContent = msg;
+
+  if (missed.length > 0) {
+    document.getElementById('missedSection').style.display = 'block';
+    const list = document.getElementById('missedList');
+    list.innerHTML = '';
+    missed.forEach(t => {
+      const tag = document.createElement('span');
+      tag.className = 'missed-tag';
+      tag.textContent = `${t.emoji} ${t.name}`;
+      list.appendChild(tag);
+    });
+  } else {
+    document.getElementById('missedSection').style.display = 'none';
+  }
+
+  document.getElementById('progressBar') && (document.getElementById('progressBar').style.width = '100%');
+}
+
+function retryQuiz() {
+  document.getElementById('resultsScreen').style.display = 'none';
+  document.getElementById('startScreen').style.display = 'block';
+}
+</script>
+</body>
+</html>
