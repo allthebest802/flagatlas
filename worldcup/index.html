@@ -223,12 +223,6 @@
     box-shadow: 0 4px 20px rgba(0,0,0,0.4);
   }
 
-  .answer-flag {
-    width: 28px;
-    height: auto;
-    border-radius: 3px;
-    flex-shrink: 0;
-  }
 
   .question-label {
     font-size: 0.85rem; color: var(--text-muted);
@@ -658,8 +652,6 @@
 <script>
 // ── ALL 48 TEAMS ─────────────────────────────────────────────────────────────
 const CDN = "https://flagcdn.com/w160/";
-const CDN_SM = "https://flagcdn.com/w40/";
-
 const ALL_TEAMS = [
   // Hosts
   {name:"United States", code:"us", continent:"Host"},
@@ -793,7 +785,7 @@ function renderQuestion() {
   q.opts.forEach(opt => {
     const btn = document.createElement('button');
     btn.className = 'answer-btn';
-    btn.innerHTML = `<img class="answer-flag" src="${CDN_SM}${opt.code}.png" alt="${opt.name}" /><span>${opt.name}</span>`;
+    btn.innerHTML = `<span>${opt.name}</span>`;
     btn.onclick = () => checkAnswer(opt, q.correct, btn);
     grid.appendChild(btn);
   });
