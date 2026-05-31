@@ -489,6 +489,61 @@
     .mode-grid { grid-template-columns: 1fr; }
     .answers-grid { grid-template-columns: 1fr; }
   }
+
+  /* ── FACT POPUP ── */
+  .fact-box {
+    background: rgba(245,158,11,0.08);
+    border: 1px solid rgba(245,158,11,0.25);
+    border-radius: var(--radius-sm);
+    padding: 0.9rem 1.1rem;
+    margin-top: 0.8rem;
+    font-size: 0.88rem;
+    color: var(--text-light);
+    line-height: 1.55;
+    display: none;
+  }
+  .fact-box.show { display: block; }
+  .fact-box strong { color: var(--gold); }
+
+  /* ── TEAM CARD (replaces chip in browse) ── */
+  .team-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-sm);
+    padding: 0.7rem 0.9rem;
+    transition: all 0.15s;
+    cursor: pointer;
+  }
+  .team-card:hover {
+    background: rgba(20,184,166,0.1);
+    border-color: var(--teal-light);
+  }
+  .team-card-top {
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .team-card-flag {
+    width: 32px; height: auto;
+    border-radius: 3px; flex-shrink: 0;
+  }
+  .team-card-name {
+    font-size: 0.85rem; font-weight: 600;
+    color: var(--text-light); flex: 1;
+    text-decoration: none;
+  }
+  .team-card-toggle {
+    font-size: 0.7rem; color: var(--text-muted);
+    flex-shrink: 0;
+  }
+  .team-card-fact {
+    font-size: 0.78rem; color: var(--text-muted);
+    line-height: 1.5; margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: none;
+  }
+  .team-card.open .team-card-fact { display: block; }
+  .team-card.open .team-card-toggle { color: var(--teal-light); }
+  .team-chips { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 0.5rem; }
 </style>
 </head>
 <body>
@@ -583,97 +638,12 @@
   <!-- BROWSE ALL TEAMS -->
   <div class="browse-section" id="browseSection">
     <div class="browse-title">All 48 World Cup 2026 Nations</div>
-    <p class="browse-sub">Click any country to explore its flag, capital and facts in the Flag Explorer</p>
+    <p class="browse-sub">Tap any country to see their World Cup story, then click through to the Flag Explorer</p>
+    <div id="browseTeams"></div>
 
-    <div class="continent-block">
-      <div class="continent-label" style="color:#fbbf24;">⭐ Host Nations</div>
-      <div class="team-chips">
-        <a class="team-chip" href="/explorer/?q=United States">🇺🇸 USA</a>
-        <a class="team-chip" href="/explorer/?q=Canada">🇨🇦 Canada</a>
-        <a class="team-chip" href="/explorer/?q=Mexico">🇲🇽 Mexico</a>
-      </div>
-    </div>
-
-    <div class="continent-block">
-      <div class="continent-label" style="color:#14b8a6;">🌍 Europe · 16 teams</div>
-      <div class="team-chips">
-        <a class="team-chip" href="/explorer/?q=England">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</a>
-        <a class="team-chip" href="/explorer/?q=France">🇫🇷 France</a>
-        <a class="team-chip" href="/explorer/?q=Germany">🇩🇪 Germany</a>
-        <a class="team-chip" href="/explorer/?q=Spain">🇪🇸 Spain</a>
-        <a class="team-chip" href="/explorer/?q=Portugal">🇵🇹 Portugal</a>
-        <a class="team-chip" href="/explorer/?q=Netherlands">🇳🇱 Netherlands</a>
-        <a class="team-chip" href="/explorer/?q=Belgium">🇧🇪 Belgium</a>
-        <a class="team-chip" href="/explorer/?q=Croatia">🇭🇷 Croatia</a>
-        <a class="team-chip" href="/explorer/?q=Switzerland">🇨🇭 Switzerland</a>
-        <a class="team-chip" href="/explorer/?q=Austria">🇦🇹 Austria</a>
-        <a class="team-chip" href="/explorer/?q=Scotland">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland</a>
-        <a class="team-chip" href="/explorer/?q=Norway">🇳🇴 Norway</a>
-        <a class="team-chip" href="/explorer/?q=Turkey">🇹🇷 Türkiye</a>
-        <a class="team-chip" href="/explorer/?q=Bosnia and Herzegovina">🇧🇦 Bosnia</a>
-        <a class="team-chip" href="/explorer/?q=Sweden">🇸🇪 Sweden</a>
-        <a class="team-chip" href="/explorer/?q=Czech Republic">🇨🇿 Czechia</a>
-      </div>
-    </div>
-
-    <div class="continent-block">
-      <div class="continent-label" style="color:#34d399;">🌎 South America · 6 teams</div>
-      <div class="team-chips">
-        <a class="team-chip" href="/explorer/?q=Argentina">🇦🇷 Argentina</a>
-        <a class="team-chip" href="/explorer/?q=Brazil">🇧🇷 Brazil</a>
-        <a class="team-chip" href="/explorer/?q=Colombia">🇨🇴 Colombia</a>
-        <a class="team-chip" href="/explorer/?q=Uruguay">🇺🇾 Uruguay</a>
-        <a class="team-chip" href="/explorer/?q=Ecuador">🇪🇨 Ecuador</a>
-        <a class="team-chip" href="/explorer/?q=Paraguay">🇵🇾 Paraguay</a>
-      </div>
-    </div>
-
-    <div class="continent-block">
-      <div class="continent-label" style="color:#f43f5e;">🌍 Africa · 9 teams</div>
-      <div class="team-chips">
-        <a class="team-chip" href="/explorer/?q=Morocco">🇲🇦 Morocco</a>
-        <a class="team-chip" href="/explorer/?q=Senegal">🇸🇳 Senegal</a>
-        <a class="team-chip" href="/explorer/?q=Egypt">🇪🇬 Egypt</a>
-        <a class="team-chip" href="/explorer/?q=Algeria">🇩🇿 Algeria</a>
-        <a class="team-chip" href="/explorer/?q=Ghana">🇬🇭 Ghana</a>
-        <a class="team-chip" href="/explorer/?q=Ivory Coast">🇨🇮 Ivory Coast</a>
-        <a class="team-chip" href="/explorer/?q=South Africa">🇿🇦 South Africa</a>
-        <a class="team-chip" href="/explorer/?q=Tunisia">🇹🇳 Tunisia</a>
-        <a class="team-chip" href="/explorer/?q=Cape Verde">🇨🇻 Cape Verde</a>
-        <a class="team-chip" href="/explorer/?q=DR Congo">🇨🇩 DR Congo</a>
-      </div>
-    </div>
-
-    <div class="continent-block">
-      <div class="continent-label" style="color:#a78bfa;">🌏 Asia · 9 teams</div>
-      <div class="team-chips">
-        <a class="team-chip" href="/explorer/?q=Japan">🇯🇵 Japan</a>
-        <a class="team-chip" href="/explorer/?q=South Korea">🇰🇷 South Korea</a>
-        <a class="team-chip" href="/explorer/?q=Australia">🇦🇺 Australia</a>
-        <a class="team-chip" href="/explorer/?q=Iran">🇮🇷 Iran</a>
-        <a class="team-chip" href="/explorer/?q=Saudi Arabia">🇸🇦 Saudi Arabia</a>
-        <a class="team-chip" href="/explorer/?q=Qatar">🇶🇦 Qatar</a>
-        <a class="team-chip" href="/explorer/?q=Jordan">🇯🇴 Jordan</a>
-        <a class="team-chip" href="/explorer/?q=Uzbekistan">🇺🇿 Uzbekistan</a>
-        <a class="team-chip" href="/explorer/?q=Iraq">🇮🇶 Iraq</a>
-      </div>
-    </div>
-
-    <div class="continent-block">
-      <div class="continent-label" style="color:#fbbf24;">🌎 CONCACAF &amp; Oceania · 6 teams</div>
-      <div class="team-chips">
-        <a class="team-chip" href="/explorer/?q=Costa Rica">🇨🇷 Costa Rica</a>
-        <a class="team-chip" href="/explorer/?q=Panama">🇵🇦 Panama</a>
-        <a class="team-chip" href="/explorer/?q=Curacao">🇨🇼 Curaçao</a>
-        <a class="team-chip" href="/explorer/?q=Haiti">🇭🇹 Haiti</a>
-        <a class="team-chip" href="/explorer/?q=Honduras">🇭🇳 Honduras</a>
-        <a class="team-chip" href="/explorer/?q=New Zealand">🇳🇿 New Zealand</a>
-      </div>
-    </div>
   </div>
 
 </div>
-
 
 <!-- SEO CONTENT -->
 <section style="position:relative;z-index:1;max-width:780px;margin:0 auto;padding:0 1.5rem 4rem;">
@@ -701,6 +671,61 @@
 <script>
 // ── ALL 48 TEAMS ─────────────────────────────────────────────────────────────
 const CDN = "https://flagcdn.com/w160/";
+
+const FACTS = {
+  "United States":        "Hosts of 2026 — their first World Cup on home soil since 1994, when they reached the Round of 16.",
+  "Canada":               "Making only their second ever World Cup appearance. Their first was in 1986 — they lost all three games and scored zero goals.",
+  "Mexico":               "Have reached the Round of 16 at every World Cup from 1994 to 2018 — seven times in a row. Nicknamed El Tri.",
+  "England":              "Won the World Cup exactly once — at home in 1966. Still waiting for their second.",
+  "France":               "Two-time World Cup winners (1998, 2018) and runners-up in 2022. One of the tournament favourites.",
+  "Germany":              "Four-time World Cup winners — 1954, 1974, 1990 and 2014. The most successful European nation in the tournament's history.",
+  "Spain":                "Won the World Cup in 2010 in South Africa — their first and only title, famous for their tiki-taka style of play.",
+  "Portugal":             "Despite having Cristiano Ronaldo — the all-time top scorer in international football — Portugal have never won the World Cup.",
+  "Netherlands":          "Three-time World Cup finalists (1974, 1978, 2010) but have never won it. Known as the nearly-men of world football.",
+  "Belgium":              "Ranked as high as number one in the world, Belgium have never won the World Cup. Their best finish was third place in 1986.",
+  "Croatia":              "A nation of just four million people who reached the World Cup final in 2018 and finished third in 2022. Remarkable overachievers.",
+  "Switzerland":          "Quietly consistent World Cup performers — they have reached the quarter-finals three times but never gone further.",
+  "Austria":              "Third place in 1954 is their best ever World Cup finish. Returning after missing 2022.",
+  "Scotland":             "Returning to the World Cup after missing out in 2022. Scotland have appeared eight times but never made it past the group stage.",
+  "Norway":               "First World Cup since 1998 — a 28-year wait. Erling Haaland scored 16 qualifying goals to help get them there.",
+  "Turkey":               "Finished third at the 2002 World Cup — their best ever result. Qualified through the UEFA playoffs this time.",
+  "Bosnia and Herzegovina": "Only their second World Cup appearance. Their first was in 2014 where they won one game but were eliminated in the group stage.",
+  "Sweden":               "Finished third at the 1994 World Cup and again in 1950. Qualified through the UEFA playoffs.",
+  "Czechia":              "As Czechoslovakia they finished second in 1934 and 1962. As Czechia they are still searching for their first title.",
+  "Argentina":            "Defending world champions — Lionel Messi led them to the 2022 title in Qatar in one of the greatest finals ever played.",
+  "Brazil":               "The most successful nation in World Cup history with five titles — 1958, 1962, 1970, 1994 and 2002. The only team to appear in every World Cup.",
+  "Colombia":             "Best known for their run to the quarter-finals in 2014 on home continent, with James Rodriguez winning the Golden Boot.",
+  "Uruguay":              "Two-time champions (1930, 1950) — one of the most decorated nations in World Cup history relative to their population of just 3.5 million.",
+  "Ecuador":              "Appearing at their fourth World Cup. Their best finish was the round of 16 in 2006.",
+  "Paraguay":             "Reached the quarter-finals in 2010, defeating Japan on penalties. A consistent South American qualifier.",
+  "Morocco":              "Made history in 2022 by becoming the first African nation to reach the World Cup semi-finals. One of the most exciting teams in the tournament.",
+  "Senegal":              "Won the Africa Cup of Nations in 2022 and reached the quarter-finals at the last World Cup. One of Africa's most powerful teams.",
+  "Egypt":                "Home to Mohamed Salah and appearing for just their fourth World Cup. Their most recent previous appearance was 1990.",
+  "Algeria":              "Reached the Round of 16 in 2014 — their best ever World Cup performance. Strong qualifiers from Africa.",
+  "Ghana":                "Known as the Black Stars — reached the quarter-finals in 2010 and came agonisingly close to the semi-finals before losing on penalties to Uruguay.",
+  "Ivory Coast":          "Home to one of the greatest African generations of players — including Didier Drogba — though they never made it past the group stage with him.",
+  "South Africa":         "The only African nation to host the World Cup (2010) but the first host nation ever not to advance from the group stage.",
+  "Tunisia":              "First African nation to win a World Cup match — they beat Mexico 3-1 in 1978. Appearing at their sixth World Cup overall.",
+  "Cape Verde":           "A tiny island nation of 500,000 people making only their second World Cup appearance. One of the great underdog stories of 2026.",
+  "DR Congo":             "Qualifying through the intercontinental playoffs — one of four debut nations at 2026. Formerly known as Zaire, they last appeared in 1974.",
+  "Japan":                "The first nation outside the hosts to qualify for 2026. Reached the quarter-finals in 2022 after eliminating Germany and Spain in the group stage.",
+  "South Korea":          "Reached the semi-finals in 2002 as co-hosts — still the best World Cup run by an Asian nation. Home of Son Heung-min.",
+  "Australia":            "The Socceroos reached the quarter-finals in 2006. In 2022 they knocked out Denmark before falling to Argentina.",
+  "Iran":                 "Appearing at their seventh World Cup — the most of any Asian nation. Known for passionate support despite difficult geopolitical circumstances.",
+  "Saudi Arabia":         "Famous for beating eventual champions Argentina 2-1 in the 2022 group stage — one of the biggest upsets in World Cup history.",
+  "Qatar":                "Defending host nation — but became the first host country in history to be eliminated in the group stage in 2022.",
+  "Jordan":               "Making their World Cup debut in 2026 — a historic first for Jordanian football.",
+  "Uzbekistan":           "Also making their World Cup debut in 2026. Central Asian football on the world stage for the first time.",
+  "Iraq":                 "Returning after a 40-year absence — their last World Cup was in 1986. Qualified through the intercontinental playoffs.",
+  "Costa Rica":           "Reached the quarter-finals in 2014 — one of the greatest underdog runs in World Cup history. Eliminated Italy, England and Uruguay in the group stage.",
+  "Panama":               "Only their second ever World Cup appearance. Their first was in 2018 where they lost all three games.",
+  "Curaçao":              "Making their World Cup debut in 2026 — a tiny Caribbean island of 150,000 people. One of the most extraordinary debut stories in World Cup history.",
+  "Haiti":                "Only their second World Cup — their first was in 1974. A remarkable achievement for a nation facing enormous economic challenges.",
+  "Honduras":             "Appearing at their fourth World Cup. Their best finish was the group stage, which they have never escaped.",
+  "New Zealand":          "The All Whites — making their third World Cup appearance. Won both their qualification matches but are yet to win a World Cup game.",
+};
+
+
 const ALL_TEAMS = [
   // Hosts
   {name:"United States", code:"us", continent:"Host"},
@@ -856,7 +881,8 @@ function checkAnswer(chosen, correct, btn) {
   if (chosen.name === correct.name) {
     score++;
     btn.classList.add('correct');
-    feedback.textContent = '✓ Correct! Well done.';
+    const factCorrect = FACTS[correct.name] || '';
+    feedback.innerHTML = '✓ Correct! <br><small style="font-weight:400;opacity:0.85">' + factCorrect + '</small>';
     feedback.className = 'feedback correct show';
     document.getElementById('scoreDisplay').textContent = `Score: ${score}`;
   } else {
@@ -865,7 +891,8 @@ function checkAnswer(chosen, correct, btn) {
     allBtns.forEach(b => {
       if (b.textContent.includes(correct.name)) b.classList.add('correct');
     });
-    feedback.textContent = `✗ It was ${correct.name}`;
+    const factWrong = FACTS[correct.name] || '';
+    feedback.innerHTML = `✗ It was <strong>${correct.name}</strong>${factWrong ? '<br><small style="font-weight:400;opacity:0.85">' + factWrong + '</small>' : ''}`;
     feedback.className = 'feedback wrong show';
     missed.push(correct);
   }
@@ -923,6 +950,52 @@ function retryQuiz() {
   document.getElementById('resultsScreen').style.display = 'none';
   document.getElementById('startScreen').style.display = 'block';
 }
+
+// ── RENDER BROWSE SECTION ────────────────────────────────────────────────────
+const CONTINENTS = [
+  { label: "⭐ Host Nations", color: "#fbbf24", teams: ALL_TEAMS.filter(t => t.continent === "Host") },
+  { label: "🌍 Europe · 16 teams", color: "#14b8a6", teams: ALL_TEAMS.filter(t => t.continent === "Europe") },
+  { label: "🌎 South America · 6 teams", color: "#34d399", teams: ALL_TEAMS.filter(t => t.continent === "South America") },
+  { label: "🌍 Africa · 10 teams", color: "#f43f5e", teams: ALL_TEAMS.filter(t => t.continent === "Africa") },
+  { label: "🌏 Asia · 9 teams", color: "#a78bfa", teams: ALL_TEAMS.filter(t => t.continent === "Asia") },
+  { label: "🌎 CONCACAF & Oceania · 6 teams", color: "#fbbf24", teams: ALL_TEAMS.filter(t => t.continent === "Americas") },
+];
+
+function renderBrowse() {
+  const wrap = document.getElementById('browseTeams');
+  if (!wrap) return;
+  let html = '';
+  CONTINENTS.forEach(group => {
+    html += `<div class="continent-block">
+      <div class="continent-label" style="color:${group.color}">${group.label}</div>
+      <div class="team-chips">`;
+    group.teams.forEach(team => {
+      const fact = FACTS[team.name] || '';
+      const explorerUrl = '/explorer/?q=' + encodeURIComponent(team.name);
+      html += `<div class="team-card" onclick="toggleFact(this)">
+        <div class="team-card-top">
+          <img class="team-card-flag" src="https://flagcdn.com/w40/${team.code}.png" alt="${team.name}" />
+          <span class="team-card-name">${team.name}</span>
+          <span class="team-card-toggle">▼ fact</span>
+        </div>
+        <div class="team-card-fact">
+          ${fact}
+          <a href="${explorerUrl}" style="display:inline-block;margin-top:0.4rem;color:var(--teal-light);font-size:0.75rem;text-decoration:none;">Explore flag →</a>
+        </div>
+      </div>`;
+    });
+    html += `</div></div>`;
+  });
+  wrap.innerHTML = html;
+}
+
+function toggleFact(card) {
+  card.classList.toggle('open');
+  const toggle = card.querySelector('.team-card-toggle');
+  toggle.textContent = card.classList.contains('open') ? '▲ close' : '▼ fact';
+}
+
+renderBrowse();
 </script>
 </body>
 </html>
