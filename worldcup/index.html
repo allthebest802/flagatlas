@@ -735,7 +735,7 @@
     <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:1.5rem;">Pick how you want to be tested</p>
 
     <div class="mode-grid">
-      <div class="mode-card" onclick="selectMode('journey')" id="modeJourney" style="grid-column:1/-1;border-color:rgba(245,158,11,0.4);background:rgba(245,158,11,0.06);">
+      <div class="mode-card" onclick="selectMode('journey')" id="modeJourney" style="grid-column:1/-1;border-color:rgba(245,158,11,0.35);background:rgba(245,158,11,0.06);transition:all 0.2s;">
         <div class="mode-icon">🏆</div>
         <div class="mode-name" style="color:var(--gold);">World Cup Journey <span style="font-size:0.7rem;background:rgba(245,158,11,0.2);color:var(--gold);padding:0.15rem 0.5rem;border-radius:100px;margin-left:0.4rem;font-weight:700;">NEW</span></div>
         <div class="mode-desc">Guide your team through the tournament. One wrong answer and you're knocked out!</div>
@@ -837,9 +837,25 @@
     <div style="margin-bottom:1.5rem;">
       <div class="journey-progress" id="knockoutProgress"></div>
     </div>
-    <div style="display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;">
+    <div style="display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;margin-bottom:1.5rem;">
       <button class="btn-replay" onclick="replayFromStage()">🔄 Replay from this stage</button>
       <button class="btn-retry" onclick="retryQuiz()">🏠 Start over</button>
+    </div>
+    <!-- Share after knockout -->
+    <div class="share-section">
+      <div class="share-label">📣 Share your result</div>
+      <div class="share-btns">
+        <a class="share-btn share-x" id="knockoutShareX" href="#" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.736-8.859L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          Post on X
+        </a>
+        <a class="share-btn share-wa" id="knockoutShareWA" href="#" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+        <button class="share-btn share-copy" onclick="copyLink()">📋 Copy link</button>
+      </div>
+      <div class="copy-confirm" id="copyConfirm3"></div>
     </div>
   </div>
 
@@ -1070,9 +1086,22 @@ let missed = [];
 
 function selectMode(mode) {
   selectedMode = mode;
-  document.querySelectorAll('.mode-card').forEach(c => c.classList.remove('selected'));
+  // Reset all cards
+  document.querySelectorAll('.mode-card').forEach(c => {
+    c.classList.remove('selected');
+    c.style.borderColor = '';
+    c.style.background = '';
+    c.style.boxShadow = '';
+  });
   const idMap = {all:'modeAll',europe:'modeEurope',hosts:'modeHosts',africa_asia:'modeAfricaAsia',journey:'modeJourney'};
-  document.getElementById(idMap[mode]).classList.add('selected');
+  const card = document.getElementById(idMap[mode]);
+  card.classList.add('selected');
+  // Journey gets gold highlight, others get teal
+  if (mode === 'journey') {
+    card.style.borderColor = 'var(--gold)';
+    card.style.background = 'rgba(245,158,11,0.18)';
+    card.style.boxShadow = '0 0 0 2px rgba(245,158,11,0.3)';
+  }
 }
 
 function shuffle(arr) {
@@ -1368,6 +1397,19 @@ function showKnockout(wrongFlag) {
     '<strong>About ' + wrongFlag.name + ':</strong> ' + fact;
   document.getElementById('knockoutProgress').innerHTML = buildJourneyProgressHTML(true);
   document.getElementById('knockoutScreen').style.display = 'block';
+
+  // Set share links with round info
+  const roundName = round.name;
+  const knockoutText = journeyRoundIdx === 0
+    ? 'I got knocked out in the Group Stage of the World Cup 2026 Flag Quiz! Can you do better? ⚽🌍'
+    : 'I reached the ' + roundName + ' in the World Cup 2026 Flag Quiz Journey! Can you beat me? ⚽🌍';
+  const shareUrl = 'https://flagatlas.co.uk/worldcup/';
+  const encoded = encodeURIComponent(knockoutText);
+  const encodedUrl = encodeURIComponent(shareUrl);
+  document.getElementById('knockoutShareX').href =
+    `https://twitter.com/intent/tweet?text=${encoded}&url=${encodedUrl}`;
+  document.getElementById('knockoutShareWA').href =
+    `https://wa.me/?text=${encoded}%20${encodedUrl}`;
 }
 
 function showChampion() {
