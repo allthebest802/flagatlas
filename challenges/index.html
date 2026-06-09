@@ -637,7 +637,7 @@ function buildPopulationQuestions() {
       type: 'population',
       badge: '👥 Which Has More?',
       text: `Which country has the larger population?`,
-      sub: `${a.name} (${fmt(a.population)}) vs ${b.name} (${fmt(b.population)})`,
+      sub: `${a.name} vs ${b.name}`,
       correct: bigger.name,
       opts: [a.name, b.name],
       fact: `${bigger.name} has a population of ${fmt(bigger.population)}, compared to ${fmt(smaller.population)} in ${smaller.name}.`,
