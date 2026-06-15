@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Daily Flag Challenge — Guess Today's Flag | FlagAtlas</title>
-<meta name="description" content="A new mystery flag every day. Guess the country in up to 6 attempts — hints unlock as you go. Build your daily streak and share your results. Free for everyone.">
+<title>Daily Flag Challenge — Guess Today's World Cup Flag | FlagAtlas</title>
+<meta name="description" content="A new mystery flag every day — including World Cup 2026 nations. Guess the country in up to 6 attempts with hints. Build your streak and share your result. Free, no login.">
 <meta name="keywords" content="daily flag challenge, flag wordle, flag guessing game, daily geography quiz, flag of the day, country guessing game, flag streak">
 <meta name="author" content="FlagAtlas">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://flagatlas.co.uk/daily.html">
+<link rel="canonical" href="https://flagatlas.co.uk/daily/">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://flagatlas.co.uk/daily.html">
+<meta property="og:url" content="https://flagatlas.co.uk/daily">
 <meta property="og:title" content="Daily Flag Challenge — Guess Today's Flag | FlagAtlas">
 <meta property="og:description" content="A new mystery flag every day. Guess the country in up to 6 attempts. Build your streak — free for everyone.">
 <meta property="og:image" content="https://flagatlas.co.uk/og-image.png">
@@ -21,7 +21,7 @@
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:url" content="https://flagatlas.co.uk/daily.html">
+<meta name="twitter:url" content="https://flagatlas.co.uk/daily">
 <meta name="twitter:title" content="Daily Flag Challenge — Guess Today's Flag | FlagAtlas">
 <meta name="twitter:description" content="A new mystery flag every day. Guess the country in up to 6 attempts. Build your streak — free for everyone.">
 <meta name="twitter:image" content="https://flagatlas.co.uk/og-image.png">
@@ -181,7 +181,6 @@
     color:var(--text-light);
   }
   .hint-chip .hint-icon { font-size:0.9rem; }
-  .hint-locked { font-style:italic; opacity:0.45; font-size:0.72rem; }
   .hint-chip .hint-label { font-weight:600; }
   .hint-chip .hint-val { color:var(--teal-light); }
 
@@ -406,22 +405,22 @@
     <div class="hint-chip" id="hintContinent">
       <span class="hint-icon">🌍</span>
       <span class="hint-label">Continent:</span>
-      <span class="hint-val hint-locked">unlocks guess 1</span>
+      <span class="hint-val">?</span>
     </div>
     <div class="hint-chip" id="hintPopulation">
       <span class="hint-icon">👥</span>
       <span class="hint-label">Population:</span>
-      <span class="hint-val hint-locked">unlocks guess 2</span>
+      <span class="hint-val">?</span>
     </div>
     <div class="hint-chip" id="hintInitial">
       <span class="hint-icon">🔤</span>
       <span class="hint-label">Starts with:</span>
-      <span class="hint-val hint-locked">unlocks guess 3</span>
+      <span class="hint-val">?</span>
     </div>
     <div class="hint-chip" id="hintCapital">
       <span class="hint-icon">🏛️</span>
       <span class="hint-label">Capital:</span>
-      <span class="hint-val hint-locked">unlocks guess 5</span>
+      <span class="hint-val">?</span>
     </div>
   </div>
 
@@ -672,20 +671,8 @@ function applyHints() {
 function revealHint(id, value) {
   const el = document.getElementById(id);
   if(!el) return;
-  const valEl = el.querySelector('.hint-val');
-  if(valEl.classList.contains('hint-locked')) {
-    // not yet revealed - animate
-    el.classList.add('revealed');
-    valEl.classList.remove('hint-locked');
-    valEl.textContent = value;
-    // flash animation
-    valEl.style.transition = 'all 0.3s ease';
-    valEl.style.opacity = '0';
-    setTimeout(() => { valEl.style.opacity = '1'; }, 50);
-  } else {
-    el.classList.add('revealed');
-    valEl.textContent = value;
-  }
+  el.classList.add('revealed');
+  el.querySelector('.hint-val').textContent = value;
 }
 
 // ── AUTOCOMPLETE ──────────────────────────────────────────────────────────
@@ -919,6 +906,24 @@ function showToast(msg) {
 // ── GO ────────────────────────────────────────────────────────────────────
 init();
 </script>
+
+<section style="max-width:800px;margin:4rem auto 0;padding:0 24px 5rem;font-family:inherit">
+
+  <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--navy);margin-bottom:0.7rem;margin-top:2rem;border-top:1px solid #e2e8f0;padding-top:1.5rem">Daily flag challenge — a new flag every day</h2>
+  <p style="color:#475569;line-height:1.75;margin-bottom:1rem;font-size:0.95rem">The FlagAtlas daily flag challenge gives you a new mystery flag to identify every day. You have six attempts, with hints unlocking as you go — similar to Wordle but for world flags. Each day features a flag from one of the world's nations, including all 48 countries competing in the 2026 FIFA World Cup. Build your daily streak and see how your flag knowledge improves over time.</p>
+
+  <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--navy);margin-bottom:0.7rem;margin-top:2rem;border-top:1px solid #e2e8f0;padding-top:1.5rem">How the daily flag challenge works</h2>
+  <p style="color:#475569;line-height:1.75;margin-bottom:1rem;font-size:0.95rem">Each day a mystery flag is shown. Type your guess — the country you think the flag belongs to. If you're wrong, a hint unlocks: the continent, then the region, then the first letter of the country. You have six attempts to identify the flag correctly. Get it right and you can share your result — just like Wordle. Miss it and the answer is revealed so you can learn for next time.</p>
+  <p style="color:#475569;line-height:1.75;margin-bottom:1rem;font-size:0.95rem">The daily challenge is free to play with no login required. Come back every day to keep your streak going — the flags reset at midnight.</p>
+
+  <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--navy);margin-bottom:0.7rem;margin-top:2rem;border-top:1px solid #e2e8f0;padding-top:1.5rem">World Cup 2026 — 48 nations, 48 flags to learn</h2>
+  <p style="color:#475569;line-height:1.75;margin-bottom:1rem;font-size:0.95rem">The 2026 FIFA World Cup is the biggest in history — 48 nations from six continents. Many of the flags are well known: France's blue, white and red tricolour, Brazil's green and yellow diamond, Japan's red circle on white. Others are less familiar — Uzbekistan, Curaçao, Cape Verde, Bosnia and Herzegovina. The daily challenge is a great way to learn them all, one flag at a time. Use the <a href="https://flagatlas.co.uk/explorer/" style="color:var(--teal);text-decoration:underline;text-underline-offset:3px">Flag Explorer</a> to study before you play.</p>
+
+  <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--navy);margin-bottom:0.7rem;margin-top:2rem;border-top:1px solid #e2e8f0;padding-top:1.5rem">More free flag games on FlagAtlas</h2>
+  <p style="color:#475569;line-height:1.75;margin-bottom:1rem;font-size:0.95rem">FlagAtlas is a collection of free geography tools — no login, no cost, no ads. As well as the daily challenge, you can play the <a href="https://flagatlas.co.uk/quiz/" style="color:var(--teal);text-decoration:underline;text-underline-offset:3px">60-second flag speed quiz</a>, try the <a href="https://flagatlas.co.uk/worldcup/" style="color:var(--teal);text-decoration:underline;text-underline-offset:3px">World Cup 2026 flag quiz</a>, explore the <a href="https://flagatlas.co.uk/challenges/" style="color:var(--teal);text-decoration:underline;text-underline-offset:3px">geography challenges</a> or browse flags in the <a href="https://flagatlas.co.uk/explorer/" style="color:var(--teal);text-decoration:underline;text-underline-offset:3px">flag explorer</a>.</p>
+
+</section>
+
 <footer><p>FlagAtlas — free educational tools for everyone &nbsp;·&nbsp; <a href="/index.html">Home</a> &nbsp;·&nbsp; <a href="/privacy.html">Privacy &amp; Terms</a></p></footer>
 </body>
 </html>
