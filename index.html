@@ -56,6 +56,14 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Preload the two actual font files used by the H1/hero so the browser
+     fetches them immediately in parallel, rather than waiting on the CSS
+     swap to discover them. This directly targets the LCP render-delay
+     caused by font loading. -->
+<link rel="preload" as="font" type="font/woff2" crossorigin
+      href="https://fonts.gstatic.com/s/playfairdisplay/v40/nuFiD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvXDXbtXK-F2qO0isEw.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin
+      href="https://fonts.gstatic.com/s/dmsans/v17/rP2Yp2ywxg089UriCZOIHQ_qXkXgsZcgPGQdWXNFn3sl5MEH73CC.woff2">
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
 <style>
@@ -70,7 +78,7 @@
     --cream: #fef9f0;
     --cream-dark: #f5ede0;
     --text-light: #e2e8f0;
-    --text-muted: #94a3b8;
+    --text-muted: #a8b6c8;
     --red-accent: #ef4444;
     --radius: 16px;
     --radius-sm: 10px;
@@ -380,7 +388,13 @@
 
   footer a {
     color: var(--teal-light);
-    text-decoration: none;
+    text-decoration: underline;
+    text-decoration-color: rgba(20,184,166,0.4);
+    text-underline-offset: 3px;
+  }
+
+  footer a:hover {
+    text-decoration-color: currentColor;
   }
 
   /* ── ANIMATIONS ── */
@@ -405,7 +419,7 @@
 <body>
 
 <nav>
-  <a class="nav-logo" href="index.html">
+  <a class="nav-logo" href="/">
     <div class="nav-logo-icon">🌍</div>
     <span class="nav-logo-text">Flag<span>Atlas</span></span>
   </a>
@@ -416,6 +430,7 @@
 </nav>
 
 <!-- HERO -->
+<main>
 <section class="hero">
   
   <h1>Free Flag Games &amp; <em>Daily</em> Challenges</h1>
@@ -435,7 +450,7 @@
   <div class="tools-grid">
 
     <!-- DAILY CHALLENGE — featured -->
-    <a class="tool-card featured" href="daily.html" style="--card-accent: var(--gold);">
+    <a class="tool-card featured" href="/daily/" style="--card-accent: var(--gold);">
       <div class="tool-icon" style="background: rgba(245,158,11,0.15); color: var(--gold);">📅</div>
       <div class="tool-content">
         <span class="tool-tag">✦ Today's Challenge</span>
@@ -457,18 +472,18 @@
     </a>
 
     <!-- SPEED QUIZ -->
-    <a class="tool-card" href="quiz.html" style="--card-accent: #f43f5e;">
-      <div class="tool-icon" style="background: rgba(244,63,94,0.15); color: #f43f5e;">⚡</div>
+    <a class="tool-card" href="/quiz/" style="--card-accent: #f76a85;">
+      <div class="tool-icon" style="background: rgba(247,106,133,0.15); color: #f76a85;">⚡</div>
       <div class="tool-content">
         <span class="tool-tag">Quiz</span>
         <div class="tool-name">Speed Quiz</div>
         <p class="tool-desc">60 seconds. As many flags as you can name. Beat your high score — or challenge a friend to beat yours.</p>
-        <div class="tool-arrow" style="color: #f43f5e;">Start the clock <span>→</span></div>
+        <div class="tool-arrow" style="color: #f76a85;">Start the clock <span>→</span></div>
       </div>
     </a>
 
     <!-- FACT CARDS -->
-    <a class="tool-card" href="facts.html" style="--card-accent: #a78bfa;">
+    <a class="tool-card" href="/facts/" style="--card-accent: #a78bfa;">
       <div class="tool-icon" style="background: rgba(167,139,250,0.15); color: #a78bfa;">🃏</div>
       <div class="tool-content">
         <span class="tool-tag">Learn</span>
@@ -479,7 +494,7 @@
     </a>
 
     <!-- CONTINENT ADVENTURE -->
-    <a class="tool-card" href="adventure.html" style="--card-accent: #34d399;">
+    <a class="tool-card" href="/adventure/" style="--card-accent: #34d399;">
       <div class="tool-icon" style="background: rgba(52,211,153,0.15); color: #34d399;">🗺️</div>
       <div class="tool-content">
         <span class="tool-tag">Adventure</span>
@@ -597,7 +612,7 @@
     <div style="background:rgba(244,63,94,0.08);border:1px solid rgba(244,63,94,0.2);border-radius:var(--radius);padding:1.4rem;">
       <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:1rem;">
         <span style="font-size:1.2rem;">🌍</span>
-        <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#f43f5e;">Africa · 9 teams</span>
+        <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#f76a85;">Africa · 9 teams</span>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
         <a href="/explorer/?q=Morocco" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(244,63,94,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇲🇦 Morocco</a>
@@ -688,11 +703,13 @@
 
 </section>
 
+</main>
+
 <footer>
-  <p>FlagAtlas — free educational tools for everyone &nbsp;·&nbsp; <a href="privacy.html">Privacy &amp; Terms</a></p>
+  <p>FlagAtlas — free educational tools for everyone &nbsp;·&nbsp; <a href="/privacy/">Privacy &amp; Terms</a></p>
 </footer>
 
 
-<a href="https://ko-fi.com/helpsetuk" target="_blank" rel="noopener" style="position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;align-items:center;gap:8px;background:#FF5E5B;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:700;padding:11px 18px;border-radius:100px;text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,0.3);transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">☕ Buy me a coffee</a>
+<a href="https://ko-fi.com/flagatlas" target="_blank" rel="noopener" style="position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;align-items:center;gap:8px;background:#FF5E5B;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:700;padding:11px 18px;border-radius:100px;text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,0.3);transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">☕ Buy me a coffee</a>
 </body>
 </html>
