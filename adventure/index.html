@@ -16,14 +16,14 @@
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://flagatlas.co.uk/adventure/">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://flagatlas.co.uk/adventure">
+<meta property="og:url" content="https://flagatlas.co.uk/adventure/">
 <meta property="og:title" content="Continent Adventure — FlagAtlas">
 <meta property="og:description" content="Journey through the world continent by continent. Learn every flag, then prove it with a quiz to unlock the next region.">
 <meta property="og:image" content="https://flagatlas.co.uk/og-image.png">
 <meta property="og:site_name" content="FlagAtlas">
 <meta property="og:locale" content="en_GB">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:url" content="https://flagatlas.co.uk/adventure">
+<meta name="twitter:url" content="https://flagatlas.co.uk/adventure/">
 <meta name="twitter:title" content="Continent Adventure — FlagAtlas">
 <meta name="twitter:description" content="Journey through the world continent by continent. Learn every flag, then prove it with a quiz to unlock the next region.">
 <meta name="twitter:image" content="https://flagatlas.co.uk/og-image.png">
@@ -32,7 +32,7 @@
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Continent Adventure",
-  "url": "https://flagatlas.co.uk/adventure.html",
+  "url": "https://flagatlas.co.uk/adventure/",
   "description": "Learn flags continent by continent and unlock each region with a quiz.",
   "isPartOf": { "@type": "WebSite", "name": "FlagAtlas", "url": "https://flagatlas.co.uk/" }
 }
@@ -266,7 +266,7 @@
 <body>
 
 <nav>
-  <a class="nav-logo" href="/index.html">
+  <a class="nav-logo" href="/">
     <div class="nav-logo-icon">🌍</div>
     <span class="nav-logo-text">Flag<span>Atlas</span></span>
   </a>
@@ -289,7 +289,55 @@
       <h1>🗺️ Continent Adventure</h1>
       <p>Learn every flag on Earth — one continent at a time</p>
     </div>
-    <div class="continents-grid" id="continentsGrid"></div>
+    <div class="continents-grid" id="continentsGrid">
+      <!-- Static fallback content for search engines and no-JS visitors.
+           Overwritten by renderMap() once the page's JavaScript runs. -->
+      <div class="continent-card">
+        <div class="continent-card-inner">
+          <div class="continent-icon">🏰</div>
+          <div class="continent-info">
+            <div class="continent-name">Europe</div>
+            <div class="continent-meta">44 countries · 44 countries from Iceland to Cyprus</div>
+          </div>
+        </div>
+      </div>
+      <div class="continent-card">
+        <div class="continent-card-inner">
+          <div class="continent-icon">🦁</div>
+          <div class="continent-info">
+            <div class="continent-name">Africa</div>
+            <div class="continent-meta">54 countries · the world's most diverse continent</div>
+          </div>
+        </div>
+      </div>
+      <div class="continent-card">
+        <div class="continent-card-inner">
+          <div class="continent-icon">🐉</div>
+          <div class="continent-info">
+            <div class="continent-name">Asia</div>
+            <div class="continent-meta">48 countries · the world's largest continent</div>
+          </div>
+        </div>
+      </div>
+      <div class="continent-card">
+        <div class="continent-card-inner">
+          <div class="continent-icon">🌎</div>
+          <div class="continent-info">
+            <div class="continent-name">Americas</div>
+            <div class="continent-meta">35 countries from Canada to Argentina</div>
+          </div>
+        </div>
+      </div>
+      <div class="continent-card">
+        <div class="continent-card-inner">
+          <div class="continent-icon">🌊</div>
+          <div class="continent-info">
+            <div class="continent-name">Oceania</div>
+            <div class="continent-meta">14 countries across the Pacific</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   </div>
 </div>
@@ -349,7 +397,7 @@
 
 <div class="toast" id="toast"></div>
 
-<footer><p>FlagAtlas — free educational tools for everyone &nbsp;·&nbsp; <a href="/index.html">Home</a> &nbsp;·&nbsp; <a href="/privacy.html">Privacy &amp; Terms</a></p></footer>
+<footer><p>FlagAtlas — free educational tools for everyone &nbsp;·&nbsp; <a href="/">Home</a> &nbsp;·&nbsp; <a href="/privacy/">Privacy &amp; Terms</a></p></footer>
 
 <script>
 // ── DATA ──────────────────────────────────────────────────────────────────

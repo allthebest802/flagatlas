@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>document.documentElement.classList.add('js-enabled');</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -19,7 +20,7 @@
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://flagatlas.co.uk/facts">
+<meta property="og:url" content="https://flagatlas.co.uk/facts/">
 <meta property="og:title" content="Flag Fact Cards — Discover Amazing Flag Stories | FlagAtlas">
 <meta property="og:description" content="Swipe through fascinating flag fact cards. Discover the amazing stories behind the world's flags — free for kids and families.">
 <meta property="og:image" content="https://flagatlas.co.uk/og-image.png">
@@ -28,7 +29,7 @@
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:url" content="https://flagatlas.co.uk/facts">
+<meta name="twitter:url" content="https://flagatlas.co.uk/facts/">
 <meta name="twitter:title" content="Flag Fact Cards — Discover Amazing Flag Stories | FlagAtlas">
 <meta name="twitter:description" content="Swipe through fascinating flag fact cards. Discover the amazing stories behind the world's flags.">
 <meta name="twitter:image" content="https://flagatlas.co.uk/og-image.png">
@@ -39,7 +40,7 @@
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Flag Fact Cards",
-  "url": "https://flagatlas.co.uk/facts.html",
+  "url": "https://flagatlas.co.uk/facts/",
   "description": "Interactive flashcard-style flag fact cards covering unique flags, symbols, colours, history, and records.",
   "applicationCategory": "EducationalApplication",
   "isPartOf": { "@type": "WebSite", "name": "FlagAtlas", "url": "https://flagatlas.co.uk/" },
@@ -396,12 +397,18 @@
   .anim-out-right { animation:card-out-right 0.25s ease both; }
   footer { position:relative; z-index:1; text-align:center; padding:1.5rem; border-top:1px solid rgba(255,255,255,0.06); color:var(--text-muted); font-size:0.8rem; margin-top:2rem; }
   footer a { color:var(--teal-light); text-decoration:none; }
+.fallback-facts-list{list-style:none;margin:2rem 0 0;padding:0;display:flex;flex-direction:column;gap:1rem;}
+.fallback-fact-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:1.1rem 1.3rem;}
+.fallback-fact-card h3{font-size:1.05rem;margin-bottom:0.5rem;}
+.fallback-capital{font-weight:400;opacity:0.7;font-size:0.85rem;}
+.fallback-fact-card p{font-size:0.88rem;margin-bottom:0.5rem;}
+.js-enabled .fallback-facts-list{display:none;}
 </style>
 </head>
 <body>
 
 <nav>
-  <a class="nav-logo" href="/index.html">
+  <a class="nav-logo" href="/">
     <div class="nav-logo-icon">🌍</div>
     <span class="nav-logo-text">Flag<span>Atlas</span></span>
   </a>
@@ -450,6 +457,182 @@
   </div>
 
   <p class="swipe-hint">Tap card to flip · ← → arrow keys to navigate</p>
+
+    <!-- Static fallback content for search engines and no-JS visitors.
+         Hidden visually once JS renders the interactive flip-card stack,
+         but present in the HTML so this content is indexable. -->
+    <ul class="fallback-facts-list" id="fallbackFactsList">
+      <li class="fallback-fact-card">
+        <h3>Nepal <span class="fallback-capital">— Kathmandu</span></h3>
+        <p><strong>Did you know?</strong> Nepal&#x27;s flag is the only national flag in the world that is not rectangular. It is made of two stacked pennant triangles and has been used in this form since 1962.</p>
+        <p><strong>Flag symbolism:</strong> The moon symbol represents the royal house and the cool climate of the Himalayas. The sun represents the Prime Minister&#x27;s house and the fierce climate of the lowlands. Both represent the hope that Nepal will last as long as these celestial bodies exist.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>Switzerland <span class="fallback-capital">— Bern</span></h3>
+        <p><strong>Did you know?</strong> Switzerland&#x27;s flag is one of only two square national flags in the world — the other is Vatican City. It is instantly recognisable and the basis of the Red Cross symbol.</p>
+        <p><strong>Flag symbolism:</strong> The white cross on red has been the Swiss military emblem since the 14th century. When the International Red Cross was founded in Geneva in 1863, they reversed the colours as a tribute to Switzerland.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>Vatican City <span class="fallback-capital">— Vatican City</span></h3>
+        <p><strong>Did you know?</strong> Vatican City is both the world&#x27;s smallest country AND has one of only two square national flags. It has a population of under 800 people — fewer than most village primary schools.</p>
+        <p><strong>Flag symbolism:</strong> Yellow and white represent the Pope&#x27;s spiritual and earthly power. The coat of arms shows the papal tiara (a crown of three tiers) and the crossed keys of Saint Peter, who is said to hold the keys to heaven.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>Paraguay <span class="fallback-capital">— Asunción</span></h3>
+        <p><strong>Did you know?</strong> Paraguay&#x27;s flag is the only national flag in the world with different emblems on each side. Turn it around and you see a completely different coat of arms — the treasury seal on the reverse.</p>
+        <p><strong>Flag symbolism:</strong> Red, white, and blue were inspired by France&#x27;s tricolore. The front shows the national coat of arms; the back shows the treasury seal with a lion, staff, and Phrygian cap representing liberty.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>Libya <span class="fallback-capital">— Tripoli</span></h3>
+        <p><strong>Did you know?</strong> From 1977 to 2011, Libya had the world&#x27;s only completely plain single-colour national flag — solid green, with no symbols at all. The current flag was restored after the 2011 revolution.</p>
+        <p><strong>Flag symbolism:</strong> The current flag uses Pan-Arab colours. Black represents the Senussi dynasty, red symbolises blood shed in struggle, green stands for prosperity, and the crescent and star represent Islam.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>Mozambique <span class="fallback-capital">— Maputo</span></h3>
+        <p><strong>Did you know?</strong> Mozambique is the only country in the world whose flag features a modern weapon — an AK-47 assault rifle. Several flag redesign competitions have been held but the design has always been retained.</p>
+        <p><strong>Flag symbolism:</strong> Green represents the land, black stands for Africa, yellow symbolises mineral wealth, and white represents peace. The AK-47, open book, and hoe represent defence, education, and agriculture.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>Cambodia <span class="fallback-capital">— Phnom Penh</span></h3>
+        <p><strong>Did you know?</strong> Cambodia&#x27;s flag is one of very few in the world to feature a building — the ancient temple complex of Angkor Wat, the largest religious monument in the world.</p>
+        <p><strong>Flag symbolism:</strong> Red and blue are traditional Khmer colours used for centuries. The white Angkor Wat in the centre represents the nation&#x27;s cultural heritage and integrity.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>Cyprus <span class="fallback-capital">— Nicosia</span></h3>
+        <p><strong>Did you know?</strong> Cyprus is one of the very few countries whose flag actually shows a map of the country itself — the copper-coloured outline of the island is unmistakeable.</p>
+        <p><strong>Flag symbolism:</strong> The copper colour of the map comes from the fact that Cyprus literally means &#x27;copper&#x27; in Greek — the island was a major source of copper in ancient times. The olive branches represent peace.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>Bhutan <span class="fallback-capital">— Thimphu</span></h3>
+        <p><strong>Did you know?</strong> Bhutan&#x27;s flag features a white dragon — called Druk, meaning &#x27;Thunder Dragon&#x27;. The country&#x27;s own name is Druk Yul, which translates as &#x27;Land of the Thunder Dragon&#x27;.</p>
+        <p><strong>Flag symbolism:</strong> Orange represents Buddhist spiritual power and red represents temporal power. The white dragon holds jewels in its claws, representing the wealth and perfection of the country. The snarling mouth represents the strength of the deities protecting Bhutan.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>Albania <span class="fallback-capital">— Tirana</span></h3>
+        <p><strong>Did you know?</strong> The double-headed eagle on Albania&#x27;s flag is one of the oldest heraldic symbols in Europe, dating back to the 15th century when national hero Gjergj Kastrioti Skanderbeg used it on his seal.</p>
+        <p><strong>Flag symbolism:</strong> The black double-headed eagle on red is said to represent the Byzantine Empire&#x27;s eagle. Each head looks in a different direction, symbolising looking both east and west simultaneously.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>Mexico <span class="fallback-capital">— Mexico City</span></h3>
+        <p><strong>Did you know?</strong> Mexico&#x27;s coat of arms shows an eagle eating a snake while perched on a cactus — an image from an ancient Aztec prophecy. The Aztecs were told to build their city where they saw this sign, which became present-day Mexico City.</p>
+        <p><strong>Flag symbolism:</strong> Green represents hope, white stands for purity of religion, and red symbolises the blood of Mexican heroes. The eagle, snake, and cactus scene comes from the founding legend of the Aztec capital Tenochtitlán.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>Canada <span class="fallback-capital">— Ottawa</span></h3>
+        <p><strong>Did you know?</strong> The maple leaf has been a symbol of Canada since the 1700s, but the current flag design was only officially adopted in 1965 after a nationwide debate called the &#x27;Great Canadian Flag Debate&#x27;.</p>
+        <p><strong>Flag symbolism:</strong> Red and white are Canada&#x27;s official colours, granted by King George V in 1921. The 11-pointed maple leaf has no symbolic significance for the number of points — earlier designs had 13 and 15 points before being simplified.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>Lebanon <span class="fallback-capital">— Beirut</span></h3>
+        <p><strong>Did you know?</strong> The Cedar of Lebanon tree on the flag is mentioned 75 times in the Bible and appears in the Epic of Gilgamesh. Lebanon&#x27;s cedars were so famous in ancient times that the Egyptians and Phoenicians sailed great distances to collect the timber.</p>
+        <p><strong>Flag symbolism:</strong> Red represents sacrifice, white stands for peace and the snow on the mountains. The green Cedar of Lebanon is a symbol of immortality, holiness, peace, and Lebanon&#x27;s ancient heritage.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>India <span class="fallback-capital">— New Delhi</span></h3>
+        <p><strong>Did you know?</strong> The blue wheel at the centre of India&#x27;s flag is the Ashoka Chakra — a 24-spoked wheel from a pillar erected by Emperor Ashoka in 250 BC. It represents the eternal wheel of law and the cycle of time.</p>
+        <p><strong>Flag symbolism:</strong> Saffron represents courage and sacrifice. White stands for peace and truth. Green symbolises faith and chivalry. The blue Ashoka Chakra has 24 spokes representing the 24 hours in a day — a reminder to always keep moving forward.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>South Korea <span class="fallback-capital">— Seoul</span></h3>
+        <p><strong>Did you know?</strong> South Korea&#x27;s flag is one of the most complex and symbolically rich flags in the world. The four black trigrams in the corners come from the ancient Chinese text I Ching and each represents a different element.</p>
+        <p><strong>Flag symbolism:</strong> White represents peace and purity. The red and blue Taegeuk symbol represents the balance of cosmic forces — similar to yin and yang. The four trigrams represent sky, water, earth, and fire respectively.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>Saudi Arabia <span class="fallback-capital">— Riyadh</span></h3>
+        <p><strong>Did you know?</strong> Saudi Arabia&#x27;s flag is never flown at half-mast, even during periods of national mourning. This is because the flag bears the shahada — the Islamic declaration of faith — and lowering it would be considered disrespectful to the words of God.</p>
+        <p><strong>Flag symbolism:</strong> Green is the sacred colour of Islam. The Arabic text reads &#x27;There is no God but God, and Muhammad is the messenger of God&#x27;. The sword below represents the House of Saud and their role as guardians of Islam.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>Jamaica <span class="fallback-capital">— Kingston</span></h3>
+        <p><strong>Did you know?</strong> Jamaica&#x27;s flag is one of only two national flags in the world that contains neither red, white, nor blue. The other is Mauritania. When Jamaica became independent in 1962, they deliberately chose different colours.</p>
+        <p><strong>Flag symbolism:</strong> Black represents the strength and creativity of the Jamaican people and the hardships they have overcome. Gold stands for natural wealth and the beauty of sunlight. Green symbolises the lush tropical land.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>South Africa <span class="fallback-capital">— Pretoria</span></h3>
+        <p><strong>Did you know?</strong> South Africa&#x27;s flag uses six colours — more than almost any other national flag. It was designed in just one week before the first democratic elections in 1994, and was intended as a temporary flag. It became permanent because everyone loved it.</p>
+        <p><strong>Flag symbolism:</strong> The Y-shape represents the convergence of South Africa&#x27;s diverse society coming together as one. No single colour has an official meaning, but collectively they represent the different peoples, parties, and landscapes of the nation.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>Seychelles <span class="fallback-capital">— Victoria</span></h3>
+        <p><strong>Did you know?</strong> Seychelles has one of the most distinctive flag designs in the world — five coloured rays shooting outwards from the bottom-left corner. The capital Victoria is also the smallest capital city in the world.</p>
+        <p><strong>Flag symbolism:</strong> Five rays represent the five political parties at the time of independence in 1977. Blue represents the sky and sea, yellow stands for the sun, red symbolises the people and their determination, white stands for harmony, and green represents the land.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>Papua New Guinea <span class="fallback-capital">— Port Moresby</span></h3>
+        <p><strong>Did you know?</strong> Papua New Guinea has over 800 languages — more than any other country on Earth. The flag&#x27;s Bird of Paradise is the raggiana bird of paradise, a spectacular species found only in PNG.</p>
+        <p><strong>Flag symbolism:</strong> Red and black are traditional Papua New Guinean colours. The gold Bird of Paradise in flight represents the nation&#x27;s beauty and freedom. The white Southern Cross represents PNG&#x27;s location in the Pacific.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>Ukraine <span class="fallback-capital">— Kyiv</span></h3>
+        <p><strong>Did you know?</strong> Ukraine&#x27;s simple two-colour flag perfectly describes the country&#x27;s landscape — an enormous sky above vast golden wheat fields. Ukraine is often called &#x27;the breadbasket of Europe&#x27; for its huge agricultural output.</p>
+        <p><strong>Flag symbolism:</strong> Blue represents the sky, clear rivers, and the Carpathian mountains. Yellow represents the endless wheat fields, the wealth of the nation, and the warmth of the Ukrainian people. The design has roots in Cossack military banners.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>Denmark <span class="fallback-capital">— Copenhagen</span></h3>
+        <p><strong>Did you know?</strong> The Dannebrog is the oldest national flag still in use in the world. According to legend, it fell from the sky during the Battle of Lyndanisse in Estonia in 1219, giving the Danish army the courage to win.</p>
+        <p><strong>Flag symbolism:</strong> The red background and white cross have been used for over 800 years. The off-centre cross design became the template for all other Nordic countries&#x27; flags — Norway, Sweden, Finland, and Iceland all use variations of it.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>Haiti <span class="fallback-capital">— Port-au-Prince</span></h3>
+        <p><strong>Did you know?</strong> Haiti&#x27;s revolutionary flag has one of the most dramatic origin stories. During a revolt in 1803, a soldier tore the white stripe from a French tricolore — symbolically removing the white colonisers — and sewed the blue and red together.</p>
+        <p><strong>Flag symbolism:</strong> Blue represents the Black population of Haiti, red represents the mixed-race population. Together they represent unity in the fight for independence. Haiti became the first Black republic in the world in 1804.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>New Zealand <span class="fallback-capital">— Wellington</span></h3>
+        <p><strong>Did you know?</strong> New Zealand was the first country in the world to give women the right to vote in national elections, in 1893. There has been ongoing debate about changing the flag to remove the Union Jack, with a referendum held in 2015-16.</p>
+        <p><strong>Flag symbolism:</strong> The Union Jack in the corner represents New Zealand&#x27;s historical ties with Britain. The four red stars of the Southern Cross are only visible from the Southern Hemisphere and represent New Zealand&#x27;s place in the South Pacific.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>Ethiopia <span class="fallback-capital">— Addis Ababa</span></h3>
+        <p><strong>Did you know?</strong> Ethiopia is the only African country that was never colonised by a European power. As the first African nation to use the pan-African colours of red, yellow, and green, its flag inspired the independence flags of dozens of other African countries.</p>
+        <p><strong>Flag symbolism:</strong> Green represents the land and hope. Yellow symbolises peace, justice, and equality. Red represents sacrifice and heroism. The blue circle represents peace and the star symbolises the unity and equality of all nationalities.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>United States <span class="fallback-capital">— Washington D.C.</span></h3>
+        <p><strong>Did you know?</strong> The US flag has been changed 27 times as new states joined the union. The current 50-star design has been in use since 1960 when Hawaii joined — making it the longest-unchanged version of the flag in history.</p>
+        <p><strong>Flag symbolism:</strong> The 13 stripes represent the original 13 colonies that declared independence from Britain in 1776. Each of the 50 stars represents one state. Red symbolises hardiness and valour, white represents purity, and blue stands for vigilance and justice.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>Nigeria <span class="fallback-capital">— Abuja</span></h3>
+        <p><strong>Did you know?</strong> Nigeria&#x27;s flag was designed by a 23-year-old student, Michael Taiwo Akinkunmi, who entered a competition in 1959. He designed it while studying in London and won from thousands of entries. He received £100 as a prize.</p>
+        <p><strong>Flag symbolism:</strong> Green represents the fertile agricultural land and the forests. White stands for peace and unity between Nigeria&#x27;s many ethnic groups. The simple, bold design has remained unchanged since independence in 1960.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>Brazil <span class="fallback-capital">— Brasília</span></h3>
+        <p><strong>Did you know?</strong> Brazil&#x27;s flag contains a globe showing the night sky exactly as it appeared over Rio de Janeiro at 8:30am on 15 November 1889 — the moment Brazil became a republic. The positions of the stars are astronomically accurate.</p>
+        <p><strong>Flag symbolism:</strong> Green represents the forests of Brazil. Yellow stands for gold and mineral wealth. The blue globe and white stars represent the sky over Brazil. The white banner reads &#x27;Ordem e Progresso&#x27; — Order and Progress.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>Australia <span class="fallback-capital">— Canberra</span></h3>
+        <p><strong>Did you know?</strong> Australia&#x27;s flag was chosen through the world&#x27;s first public flag design competition in 1901, which attracted over 32,000 entries. Five different people submitted virtually identical winning designs and had to share the prize money.</p>
+        <p><strong>Flag symbolism:</strong> The Union Jack represents Australia&#x27;s British heritage. The large Commonwealth Star beneath it has seven points — six for the states and one for all territories. The Southern Cross is only visible from the Southern Hemisphere.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>China <span class="fallback-capital">— Beijing</span></h3>
+        <p><strong>Did you know?</strong> China&#x27;s flag was designed by Zeng Liansong, an economist, in 1949. He submitted it in response to a public competition that received over 3,000 entries. The designer later admitted he had no formal art training.</p>
+        <p><strong>Flag symbolism:</strong> The red background represents the communist revolution and the blood of those who died for it. The large yellow star stands for the Communist Party. The four small stars represent the four social classes: workers, peasants, intellectuals, and patriotic capitalists.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>Japan <span class="fallback-capital">— Tokyo</span></h3>
+        <p><strong>Did you know?</strong> Japan&#x27;s flag — the Hinomaru, meaning &#x27;circle of the sun&#x27; — is one of the simplest national flags in the world. Japan also has the world&#x27;s oldest company: Kongō Gumi, a construction firm founded in 578 AD.</p>
+        <p><strong>Flag symbolism:</strong> The white background represents honesty and purity. The red circle represents the sun — Japan&#x27;s name literally means &#x27;origin of the sun&#x27; in Japanese. The sun goddess Amaterasu is said to be the ancestor of the imperial family.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>Tuvalu <span class="fallback-capital">— Funafuti</span></h3>
+        <p><strong>Did you know?</strong> Tuvalu is one of the most remote countries on Earth and may become the first country to be completely submerged by rising sea levels. It has sold its internet domain &#x27;.tv&#x27; to TV companies for millions of dollars — its main source of income.</p>
+        <p><strong>Flag symbolism:</strong> Light blue represents the Pacific Ocean. The Union Jack reflects historical British influence. The nine yellow stars represent the nine atolls and island groups of Tuvalu, positioned exactly as they appear on a map.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>Liechtenstein <span class="fallback-capital">— Vaduz</span></h3>
+        <p><strong>Did you know?</strong> At the 1936 Berlin Olympics, Liechtenstein discovered that their flag was identical to Haiti&#x27;s. They added a golden crown to distinguish it — the only flag to be changed as a direct result of the Olympic Games.</p>
+        <p><strong>Flag symbolism:</strong> Blue represents the sky, red represents the evening fires burned in homes. The golden crown in the upper left corner was added after the 1936 Olympics to distinguish Liechtenstein from Haiti, and represents the unity of the prince and the people.</p>
+      </li>
+      <li class="fallback-fact-card">
+        <h3>Romania <span class="fallback-capital">— Bucharest</span></h3>
+        <p><strong>Did you know?</strong> Romania and Chad have almost identical flags — both are vertical blue, yellow, and red tricolours. The only difference is a very subtle shade variation in the blue. This was officially disputed at the United Nations in 2004.</p>
+        <p><strong>Flag symbolism:</strong> Blue represents liberty, yellow symbolises justice and the country&#x27;s mineral wealth, and red stands for fraternity. The colours were inspired by the French Revolution and adopted after the revolutions of 1848.</p>
+      </li>
+    </ul>
 
   <!-- ALL DONE -->
   <div class="all-done" id="allDone">
@@ -831,7 +1014,7 @@ document.getElementById('flipCard').addEventListener('touchend', e => {
 buildDeck();
 renderCard(null);
 </script>
-<footer><p>FlagAtlas — free educational tools for everyone &nbsp;·&nbsp; <a href="/index.html">Home</a> &nbsp;·&nbsp; <a href="/privacy.html">Privacy &amp; Terms</a></p></footer>
+<footer><p>FlagAtlas — free educational tools for everyone &nbsp;·&nbsp; <a href="/">Home</a> &nbsp;·&nbsp; <a href="/privacy/">Privacy &amp; Terms</a></p></footer>
 <a href="https://ko-fi.com/flagatlas" target="_blank" rel="noopener" style="position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;align-items:center;gap:8px;background:#FF5E5B;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:700;padding:11px 18px;border-radius:100px;text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,0.3);transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">☕ Buy me a coffee</a>
 </body>
 </html>
