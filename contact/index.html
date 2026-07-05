@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | FlagAtlas</title>
+<meta name="description" content="Get in touch with FlagAtlas. Questions, feedback, or suggestions — we'd love to hear from you.">
+<meta name="author" content="FlagAtlas">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://flagatlas.co.uk/contact">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://flagatlas.co.uk/contact">
+<meta property="og:title" content="Contact Us | FlagAtlas">
+<meta property="og:description" content="Get in touch with FlagAtlas. Questions, feedback, or suggestions — we'd love to hear from you.">
+<meta property="og:site_name" content="FlagAtlas">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:url" content="https://flagatlas.co.uk/contact">
+<meta name="twitter:title" content="Contact Us | FlagAtlas">
+<meta name="twitter:description" content="Get in touch with FlagAtlas. Questions, feedback, or suggestions — we'd love to hear from you.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact FlagAtlas",
+  "url": "https://flagatlas.co.uk/contact",
+  "isPartOf": { "@type": "WebSite", "name": "FlagAtlas", "url": "https://flagatlas.co.uk/" }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:#0f1f3d; --navy-mid:#162847; --navy-light:#1e3460;
+    --teal:#0d9488; --teal-light:#14b8a6;
+    --gold:#f59e0b; --cream:#fef9f0;
+    --text-light:#e2e8f0; --text-muted:#94a3b8;
+    --green:#34d399; --red:#f43f5e;
+    --radius:16px; --radius-sm:10px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'DM Sans',sans-serif; background:var(--navy); color:var(--text-light); min-height:100vh; }
+  body::before { content:''; position:fixed; inset:0; background-image: linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px), linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px); background-size:40px 40px; pointer-events:none; z-index:0; }
+
+  /* ── NAV ── */
+  nav { position:relative; z-index:10; display:flex; align-items:center; justify-content:space-between; padding:1rem 1.5rem; border-bottom:1px solid rgba(255,255,255,0.08); }
+  .nav-logo { display:flex; align-items:center; gap:0.5rem; text-decoration:none; }
+  .nav-logo-icon { width:32px; height:32px; background:var(--teal); border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:16px; }
+  .nav-logo-text { font-family:'Playfair Display',serif; font-size:1.25rem; font-weight:700; color:var(--cream); }
+  .nav-logo-text span { color:var(--teal-light); }
+  .nav-back { font-size:0.82rem; color:var(--text-muted); text-decoration:none; transition:color 0.15s; }
+  .nav-back:hover { color:var(--teal-light); }
+
+  /* ── PAGE ── */
+  .page { position:relative; z-index:1; max-width:600px; margin:0 auto; padding:3rem 1.5rem 5rem; }
+
+  /* ── HEADER ── */
+  .page-header { margin-bottom:2.5rem; }
+  .page-badge { display:inline-block; font-size:0.72rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--teal-light); margin-bottom:0.8rem; }
+  .page-header h1 { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,4vw,2.6rem); font-weight:900; color:var(--cream); line-height:1.15; margin-bottom:0.6rem; }
+  .page-header p { font-size:0.92rem; color:var(--text-muted); line-height:1.65; }
+
+  /* ── CONTACT CARDS ── */
+  .contact-cards { display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-bottom:2rem; }
+  @media(max-width:480px) { .contact-cards { grid-template-columns:1fr; } }
+  .contact-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:var(--radius-sm); padding:1rem 1.2rem; }
+  .contact-card-icon { font-size:1.4rem; margin-bottom:0.4rem; }
+  .contact-card-title { font-size:0.8rem; font-weight:600; color:var(--text-light); margin-bottom:0.2rem; }
+  .contact-card-text { font-size:0.78rem; color:var(--text-muted); line-height:1.5; }
+
+  /* ── FORM ── */
+  .form-wrap { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:var(--radius); padding:2rem; }
+
+  .form-title { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:700; color:var(--cream); margin-bottom:1.5rem; }
+
+  .field { display:flex; flex-direction:column; gap:0.4rem; margin-bottom:1.1rem; }
+  .field label { font-size:0.78rem; font-weight:600; color:var(--text-muted); letter-spacing:0.04em; }
+  .field input, .field textarea, .field select {
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:var(--radius-sm);
+    color:var(--text-light);
+    font-family:'DM Sans',sans-serif; font-size:0.92rem;
+    padding:0.75rem 1rem; outline:none;
+    transition:border-color 0.2s;
+    width:100%;
+  }
+  .field input::placeholder, .field textarea::placeholder { color:var(--text-muted); }
+  .field input:focus, .field textarea:focus, .field select:focus { border-color:var(--teal-light); }
+  .field select option { background:var(--navy-mid); }
+  .field textarea { resize:vertical; min-height:130px; }
+
+  .field-row { display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; }
+  @media(max-width:480px) { .field-row { grid-template-columns:1fr; } }
+
+  .honeypot { display:none; }
+
+  .form-note { font-size:0.75rem; color:var(--text-muted); margin-bottom:1.2rem; line-height:1.5; }
+  .form-note a { color:var(--teal-light); text-decoration:none; }
+
+  .btn-submit {
+    width:100%; padding:0.95rem;
+    background:var(--teal); border:none; border-radius:var(--radius-sm);
+    color:#fff; font-family:'DM Sans',sans-serif;
+    font-size:1rem; font-weight:600; cursor:pointer;
+    transition:transform 0.15s, opacity 0.15s;
+    display:flex; align-items:center; justify-content:center; gap:0.5rem;
+  }
+  .btn-submit:hover { transform:translateY(-2px); opacity:0.9; }
+  .btn-submit:disabled { opacity:0.5; cursor:default; transform:none; }
+
+  /* ── SUCCESS ── */
+  .success-screen {
+    display:none; text-align:center; padding:2rem 1rem;
+  }
+  .success-screen.visible { display:block; }
+  .success-emoji { font-size:3.5rem; margin-bottom:1rem; display:block; }
+  .success-title { font-family:'Playfair Display',serif; font-size:1.6rem; font-weight:900; color:var(--cream); margin-bottom:0.5rem; }
+  .success-sub { font-size:0.9rem; color:var(--text-muted); line-height:1.6; margin-bottom:1.5rem; }
+  .btn-back-home { display:inline-flex; align-items:center; gap:0.4rem; padding:0.8rem 1.5rem; background:var(--teal); border:none; border-radius:var(--radius-sm); color:#fff; font-family:'DM Sans',sans-serif; font-size:0.9rem; font-weight:600; text-decoration:none; transition:transform 0.15s, opacity 0.15s; }
+  .btn-back-home:hover { transform:translateY(-2px); opacity:0.9; }
+
+  /* ── ERROR ── */
+  .error-msg { background:rgba(244,63,94,0.1); border:1px solid rgba(244,63,94,0.3); border-radius:var(--radius-sm); padding:0.75rem 1rem; font-size:0.83rem; color:#fca5a5; margin-bottom:1rem; display:none; }
+  .error-msg.visible { display:block; }
+
+  /* ── FOOTER ── */
+  footer { position:relative; z-index:1; text-align:center; padding:1.5rem; border-top:1px solid rgba(255,255,255,0.06); color:var(--text-muted); font-size:0.8rem; margin-top:2rem; }
+  footer a { color:var(--teal-light); text-decoration:none; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/index.html">
+    <div class="nav-logo-icon">🌍</div>
+    <span class="nav-logo-text">Flag<span>Atlas</span></span>
+  </a>
+  <a class="nav-back" href="/index.html">← Back to FlagAtlas</a>
+</nav>
+
+<div class="page">
+
+  <div class="page-header">
+    <div class="page-badge">✉️ Get in touch</div>
+    <h1>Contact FlagAtlas</h1>
+    <p>Got a question, spotted a flag mistake, or have an idea for a new feature? We'd love to hear from you — fill in the form below and we'll get back to you as soon as we can.</p>
+  </div>
+
+  <!-- CONTACT REASON CARDS -->
+  <div class="contact-cards">
+    <div class="contact-card">
+      <div class="contact-card-icon">🐛</div>
+      <div class="contact-card-title">Report a bug</div>
+      <div class="contact-card-text">Something not working? Let us know which tool and what happened.</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-card-icon">🏳️</div>
+      <div class="contact-card-title">Flag correction</div>
+      <div class="contact-card-text">Spotted a wrong flag, capital, or fact? We want to know!</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-card-icon">💡</div>
+      <div class="contact-card-title">Feature idea</div>
+      <div class="contact-card-text">Have an idea for a new tool or game? We're always listening.</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-card-icon">👋</div>
+      <div class="contact-card-title">General hello</div>
+      <div class="contact-card-text">Just want to say hi or share how you use FlagAtlas? Go for it.</div>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <div class="form-wrap" id="formWrap">
+    <div class="form-title">Send us a message</div>
+
+    <div class="error-msg" id="errorMsg">Something went wrong — please try again or refresh the page.</div>
+
+    <form
+      id="contactForm"
+      name="contact"
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field">
+
+      <!-- Netlify required hidden fields -->
+      <input type="hidden" name="form-name" value="contact">
+
+      <!-- Honeypot spam trap -->
+      <div class="honeypot">
+        <label>Don't fill this in: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="fname">Your name</label>
+          <input type="text" id="fname" name="name" placeholder="Jane Smith" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="femail">Email address</label>
+          <input type="email" id="femail" name="email" placeholder="jane@example.com" required autocomplete="email">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="fsubject">What's it about?</label>
+        <select id="fsubject" name="subject" required>
+          <option value="" disabled selected>Select a reason…</option>
+          <option value="Bug report">🐛 Bug report</option>
+          <option value="Flag correction">🏳️ Flag or fact correction</option>
+          <option value="Feature idea">💡 Feature idea</option>
+          <option value="General">👋 General message</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="fmessage">Your message</label>
+        <textarea id="fmessage" name="message" placeholder="Tell us more…" required></textarea>
+      </div>
+
+      <p class="form-note">Your details will only be used to reply to your message. See our <a href="/privacy">Privacy Policy</a> for full details.</p>
+
+      <button type="submit" class="btn-submit" id="btnSubmit">
+        <span id="btnText">Send message →</span>
+      </button>
+
+    </form>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="success-screen" id="successScreen">
+    <span class="success-emoji">🎉</span>
+    <div class="success-title">Message sent!</div>
+    <p class="success-sub">Thanks for getting in touch — we'll get back to you as soon as we can. In the meantime, why not try today's daily flag challenge?</p>
+    <a class="btn-back-home" href="/index.html">← Back to FlagAtlas</a>
+  </div>
+
+</div>
+
+<footer><p>FlagAtlas — free educational tools for everyone &nbsp;·&nbsp; <a href="/index.html">Home</a> &nbsp;·&nbsp; <a href="/privacy">Privacy &amp; Terms</a></p></footer>
+
+<script>
+const form    = document.getElementById('contactForm');
+const formWrap = document.getElementById('formWrap');
+const success  = document.getElementById('successScreen');
+const errorMsg = document.getElementById('errorMsg');
+const btnSubmit= document.getElementById('btnSubmit');
+const btnText  = document.getElementById('btnText');
+
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  errorMsg.classList.remove('visible');
+  btnSubmit.disabled = true;
+  btnText.textContent = 'Sending…';
+
+  const data = new FormData(form);
+
+  try {
+    const res = await fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(data).toString(),
+    });
+
+    if (res.ok) {
+      formWrap.style.display = 'none';
+      success.classList.add('visible');
+    } else {
+      throw new Error('Server error');
+    }
+  } catch(err) {
+    errorMsg.classList.add('visible');
+    btnSubmit.disabled = false;
+    btnText.textContent = 'Send message →';
+  }
+});
+</script>
+
+</body>
+</html>

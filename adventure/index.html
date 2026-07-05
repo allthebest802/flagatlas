@@ -3,27 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
 <title>Continent Adventure — FlagAtlas</title>
 <meta name="description" content="Journey through the world continent by continent. Learn every flag, then prove it with a quiz to unlock the next region.">
 <meta name="author" content="FlagAtlas">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://flagatlas.co.uk/adventure/">
+<link rel="canonical" href="https://flagatlas.co.uk/adventure">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://flagatlas.co.uk/adventure/">
+<meta property="og:url" content="https://flagatlas.co.uk/adventure">
 <meta property="og:title" content="Continent Adventure — FlagAtlas">
 <meta property="og:description" content="Journey through the world continent by continent. Learn every flag, then prove it with a quiz to unlock the next region.">
 <meta property="og:image" content="https://flagatlas.co.uk/og-image.png">
 <meta property="og:site_name" content="FlagAtlas">
 <meta property="og:locale" content="en_GB">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:url" content="https://flagatlas.co.uk/adventure/">
+<meta name="twitter:url" content="https://flagatlas.co.uk/adventure">
 <meta name="twitter:title" content="Continent Adventure — FlagAtlas">
 <meta name="twitter:description" content="Journey through the world continent by continent. Learn every flag, then prove it with a quiz to unlock the next region.">
 <meta name="twitter:image" content="https://flagatlas.co.uk/og-image.png">
@@ -32,7 +25,7 @@
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Continent Adventure",
-  "url": "https://flagatlas.co.uk/adventure/",
+  "url": "https://flagatlas.co.uk/adventure.html",
   "description": "Learn flags continent by continent and unlock each region with a quiz.",
   "isPartOf": { "@type": "WebSite", "name": "FlagAtlas", "url": "https://flagatlas.co.uk/" }
 }
@@ -266,7 +259,7 @@
 <body>
 
 <nav>
-  <a class="nav-logo" href="/">
+  <a class="nav-logo" href="/index.html">
     <div class="nav-logo-icon">🌍</div>
     <span class="nav-logo-text">Flag<span>Atlas</span></span>
   </a>
@@ -289,55 +282,7 @@
       <h1>🗺️ Continent Adventure</h1>
       <p>Learn every flag on Earth — one continent at a time</p>
     </div>
-    <div class="continents-grid" id="continentsGrid">
-      <!-- Static fallback content for search engines and no-JS visitors.
-           Overwritten by renderMap() once the page's JavaScript runs. -->
-      <div class="continent-card">
-        <div class="continent-card-inner">
-          <div class="continent-icon">🏰</div>
-          <div class="continent-info">
-            <div class="continent-name">Europe</div>
-            <div class="continent-meta">44 countries · 44 countries from Iceland to Cyprus</div>
-          </div>
-        </div>
-      </div>
-      <div class="continent-card">
-        <div class="continent-card-inner">
-          <div class="continent-icon">🦁</div>
-          <div class="continent-info">
-            <div class="continent-name">Africa</div>
-            <div class="continent-meta">54 countries · the world's most diverse continent</div>
-          </div>
-        </div>
-      </div>
-      <div class="continent-card">
-        <div class="continent-card-inner">
-          <div class="continent-icon">🐉</div>
-          <div class="continent-info">
-            <div class="continent-name">Asia</div>
-            <div class="continent-meta">48 countries · the world's largest continent</div>
-          </div>
-        </div>
-      </div>
-      <div class="continent-card">
-        <div class="continent-card-inner">
-          <div class="continent-icon">🌎</div>
-          <div class="continent-info">
-            <div class="continent-name">Americas</div>
-            <div class="continent-meta">35 countries from Canada to Argentina</div>
-          </div>
-        </div>
-      </div>
-      <div class="continent-card">
-        <div class="continent-card-inner">
-          <div class="continent-icon">🌊</div>
-          <div class="continent-info">
-            <div class="continent-name">Oceania</div>
-            <div class="continent-meta">14 countries across the Pacific</div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div class="continents-grid" id="continentsGrid"></div>
   </div>
   </div>
 </div>
@@ -397,7 +342,7 @@
 
 <div class="toast" id="toast"></div>
 
-<footer><p>FlagAtlas — free educational tools for everyone &nbsp;·&nbsp; <a href="/">Home</a> &nbsp;·&nbsp; <a href="/privacy/">Privacy &amp; Terms</a></p></footer>
+<footer><p>FlagAtlas — free educational tools for everyone &nbsp;·&nbsp; <a href="/index.html">Home</a> &nbsp;·&nbsp; <a href="/contact">Contact</a> &nbsp;·&nbsp; <a href="/contact">Contact</a> &nbsp;·&nbsp; <a href="/privacy">Privacy &amp; Terms</a></p></footer>
 
 <script>
 // ── DATA ──────────────────────────────────────────────────────────────────
@@ -924,7 +869,5 @@ function showToast(msg) {
 // ── INIT ──────────────────────────────────────────────────────────────────
 renderMap();
 </script>
-<a href="https://ko-fi.com/flagatlas" target="_blank" rel="noopener" style="position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;align-items:center;gap:8px;background:#FF5E5B;color:#fff;font-family:system-ui,sans-serif;font-size:0.82rem;font-weight:700;padding:11px 18px;border-radius:100px;text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,0.3);transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">☕ Buy me a coffee</a>
-<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4752f8ed08944697a65aba3d409c6ccd"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
