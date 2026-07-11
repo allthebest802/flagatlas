@@ -201,6 +201,13 @@ footer a:hover{color:var(--teal-light)}
 </footer>
 
 <script>
+// ── SLUG ─────────────────────────────────────────────────────────────────────
+function slug(name) {
+  return name.toLowerCase()
+    .replace(/&/g,'and').replace(/'/g,'').replace(/\./g,'')
+    .replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+}
+
 // ── COLOUR DEFINITIONS ──────────────────────────────────────────────────────
 const COLOURS = [
   { id:'red',    label:'Red',    hex:'#dc2626', bg:'#dc2626' },
@@ -568,7 +575,7 @@ function render() {
       return c ? `<span class="flag-colour-dot" style="background:${c.bg};${isSelected?'border-color:'+c.bg+';box-shadow:0 0 0 2px '+c.bg+'44':''}" title="${c.label}"></span>` : '';
     }).join('');
 
-    html += `<a class="flag-card" href="/explorer/?q=${encodeURIComponent(f[0])}">
+    html += `<a class="flag-card" href="/explorer/${slug(f[0])}/">
       <div class="flag-img-wrap">
         <img src="https://flagcdn.com/w160/${f[1]}.png" alt="${f[0]} flag" loading="lazy" width="160" height="96">
       </div>
