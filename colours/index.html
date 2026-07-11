@@ -79,8 +79,10 @@ nav{position:relative;z-index:10;display:flex;align-items:center;justify-content
 .colour-dot{width:16px;height:16px;border-radius:50%;flex-shrink:0;border:1.5px solid rgba(255,255,255,0.2)}
 
 .picker-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.match-toggle{display:flex;align-items:center;gap:6px;font-size:0.82rem;color:var(--text-muted);cursor:pointer}
-.match-toggle input{cursor:pointer;accent-color:var(--teal)}
+.match-radios{display:flex;flex-direction:column;gap:6px}
+.match-radio{display:flex;align-items:center;gap:7px;font-size:0.82rem;color:var(--text-muted);cursor:pointer}
+.match-radio input{cursor:pointer;accent-color:var(--teal)}
+.match-radio em{font-style:normal;color:var(--teal-light);font-weight:600}
 .clear-btn{margin-left:auto;background:transparent;border:1px solid rgba(255,255,255,0.15);color:var(--text-muted);font-size:0.8rem;font-weight:600;padding:6px 14px;border-radius:100px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s}
 .clear-btn:hover{border-color:var(--red-accent);color:var(--red-accent)}
 
@@ -153,9 +155,11 @@ footer a:hover{color:var(--teal-light)}
     <div class="picker-label">Select colours to filter</div>
     <div class="colour-grid" id="colourGrid"></div>
     <div class="picker-actions">
-      <label class="match-toggle">
-        <input type="checkbox" id="matchAll"> Match ALL selected colours
-      </label>
+      <div class="match-radios">
+        <label class="match-radio"><input type="radio" name="matchMode" value="any" checked> Contains <em>any</em> selected colour</label>
+        <label class="match-radio"><input type="radio" name="matchMode" value="all"> Contains <em>all</em> selected colours</label>
+        <label class="match-radio"><input type="radio" name="matchMode" value="only"> Contains <em>only</em> these colours</label>
+      </div>
       <button class="clear-btn" onclick="clearAll()">Clear all</button>
     </div>
   </div>
@@ -462,7 +466,7 @@ function buildPicker() {
     btn.textContent = q.label;
     btn.onclick = () => {
       selected = new Set(q.colours);
-      document.getElementById('matchAll').checked = q.colours.length > 1;
+      document.querySelector(`input[name="matchMode"][value="${q.colours.length > 1 ? 'all' : 'any'}"]`).checked = true;
       updateButtons();
       render();
     };
@@ -504,17 +508,22 @@ function clearAll() {
 function render() {
   const grid = document.getElementById('flagGrid');
   const countEl = document.getElementById('resultsCount');
-  const matchAll = document.getElementById('matchAll').checked;
+  const mode = getMode();
   const sort = document.getElementById('sortSelect').value;
 
   // Filter
   let results = FLAGS_CLEAN.filter(f => {
     if(selected.size === 0) return true;
     const flagColours = f[2];
-    if(matchAll) {
-      return [...selected].every(c => flagColours.includes(c));
-    } else {
+    if(mode === 'any') {
       return [...selected].some(c => flagColours.includes(c));
+    } else if(mode === 'all') {
+      return [...selected].every(c => flagColours.includes(c));
+    } else { // only
+      // Flag must contain ALL selected colours and NO colours outside the selection
+      const hasAll = [...selected].every(c => flagColours.includes(c));
+      const hasOnly = flagColours.every(c => selected.has(c));
+      return hasAll && hasOnly;
     }
   });
 
@@ -531,7 +540,8 @@ function render() {
     countEl.innerHTML = `Showing all <strong>${results.length}</strong> flags`;
   } else {
     const colourNames = [...selected].map(id => COLOURS.find(c=>c.id===id).label).join(', ');
-    countEl.innerHTML = `<strong>${results.length}</strong> flag${results.length!==1?'s':''} contain${results.length===1?'s':''} <strong>${colourNames}</strong>`;
+    const modeText = mode === 'any' ? 'contain' : mode === 'all' ? 'contain all of' : 'use only';
+    countEl.innerHTML = `<strong>${results.length}</strong> flag${results.length!==1?'s':''} ${modeText} <strong>${colourNames}</strong>`;
   }
 
   // Render cards
@@ -572,8 +582,10 @@ function render() {
   grid.innerHTML = html;
 }
 
-// ── INIT ─────────────────────────────────────────────────────────────────────
-document.getElementById('matchAll').addEventListener('change', render);
+function getMode() {
+  return document.querySelector('input[name="matchMode"]:checked').value;
+}
+document.querySelectorAll('input[name="matchMode"]').forEach(r => r.addEventListener('change', render));
 buildPicker();
 render();
 
