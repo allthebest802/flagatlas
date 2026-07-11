@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<title>Flags by Colour — Find Flags by Their Colours | FlagAtlas</title>
+<meta name="description" content="Find flags by colour — pick red, blue, green or any combination and instantly see every country flag that contains those colours. Free flag colour filter tool.">
+<meta name="keywords" content="flags by colour, flags with red and white, flags with blue, flags with green, what flags are red white and blue, flag colour filter, flags of the world by colour">
+<link rel="canonical" href="https://flagatlas.co.uk/colours/">
+<meta property="og:title" content="Flags by Colour | FlagAtlas">
+<meta property="og:description" content="Pick any colour combination and instantly see every flag that contains those colours. How many red, white and blue flags are there?">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://flagatlas.co.uk/colours/">
+<meta property="og:site_name" content="FlagAtlas">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Flags by Colour",
+  "description": "Find every world flag by its colours. Filter flags by red, blue, green, white, black, yellow, orange, purple or pink.",
+  "url": "https://flagatlas.co.uk/colours/",
+  "isPartOf": { "@type": "WebSite", "name": "FlagAtlas", "url": "https://flagatlas.co.uk" }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+<style>
+:root {
+  --navy:#0f1f3d; --navy-mid:#162847; --navy-light:#1e3460;
+  --teal:#0d9488; --teal-light:#14b8a6;
+  --gold:#f59e0b; --gold-light:#fbbf24;
+  --cream:#fef9f0; --cream-dark:#f5ede0;
+  --text-light:#e2e8f0; --text-muted:#a8b6c8;
+  --red-accent:#ef4444;
+  --radius:16px; --radius-sm:10px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text-light);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
+
+/* NAV */
+nav{position:relative;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 2rem;border-bottom:1px solid rgba(255,255,255,0.08)}
+.nav-logo{display:flex;align-items:center;gap:0.6rem;text-decoration:none}
+.nav-logo-icon{width:36px;height:36px;background:var(--teal);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.nav-logo-text{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--cream);letter-spacing:-0.01em}
+.nav-logo-text span{color:var(--teal-light)}
+.nav-back{color:var(--text-muted);text-decoration:none;font-size:0.85rem;transition:color 0.2s}
+.nav-back:hover{color:var(--teal-light)}
+
+/* HERO */
+.hero{position:relative;z-index:1;text-align:center;padding:3rem 1.5rem 2rem;max-width:700px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:0.4rem;background:rgba(20,184,166,0.12);border:1px solid rgba(20,184,166,0.3);color:var(--teal-light);font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 0.9rem;border-radius:100px;margin-bottom:1rem}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3rem);font-weight:900;color:var(--cream);line-height:1.1;margin-bottom:0.8rem}
+.hero h1 span{color:var(--gold-light)}
+.hero p{color:var(--text-muted);font-size:0.95rem;line-height:1.65;max-width:520px;margin:0 auto}
+
+/* COLOUR PICKER */
+.picker-wrap{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:0 1.5rem 2rem}
+.picker-card{background:var(--navy-mid);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius);padding:1.5rem 2rem}
+.picker-label{font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem}
+.colour-grid{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:1.2rem}
+.colour-btn{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 16px;border-radius:100px;
+  border:2px solid rgba(255,255,255,0.12);
+  background:rgba(255,255,255,0.04);
+  color:var(--text-muted);
+  font-size:0.85rem;font-weight:600;
+  cursor:pointer;transition:all 0.15s;
+  font-family:'DM Sans',sans-serif;
+}
+.colour-btn:hover{border-color:rgba(255,255,255,0.3);color:var(--text-light)}
+.colour-btn.active{color:#fff;border-color:transparent}
+.colour-dot{width:16px;height:16px;border-radius:50%;flex-shrink:0;border:1.5px solid rgba(255,255,255,0.2)}
+
+.picker-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.match-toggle{display:flex;align-items:center;gap:6px;font-size:0.82rem;color:var(--text-muted);cursor:pointer}
+.match-toggle input{cursor:pointer;accent-color:var(--teal)}
+.clear-btn{margin-left:auto;background:transparent;border:1px solid rgba(255,255,255,0.15);color:var(--text-muted);font-size:0.8rem;font-weight:600;padding:6px 14px;border-radius:100px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s}
+.clear-btn:hover{border-color:var(--red-accent);color:var(--red-accent)}
+
+/* RESULTS */
+.results-wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 1.5rem 4rem}
+.results-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem;flex-wrap:wrap;gap:8px}
+.results-count{font-size:0.85rem;color:var(--text-muted)}
+.results-count strong{color:var(--gold-light)}
+.sort-select{background:var(--navy-mid);border:1px solid rgba(255,255,255,0.12);color:var(--text-light);font-size:0.8rem;font-family:'DM Sans',sans-serif;padding:5px 10px;border-radius:8px;cursor:pointer}
+
+.flag-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
+.flag-card{
+  background:var(--navy-mid);border:1px solid rgba(255,255,255,0.08);
+  border-radius:var(--radius-sm);overflow:hidden;
+  text-decoration:none;color:inherit;
+  transition:all 0.2s;display:block;
+}
+.flag-card:hover{border-color:var(--teal-light);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+.flag-img-wrap{position:relative;padding-top:60%;background:rgba(255,255,255,0.03);overflow:hidden}
+.flag-img-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.flag-info{padding:10px 12px}
+.flag-name{font-size:0.88rem;font-weight:600;color:var(--text-light);margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.flag-colours{display:flex;gap:4px;flex-wrap:wrap}
+.flag-colour-dot{width:10px;height:10px;border-radius:50%;border:1px solid rgba(255,255,255,0.15);flex-shrink:0}
+
+.empty-state{text-align:center;padding:4rem 2rem;color:var(--text-muted)}
+.empty-state .es-icon{font-size:3rem;display:block;margin-bottom:1rem}
+.empty-state p{font-size:1rem;margin-bottom:0.5rem;color:var(--text-light)}
+.empty-state small{font-size:0.85rem}
+
+/* SEO SECTION */
+.seo-section{max-width:860px;margin:0 auto;padding:0 1.5rem 4rem;border-top:1px solid rgba(255,255,255,0.06);padding-top:3rem}
+.seo-section h2{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--cream);margin-bottom:0.7rem;margin-top:1.8rem}
+.seo-section h2:first-child{margin-top:0}
+.seo-section p{font-size:0.9rem;color:var(--text-muted);line-height:1.7;margin-bottom:0.5rem}
+.quick-searches{display:flex;flex-wrap:wrap;gap:8px;margin-top:1rem}
+.qs-btn{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:var(--text-muted);font-size:0.8rem;padding:5px 12px;border-radius:100px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s}
+.qs-btn:hover{border-color:var(--teal-light);color:var(--teal-light)}
+
+/* FOOTER */
+footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.08);padding:2rem;text-align:center;color:var(--text-muted);font-size:0.82rem}
+footer a{color:var(--text-muted);text-decoration:none}
+footer a:hover{color:var(--teal-light)}
+
+@media(max-width:600px){
+  nav{padding:1rem}
+  .picker-card{padding:1.2rem}
+  .flag-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">
+    <div class="nav-logo-icon">🌍</div>
+    <div class="nav-logo-text">Flag<span>Atlas</span></div>
+  </a>
+  <a class="nav-back" href="/">← Back to FlagAtlas</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">🎨 Colour Explorer</div>
+  <h1>Flags by <span>Colour</span></h1>
+  <p>Pick one or more colours and instantly see every flag that contains them. How many red, white and blue flags are there?</p>
+</div>
+
+<div class="picker-wrap">
+  <div class="picker-card">
+    <div class="picker-label">Select colours to filter</div>
+    <div class="colour-grid" id="colourGrid"></div>
+    <div class="picker-actions">
+      <label class="match-toggle">
+        <input type="checkbox" id="matchAll"> Match ALL selected colours
+      </label>
+      <button class="clear-btn" onclick="clearAll()">Clear all</button>
+    </div>
+  </div>
+</div>
+
+<div class="results-wrap">
+  <div class="results-header">
+    <div class="results-count" id="resultsCount">Showing all <strong>197</strong> flags</div>
+    <select class="sort-select" id="sortSelect" onchange="render()">
+      <option value="alpha">A–Z</option>
+      <option value="continent">By continent</option>
+    </select>
+  </div>
+  <div class="quick-searches" id="quickSearches"></div>
+  <div style="margin-top:1rem">
+    <div class="flag-grid" id="flagGrid"></div>
+  </div>
+</div>
+
+<div class="seo-section">
+  <h2>Which flags have the most colours?</h2>
+  <p>Belize holds the record for the most colours in a national flag — it contains blue, red, white, black, green, yellow and even a detailed coat of arms with additional colours. South Africa is also notable for having six distinct colours. Most flags use just two or three colours.</p>
+
+  <h2>Why do so many flags use red, white and blue?</h2>
+  <p>Red, white and blue is by far the most common colour combination in national flags — used by the USA, UK, France, Netherlands, Australia, New Zealand, Russia, Thailand and dozens more. The popularity partly reflects the global influence of the British Empire and French Revolution, both of which spread their flag colours widely. Red represents courage or revolution, white represents peace, and blue represents the sea, sky or freedom depending on the country.</p>
+
+  <h2>Which colour appears in the most flags?</h2>
+  <p>Red appears in more national flags than any other colour — roughly two thirds of the world's flags contain red. White is second, followed closely by blue. Green, though strongly associated with Islam and African flags, appears in fewer flags than the top three. Black appears in around a quarter of flags, often representing the people or the land. Purple is the rarest colour in flags — historically it was extremely expensive to produce, so it was avoided. Only Nicaragua and Nicaragua contain purple.</p>
+
+  <h2>What do flag colours mean?</h2>
+  <p>Colour symbolism varies hugely between countries and cultures — there is no universal meaning. Red most commonly represents blood, courage or revolution. Green often represents Islam, agriculture or hope. Blue frequently represents the sea, sky or freedom. Yellow and gold often represent wealth or the sun. Black can represent the land, the people or a historical struggle. White most commonly represents peace or purity.</p>
+</div>
+
+<footer>
+  <div style="margin-bottom:8px">
+    <a href="/">FlagAtlas</a> · <a href="/quiz/">Flag Quiz</a> · <a href="/explorer/">Flag Explorer</a> · <a href="/daily/">Daily Challenge</a> · <a href="/facts/">Flag Facts</a>
+  </div>
+  FlagAtlas — Free flag tools for curious minds · <a href="/contact">Contact</a>
+</footer>
+
+<script>
+// ── COLOUR DEFINITIONS ──────────────────────────────────────────────────────
+const COLOURS = [
+  { id:'red',    label:'Red',    hex:'#dc2626', bg:'#dc2626' },
+  { id:'orange', label:'Orange', hex:'#ea580c', bg:'#ea580c' },
+  { id:'yellow', label:'Yellow', hex:'#ca8a04', bg:'#eab308' },
+  { id:'green',  label:'Green',  hex:'#16a34a', bg:'#16a34a' },
+  { id:'blue',   label:'Blue',   hex:'#2563eb', bg:'#2563eb' },
+  { id:'white',  label:'White',  hex:'#e5e7eb', bg:'#e5e7eb' },
+  { id:'black',  label:'Black',  hex:'#374151', bg:'#374151' },
+  { id:'purple', label:'Purple', hex:'#7c3aed', bg:'#7c3aed' },
+  { id:'pink',   label:'Pink',   hex:'#db2777', bg:'#db2777' },
+];
+
+// ── FLAG DATA ───────────────────────────────────────────────────────────────
+// Each entry: [country name, ISO2 code, [colours], continent]
+const FLAGS = [
+  // AFRICA
+  ['Algeria','dz',['white','green','red'],'Africa'],
+  ['Angola','ao',['red','black','yellow'],'Africa'],
+  ['Benin','bj',['green','yellow','red'],'Africa'],
+  ['Botswana','bw',['blue','white','black'],'Africa'],
+  ['Burkina Faso','bf',['red','green','yellow'],'Africa'],
+  ['Burundi','bi',['red','white','green'],'Africa'],
+  ['Cameroon','cm',['green','red','yellow'],'Africa'],
+  ['Cape Verde','cv',['blue','white','red','yellow'],'Africa'],
+  ['Central African Republic','cf',['blue','white','green','yellow','red'],'Africa'],
+  ['Chad','td',['blue','yellow','red'],'Africa'],
+  ['Comoros','km',['green','white','red','blue','yellow'],'Africa'],
+  ['DR Congo','cd',['blue','red','yellow'],'Africa'],
+  ['Republic of Congo','cg',['green','yellow','red'],'Africa'],
+  ['Djibouti','dj',['blue','green','white','red'],'Africa'],
+  ['Egypt','eg',['red','white','black'],'Africa'],
+  ['Equatorial Guinea','gq',['green','white','red','blue'],'Africa'],
+  ['Eritrea','er',['green','blue','red','yellow'],'Africa'],
+  ['Eswatini','sz',['blue','yellow','red','black','white'],'Africa'],
+  ['Ethiopia','et',['green','yellow','red','blue'],'Africa'],
+  ['Gabon','ga',['green','yellow','blue'],'Africa'],
+  ['Gambia','gm',['red','blue','green','white'],'Africa'],
+  ['Ghana','gh',['red','yellow','green','black'],'Africa'],
+  ['Guinea','gn',['red','yellow','green'],'Africa'],
+  ['Guinea-Bissau','gw',['red','black','yellow','green'],'Africa'],
+  ['Ivory Coast','ci',['orange','white','green'],'Africa'],
+  ['Kenya','ke',['black','red','green','white'],'Africa'],
+  ['Lesotho','ls',['blue','white','green','black'],'Africa'],
+  ['Liberia','lr',['red','white','blue'],'Africa'],
+  ['Libya','ly',['red','black','green','white'],'Africa'],
+  ['Madagascar','mg',['red','green','white'],'Africa'],
+  ['Malawi','mw',['black','red','green'],'Africa'],
+  ['Mali','ml',['green','yellow','red'],'Africa'],
+  ['Mauritania','mr',['green','yellow','red'],'Africa'],
+  ['Mauritius','mu',['red','blue','yellow','green'],'Africa'],
+  ['Morocco','ma',['red','green'],'Africa'],
+  ['Mozambique','mz',['green','white','black','yellow','red'],'Africa'],
+  ['Namibia','na',['blue','red','green','white','yellow'],'Africa'],
+  ['Niger','ne',['orange','white','green'],'Africa'],
+  ['Nigeria','ng',['green','white'],'Africa'],
+  ['Rwanda','rw',['blue','yellow','green'],'Africa'],
+  ['São Tomé and Príncipe','st',['green','yellow','red','black'],'Africa'],
+  ['Senegal','sn',['green','yellow','red'],'Africa'],
+  ['Seychelles','sc',['blue','yellow','red','white','green'],'Africa'],
+  ['Sierra Leone','sl',['green','white','blue'],'Africa'],
+  ['Somalia','so',['blue','white'],'Africa'],
+  ['South Africa','za',['red','green','blue','yellow','black','white'],'Africa'],
+  ['South Sudan','ss',['black','red','green','blue','yellow','white'],'Africa'],
+  ['Sudan','sd',['red','white','black','green'],'Africa'],
+  ['Tanzania','tz',['green','black','yellow','blue'],'Africa'],
+  ['Togo','tg',['green','yellow','red','white'],'Africa'],
+  ['Tunisia','tn',['red','white'],'Africa'],
+  ['Uganda','ug',['black','yellow','red','white'],'Africa'],
+  ['Zambia','zm',['green','red','black','orange'],'Africa'],
+  ['Zimbabwe','zw',['green','yellow','red','black','white'],'Africa'],
+
+  // AMERICAS
+  ['Antigua and Barbuda','ag',['red','black','blue','white','yellow'],'Americas'],
+  ['Argentina','ar',['blue','white','yellow'],'Americas'],
+  ['Bahamas','bs',['blue','yellow','black'],'Americas'],
+  ['Barbados','bb',['blue','yellow','black'],'Americas'],
+  ['Belize','bz',['blue','red','white','black','green','yellow'],'Americas'],
+  ['Bolivia','bo',['red','yellow','green'],'Americas'],
+  ['Brazil','br',['green','yellow','blue','white'],'Americas'],
+  ['Canada','ca',['red','white'],'Americas'],
+  ['Chile','cl',['red','white','blue'],'Americas'],
+  ['Colombia','co',['yellow','blue','red'],'Americas'],
+  ['Costa Rica','cr',['blue','white','red'],'Americas'],
+  ['Cuba','cu',['blue','white','red'],'Americas'],
+  ['Dominica','dm',['green','yellow','black','white','red'],'Americas'],
+  ['Dominican Republic','do',['blue','red','white'],'Americas'],
+  ['Ecuador','ec',['yellow','blue','red'],'Americas'],
+  ['El Salvador','sv',['blue','white'],'Americas'],
+  ['Grenada','gd',['red','green','yellow'],'Americas'],
+  ['Guatemala','gt',['blue','white'],'Americas'],
+  ['Guyana','gy',['green','yellow','red','black','white'],'Americas'],
+  ['Haiti','ht',['blue','red'],'Americas'],
+  ['Honduras','hn',['blue','white'],'Americas'],
+  ['Jamaica','jm',['black','yellow','green'],'Americas'],
+  ['Mexico','mx',['green','white','red'],'Americas'],
+  ['Nicaragua','ni',['blue','white','purple'],'Americas'],
+  ['Panama','pa',['red','white','blue'],'Americas'],
+  ['Paraguay','py',['red','white','blue'],'Americas'],
+  ['Peru','pe',['red','white'],'Americas'],
+  ['Saint Kitts and Nevis','kn',['green','yellow','red','black','white'],'Americas'],
+  ['Saint Lucia','lc',['blue','yellow','white','black'],'Americas'],
+  ['Saint Vincent and the Grenadines','vc',['blue','yellow','green'],'Americas'],
+  ['Suriname','sr',['green','white','red','yellow'],'Americas'],
+  ['Trinidad and Tobago','tt',['red','white','black'],'Americas'],
+  ['United States','us',['red','white','blue'],'Americas'],
+  ['Uruguay','uy',['blue','white','yellow'],'Americas'],
+  ['Venezuela','ve',['yellow','blue','red'],'Americas'],
+
+  // ASIA
+  ['Afghanistan','af',['black','red','green','white'],'Asia'],
+  ['Armenia','am',['red','blue','orange'],'Asia'],
+  ['Azerbaijan','az',['blue','red','green','white'],'Asia'],
+  ['Bahrain','bh',['red','white'],'Asia'],
+  ['Bangladesh','bd',['green','red'],'Asia'],
+  ['Bhutan','bt',['orange','yellow'],'Asia'],
+  ['Brunei','bn',['yellow','white','black'],'Asia'],
+  ['Cambodia','kh',['blue','red','white'],'Asia'],
+  ['China','cn',['red','yellow'],'Asia'],
+  ['Cyprus','cy',['white','orange','green'],'Asia'],
+  ['Georgia','ge',['white','red'],'Asia'],
+  ['India','in',['orange','white','blue','green'],'Asia'],
+  ['Indonesia','id',['red','white'],'Asia'],
+  ['Iran','ir',['green','white','red'],'Asia'],
+  ['Iraq','iq',['red','white','black','green'],'Asia'],
+  ['Israel','il',['blue','white'],'Asia'],
+  ['Japan','jp',['white','red'],'Asia'],
+  ['Jordan','jo',['black','white','green','red'],'Asia'],
+  ['Kazakhstan','kz',['blue','yellow'],'Asia'],
+  ['Kuwait','kw',['green','white','red','black'],'Asia'],
+  ['Kyrgyzstan','kg',['red','yellow'],'Asia'],
+  ['Laos','la',['red','blue','white'],'Asia'],
+  ['Lebanon','lb',['red','white','green'],'Asia'],
+  ['Malaysia','my',['red','white','blue','yellow'],'Asia'],
+  ['Maldives','mv',['red','green','white'],'Asia'],
+  ['Mongolia','mn',['red','blue','yellow'],'Asia'],
+  ['Myanmar','mm',['yellow','green','red','white'],'Asia'],
+  ['Nepal','np',['red','blue','white'],'Asia'],
+  ['North Korea','kp',['blue','red','white'],'Asia'],
+  ['Oman','om',['red','white','green'],'Asia'],
+  ['Pakistan','pk',['green','white'],'Asia'],
+  ['Palestine','ps',['black','white','green','red'],'Asia'],
+  ['Philippines','ph',['blue','red','white','yellow'],'Asia'],
+  ['Qatar','qa',['maroon','white'],'Asia'],
+  ['Saudi Arabia','sa',['green','white'],'Asia'],
+  ['Singapore','sg',['red','white'],'Asia'],
+  ['South Korea','kr',['white','red','blue','black'],'Asia'],
+  ['Sri Lanka','lk',['yellow','green','orange','red'],'Asia'],
+  ['Syria','sy',['red','white','black','green'],'Asia'],
+  ['Taiwan','tw',['red','blue','white'],'Asia'],
+  ['Tajikistan','tj',['red','white','green'],'Asia'],
+  ['Thailand','th',['red','white','blue'],'Asia'],
+  ['Timor-Leste','tl',['red','black','yellow','white'],'Asia'],
+  ['Turkey','tr',['red','white'],'Asia'],
+  ['Turkmenistan','tm',['green','red','white'],'Asia'],
+  ['UAE','ae',['red','green','white','black'],'Asia'],
+  ['Uzbekistan','uz',['blue','white','green'],'Asia'],
+  ['Vietnam','vn',['red','yellow'],'Asia'],
+  ['Yemen','ye',['red','white','black'],'Asia'],
+
+  // EUROPE
+  ['Albania','al',['red','black'],'Europe'],
+  ['Andorra','ad',['blue','yellow','red'],'Europe'],
+  ['Austria','at',['red','white'],'Europe'],
+  ['Belarus','by',['red','green','white'],'Europe'],
+  ['Belgium','be',['black','yellow','red'],'Europe'],
+  ['Bosnia and Herzegovina','ba',['blue','yellow','white'],'Europe'],
+  ['Bulgaria','bg',['white','green','red'],'Europe'],
+  ['Croatia','hr',['red','white','blue'],'Europe'],
+  ['Czech Republic','cz',['white','red','blue'],'Europe'],
+  ['Denmark','dk',['red','white'],'Europe'],
+  ['Estonia','ee',['blue','black','white'],'Europe'],
+  ['Finland','fi',['white','blue'],'Europe'],
+  ['France','fr',['blue','white','red'],'Europe'],
+  ['Germany','de',['black','red','yellow'],'Europe'],
+  ['Greece','gr',['blue','white'],'Europe'],
+  ['Hungary','hu',['red','white','green'],'Europe'],
+  ['Iceland','is',['blue','white','red'],'Europe'],
+  ['Ireland','ie',['green','white','orange'],'Europe'],
+  ['Italy','it',['green','white','red'],'Europe'],
+  ['Kosovo','xk',['blue','yellow','white'],'Europe'],
+  ['Latvia','lv',['red','white'],'Europe'],
+  ['Liechtenstein','li',['blue','red','yellow'],'Europe'],
+  ['Lithuania','lt',['yellow','green','red'],'Europe'],
+  ['Luxembourg','lu',['red','white','blue'],'Europe'],
+  ['Malta','mt',['white','red'],'Europe'],
+  ['Moldova','md',['blue','yellow','red'],'Europe'],
+  ['Monaco','mc',['red','white'],'Europe'],
+  ['Montenegro','me',['red','yellow','green'],'Europe'],
+  ['Netherlands','nl',['red','white','blue'],'Europe'],
+  ['North Macedonia','mk',['red','yellow'],'Europe'],
+  ['Norway','no',['red','white','blue'],'Europe'],
+  ['Poland','pl',['white','red'],'Europe'],
+  ['Portugal','pt',['green','red','yellow'],'Europe'],
+  ['Romania','ro',['blue','yellow','red'],'Europe'],
+  ['Russia','ru',['white','blue','red'],'Europe'],
+  ['San Marino','sm',['blue','white'],'Europe'],
+  ['Serbia','rs',['red','blue','white'],'Europe'],
+  ['Slovakia','sk',['white','blue','red'],'Europe'],
+  ['Slovenia','si',['blue','white','red'],'Europe'],
+  ['Spain','es',['red','yellow'],'Europe'],
+  ['Sweden','se',['blue','yellow'],'Europe'],
+  ['Switzerland','ch',['red','white'],'Europe'],
+  ['Ukraine','ua',['blue','yellow'],'Europe'],
+  ['United Kingdom','gb',['red','white','blue'],'Europe'],
+  ['Vatican City','va',['yellow','white'],'Europe'],
+
+  // OCEANIA
+  ['Australia','au',['blue','red','white'],'Oceania'],
+  ['Fiji','fj',['blue','white','red'],'Oceania'],
+  ['Kiribati','ki',['red','blue','white','yellow'],'Oceania'],
+  ['Marshall Islands','mh',['blue','white','orange'],'Oceania'],
+  ['Micronesia','fm',['blue','white'],'Oceania'],
+  ['Nauru','nr',['blue','yellow','white'],'Oceania'],
+  ['New Zealand','nz',['blue','red','white'],'Oceania'],
+  ['Palau','pw',['blue','yellow'],'Oceania'],
+  ['Papua New Guinea','pg',['black','red','yellow','white'],'Oceania'],
+  ['Samoa','ws',['red','white','blue'],'Oceania'],
+  ['Solomon Islands','sb',['blue','green','yellow','white'],'Oceania'],
+  ['Tonga','to',['red','white'],'Oceania'],
+  ['Tuvalu','tv',['blue','yellow','white','red'],'Oceania'],
+  ['Vanuatu','vu',['red','green','black','yellow'],'Oceania'],
+
+  // MIDDLE EAST / additional
+  ['Morocco','ma',['red','green'],'Africa'],
+];
+
+// Deduplicate (Morocco appeared twice in my data)
+const seen = new Set();
+const FLAGS_CLEAN = FLAGS.filter(f => {
+  if(seen.has(f[1])){ return false; } seen.add(f[1]); return true;
+});
+
+// ── STATE ───────────────────────────────────────────────────────────────────
+let selected = new Set();
+
+// ── QUICK SEARCHES ──────────────────────────────────────────────────────────
+const QUICK = [
+  { label:'🇺🇸 Red, White & Blue', colours:['red','white','blue'] },
+  { label:'🌍 Pan-African (Red, Gold, Green)', colours:['red','yellow','green'] },
+  { label:'☪️ Green & White', colours:['green','white'] },
+  { label:'⬛ Flags with Black', colours:['black'] },
+  { label:'🟣 Flags with Purple', colours:['purple'] },
+  { label:'🟠 Flags with Orange', colours:['orange'] },
+];
+
+// ── BUILD COLOUR PICKER ──────────────────────────────────────────────────────
+function buildPicker() {
+  const grid = document.getElementById('colourGrid');
+  COLOURS.forEach(c => {
+    const btn = document.createElement('button');
+    btn.className = 'colour-btn';
+    btn.dataset.id = c.id;
+    btn.innerHTML = `<span class="colour-dot" style="background:${c.bg}"></span>${c.label}`;
+    btn.onclick = () => toggleColour(c.id);
+    grid.appendChild(btn);
+  });
+
+  const qs = document.getElementById('quickSearches');
+  QUICK.forEach(q => {
+    const btn = document.createElement('button');
+    btn.className = 'qs-btn';
+    btn.textContent = q.label;
+    btn.onclick = () => {
+      selected = new Set(q.colours);
+      document.getElementById('matchAll').checked = q.colours.length > 1;
+      updateButtons();
+      render();
+    };
+    qs.appendChild(btn);
+  });
+}
+
+function toggleColour(id) {
+  if(selected.has(id)) selected.delete(id);
+  else selected.add(id);
+  updateButtons();
+  render();
+}
+
+function updateButtons() {
+  document.querySelectorAll('.colour-btn').forEach(btn => {
+    const c = COLOURS.find(x => x.id === btn.dataset.id);
+    if(selected.has(btn.dataset.id)) {
+      btn.classList.add('active');
+      btn.style.background = c.bg + '33';
+      btn.style.borderColor = c.bg;
+      btn.style.color = '#fff';
+    } else {
+      btn.classList.remove('active');
+      btn.style.background = '';
+      btn.style.borderColor = '';
+      btn.style.color = '';
+    }
+  });
+}
+
+function clearAll() {
+  selected.clear();
+  updateButtons();
+  render();
+}
+
+// ── RENDER FLAGS ─────────────────────────────────────────────────────────────
+function render() {
+  const grid = document.getElementById('flagGrid');
+  const countEl = document.getElementById('resultsCount');
+  const matchAll = document.getElementById('matchAll').checked;
+  const sort = document.getElementById('sortSelect').value;
+
+  // Filter
+  let results = FLAGS_CLEAN.filter(f => {
+    if(selected.size === 0) return true;
+    const flagColours = f[2];
+    if(matchAll) {
+      return [...selected].every(c => flagColours.includes(c));
+    } else {
+      return [...selected].some(c => flagColours.includes(c));
+    }
+  });
+
+  // Sort
+  if(sort === 'alpha') {
+    results.sort((a,b) => a[0].localeCompare(b[0]));
+  } else {
+    results.sort((a,b) => a[3].localeCompare(b[3]) || a[0].localeCompare(b[0]));
+  }
+
+  // Count
+  const sel = selected.size;
+  if(sel === 0) {
+    countEl.innerHTML = `Showing all <strong>${results.length}</strong> flags`;
+  } else {
+    const colourNames = [...selected].map(id => COLOURS.find(c=>c.id===id).label).join(', ');
+    countEl.innerHTML = `<strong>${results.length}</strong> flag${results.length!==1?'s':''} contain${results.length===1?'s':''} <strong>${colourNames}</strong>`;
+  }
+
+  // Render cards
+  if(results.length === 0) {
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1">
+      <span class="es-icon">🏳️</span>
+      <p>No flags match that combination</p>
+      <small>Try selecting fewer colours or switching to "any colour" mode</small>
+    </div>`;
+    return;
+  }
+
+  let html = '';
+  let lastContinent = '';
+  results.forEach(f => {
+    if(sort === 'continent' && f[3] !== lastContinent) {
+      lastContinent = f[3];
+      html += `<div style="grid-column:1/-1;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);padding-top:0.5rem;border-top:1px solid rgba(255,255,255,0.06);margin-top:0.5rem">${f[3]}</div>`;
+    }
+
+    const dots = f[2].map(id => {
+      const c = COLOURS.find(x => x.id === id);
+      const isSelected = selected.has(id);
+      return c ? `<span class="flag-colour-dot" style="background:${c.bg};${isSelected?'border-color:'+c.bg+';box-shadow:0 0 0 2px '+c.bg+'44':''}" title="${c.label}"></span>` : '';
+    }).join('');
+
+    html += `<a class="flag-card" href="/explorer/?q=${encodeURIComponent(f[0])}">
+      <div class="flag-img-wrap">
+        <img src="https://flagcdn.com/w160/${f[1]}.png" alt="${f[0]} flag" loading="lazy" width="160" height="96">
+      </div>
+      <div class="flag-info">
+        <div class="flag-name">${f[0]}</div>
+        <div class="flag-colours">${dots}</div>
+      </div>
+    </a>`;
+  });
+
+  grid.innerHTML = html;
+}
+
+// ── INIT ─────────────────────────────────────────────────────────────────────
+document.getElementById('matchAll').addEventListener('change', render);
+buildPicker();
+render();
+
+// URL param support — ?colours=red,blue
+const params = new URLSearchParams(window.location.search);
+if(params.get('colours')) {
+  const cols = params.get('colours').split(',');
+  cols.forEach(c => { if(COLOURS.find(x=>x.id===c)) selected.add(c); });
+  if(selected.size > 0){ updateButtons(); render(); }
+}
+</script>
+
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4752f8ed08944697a65aba3d409c6ccd"}'></script>
+</body>
+</html>
