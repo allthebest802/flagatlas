@@ -121,19 +121,25 @@ footer a:hover{color:var(--teal-light)}
         <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
           <title>Jamaica flag outline for colouring</title>
           <rect x="1" y="1" width="298" height="198" fill="white" stroke="#222" stroke-width="2" rx="2"/>
-<!-- Diagonal cross (X) -->
-<line x1="1" y1="1" x2="299" y2="199" stroke="#222" stroke-width="22"/>
-<line x1="299" y1="1" x2="1" y2="199" stroke="#222" stroke-width="22"/>
-<!-- Clear outline lines -->
-<line x1="1" y1="1" x2="299" y2="199" stroke="#444" stroke-width="2"/>
-<line x1="299" y1="1" x2="1" y2="199" stroke="#444" stroke-width="2"/>
-<rect x="1" y="1" width="298" height="198" fill="none" stroke="#222" stroke-width="2" rx="2"/>
+<!-- Jamaica saltire — 4 edge lines each split at their intersections so arms stay clean -->
+<!-- L1: (1,30)->(255,199) split at (106,100) and (150,129) -->
+<line x1="1" y1="30" x2="106" y2="100" stroke="#222" stroke-width="2"/>
+<line x1="150" y1="129" x2="255" y2="199" stroke="#222" stroke-width="2"/>
+<!-- L2: (45,1)->(299,170) split at (150,71) and (194,100) -->
+<line x1="45" y1="1" x2="150" y2="71" stroke="#222" stroke-width="2"/>
+<line x1="194" y1="100" x2="299" y2="170" stroke="#222" stroke-width="2"/>
+<!-- L3: (255,1)->(1,170) split at (150,71) and (106,100) -->
+<line x1="255" y1="1" x2="150" y2="71" stroke="#222" stroke-width="2"/>
+<line x1="106" y1="100" x2="1" y2="170" stroke="#222" stroke-width="2"/>
+<!-- L4: (299,30)->(45,199) split at (194,100) and (150,129) -->
+<line x1="299" y1="30" x2="194" y2="100" stroke="#222" stroke-width="2"/>
+<line x1="150" y1="129" x2="45" y2="199" stroke="#222" stroke-width="2"/>
 <!-- Labels -->
-<text x="150" y="22" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#888">1</text>
-<text x="150" y="186" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#888">1</text>
-<text x="150" y="106" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#888">2</text>
-<text x="25" y="106" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#888">3</text>
-<text x="274" y="106" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#888">3</text>
+<text x="150" y="22" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#bbb">1</text>
+<text x="150" y="190" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#bbb">1</text>
+<text x="22" y="103" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#888">3</text>
+<text x="278" y="103" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#888">3</text>
+<text x="150" y="103" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#bbb">2</text>
         </svg>
         <p class="print-note">FlagAtlas.co.uk — Free educational resource · flagatlas.co.uk/colouring/jamaica/</p>
       </div>
