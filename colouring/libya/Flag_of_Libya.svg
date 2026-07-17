@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1248" height="684" viewBox="-52416 -27216 104832 57456" fill="none" font-family="Calibri,Arial,'Liberation Sans',sans-serif">
+	<title>Flag of Libya — colouring page</title>
+	<path fill="#fff" d="m-52416-27216H52416v57456H-52416z"/>
+	<g stroke="#000" stroke-width="140" stroke-linejoin="round" stroke-linecap="round">
+		<path stroke-width="250" d="m-50400-25200H50400v50400H-50400z"/>
+		<path d="m-50400-12600H50400M-50400 12600H50400"/>
+		<path d="m4455-4455a5474 5474 0 1 0 0 8910 6300 6300 0 1 1 0-8910z"/>
+		<path d="m3063 0 3237-1052v-3403l2000 2753 3237-1051L9537 0l2000 2753-3237-1051-2000 2753V1052z"/>
+	</g>
+	<text x="-0" y="28700" fill="#000" text-anchor="middle" font-size="3500">Libya</text>
+</svg>
