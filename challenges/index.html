@@ -10,39 +10,15 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
-<title>World Cup 2026 Flag Quiz — Name All 48 Nations | FlagAtlas</title>
-<meta name="description" content="Can you name all 48 World Cup 2026 nations from their flag? Free interactive quiz covering every team — England, Brazil, Japan, Morocco and more. Starts 11 June 2026. No signup needed.">
-<meta name="keywords" content="world cup 2026 flag quiz, world cup 2026 flags, FIFA world cup 2026 countries, world cup nations flags, football flag quiz, 2026 world cup teams flags, world cup flag game">
-<link rel="canonical" href="https://flagatlas.co.uk/worldcup/">
-<meta property="og:title" content="World Cup 2026 Flag Quiz — Can You Name All 48 Nations?">
-<meta property="og:description" content="Free interactive flag quiz covering all 48 World Cup 2026 nations. Starts 11 June. How many can you get?">
+<title>Geography Challenges — Capital Cities & Quizzes | FlagAtlas</title>
+<meta name="description" content="Free geography challenges including World Cup 2026 capital city quiz, currency quiz, population quiz and true or false. All 48 World Cup nations covered. No login needed.">
+<meta name="keywords" content="capital city quiz, currency quiz, geography quiz, population quiz, true or false geography, world capitals quiz, geography challenge, country quiz">
+<link rel="canonical" href="https://flagatlas.co.uk/challenges/">
+<meta property="og:title" content="Geography Challenges — Capital Cities, Currencies & More">
+<meta property="og:description" content="Four geography quiz modes — capital cities, currencies, population battles and true or false. Free, no signup.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://flagatlas.co.uk/worldcup/">
+<meta property="og:url" content="https://flagatlas.co.uk/challenges/">
 <meta property="og:site_name" content="FlagAtlas">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Quiz",
-  "name": "World Cup 2026 Flag Quiz",
-  "description": "Test yourself on all 48 nations competing in the 2026 FIFA World Cup. Identify flags from England to Ecuador, Japan to Morocco.",
-  "url": "https://flagatlas.co.uk/worldcup/",
-  "educationalLevel": "beginner",
-  "about": {
-    "@type": "Event",
-    "name": "2026 FIFA World Cup",
-    "startDate": "2026-06-11",
-    "location": {
-      "@type": "Country",
-      "name": "United States, Canada, Mexico"
-    }
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "FlagAtlas",
-    "url": "https://flagatlas.co.uk/"
-  }
-}
-</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -76,53 +52,41 @@
 
   body::before {
     content: '';
-    position: fixed;
-    inset: 0;
+    position: fixed; inset: 0;
     background-image:
       linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
       linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
     background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
+    pointer-events: none; z-index: 0;
   }
 
   nav {
-    position: relative;
-    z-index: 10;
-    display: flex;
-    align-items: center;
+    position: relative; z-index: 10;
+    display: flex; align-items: center;
     justify-content: space-between;
     padding: 1.2rem 2rem;
     border-bottom: 1px solid rgba(255,255,255,0.08);
   }
 
   .nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
+    display: flex; align-items: center; gap: 0.6rem;
     text-decoration: none;
   }
-
   .nav-logo-icon {
     width: 36px; height: 36px;
-    background: var(--teal);
-    border-radius: 8px;
+    background: var(--teal); border-radius: 8px;
     display: flex; align-items: center; justify-content: center;
     font-size: 18px;
   }
-
   .nav-logo-text {
     font-family: 'Playfair Display', serif;
     font-size: 1.4rem; font-weight: 700;
-    color: var(--cream); letter-spacing: -0.01em;
+    color: var(--cream);
   }
-
   .nav-logo-text span { color: var(--teal-light); }
-
   .nav-back {
     font-size: 0.85rem; color: var(--text-muted);
     text-decoration: none;
-    display: flex; align-items: center; gap: 0.3rem;
   }
   .nav-back:hover { color: var(--teal-light); }
 
@@ -130,223 +94,207 @@
   .hero {
     position: relative; z-index: 1;
     text-align: center;
-    padding: 3rem 1.5rem 2rem;
-    max-width: 700px;
-    margin: 0 auto;
+    padding: 2.5rem 1.5rem 1.5rem;
+    max-width: 700px; margin: 0 auto;
   }
-
-  .wc-badge {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    background: rgba(245,158,11,0.15);
-    border: 1px solid rgba(245,158,11,0.3);
-    color: var(--gold-light);
-    font-size: 0.78rem; font-weight: 600;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 0.35rem 0.9rem; border-radius: 100px;
-    margin-bottom: 1.2rem;
-  }
-
   .hero h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 6vw, 3.2rem);
-    font-weight: 900; line-height: 1.1;
-    color: var(--cream); margin-bottom: 0.8rem;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 900; color: var(--cream);
+    margin-bottom: 0.6rem;
   }
-
   .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero p { font-size: 0.95rem; color: var(--text-muted); }
 
-  .hero p {
-    font-size: 1rem; color: var(--text-muted);
-    line-height: 1.6; max-width: 480px;
-    margin: 0 auto 2rem;
-  }
-
-  /* ── QUIZ WRAPPER ── */
-  .quiz-wrap {
+  /* ── MODE SELECT ── */
+  .mode-wrap {
     position: relative; z-index: 1;
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 0 1.5rem 5rem;
+    max-width: 800px; margin: 0 auto;
+    padding: 0 1.5rem 2rem;
   }
-
-  /* ── START SCREEN ── */
-  .start-screen {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: var(--radius);
-    padding: 2.5rem;
-    text-align: center;
-  }
-
   .mode-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    margin: 1.5rem 0 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem; margin-bottom: 2rem;
   }
-
   .mode-card {
     background: rgba(255,255,255,0.04);
     border: 2px solid rgba(255,255,255,0.1);
     border-radius: var(--radius-sm);
-    padding: 1.2rem;
-    cursor: pointer;
-    transition: all 0.2s;
-    text-align: left;
+    padding: 1.2rem; cursor: pointer;
+    transition: all 0.2s; text-align: left;
   }
-
   .mode-card:hover, .mode-card.selected {
     border-color: var(--teal-light);
     background: rgba(20,184,166,0.1);
   }
-
-  .mode-card .mode-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
-  .mode-card .mode-name { font-weight: 600; color: var(--cream); margin-bottom: 0.2rem; }
-  .mode-card .mode-desc { font-size: 0.82rem; color: var(--text-muted); }
+  .mode-card .mode-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+  .mode-card .mode-name { font-weight: 700; color: var(--cream); margin-bottom: 0.2rem; font-size: 0.95rem; }
+  .mode-card .mode-desc { font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; }
 
   .btn-start {
     display: inline-flex; align-items: center; gap: 0.5rem;
-    background: var(--teal);
-    color: white;
+    background: var(--teal); color: white;
     border: none; border-radius: 100px;
     padding: 0.9rem 2.5rem;
     font-size: 1rem; font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s;
+    cursor: pointer; transition: background 0.2s;
     font-family: 'DM Sans', sans-serif;
   }
   .btn-start:hover { background: var(--teal-light); }
 
-  /* ── PROGRESS BAR ── */
+  /* ── QUIZ AREA ── */
+  .quiz-wrap {
+    position: relative; z-index: 1;
+    max-width: 620px; margin: 0 auto;
+    padding: 0 1.5rem 5rem;
+  }
+
+  .score-bar {
+    display: flex; justify-content: space-between;
+    align-items: center; margin-bottom: 1rem;
+    font-size: 0.85rem; color: var(--text-muted);
+  }
+  .score-bar .q-num { font-weight: 700; color: var(--text-light); }
+  .score-bar .score { color: var(--gold); font-weight: 700; }
+
   .progress-bar-wrap {
     background: rgba(255,255,255,0.08);
     border-radius: 100px; height: 6px;
     margin-bottom: 1.5rem; overflow: hidden;
   }
-
   .progress-bar-fill {
     height: 100%; border-radius: 100px;
     background: linear-gradient(90deg, var(--teal), var(--teal-light));
     transition: width 0.4s ease;
   }
 
-  /* ── SCORE BAR ── */
-  .score-bar {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 1.2rem;
-    font-size: 0.85rem; color: var(--text-muted);
-  }
-
-  .score-bar .q-num { font-weight: 600; color: var(--text-light); }
-  .score-bar .score { color: var(--gold); font-weight: 600; }
-
   /* ── QUESTION CARD ── */
   .question-card {
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: var(--radius);
-    padding: 2rem;
-    text-align: center;
-    margin-bottom: 1.5rem;
+    padding: 1.8rem; text-align: center;
+    margin-bottom: 1.2rem;
   }
-
-  .flag-display {
-    display: block;
-    margin: 0 auto 1rem;
-    width: 160px;
-    height: auto;
+  .question-card .flag-img {
+    width: 140px; height: auto;
     border-radius: 6px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    margin-bottom: 1rem;
   }
-
-
-  .question-label {
-    font-size: 0.85rem; color: var(--text-muted);
-    text-transform: uppercase; letter-spacing: 0.08em;
-    margin-bottom: 0.4rem;
-  }
-
-  .continent-hint {
+  .question-mode-badge {
     display: inline-block;
-    font-size: 0.75rem; font-weight: 600;
+    font-size: 0.72rem; font-weight: 700;
     letter-spacing: 0.08em; text-transform: uppercase;
     padding: 0.2rem 0.7rem; border-radius: 100px;
-    margin-bottom: 0.5rem;
     background: rgba(20,184,166,0.15);
     border: 1px solid rgba(20,184,166,0.25);
-    color: var(--teal-light);
+    color: var(--teal-light); margin-bottom: 0.8rem;
+  }
+  .question-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 700;
+    color: var(--cream); line-height: 1.4;
+  }
+  .question-sub {
+    font-size: 0.82rem; color: var(--text-muted);
+    margin-top: 0.4rem;
   }
 
-  /* ── ANSWERS GRID ── */
+  /* ── ANSWERS ── */
   .answers-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.75rem;
   }
-
   .answer-btn {
     background: rgba(255,255,255,0.05);
     border: 1.5px solid rgba(255,255,255,0.12);
     border-radius: var(--radius-sm);
     padding: 0.9rem 1rem;
     font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem; font-weight: 500;
+    font-size: 0.88rem; font-weight: 500;
     color: var(--text-light);
-    cursor: pointer;
-    transition: all 0.15s;
+    cursor: pointer; transition: all 0.15s;
     text-align: left;
-    display: flex; align-items: center; gap: 0.5rem;
   }
-
   .answer-btn:hover:not(:disabled) {
     background: rgba(20,184,166,0.12);
     border-color: var(--teal-light);
     color: var(--cream);
   }
-
   .answer-btn.correct {
     background: rgba(34,197,94,0.15);
-    border-color: var(--green);
-    color: var(--green);
+    border-color: var(--green); color: var(--green);
   }
-
   .answer-btn.wrong {
     background: rgba(239,68,68,0.12);
-    border-color: var(--red);
-    color: var(--red);
+    border-color: var(--red); color: var(--red);
   }
-
   .answer-btn:disabled { cursor: default; }
+
+  /* True/False special layout */
+  .tf-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .tf-btn {
+    background: rgba(255,255,255,0.05);
+    border: 2px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius-sm);
+    padding: 1.2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--text-light);
+    cursor: pointer; transition: all 0.15s;
+    text-align: center;
+  }
+  .tf-btn:hover:not(:disabled) {
+    background: rgba(20,184,166,0.12);
+    border-color: var(--teal-light);
+  }
+  .tf-btn.correct { background: rgba(34,197,94,0.15); border-color: var(--green); color: var(--green); }
+  .tf-btn.wrong { background: rgba(239,68,68,0.12); border-color: var(--red); color: var(--red); }
+  .tf-btn:disabled { cursor: default; }
 
   /* ── FEEDBACK ── */
   .feedback {
-    text-align: center;
-    padding: 0.8rem;
+    text-align: center; padding: 0.9rem;
     border-radius: var(--radius-sm);
-    font-weight: 600;
-    font-size: 0.95rem;
-    margin-top: 1rem;
-    display: none;
+    font-size: 0.9rem; margin-top: 1rem;
+    display: none; line-height: 1.5;
+  }
+  .feedback.show { display: block; }
+  .feedback.correct { background: rgba(34,197,94,0.1); color: var(--green); }
+  .feedback.wrong { background: rgba(239,68,68,0.08); color: var(--red); }
+
+  /* Reveal flag after capital/currency question */
+  .reveal-flag {
+    display: none; text-align: center;
+    margin-top: 0.8rem;
+  }
+  .reveal-flag img {
+    width: 80px; height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    margin-bottom: 0.4rem;
+  }
+  .reveal-flag .reveal-label {
+    font-size: 0.78rem; color: var(--text-muted);
   }
 
-  .feedback.show { display: block; }
-  .feedback.correct { background: rgba(34,197,94,0.12); color: var(--green); }
-  .feedback.wrong { background: rgba(239,68,68,0.1); color: var(--red); }
-
   .next-btn {
-    display: block; width: 100%;
-    background: var(--teal);
-    color: white; border: none;
-    border-radius: var(--radius-sm);
+    display: none; width: 100%;
+    background: var(--teal); color: white;
+    border: none; border-radius: var(--radius-sm);
     padding: 0.85rem;
     font-family: 'DM Sans', sans-serif;
     font-size: 0.95rem; font-weight: 600;
-    cursor: pointer;
-    margin-top: 1rem;
+    cursor: pointer; margin-top: 1rem;
     transition: background 0.2s;
-    display: none;
   }
-
   .next-btn.show { display: block; }
   .next-btn:hover { background: var(--teal-light); }
 
@@ -355,287 +303,18 @@
     background: rgba(255,255,255,0.04);
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: var(--radius);
-    padding: 2.5rem;
-    text-align: center;
+    padding: 2.5rem; text-align: center;
   }
-
-  .results-emoji { font-size: 4rem; margin-bottom: 1rem; display: block; }
-
+  .results-emoji { font-size: 3.5rem; margin-bottom: 0.8rem; display: block; }
   .results-score {
     font-family: 'Playfair Display', serif;
-    font-size: 3.5rem; font-weight: 900;
+    font-size: 3rem; font-weight: 900;
     color: var(--gold); margin-bottom: 0.3rem;
   }
-
-  .results-label {
-    font-size: 0.9rem; color: var(--text-muted);
-    margin-bottom: 1.5rem;
-  }
-
-  .results-msg {
-    font-size: 1.05rem; color: var(--cream);
-    margin-bottom: 2rem; line-height: 1.6;
-  }
-
-  .missed-section {
-    text-align: left;
-    background: rgba(239,68,68,0.06);
-    border: 1px solid rgba(239,68,68,0.15);
-    border-radius: var(--radius-sm);
-    padding: 1.2rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .missed-title {
-    font-size: 0.78rem; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.1em;
-    color: var(--red); margin-bottom: 0.8rem;
-  }
-
-  .missed-list {
-    display: flex; flex-wrap: wrap; gap: 0.4rem;
-  }
-
-  .missed-tag {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.1);
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    padding: 0.2rem 0.6rem;
-    border-radius: 6px;
-  }
+  .results-label { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem; }
+  .results-msg { font-size: 1rem; color: var(--cream); line-height: 1.6; margin-bottom: 1.5rem; }
 
   .btn-retry {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    background: var(--gold);
-    color: var(--navy);
-    border: none; border-radius: 100px;
-    padding: 0.85rem 2rem;
-    font-size: 0.95rem; font-weight: 700;
-    cursor: pointer;
-    margin-right: 0.75rem;
-    font-family: 'DM Sans', sans-serif;
-    transition: background 0.2s;
-  }
-  .btn-retry:hover { background: var(--gold-light); }
-
-  .btn-explore {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    background: rgba(255,255,255,0.08);
-    color: var(--text-light);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 100px;
-    padding: 0.85rem 2rem;
-    font-size: 0.95rem; font-weight: 600;
-    cursor: pointer;
-    text-decoration: none;
-    font-family: 'DM Sans', sans-serif;
-    transition: background 0.2s;
-  }
-  .btn-explore:hover { background: rgba(255,255,255,0.14); }
-
-  /* ── SHARE BUTTONS ── */
-  .share-section {
-    margin-top: 1.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    text-align: center;
-  }
-  .share-label {
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 0.8rem;
-  }
-  .share-btns {
-    display: flex;
-    justify-content: center;
-    gap: 0.6rem;
-    flex-wrap: wrap;
-  }
-  .share-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.6rem 1.1rem;
-    border-radius: 100px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    transition: opacity 0.2s;
-  }
-  .share-btn:hover { opacity: 0.85; }
-  .share-x { background: #000000; color: #ffffff; }
-  .share-fb { background: #1877f2; color: #ffffff; }
-  .share-wa { background: #25d366; color: #ffffff; }
-  .share-copy { background: rgba(255,255,255,0.1); color: var(--text-light); border: 1px solid rgba(255,255,255,0.15); }
-  .copy-confirm {
-    font-size: 0.78rem;
-    color: var(--teal-light);
-    margin-top: 0.5rem;
-    height: 1rem;
-    transition: opacity 0.3s;
-  }
-
-  /* ── BROWSE ALL ── */
-  .browse-section {
-    margin-top: 3rem;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    padding-top: 2.5rem;
-  }
-
-  .browse-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem; font-weight: 700;
-    color: var(--cream); margin-bottom: 0.4rem;
-  }
-
-  .browse-sub {
-    font-size: 0.88rem; color: var(--text-muted);
-    margin-bottom: 1.2rem;
-  }
-
-  .continent-block { margin-bottom: 1.5rem; }
-
-  .continent-label {
-    font-size: 0.72rem; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 0.1em;
-    margin-bottom: 0.6rem;
-    display: flex; align-items: center; gap: 0.4rem;
-  }
-
-  .team-chips {
-    display: flex; flex-wrap: wrap; gap: 0.45rem;
-  }
-
-  .team-chip {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    color: var(--text-light);
-    text-decoration: none;
-    padding: 0.3rem 0.75rem;
-    border-radius: 6px;
-    font-size: 0.82rem;
-    transition: all 0.15s;
-  }
-
-  .team-chip:hover {
-    background: rgba(20,184,166,0.15);
-    border-color: var(--teal-light);
-    color: var(--cream);
-  }
-
-  footer {
-    position: relative; z-index: 1;
-    text-align: center;
-    padding: 2rem;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    color: var(--text-muted); font-size: 0.82rem;
-  }
-
-  footer a { color: var(--teal-light); text-decoration: none; }
-
-  @media (max-width: 500px) {
-    .mode-grid { grid-template-columns: 1fr; }
-    .answers-grid { grid-template-columns: 1fr; }
-  }
-
-  /* ── JOURNEY MODE ── */
-  .journey-badge {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    background: rgba(245,158,11,0.15);
-    border: 1px solid rgba(245,158,11,0.3);
-    color: var(--gold-light);
-    font-size: 0.72rem; font-weight: 700;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    padding: 0.25rem 0.7rem; border-radius: 100px;
-    margin-bottom: 0.6rem;
-  }
-  .journey-round {
-    text-align: center;
-    margin-bottom: 1.2rem;
-  }
-  .journey-round-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem; font-weight: 900;
-    color: var(--cream); margin-bottom: 0.2rem;
-  }
-  .journey-round-sub {
-    font-size: 0.82rem; color: var(--text-muted);
-  }
-  .journey-lives {
-    display: flex; justify-content: center; gap: 0.4rem;
-    margin-bottom: 1rem;
-    font-size: 1.4rem;
-  }
-  .journey-progress {
-    display: flex; justify-content: center; gap: 0.5rem;
-    flex-wrap: wrap; margin-bottom: 1.5rem;
-  }
-  .journey-stage {
-    display: flex; flex-direction: column; align-items: center;
-    gap: 0.2rem;
-  }
-  .journey-stage-dot {
-    width: 28px; height: 28px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.7rem; font-weight: 700;
-    border: 2px solid rgba(255,255,255,0.15);
-    background: rgba(255,255,255,0.05);
-    color: var(--text-muted);
-    transition: all 0.3s;
-  }
-  .journey-stage-dot.active {
-    border-color: var(--gold);
-    background: rgba(245,158,11,0.2);
-    color: var(--gold);
-  }
-  .journey-stage-dot.done {
-    border-color: var(--teal);
-    background: rgba(20,184,166,0.2);
-    color: var(--teal-light);
-  }
-  .journey-stage-dot.failed {
-    border-color: #ef4444;
-    background: rgba(239,68,68,0.15);
-    color: #ef4444;
-  }
-  .journey-stage-label {
-    font-size: 0.6rem; color: var(--text-muted);
-    text-align: center; max-width: 50px;
-    text-transform: uppercase; letter-spacing: 0.05em;
-  }
-  /* Knocked out screen */
-  .knockout-screen {
-    background: rgba(239,68,68,0.06);
-    border: 1px solid rgba(239,68,68,0.2);
-    border-radius: var(--radius);
-    padding: 2.5rem;
-    text-align: center;
-  }
-  .knockout-emoji { font-size: 3.5rem; margin-bottom: 0.8rem; display: block; }
-  .knockout-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem; font-weight: 900;
-    color: #ef4444; margin-bottom: 0.4rem;
-  }
-  .knockout-stage {
-    font-size: 1rem; color: var(--text-muted); margin-bottom: 1.5rem;
-  }
-  .knockout-fact {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: var(--radius-sm);
-    padding: 0.9rem 1rem;
-    font-size: 0.88rem; color: var(--text-light);
-    line-height: 1.55; margin-bottom: 1.5rem; text-align: left;
-  }
-  .btn-replay {
     display: inline-flex; align-items: center; gap: 0.5rem;
     background: var(--gold); color: var(--navy);
     border: none; border-radius: 100px;
@@ -645,77 +324,51 @@
     font-family: 'DM Sans', sans-serif;
     transition: background 0.2s;
   }
-  .btn-replay:hover { background: var(--gold-light); }
-  /* Champion screen */
-  .champion-screen {
-    background: linear-gradient(135deg, rgba(245,158,11,0.12), rgba(20,184,166,0.08));
-    border: 1px solid rgba(245,158,11,0.3);
-    border-radius: var(--radius);
-    padding: 2.5rem;
+  .btn-retry:hover { background: var(--gold-light); }
+  .btn-menu {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(255,255,255,0.08);
+    color: var(--text-light);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 100px;
+    padding: 0.85rem 2rem;
+    font-size: 0.95rem; font-weight: 600;
+    cursor: pointer; text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-menu:hover { background: rgba(255,255,255,0.14); }
+
+  /* ── SHARE ── */
+  .share-section {
+    margin-top: 1.5rem; padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
     text-align: center;
   }
-  .champion-trophy { font-size: 4rem; margin-bottom: 0.5rem; display: block; }
-  .champion-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem; font-weight: 900;
-    color: var(--gold); margin-bottom: 0.4rem;
+  .share-label {
+    font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 0.8rem;
   }
-  .champion-msg { font-size: 1rem; color: var(--text-light); line-height: 1.6; margin-bottom: 1.5rem; }
+  .share-btns { display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; }
+  .share-btn {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.55rem 1rem; border-radius: 100px;
+    font-size: 0.8rem; font-weight: 600;
+    text-decoration: none; border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; transition: opacity 0.2s;
+  }
+  .share-btn:hover { opacity: 0.85; }
+  .share-x   { background: #000; color: #fff; }
+  .share-fb  { background: #1877f2; color: #fff; }
+  .share-wa  { background: #25d366; color: #fff; }
+  .share-copy { background: rgba(255,255,255,0.1); color: var(--text-light); border: 1px solid rgba(255,255,255,0.15); }
+  .copy-confirm { font-size: 0.75rem; color: var(--teal-light); margin-top: 0.4rem; height: 1rem; }
 
-  /* ── FACT POPUP ── */
-  .fact-box {
-    background: rgba(245,158,11,0.08);
-    border: 1px solid rgba(245,158,11,0.25);
-    border-radius: var(--radius-sm);
-    padding: 0.9rem 1.1rem;
-    margin-top: 0.8rem;
-    font-size: 0.88rem;
-    color: var(--text-light);
-    line-height: 1.55;
-    display: none;
+  @media (max-width: 500px) {
+    .mode-grid { grid-template-columns: 1fr 1fr; }
+    .answers-grid { grid-template-columns: 1fr; }
+    .tf-grid { grid-template-columns: 1fr 1fr; }
   }
-  .fact-box.show { display: block; }
-  .fact-box strong { color: var(--gold); }
-
-  /* ── TEAM CARD (replaces chip in browse) ── */
-  .team-card {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: var(--radius-sm);
-    padding: 0.7rem 0.9rem;
-    transition: all 0.15s;
-    cursor: pointer;
-  }
-  .team-card:hover {
-    background: rgba(20,184,166,0.1);
-    border-color: var(--teal-light);
-  }
-  .team-card-top {
-    display: flex; align-items: center; gap: 0.6rem;
-  }
-  .team-card-flag {
-    width: 32px; height: auto;
-    border-radius: 3px; flex-shrink: 0;
-  }
-  .team-card-name {
-    font-size: 0.85rem; font-weight: 600;
-    color: var(--text-light); flex: 1;
-    text-decoration: none;
-  }
-  .team-card-toggle {
-    font-size: 0.7rem; color: var(--text-muted);
-    flex-shrink: 0;
-  }
-  .team-card-fact {
-    font-size: 0.78rem; color: var(--text-muted);
-    line-height: 1.5; margin-top: 0.5rem;
-    padding-top: 0.5rem;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    display: none;
-  }
-  .team-card.open .team-card-fact { display: block; }
-  .team-card.open .team-card-toggle { color: var(--teal-light); }
-  .team-chips { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 0.5rem; }
 </style>
 </head>
 <body>
@@ -729,410 +382,204 @@
 </nav>
 
 <section class="hero">
-  <div class="wc-badge">⚽ FIFA World Cup 2026 · Starts 11 June</div>
-  <h1>Know Their <em>Flags?</em></h1>
-  <p>48 nations. 6 continents. One tournament. Test yourself on every World Cup 2026 flag — from England to Ecuador, Japan to Morocco.</p>
+  <h1>Geography <em>Challenges</em></h1>
+  <p>Four quiz modes — capitals, currencies, populations and true or false. Pick your challenge.</p>
 </section>
 
-<div class="quiz-wrap">
-
-  <!-- START SCREEN -->
-  <div id="startScreen" class="start-screen">
-    <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--cream);margin-bottom:0.5rem;">Choose your mode</h2>
-    <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:1.5rem;">Pick how you want to be tested</p>
-
-    <div class="mode-grid">
-      <div class="mode-card" onclick="selectMode('journey')" id="modeJourney" style="grid-column:1/-1;border-color:rgba(245,158,11,0.35);background:rgba(245,158,11,0.06);transition:all 0.2s;">
-        <div class="mode-icon">🏆</div>
-        <div class="mode-name" style="color:var(--gold);">World Cup Journey <span style="font-size:0.7rem;background:rgba(245,158,11,0.2);color:var(--gold);padding:0.15rem 0.5rem;border-radius:100px;margin-left:0.4rem;font-weight:700;">NEW</span></div>
-        <div class="mode-desc">Guide your team through the tournament. One wrong answer and you're knocked out!</div>
-      </div>
-      <div class="mode-card selected" onclick="selectMode('all')" id="modeAll">
-        <div class="mode-icon">🌍</div>
-        <div class="mode-name">All 48 Teams</div>
-        <div class="mode-desc">Every World Cup nation — the full challenge</div>
-      </div>
-      <div class="mode-card" onclick="selectMode('europe')" id="modeEurope">
-        <div class="mode-icon">🌍</div>
-        <div class="mode-name">Europe Only</div>
-        <div class="mode-desc">16 UEFA nations — trickier than you think</div>
-      </div>
-      <div class="mode-card" onclick="selectMode('hosts')" id="modeHosts">
-        <div class="mode-icon">⭐</div>
-        <div class="mode-name">Hosts + Americas</div>
-        <div class="mode-desc">USA, Canada, Mexico + South/Central America</div>
-      </div>
-      <div class="mode-card" onclick="selectMode('africa_asia')" id="modeAfricaAsia">
-        <div class="mode-icon">🌏</div>
-        <div class="mode-name">Africa &amp; Asia</div>
-        <div class="mode-desc">17 nations — how well do you know them?</div>
-      </div>
+<div class="mode-wrap" id="startScreen">
+  <div class="mode-grid">
+    <div class="mode-card selected" onclick="selectMode('capitals')" id="modeCaps">
+      <div class="mode-icon">🏛️</div>
+      <div class="mode-name">Capital Cities</div>
+      <div class="mode-desc">Can you name the capital? Flag reveals after each answer.</div>
     </div>
+    <div class="mode-card" onclick="selectMode('currency')" id="modeCurr">
+      <div class="mode-icon">💰</div>
+      <div class="mode-name">Currency Quiz</div>
+      <div class="mode-desc">Which currency does this country use? Trickier than it sounds.</div>
+    </div>
+    <div class="mode-card" onclick="selectMode('population')" id="modePop">
+      <div class="mode-icon">👥</div>
+      <div class="mode-name">Which Has More?</div>
+      <div class="mode-desc">Which country has the larger population? Head-to-head battles.</div>
+    </div>
+    <div class="mode-card" onclick="selectMode('truefalse')" id="modeTF">
+      <div class="mode-icon">✅</div>
+      <div class="mode-name">True or False</div>
+      <div class="mode-desc">Surprising facts about countries around the world.</div>
+    </div>
+  </div>
+  <div style="text-align:center;">
+    <button class="btn-start" onclick="startQuiz()">🌍 Start Challenge →</button>
+  </div>
+</div>
 
-    <button class="btn-start" onclick="startQuiz()">⚽ Start Quiz →</button>
+<div class="quiz-wrap" style="display:none;" id="quizScreen">
+  <div class="score-bar">
+    <span class="q-num" id="qNum">Question 1 of 10</span>
+    <span class="score" id="scoreDisplay">Score: 0</span>
+  </div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="progressBar" style="width:0%"></div>
   </div>
 
-  <!-- QUIZ SCREEN (hidden initially) -->
-  <div id="quizScreen" style="display:none;">
-    <div class="score-bar">
-      <span class="q-num" id="qNum">Question 1 of 12</span>
-      <span class="score" id="scoreDisplay">Score: 0</span>
-    </div>
-    <div class="progress-bar-wrap">
-      <div class="progress-bar-fill" id="progressBar" style="width:0%"></div>
-    </div>
-
-    <div class="question-card">
-      <img class="flag-display" id="flagDisplay" src="" alt="Flag" />
-      <div class="question-label">Which country is this?</div>
-      <div class="continent-hint" id="continentHint">Europe</div>
-    </div>
-
-    <div class="answers-grid" id="answersGrid"></div>
-
-    <div class="feedback" id="feedback"></div>
-    <button class="next-btn" id="nextBtn" onclick="nextQuestion()">Next question →</button>
+  <div class="question-card" id="questionCard">
+    <!-- populated by JS -->
   </div>
 
-  <!-- RESULTS SCREEN (hidden initially) -->
-  <div id="resultsScreen" class="results-screen" style="display:none;">
-    <span class="results-emoji" id="resultsEmoji">🏆</span>
-    <div class="results-score" id="resultsScore">0/12</div>
-    <div class="results-label" id="resultsLabel">World Cup Flag Quiz</div>
+  <div id="answersArea">
+    <!-- populated by JS -->
+  </div>
+
+  <div class="feedback" id="feedback"></div>
+
+  <div class="reveal-flag" id="revealFlag">
+    <img id="revealFlagImg" src="" alt="">
+    <div class="reveal-label" id="revealFlagLabel"></div>
+  </div>
+
+  <button class="next-btn" id="nextBtn" onclick="nextQuestion()">Next question →</button>
+</div>
+
+<div class="quiz-wrap" style="display:none;" id="resultsScreen">
+  <div class="results-screen">
+    <span class="results-emoji" id="resultsEmoji">🎉</span>
+    <div class="results-score" id="resultsScore">0/10</div>
+    <div class="results-label" id="resultsLabel">Geography Challenge</div>
     <div class="results-msg" id="resultsMsg"></div>
-
-    <div class="missed-section" id="missedSection" style="display:none;">
-      <div class="missed-title">❌ Ones to learn</div>
-      <div class="missed-list" id="missedList"></div>
-    </div>
-
     <div style="display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;">
-      <button class="btn-retry" onclick="retryQuiz()">🔄 Try again</button>
-      <a class="btn-explore" href="/explorer/">🌐 Explore all flags</a>
+      <button class="btn-retry" onclick="retryQuiz()">🔄 Play again</button>
+      <button class="btn-menu" onclick="backToMenu()">🏠 Choose mode</button>
     </div>
-
-
-    <!-- PRODUCT CALLOUT -->
-    <div style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.25);border-radius:14px;padding:1.1rem 1.3rem;margin:1.25rem auto 0;max-width:460px;text-align:center;">
-      <p style="font-size:0.88rem;color:var(--text-light);margin-bottom:0.6rem;">📥 Enjoyed the quiz? Get the printable <strong style="color:var(--gold-light);">World Cup Flag Colouring Sheets</strong> — all 48 nations, ready to print.</p>
-      <a href="https://consistent.gumroad.com/l/xvezov" target="_blank" rel="noopener" style="display:inline-block;background:var(--gold);color:var(--navy);font-weight:700;font-size:0.85rem;padding:0.55rem 1.3rem;border-radius:100px;text-decoration:none;">Get it for £1.99 →</a>
-    </div>
-
-    <!-- SHARE SECTION -->
     <div class="share-section">
       <div class="share-label">📣 Challenge a friend</div>
       <div class="share-btns">
-        <a class="share-btn share-x" id="shareX" href="#" target="_blank" rel="noopener">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.736-8.859L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        <a class="share-btn share-x" id="resShareX" href="#" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.736-8.859L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
           Post on X
         </a>
-        <a class="share-btn share-fb" id="shareFB" href="#" target="_blank" rel="noopener">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          Share on Facebook
+        <a class="share-btn share-fb" id="resShareFB" href="#" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Facebook
         </a>
-        <a class="share-btn share-wa" id="shareWA" href="#" target="_blank" rel="noopener">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <a class="share-btn share-wa" id="resShareWA" href="#" target="_blank" rel="noopener">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           WhatsApp
         </a>
-        <button class="share-btn share-copy" onclick="copyLink()">
-          📋 Copy link
-        </button>
+        <button class="share-btn share-copy" onclick="copyLink()">📋 Copy link</button>
       </div>
       <div class="copy-confirm" id="copyConfirm"></div>
     </div>
   </div>
-
-  <!-- KNOCKOUT SCREEN -->
-  <div id="knockoutScreen" style="display:none;" class="knockout-screen">
-    <span class="knockout-emoji">😢</span>
-    <div class="knockout-title">Knocked Out!</div>
-    <div class="knockout-stage" id="knockoutStage">You were eliminated in the Group Stage</div>
-    <div class="knockout-fact" id="knockoutFact"></div>
-    <div style="margin-bottom:1.5rem;">
-      <div class="journey-progress" id="knockoutProgress"></div>
-    </div>
-    <div style="display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;margin-bottom:1.5rem;">
-      <button class="btn-replay" onclick="replayFromStage()">🔄 Replay from this stage</button>
-      <button class="btn-retry" onclick="retryQuiz()">🏠 Start over</button>
-    </div>
-    <!-- Share after knockout -->
-    <div class="share-section">
-      <div class="share-label">📣 Share your result</div>
-      <div class="share-btns">
-        <a class="share-btn share-x" id="knockoutShareX" href="#" target="_blank" rel="noopener">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.736-8.859L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          Post on X
-        </a>
-        <a class="share-btn share-fb" id="knockoutShareFB" href="#" target="_blank" rel="noopener">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          Facebook
-        </a>
-        <a class="share-btn share-wa" id="knockoutShareWA" href="#" target="_blank" rel="noopener">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          WhatsApp
-        </a>
-        <button class="share-btn share-copy" onclick="copyLink()">📋 Copy link</button>
-      </div>
-      <div class="copy-confirm" id="copyConfirm3"></div>
-    </div>
-  </div>
-
-  <!-- CHAMPION SCREEN -->
-  <div id="championScreen" style="display:none;" class="champion-screen">
-    <span class="champion-trophy">🏆</span>
-    <div class="champion-title">World Cup Champion!</div>
-    <div class="champion-msg" id="championMsg"></div>
-    <div style="margin-bottom:1.5rem;">
-      <div class="journey-progress" id="championProgress"></div>
-    </div>
-    <div style="display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:center;">
-      <button class="btn-replay" onclick="retryJourney()">🏆 Play again</button>
-      <button class="btn-retry" onclick="retryQuiz()">🏠 Main menu</button>
-    </div>
-
-    <!-- PRODUCT CALLOUT -->
-    <div style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.25);border-radius:14px;padding:1.1rem 1.3rem;margin:1.25rem auto 0;max-width:460px;text-align:center;">
-      <p style="font-size:0.88rem;color:var(--text-light);margin-bottom:0.6rem;">📥 Enjoyed the quiz? Get the printable <strong style="color:var(--gold-light);">World Cup Flag Colouring Sheets</strong> — all 48 nations, ready to print.</p>
-      <a href="https://consistent.gumroad.com/l/xvezov" target="_blank" rel="noopener" style="display:inline-block;background:var(--gold);color:var(--navy);font-weight:700;font-size:0.85rem;padding:0.55rem 1.3rem;border-radius:100px;text-decoration:none;">Get it for £1.99 →</a>
-    </div>
-
-    <!-- Share section on champion screen -->
-    <div class="share-section" style="margin-top:1.5rem;">
-      <div class="share-label">📣 Share your victory</div>
-      <div class="share-btns">
-        <a class="share-btn share-x" id="championShareX" href="#" target="_blank" rel="noopener">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.736-8.859L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          Post on X
-        </a>
-        <a class="share-btn share-fb" id="championShareFB" href="#" target="_blank" rel="noopener">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          Facebook
-        </a>
-        <a class="share-btn share-wa" id="championShareWA" href="#" target="_blank" rel="noopener">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          WhatsApp
-        </a>
-        <button class="share-btn share-copy" onclick="copyLink()">📋 Copy link</button>
-      </div>
-      <div class="copy-confirm" id="copyConfirm2"></div>
-    </div>
-  </div>
-
-  <!-- BROWSE ALL TEAMS -->
-  <div class="browse-section" id="browseSection">
-    <div class="browse-title">All 48 World Cup 2026 Nations</div>
-    <p class="browse-sub">Tap any country to see their World Cup story, then click through to the Flag Explorer</p>
-    <div id="browseTeams"></div>
-
-  </div>
-
 </div>
 
-<!-- SEO CONTENT -->
-<section style="position:relative;z-index:1;max-width:780px;margin:0 auto;padding:0 1.5rem 4rem;">
-
-  <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:2.5rem;">
-
-    <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--cream);margin-bottom:0.8rem;font-weight:700;">World Cup 2026 — The Biggest Tournament in History</h2>
-    <p style="color:var(--text-muted);margin-bottom:0.9rem;line-height:1.7;">The 2026 FIFA World Cup kicks off on 11 June 2026 and runs until 19 July, hosted across 16 venues in the United States, Canada and Mexico. For the first time ever, 48 nations will compete — up from 32 in previous tournaments — making it the largest World Cup in history. With 104 matches across six weeks, there's more football, more flags, and more nations than ever before.</p>
-
-    <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--cream);margin-bottom:0.8rem;font-weight:700;margin-top:2rem;">Which Countries Are in the World Cup 2026?</h2>
-    <p style="color:var(--text-muted);margin-bottom:0.9rem;line-height:1.7;">The 48 qualified nations come from six confederations across every continent. Europe sends 16 teams including England, France, Germany, Spain and Portugal. South America contributes 6 nations led by defending champions Argentina and Brazil. Africa has 9 teams including Morocco, Senegal and Egypt. Asia sends 9 nations including Japan and South Korea. The three host nations — USA, Canada and Mexico — qualify automatically, joined by six more teams from the Americas.</p>
-    <p style="color:var(--text-muted);margin-bottom:0.9rem;line-height:1.7;">Notable stories include Norway qualifying for their first World Cup since 1998 thanks to Erling Haaland's record-breaking qualifying campaign, Iraq returning for the first time since 1986, and DR Congo and Curaçao making their World Cup debuts.</p>
-
-    <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--cream);margin-bottom:0.8rem;font-weight:700;margin-top:2rem;">How Well Do You Know the World Cup Flags?</h2>
-    <p style="color:var(--text-muted);margin-bottom:0.9rem;line-height:1.7;">Flags from Europe's big nations are well known — the French tricolore, Germany's black, red and gold, Spain's red and yellow. But how many people can identify the flags of Uzbekistan, Curaçao or Cape Verde? The 2026 World Cup is a perfect chance to learn flags from Africa, Asia and the Americas that you might not have seen before.</p>
-    <p style="color:var(--text-muted);line-height:1.7;">Use the quiz above to test yourself — four modes let you focus on Europe, the Americas, Africa and Asia, or go for the full 48-nation challenge. Click any team in the browse section to explore their flag, capital city, and flag facts in the FlagAtlas Flag Explorer.</p>
-
-  </div>
-</section>
-
-<footer>
-  <p>FlagAtlas — free educational tools for everyone &nbsp;·&nbsp; <a href="/contact">Contact</a> &nbsp;·&nbsp; <a href="/privacy/">Privacy &amp; Terms</a> &nbsp;·&nbsp; <a href="/">← All tools</a></p>
-</footer>
+<a href="https://ko-fi.com/flagatlas" target="_blank" rel="noopener" style="position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;align-items:center;gap:8px;background:#FF5E5B;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:700;padding:11px 18px;border-radius:100px;text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,0.3);transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">☕ Buy me a coffee</a>
 
 <script>
-// ── ALL 48 TEAMS ─────────────────────────────────────────────────────────────
-const CDN = "https://flagcdn.com/w160/";
-
-const FACTS = {
-  "United States":        "Hosts of 2026 — their first World Cup on home soil since 1994, when they reached the Round of 16.",
-  "Canada":               "Making only their second ever World Cup appearance. Their first was in 1986 — they lost all three games and scored zero goals.",
-  "Mexico":               "Have reached the Round of 16 at every World Cup from 1994 to 2018 — seven times in a row. Nicknamed El Tri.",
-  "England":              "Won the World Cup exactly once — at home in 1966. Still waiting for their second.",
-  "France":               "Two-time World Cup winners (1998, 2018) and runners-up in 2022. One of the tournament favourites.",
-  "Germany":              "Four-time World Cup winners — 1954, 1974, 1990 and 2014. The most successful European nation in the tournament's history.",
-  "Spain":                "Won the World Cup in 2010 in South Africa — their first and only title, famous for their tiki-taka style of play.",
-  "Portugal":             "Despite having Cristiano Ronaldo — the all-time top scorer in international football — Portugal have never won the World Cup.",
-  "Netherlands":          "Three-time World Cup finalists (1974, 1978, 2010) but have never won it. Known as the nearly-men of world football.",
-  "Belgium":              "Ranked as high as number one in the world, Belgium have never won the World Cup. Their best finish was third place in 1986.",
-  "Croatia":              "A nation of just four million people who reached the World Cup final in 2018 and finished third in 2022. Remarkable overachievers.",
-  "Switzerland":          "Quietly consistent World Cup performers — they have reached the quarter-finals three times but never gone further.",
-  "Austria":              "Third place in 1954 is their best ever World Cup finish. Returning after missing 2022.",
-  "Scotland":             "Returning to the World Cup after missing out in 2022. Scotland have appeared eight times but never made it past the group stage.",
-  "Norway":               "First World Cup since 1998 — a 28-year wait. Erling Haaland scored 16 qualifying goals to help get them there.",
-  "Turkey":               "Finished third at the 2002 World Cup — their best ever result. Qualified through the UEFA playoffs this time.",
-  "Bosnia and Herzegovina": "Only their second World Cup appearance. Their first was in 2014 where they won one game but were eliminated in the group stage.",
-  "Sweden":               "Finished third at the 1994 World Cup and again in 1950. Qualified through the UEFA playoffs.",
-  "Czechia":              "As Czechoslovakia they finished second in 1934 and 1962. As Czechia they are still searching for their first title.",
-  "Argentina":            "Defending world champions — Lionel Messi led them to the 2022 title in Qatar in one of the greatest finals ever played.",
-  "Brazil":               "The most successful nation in World Cup history with five titles — 1958, 1962, 1970, 1994 and 2002. The only team to appear in every World Cup.",
-  "Colombia":             "Best known for their run to the quarter-finals in 2014 on home continent, with James Rodriguez winning the Golden Boot.",
-  "Uruguay":              "Two-time champions (1930, 1950) — one of the most decorated nations in World Cup history relative to their population of just 3.5 million.",
-  "Ecuador":              "Appearing at their fourth World Cup. Their best finish was the round of 16 in 2006.",
-  "Paraguay":             "Reached the quarter-finals in 2010, defeating Japan on penalties. A consistent South American qualifier.",
-  "Morocco":              "Made history in 2022 by becoming the first African nation to reach the World Cup semi-finals. One of the most exciting teams in the tournament.",
-  "Senegal":              "Won the Africa Cup of Nations in 2022 and reached the quarter-finals at the last World Cup. One of Africa's most powerful teams.",
-  "Egypt":                "Home to Mohamed Salah and appearing for just their fourth World Cup. Their most recent previous appearance was 1990.",
-  "Algeria":              "Reached the Round of 16 in 2014 — their best ever World Cup performance. Strong qualifiers from Africa.",
-  "Ghana":                "Known as the Black Stars — reached the quarter-finals in 2010 and came agonisingly close to the semi-finals before losing on penalties to Uruguay.",
-  "Ivory Coast":          "Home to one of the greatest African generations of players — including Didier Drogba — though they never made it past the group stage with him.",
-  "South Africa":         "The only African nation to host the World Cup (2010) but the first host nation ever not to advance from the group stage.",
-  "Tunisia":              "First African nation to win a World Cup match — they beat Mexico 3-1 in 1978. Appearing at their sixth World Cup overall.",
-  "Cape Verde":           "A tiny island nation of 500,000 people making only their second World Cup appearance. One of the great underdog stories of 2026.",
-  "DR Congo":             "Qualifying through the intercontinental playoffs — one of four debut nations at 2026. Formerly known as Zaire, they last appeared in 1974.",
-  "Japan":                "The first nation outside the hosts to qualify for 2026. Reached the quarter-finals in 2022 after eliminating Germany and Spain in the group stage.",
-  "South Korea":          "Reached the semi-finals in 2002 as co-hosts — still the best World Cup run by an Asian nation. Home of Son Heung-min.",
-  "Australia":            "The Socceroos reached the quarter-finals in 2006. In 2022 they knocked out Denmark before falling to Argentina.",
-  "Iran":                 "Appearing at their seventh World Cup — the most of any Asian nation. Known for passionate support despite difficult geopolitical circumstances.",
-  "Saudi Arabia":         "Famous for beating eventual champions Argentina 2-1 in the 2022 group stage — one of the biggest upsets in World Cup history.",
-  "Qatar":                "Defending host nation — but became the first host country in history to be eliminated in the group stage in 2022.",
-  "Jordan":               "Making their World Cup debut in 2026 — a historic first for Jordanian football.",
-  "Uzbekistan":           "Also making their World Cup debut in 2026. Central Asian football on the world stage for the first time.",
-  "Iraq":                 "Returning after a 40-year absence — their last World Cup was in 1986. Qualified through the intercontinental playoffs.",
-  "Costa Rica":           "Reached the quarter-finals in 2014 — one of the greatest underdog runs in World Cup history. Eliminated Italy, England and Uruguay in the group stage.",
-  "Panama":               "Only their second ever World Cup appearance. Their first was in 2018 where they lost all three games.",
-  "Curaçao":              "Making their World Cup debut in 2026 — a tiny Caribbean island of 150,000 people. One of the most extraordinary debut stories in World Cup history.",
-  "Haiti":                "Only their second World Cup — their first was in 1974. A remarkable achievement for a nation facing enormous economic challenges.",
-  "Honduras":             "Appearing at their fourth World Cup. Their best finish was the group stage, which they have never escaped.",
-  "New Zealand":          "The All Whites — making their third World Cup appearance. Won both their qualification matches but are yet to win a World Cup game.",
-};
-
-
-const ALL_TEAMS = [
-  // Hosts
-  {name:"United States", code:"us", continent:"Host"},
-  {name:"Canada", code:"ca", continent:"Host"},
-  {name:"Mexico", code:"mx", continent:"Host"},
-  // Europe
-  {name:"England", code:"gb-eng", continent:"Europe"},
-  {name:"France", code:"fr", continent:"Europe"},
-  {name:"Germany", code:"de", continent:"Europe"},
-  {name:"Spain", code:"es", continent:"Europe"},
-  {name:"Portugal", code:"pt", continent:"Europe"},
-  {name:"Netherlands", code:"nl", continent:"Europe"},
-  {name:"Belgium", code:"be", continent:"Europe"},
-  {name:"Croatia", code:"hr", continent:"Europe"},
-  {name:"Switzerland", code:"ch", continent:"Europe"},
-  {name:"Austria", code:"at", continent:"Europe"},
-  {name:"Scotland", code:"gb-sct", continent:"Europe"},
-  {name:"Norway", code:"no", continent:"Europe"},
-  {name:"Turkey", code:"tr", continent:"Europe"},
-  {name:"Bosnia and Herzegovina", code:"ba", continent:"Europe"},
-  {name:"Sweden", code:"se", continent:"Europe"},
-  {name:"Czechia", code:"cz", continent:"Europe"},
-  // South America
-  {name:"Argentina", code:"ar", continent:"South America"},
-  {name:"Brazil", code:"br", continent:"South America"},
-  {name:"Colombia", code:"co", continent:"South America"},
-  {name:"Uruguay", code:"uy", continent:"South America"},
-  {name:"Ecuador", code:"ec", continent:"South America"},
-  {name:"Paraguay", code:"py", continent:"South America"},
-  // Africa
-  {name:"Morocco", code:"ma", continent:"Africa"},
-  {name:"Senegal", code:"sn", continent:"Africa"},
-  {name:"Egypt", code:"eg", continent:"Africa"},
-  {name:"Algeria", code:"dz", continent:"Africa"},
-  {name:"Ghana", code:"gh", continent:"Africa"},
-  {name:"Ivory Coast", code:"ci", continent:"Africa"},
-  {name:"South Africa", code:"za", continent:"Africa"},
-  {name:"Tunisia", code:"tn", continent:"Africa"},
-  {name:"Cape Verde", code:"cv", continent:"Africa"},
-  {name:"DR Congo", code:"cd", continent:"Africa"},
-  // Asia
-  {name:"Japan", code:"jp", continent:"Asia"},
-  {name:"South Korea", code:"kr", continent:"Asia"},
-  {name:"Australia", code:"au", continent:"Asia"},
-  {name:"Iran", code:"ir", continent:"Asia"},
-  {name:"Saudi Arabia", code:"sa", continent:"Asia"},
-  {name:"Qatar", code:"qa", continent:"Asia"},
-  {name:"Jordan", code:"jo", continent:"Asia"},
-  {name:"Uzbekistan", code:"uz", continent:"Asia"},
-  {name:"Iraq", code:"iq", continent:"Asia"},
-  // CONCACAF + Oceania
-  {name:"Costa Rica", code:"cr", continent:"Americas"},
-  {name:"Panama", code:"pa", continent:"Americas"},
-  {name:"Curaçao", code:"cw", continent:"Americas"},
-  {name:"Haiti", code:"ht", continent:"Americas"},
-  {name:"Honduras", code:"hn", continent:"Americas"},
-  {name:"New Zealand", code:"nz", continent:"Americas"},
+// ── LOAD FLAGS DATA ──────────────────────────────────────────────────────────
+// Inline subset of flags-data for capitals and populations
+// Full data loaded from flags-data.js in production
+const COUNTRIES = [
+  {code:"gb",name:"United Kingdom",capital:"London",population:67000000,funFact:"The UK drives on the left side of the road, a tradition dating back to the days of sword-carrying travellers."},
+  {code:"fr",name:"France",capital:"Paris",population:68000000,funFact:"France is the most visited country in the world, welcoming over 90 million tourists a year."},
+  {code:"de",name:"Germany",capital:"Berlin",population:84000000,funFact:"Germany has over 1,500 different types of beer and around 1,300 breweries."},
+  {code:"it",name:"Italy",capital:"Rome",population:60000000,funFact:"Italy has more UNESCO World Heritage Sites than any other country in the world."},
+  {code:"es",name:"Spain",capital:"Madrid",population:47000000,funFact:"Spain is home to La Tomatina, a festival where thousands of people throw tomatoes at each other."},
+  {code:"pt",name:"Portugal",capital:"Lisbon",population:10000000,funFact:"Portugal is the oldest country in Europe with unchanged borders, established in 1139."},
+  {code:"nl",name:"Netherlands",capital:"Amsterdam",population:17000000,funFact:"The Netherlands has more bicycles than people."},
+  {code:"be",name:"Belgium",capital:"Brussels",population:11000000,funFact:"Belgium invented French fries — despite the name, they originated in Belgium."},
+  {code:"ch",name:"Switzerland",capital:"Bern",population:8700000,funFact:"Switzerland has four official languages: German, French, Italian, and Romansh."},
+  {code:"at",name:"Austria",capital:"Vienna",population:9000000,funFact:"Austria is the birthplace of Mozart, Freud, and the croissant."},
+  {code:"se",name:"Sweden",capital:"Stockholm",population:10000000,funFact:"Sweden has around 221,800 islands."},
+  {code:"no",name:"Norway",capital:"Oslo",population:5400000,funFact:"Norway has the midnight sun — in summer, the sun never fully sets above the Arctic Circle."},
+  {code:"dk",name:"Denmark",capital:"Copenhagen",population:5900000,funFact:"The Dannebrog is the oldest national flag in the world."},
+  {code:"fi",name:"Finland",capital:"Helsinki",population:5500000,funFact:"Finland has more saunas than cars."},
+  {code:"is",name:"Iceland",capital:"Reykjavik",population:370000,funFact:"Iceland has no mosquitoes — the climate is too cold for them to survive."},
+  {code:"ie",name:"Ireland",capital:"Dublin",population:5000000,funFact:"Halloween originated in Ireland from the ancient Celtic festival of Samhain."},
+  {code:"pl",name:"Poland",capital:"Warsaw",population:38000000,funFact:"Poland has 17 Nobel Prize winners, including Marie Curie who won it twice."},
+  {code:"jp",name:"Japan",capital:"Tokyo",population:125000000,funFact:"Japan has the world's oldest company, founded in 578 AD."},
+  {code:"cn",name:"China",capital:"Beijing",population:1400000000,funFact:"China invented paper, printing, gunpowder, and the compass."},
+  {code:"in",name:"India",capital:"New Delhi",population:1400000000,funFact:"India invented the number zero and the decimal system."},
+  {code:"br",name:"Brazil",capital:"Brasília",population:215000000,funFact:"Brazil is the only Portuguese-speaking country in the Americas."},
+  {code:"au",name:"Australia",capital:"Canberra",population:26000000,funFact:"Australia has more kangaroos than people."},
+  {code:"ca",name:"Canada",capital:"Ottawa",population:38000000,funFact:"Canada has more lakes than the rest of the world combined."},
+  {code:"us",name:"United States",capital:"Washington D.C.",population:331000000,funFact:"The US has the world's largest economy by nominal GDP."},
+  {code:"mx",name:"Mexico",capital:"Mexico City",population:130000000,funFact:"Mexico City is the oldest capital city in the Americas."},
+  {code:"ar",name:"Argentina",capital:"Buenos Aires",population:45000000,funFact:"Argentina is the largest Spanish-speaking country by area."},
+  {code:"ru",name:"Russia",capital:"Moscow",population:144000000,funFact:"Russia spans 11 time zones — the most of any country."},
+  {code:"za",name:"South Africa",capital:"Pretoria",population:60000000,funFact:"South Africa has three capital cities — Pretoria, Cape Town and Bloemfontein."},
+  {code:"eg",name:"Egypt",capital:"Cairo",population:104000000,funFact:"Egypt is home to the only remaining ancient wonder of the world — the Great Pyramid of Giza."},
+  {code:"ng",name:"Nigeria",capital:"Abuja",population:218000000,funFact:"Nigeria has the largest economy in Africa."},
+  {code:"ke",name:"Kenya",capital:"Nairobi",population:55000000,funFact:"Kenya is home to the Great Rift Valley, one of the greatest geological features on Earth."},
+  {code:"th",name:"Thailand",capital:"Bangkok",population:70000000,funFact:"Thailand is the only country in Southeast Asia never colonised by a European power."},
+  {code:"tr",name:"Turkey",capital:"Ankara",population:85000000,funFact:"Turkey is home to the ancient city of Troy and more Greek ruins than Greece itself."},
+  {code:"sa",name:"Saudi Arabia",capital:"Riyadh",population:35000000,funFact:"Saudi Arabia is the largest country in the world with no rivers."},
+  {code:"id",name:"Indonesia",capital:"Jakarta",population:277000000,funFact:"Indonesia is made up of over 17,000 islands."},
+  {code:"nz",name:"New Zealand",capital:"Wellington",population:5000000,funFact:"New Zealand was the first country to give women the right to vote, in 1893."},
+  {code:"gr",name:"Greece",capital:"Athens",population:11000000,funFact:"Greece has more archaeological museums than any other country."},
+  {code:"ma",name:"Morocco",capital:"Rabat",population:37000000,funFact:"Morocco has the oldest university in the world — the University of al-Qarawiyyin, founded in 859 AD."},
+  {code:"pk",name:"Pakistan",capital:"Islamabad",population:231000000,funFact:"Pakistan is home to K2, the second-highest mountain in the world."},
 ];
 
-const MODES = {
-  all: ALL_TEAMS,
-  europe: ALL_TEAMS.filter(t => t.continent === 'Europe'),
-  hosts: ALL_TEAMS.filter(t => ['Host','South America','Americas'].includes(t.continent)),
-  africa_asia: ALL_TEAMS.filter(t => ['Africa','Asia'].includes(t.continent)),
-};
-
-// ── JOURNEY MODE CONFIG ──────────────────────────────────────────────────────
-// Difficulty pools — easy/medium/hard based on flag recognisability
-const EASY = ALL_TEAMS.filter(t => ['United States','Canada','Mexico',
-  'England','France','Germany','Spain','Portugal','Netherlands','Belgium',
-  'Argentina','Brazil','Japan','South Korea','Australia'].includes(t.name));
-
-const MEDIUM = ALL_TEAMS.filter(t => ['Croatia','Switzerland','Norway','Sweden',
-  'Colombia','Uruguay','Morocco','Senegal','Egypt','Ghana','Scotland',
-  'Turkey','Czechia','Ecuador','Austria','Saudi Arabia','Iran'].includes(t.name));
-
-const HARD = ALL_TEAMS.filter(t => ['Algeria','Ivory Coast','South Africa','Tunisia',
-  'Qatar','Jordan','Paraguay','Bosnia and Herzegovina','Iraq',
-  'Costa Rica','Panama','Haiti','Honduras'].includes(t.name));
-
-const VERY_HARD = ALL_TEAMS.filter(t => ['Cape Verde','DR Congo','Uzbekistan',
-  'Curaçao','New Zealand'].includes(t.name));
-
-const JOURNEY_ROUNDS = [
-  { name: 'Group Stage',   label: 'GS',  emoji: '⚽', count: 4, pool: EASY,      desc: '4 questions — the easy flags' },
-  { name: 'Round of 16',   label: 'R16', emoji: '🏅', count: 3, pool: MEDIUM,    desc: '3 questions — getting trickier' },
-  { name: 'Quarter Final', label: 'QF',  emoji: '🥉', count: 2, pool: HARD,      desc: '2 questions — can you handle it?' },
-  { name: 'Semi Final',    label: 'SF',  emoji: '🥈', count: 2, pool: VERY_HARD, desc: '2 questions — the hardest flags' },
-  { name: 'Final',         label: '🏆',  emoji: '🏆', count: 1, pool: VERY_HARD, desc: '1 question — the ultimate test' },
+// ── CURRENCY DATA ────────────────────────────────────────────────────────────
+const CURRENCY_Q = [
+  {country:"Japan",currency:"Yen",wrong:["Yuan","Won","Ringgit"],fact:"The Japanese Yen is one of the most traded currencies in the world."},
+  {country:"Brazil",currency:"Real",wrong:["Peso","Sol","Guaraní"],fact:"Brazil's currency was introduced in 1994 to control hyperinflation."},
+  {country:"India",currency:"Rupee",wrong:["Taka","Baht","Kyat"],fact:"India's rupee symbol ₹ was adopted in 2010 — designed to resemble the Devanagari letter 'र'."},
+  {country:"Russia",currency:"Ruble",wrong:["Hryvnia","Leu","Zloty"],fact:"The ruble is one of the oldest currencies in the world, dating back to the 13th century."},
+  {country:"South Korea",currency:"Won",wrong:["Yen","Yuan","Ringgit"],fact:"South Korea's Won replaced the Hwan in 1962."},
+  {country:"Mexico",currency:"Peso",wrong:["Sol","Real","Quetzal"],fact:"The Mexican Peso was one of the world's first currencies to use the '$' symbol."},
+  {country:"Egypt",currency:"Pound",wrong:["Dinar","Dirham","Riyal"],fact:"Egypt's pound has been used since 1834."},
+  {country:"Thailand",currency:"Baht",wrong:["Kyat","Dong","Rupiah"],fact:"The Baht is one of the oldest currencies in Asia, dating back centuries."},
+  {country:"Norway",currency:"Krone",wrong:["Krona","Markka","Forint"],fact:"Norway, Sweden and Denmark all use currencies called 'Krone' or 'Krona' but they're not interchangeable."},
+  {country:"Saudi Arabia",currency:"Riyal",wrong:["Dinar","Dirham","Pound"],fact:"The Saudi Riyal has been pegged to the US dollar since 1986."},
+  {country:"Turkey",currency:"Lira",wrong:["Dram","Manat","Tenge"],fact:"Turkey redenominated its currency in 2005, removing six zeros from the old Lira."},
+  {country:"Poland",currency:"Złoty",wrong:["Forint","Koruna","Kuna"],fact:"Złoty means 'golden' in Polish — it was originally made of gold."},
+  {country:"Switzerland",currency:"Franc",wrong:["Euro","Krone","Dinar"],fact:"Switzerland is not in the EU and kept its franc rather than adopting the euro."},
+  {country:"South Africa",currency:"Rand",wrong:["Shilling","Cedi","Naira"],fact:"The Rand is named after the Witwatersrand — the ridge of gold-bearing rock near Johannesburg."},
+  {country:"Indonesia",currency:"Rupiah",wrong:["Ringgit","Baht","Peso"],fact:"Indonesia's Rupiah comes from the Sanskrit word 'rupya' meaning silver."},
+  {country:"Nigeria",currency:"Naira",wrong:["Cedi","Shilling","Franc"],fact:"The Naira was introduced in 1973, replacing the Nigerian pound."},
+  {country:"Argentina",currency:"Peso",wrong:["Real","Sol","Bolívar"],fact:"Argentina has had multiple currency crises — the Peso has been redenominated several times."},
+  {country:"Morocco",currency:"Dirham",wrong:["Dinar","Riyal","Pound"],fact:"Morocco's Dirham has been used since ancient times — the word comes from the Greek 'drachma'."},
+  {country:"Pakistan",currency:"Rupee",wrong:["Taka","Afghani","Rial"],fact:"Pakistan's Rupee is shared with several other South Asian nations including India."},
+  {country:"New Zealand",currency:"Dollar",wrong:["Pound","Franc","Krone"],fact:"New Zealand was one of the first countries to introduce a decimal currency system in 1967."},
 ];
 
-let journeyMode = false;
-let journeyRoundIdx = 0;
-let journeyQIdx = 0;
-let journeyRoundQuestions = [];
-let journeyStageResults = []; // 'done'|'active'|'failed'|null per round
+// ── TRUE OR FALSE DATA ───────────────────────────────────────────────────────
+const TF_Q = [
+  {statement:"Australia is larger than Greenland.",answer:true,fact:"Australia is about 7.7 million km² — nearly 4 times larger than Greenland's 2.1 million km²."},
+  {statement:"Canada has more lakes than the rest of the world combined.",answer:true,fact:"Canada has approximately 563 lakes larger than 100 km² — more than any other country."},
+  {statement:"Russia spans 11 time zones.",answer:true,fact:"Russia is by far the largest country by area and crosses 11 of the world's 24 time zones."},
+  {statement:"The Amazon River flows through Brazil alone.",answer:false,fact:"The Amazon flows through Peru and Colombia before reaching Brazil — though 60% of it is in Brazil."},
+  {statement:"Vatican City is smaller than Central Park in New York.",answer:true,fact:"Vatican City covers 0.44 km² — Central Park is 3.41 km², nearly 8 times larger."},
+  {statement:"France is the most visited country in the world.",answer:true,fact:"France welcomes over 90 million tourists annually — more than any other nation."},
+  {statement:"New Zealand was the first country to give women the right to vote.",answer:true,fact:"New Zealand granted women the right to vote in 1893 — 27 years before the United States."},
+  {statement:"Iceland has no army.",answer:true,fact:"Iceland has no standing army and is one of only a handful of countries without one — though it is a NATO member."},
+  {statement:"The Sahara Desert is the largest desert in the world.",answer:false,fact:"Antarctica is actually the world's largest desert. The Sahara is the largest hot desert, but deserts are defined by low precipitation, not heat."},
+  {statement:"China has the longest coastline in the world.",answer:false,fact:"Canada has the world's longest coastline at over 200,000 km. China's is approximately 14,500 km."},
+  {statement:"Monaco is the most densely populated country in the world.",answer:true,fact:"Monaco packs around 39,000 people into just 2 km² — about 19,000 people per km²."},
+  {statement:"Brazil is the only Portuguese-speaking country in South America.",answer:true,fact:"All other South American countries were colonised by Spain, making Brazil the only Portuguese-speaking nation on the continent."},
+  {statement:"Denmark's flag is the oldest national flag still in use.",answer:true,fact:"The Dannebrog has been used since at least 1370 and possibly since 1219."},
+  {statement:"India has the second largest population in the world.",answer:false,fact:"India overtook China in 2023 to become the world's most populous country."},
+  {statement:"The Amazon River contains 20% of all fresh water on Earth.",answer:true,fact:"The Amazon discharges about 20% of all fresh water that flows into the world's oceans."},
+  {statement:"Egypt is mostly desert — over 90% of the country.",answer:true,fact:"The vast majority of Egypt is desert. About 95% of the population lives along the Nile."},
+  {statement:"Japan has more vending machines per person than any other country.",answer:true,fact:"Japan has approximately one vending machine for every 23 people — around 5.5 million machines."},
+  {statement:"Finland has more saunas than cars.",answer:true,fact:"Finland has about 3 million saunas for a population of 5.5 million — roughly one sauna per household."},
+  {statement:"The United States has the largest navy in the world.",answer:true,fact:"The US Navy operates 11 aircraft carriers — more than all other nations combined."},
+  {statement:"Nigeria has the largest economy in Africa.",answer:true,fact:"Nigeria overtook South Africa as Africa's largest economy by GDP in 2014."},
+];
 
-let selectedMode = 'all';
+// ── STATE ────────────────────────────────────────────────────────────────────
+let selectedMode = 'capitals';
 let questions = [];
 let currentQ = 0;
 let score = 0;
 let answered = false;
-let missed = [];
 
-function selectMode(mode) {
-  selectedMode = mode;
-  // Reset all cards
-  document.querySelectorAll('.mode-card').forEach(c => {
-    c.classList.remove('selected');
-    c.style.borderColor = '';
-    c.style.background = '';
-    c.style.boxShadow = '';
-  });
-  const idMap = {all:'modeAll',europe:'modeEurope',hosts:'modeHosts',africa_asia:'modeAfricaAsia',journey:'modeJourney'};
-  const card = document.getElementById(idMap[mode]);
-  card.classList.add('selected');
-  // Journey gets gold highlight, others get teal
-  if (mode === 'journey') {
-    card.style.borderColor = 'var(--gold)';
-    card.style.background = 'rgba(245,158,11,0.18)';
-    card.style.boxShadow = '0 0 0 2px rgba(245,158,11,0.3)';
-  }
-}
+const CDN = 'https://flagcdn.com/w80/';
+const CDN_SM = 'https://flagcdn.com/w40/';
 
+// ── HELPERS ──────────────────────────────────────────────────────────────────
 function shuffle(arr) {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
@@ -1142,398 +589,250 @@ function shuffle(arr) {
   return a;
 }
 
-function buildQuestions(pool) {
-  const shuffled = shuffle(pool);
-  const qs = shuffled.slice(0, Math.min(12, shuffled.length));
-  return qs.map(correct => {
-    // Get 3 wrong answers from pool
-    const others = shuffle(pool.filter(t => t.name !== correct.name));
-    const wrongs = others.slice(0, 3);
-    const opts = shuffle([correct, ...wrongs]);
-    return { correct, opts };
+function fmt(n) {
+  if (n >= 1000000000) return (n/1000000000).toFixed(1) + 'B';
+  if (n >= 1000000) return (n/1000000).toFixed(0) + 'M';
+  return n.toLocaleString();
+}
+
+// ── MODE SELECT ──────────────────────────────────────────────────────────────
+function selectMode(mode) {
+  selectedMode = mode;
+  document.querySelectorAll('.mode-card').forEach(c => c.classList.remove('selected'));
+  const map = {capitals:'modeCaps',currency:'modeCurr',population:'modePop',truefalse:'modeTF'};
+  document.getElementById(map[mode]).classList.add('selected');
+}
+
+// ── BUILD QUESTIONS ──────────────────────────────────────────────────────────
+function buildCapitalQuestions() {
+  return shuffle(COUNTRIES).slice(0, 10).map(c => {
+    const wrongs = shuffle(COUNTRIES.filter(x => x.capital !== c.capital)).slice(0, 3).map(x => x.capital);
+    return {
+      type: 'capitals',
+      badge: '🏛️ Capital City',
+      text: `What is the capital of ${c.name}?`,
+      correct: c.capital,
+      opts: shuffle([c.capital, ...wrongs]),
+      flagCode: c.code,
+      flagName: c.name,
+      fact: c.funFact,
+    };
   });
 }
 
-function startQuiz() {
-  // Hide all screens
-  ['startScreen','resultsScreen','knockoutScreen','championScreen'].forEach(id => {
-    document.getElementById(id).style.display = 'none';
-  });
+function buildCurrencyQuestions() {
+  return shuffle(CURRENCY_Q).slice(0, 10).map(q => ({
+    type: 'currency',
+    badge: '💰 Currency Quiz',
+    text: `Which currency is used in ${q.country}?`,
+    correct: q.currency,
+    opts: shuffle([q.currency, ...q.wrong]),
+    fact: q.fact,
+    flagCode: null,
+  }));
+}
 
-  if (selectedMode === 'journey') {
-    journeyMode = true;
-    journeyRoundIdx = 0;
-    journeyQIdx = 0;
-    journeyStageResults = JOURNEY_ROUNDS.map(() => null);
-    startJourneyRound();
-  } else {
-    journeyMode = false;
-    const pool = MODES[selectedMode];
-    questions = buildQuestions(pool);
-    currentQ = 0;
-    score = 0;
-    missed = [];
-    answered = false;
-    document.getElementById('quizScreen').style.display = 'block';
-    renderQuestion();
+function buildPopulationQuestions() {
+  const qs = [];
+  const pool = shuffle(COUNTRIES);
+  for (let i = 0; i < pool.length - 1 && qs.length < 10; i++) {
+    const a = pool[i], b = pool[i+1];
+    if (a.population === b.population) continue;
+    const bigger = a.population > b.population ? a : b;
+    const smaller = a.population > b.population ? b : a;
+    qs.push({
+      type: 'population',
+      badge: '👥 Which Has More?',
+      text: `Which country has the larger population?`,
+      sub: `${a.name} vs ${b.name}`,
+      correct: bigger.name,
+      opts: [a.name, b.name],
+      fact: `${bigger.name} has a population of ${fmt(bigger.population)}, compared to ${fmt(smaller.population)} in ${smaller.name}.`,
+      flagCode: null,
+    });
   }
+  return qs.slice(0, 10);
 }
 
-function startJourneyRound(fromReplay) {
-  const round = JOURNEY_ROUNDS[journeyRoundIdx];
-  journeyStageResults[journeyRoundIdx] = 'active';
-  if (!fromReplay) journeyQIdx = 0;
+function buildTrueFalseQuestions() {
+  return shuffle(TF_Q).slice(0, 10).map(q => ({
+    type: 'truefalse',
+    badge: '✅ True or False',
+    text: q.statement,
+    correct: q.answer ? 'True' : 'False',
+    opts: ['True', 'False'],
+    isTF: true,
+    fact: q.fact,
+    flagCode: null,
+  }));
+}
 
-  // Build questions for this round from the round's pool
-  const pool = round.pool;
-  // Get other teams for wrong answers from ALL_TEAMS
-  journeyRoundQuestions = shuffle(pool).slice(0, round.count).map(correct => {
-    const others = shuffle(ALL_TEAMS.filter(t => t.name !== correct.name)).slice(0, 3);
-    return { correct, opts: shuffle([correct, ...others]) };
-  });
+// ── START QUIZ ───────────────────────────────────────────────────────────────
+function startQuiz() {
+  if (selectedMode === 'capitals') questions = buildCapitalQuestions();
+  else if (selectedMode === 'currency') questions = buildCurrencyQuestions();
+  else if (selectedMode === 'population') questions = buildPopulationQuestions();
+  else questions = buildTrueFalseQuestions();
 
-  score = 0; missed = []; answered = false;
+  currentQ = 0; score = 0; answered = false;
+
+  document.getElementById('startScreen').style.display = 'none';
+  document.getElementById('resultsScreen').style.display = 'none';
   document.getElementById('quizScreen').style.display = 'block';
 
-  // Update score bar to show round info
-  document.getElementById('scoreDisplay').textContent = round.name;
-
-  renderJourneyRoundBanner();
   renderQuestion();
 }
 
-function renderJourneyRoundBanner() {
-  const round = JOURNEY_ROUNDS[journeyRoundIdx];
-  // Show round name above question card
-  document.getElementById('qNum').innerHTML =
-    '<span style="color:var(--gold);font-weight:700;">' + round.emoji + ' ' + round.name + '</span>';
-  document.getElementById('scoreDisplay').textContent =
-    'Q' + (journeyQIdx+1) + ' of ' + round.count;
-  renderJourneyProgressBar();
-}
-
-function renderJourneyProgressBar() {
-  // Replace the simple progress bar with stage indicators
-  const fill = document.getElementById('progressBar');
-  const pct = ((journeyRoundIdx) / JOURNEY_ROUNDS.length) * 100;
-  fill.style.width = pct + '%';
-}
-
-function buildJourneyProgressHTML(highlightFailed) {
-  return JOURNEY_ROUNDS.map((r, i) => {
-    let cls = 'journey-stage-dot';
-    let status = journeyStageResults[i];
-    if (status === 'done') cls += ' done';
-    else if (status === 'active') cls += ' active';
-    else if (status === 'failed' || (highlightFailed && i === journeyRoundIdx)) cls += ' failed';
-    return '<div class="journey-stage"><div class="' + cls + '">' + r.label + '</div><div class="journey-stage-label">' + r.name.split(' ')[0] + '</div></div>';
-  }).join('');
-}
-
+// ── RENDER QUESTION ──────────────────────────────────────────────────────────
 function renderQuestion() {
   answered = false;
+  const q = questions[currentQ];
+  const total = questions.length;
 
-  let q, total;
-  if (journeyMode) {
-    q = journeyRoundQuestions[journeyQIdx];
-    total = journeyRoundQuestions.length;
-    renderJourneyRoundBanner();
-  } else {
-    q = questions[currentQ];
-    total = questions.length;
-    document.getElementById('qNum').textContent = `Question ${currentQ + 1} of ${total}`;
-    document.getElementById('scoreDisplay').textContent = `Score: ${score}`;
-    document.getElementById('progressBar').style.width = `${(currentQ / total) * 100}%`;
-  }
-  document.getElementById('flagDisplay').src = CDN + q.correct.code + '.png';
-  document.getElementById('flagDisplay').alt = 'Flag of ' + q.correct.name;
-  document.getElementById('continentHint').textContent = q.correct.continent;
-
-  const grid = document.getElementById('answersGrid');
-  grid.innerHTML = '';
-
-  q.opts.forEach(opt => {
-    const btn = document.createElement('button');
-    btn.className = 'answer-btn';
-    btn.innerHTML = `<span>${opt.name}</span>`;
-    btn.onclick = () => checkAnswer(opt, q.correct, btn);
-    grid.appendChild(btn);
-  });
-
+  document.getElementById('qNum').textContent = `Question ${currentQ + 1} of ${total}`;
+  document.getElementById('scoreDisplay').textContent = `Score: ${score}`;
+  document.getElementById('progressBar').style.width = `${(currentQ / total) * 100}%`;
   document.getElementById('feedback').className = 'feedback';
-  document.getElementById('feedback').textContent = '';
+  document.getElementById('feedback').innerHTML = '';
   document.getElementById('nextBtn').className = 'next-btn';
+  document.getElementById('revealFlag').style.display = 'none';
+
+  // Build question card
+  const card = document.getElementById('questionCard');
+  let cardHTML = `<div class="question-mode-badge">${q.badge}</div>`;
+  if (q.flagCode) {
+    cardHTML += `<img class="flag-img" src="${CDN}${q.flagCode}.png" alt="Flag">`;
+  }
+  cardHTML += `<div class="question-text">${q.text}</div>`;
+  if (q.sub) cardHTML += `<div class="question-sub">${q.sub}</div>`;
+  card.innerHTML = cardHTML;
+
+  // Build answers
+  const area = document.getElementById('answersArea');
+  if (q.isTF) {
+    area.innerHTML = `<div class="tf-grid">
+      <button class="tf-btn" onclick="checkAnswer('True','${q.correct}',this)">✅ True</button>
+      <button class="tf-btn" onclick="checkAnswer('False','${q.correct}',this)">❌ False</button>
+    </div>`;
+  } else {
+    area.innerHTML = `<div class="answers-grid">${q.opts.map(opt =>
+      `<button class="answer-btn" onclick="checkAnswer('${opt.replace(/'/g,"\\'")}','${q.correct.replace(/'/g,"\\'")}',this)">${opt}</button>`
+    ).join('')}</div>`;
+  }
 }
 
+// ── CHECK ANSWER ─────────────────────────────────────────────────────────────
 function checkAnswer(chosen, correct, btn) {
   if (answered) return;
   answered = true;
 
-  const allBtns = document.querySelectorAll('.answer-btn');
-  allBtns.forEach(b => b.disabled = true);
-
+  const q = questions[currentQ];
+  const isCorrect = chosen === correct;
   const feedback = document.getElementById('feedback');
-  const isCorrect = chosen.name === correct.name;
+
+  // Disable all buttons
+  document.querySelectorAll('.answer-btn, .tf-btn').forEach(b => b.disabled = true);
 
   if (isCorrect) {
     score++;
     btn.classList.add('correct');
-    const factCorrect = FACTS[correct.name] || '';
-    feedback.innerHTML = '✓ Correct! <br><small style="font-weight:400;opacity:0.85">' + factCorrect + '</small>';
+    feedback.innerHTML = `✓ Correct! ${q.fact ? '<br><small style="font-weight:400;opacity:0.85">' + q.fact + '</small>' : ''}`;
     feedback.className = 'feedback correct show';
-    if (!journeyMode) document.getElementById('scoreDisplay').textContent = `Score: ${score}`;
+    document.getElementById('scoreDisplay').textContent = `Score: ${score}`;
   } else {
     btn.classList.add('wrong');
-    allBtns.forEach(b => {
-      if (b.textContent.includes(correct.name)) b.classList.add('correct');
+    // Highlight correct
+    document.querySelectorAll('.answer-btn, .tf-btn').forEach(b => {
+      if (b.textContent.trim() === correct || b.textContent.includes(correct)) b.classList.add('correct');
     });
-    const factWrong = FACTS[correct.name] || '';
-    feedback.innerHTML = `✗ It was <strong>${correct.name}</strong>${factWrong ? '<br><small style="font-weight:400;opacity:0.85">' + factWrong + '</small>' : ''}`;
+    feedback.innerHTML = `✗ The answer was <strong>${correct}</strong>${q.fact ? '<br><small style="font-weight:400;opacity:0.85">' + q.fact + '</small>' : ''}`;
     feedback.className = 'feedback wrong show';
-    missed.push(correct);
   }
 
-  // Journey mode — wrong answer = knocked out
-  if (journeyMode && !isCorrect) {
-    document.getElementById('nextBtn').className = 'next-btn show';
-    document.getElementById('nextBtn').textContent = 'See result →';
-    document.getElementById('nextBtn').onclick = () => showKnockout(correct);
-    return;
+  // Show flag reveal for capital/currency questions
+  if (q.flagCode) {
+    document.getElementById('revealFlagImg').src = CDN + q.flagCode + '.png';
+    document.getElementById('revealFlagLabel').textContent = `🏴 Flag of ${q.flagName}`;
+    document.getElementById('revealFlag').style.display = 'block';
   }
 
   document.getElementById('nextBtn').className = 'next-btn show';
-  if (journeyMode) document.getElementById('nextBtn').onclick = () => nextQuestion();
 }
 
+// ── NEXT QUESTION ─────────────────────────────────────────────────────────────
 function nextQuestion() {
-  if (journeyMode) {
-    journeyQIdx++;
-    const round = JOURNEY_ROUNDS[journeyRoundIdx];
-    if (journeyQIdx >= round.count) {
-      // Round complete — advance
-      journeyStageResults[journeyRoundIdx] = 'done';
-      journeyRoundIdx++;
-      if (journeyRoundIdx >= JOURNEY_ROUNDS.length) {
-        showChampion();
-      } else {
-        // Brief pause then start next round
-        document.getElementById('quizScreen').style.display = 'none';
-        document.getElementById('nextBtn').onclick = () => nextQuestion();
-        journeyQIdx = 0;
-        startJourneyRound();
-      }
-    } else {
-      answered = false;
-      document.getElementById('nextBtn').className = 'next-btn';
-      document.getElementById('nextBtn').textContent = 'Next question →';
-      document.getElementById('nextBtn').onclick = () => nextQuestion();
-      renderQuestion();
-    }
-    return;
-  }
   currentQ++;
-  if (currentQ >= questions.length) {
-    showResults();
-  } else {
-    renderQuestion();
-  }
+  if (currentQ >= questions.length) showResults();
+  else renderQuestion();
 }
 
+// ── RESULTS ──────────────────────────────────────────────────────────────────
 function showResults() {
   document.getElementById('quizScreen').style.display = 'none';
   document.getElementById('resultsScreen').style.display = 'block';
 
   const total = questions.length;
   const pct = Math.round((score / total) * 100);
-
-  document.getElementById('resultsScore').textContent = `${score}/${total}`;
-  document.getElementById('resultsLabel').textContent = `World Cup 2026 Flag Quiz`;
+  const modeNames = {capitals:'Capital City Quiz',currency:'Currency Quiz',population:'Which Has More?',truefalse:'True or False'};
 
   let emoji, msg;
-  if (pct === 100) { emoji = '🏆'; msg = 'Perfect score! You know every World Cup 2026 flag. Share your result and challenge a friend.'; }
-  else if (pct >= 80) { emoji = '⭐'; msg = 'Great result! You know your World Cup flags well. A few slipped through — check the ones to learn below.'; }
-  else if (pct >= 60) { emoji = '🌍'; msg = 'Solid effort! You got most of them. Head to the Flag Explorer to brush up on the ones you missed.'; }
-  else if (pct >= 40) { emoji = '📚'; msg = 'Good start! Flags from Africa and Asia are tricky. Try the Flag Explorer to learn them before the tournament begins.'; }
-  else { emoji = '🌱'; msg = 'Room to grow — but you\'ve made a start! The Flag Explorer has all 195 flags with facts and stories to help you learn.'; }
+  if (pct === 100) { emoji = '🏆'; msg = 'Perfect score! You really know your world geography. Share your result and challenge a friend!'; }
+  else if (pct >= 80) { emoji = '⭐'; msg = 'Excellent result! A solid geography knowledge with just a couple of gaps to fill.'; }
+  else if (pct >= 60) { emoji = '🌍'; msg = 'Good effort! More than half right — try again and see if you can push higher.'; }
+  else if (pct >= 40) { emoji = '📚'; msg = 'A few slipped through — head to the Flag Explorer to discover more about the countries you missed.'; }
+  else { emoji = '🌱'; msg = 'Room to grow! The world is a big place — try again and learn something new each time.'; }
 
   document.getElementById('resultsEmoji').textContent = emoji;
+  document.getElementById('resultsScore').textContent = `${score}/${total}`;
+  document.getElementById('resultsLabel').textContent = modeNames[selectedMode];
   document.getElementById('resultsMsg').textContent = msg;
 
-  if (missed.length > 0) {
-    document.getElementById('missedSection').style.display = 'block';
-    const list = document.getElementById('missedList');
-    list.innerHTML = '';
-    missed.forEach(t => {
-      const tag = document.createElement('span');
-      tag.className = 'missed-tag';
-      tag.textContent = t.name;
-      list.appendChild(tag);
-    });
-  } else {
-    document.getElementById('missedSection').style.display = 'none';
-  }
-
-  document.getElementById('progressBar') && (document.getElementById('progressBar').style.width = '100%');
-
-  // Build share text based on score
-  const shareText = `I scored ${score}/${total} on the World Cup 2026 Flag Quiz! 🌍⚽ How many can you get?`;
-  const shareUrl = 'https://flagatlas.co.uk/worldcup/';
+  // Share links
+  const modeLabel = modeNames[selectedMode];
+  const shareText = `I scored ${score}/${total} on the FlagAtlas ${modeLabel}! 🌍 Can you beat me?`;
+  const shareUrl = 'https://flagatlas.co.uk/challenges/';
   const encoded = encodeURIComponent(shareText);
   const encodedUrl = encodeURIComponent(shareUrl);
-
-  // X / Twitter
-  document.getElementById('shareX').href =
-    `https://twitter.com/intent/tweet?text=${encoded}&url=${encodedUrl}`;
-
-  // Facebook
-  document.getElementById('shareFB').href =
-    `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encoded}`;
-
-  // WhatsApp
-  document.getElementById('shareWA').href =
-    `https://wa.me/?text=${encoded}%20${encodedUrl}`;
-}
-
-function copyLink() {
-  const text = 'https://flagatlas.co.uk/worldcup/';
-  navigator.clipboard.writeText(text).then(() => {
-    const el = document.getElementById('copyConfirm');
-    el.textContent = '✓ Link copied to clipboard';
-    setTimeout(() => { el.textContent = ''; }, 2500);
-  }).catch(() => {
-    // Fallback for older browsers
-    const ta = document.createElement('textarea');
-    ta.value = text;
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
-    document.body.removeChild(ta);
-    const el = document.getElementById('copyConfirm');
-    el.textContent = '✓ Link copied to clipboard';
-    setTimeout(() => { el.textContent = ''; }, 2500);
-  });
-}
-
-function showKnockout(wrongFlag) {
-  document.getElementById('quizScreen').style.display = 'none';
-  journeyStageResults[journeyRoundIdx] = 'failed';
-  const round = JOURNEY_ROUNDS[journeyRoundIdx];
-  document.getElementById('knockoutStage').textContent =
-    'You were eliminated in the ' + round.name + '.' +
-    (journeyRoundIdx === 0 ? ' Keep practising!' : ' So close!');
-  const fact = FACTS[wrongFlag.name] || 'Better luck next time!';
-  document.getElementById('knockoutFact').innerHTML =
-    '<strong>About ' + wrongFlag.name + ':</strong> ' + fact;
-  document.getElementById('knockoutProgress').innerHTML = buildJourneyProgressHTML(true);
-  document.getElementById('knockoutScreen').style.display = 'block';
-
-  // Set share links with round info
-  const roundName = round.name;
-  const knockoutText = journeyRoundIdx === 0
-    ? 'I got knocked out in the Group Stage of the World Cup 2026 Flag Quiz! Can you do better? ⚽🌍'
-    : 'I reached the ' + roundName + ' in the World Cup 2026 Flag Quiz Journey! Can you beat me? ⚽🌍';
-  const shareUrl = 'https://flagatlas.co.uk/worldcup/';
-  const encoded = encodeURIComponent(knockoutText);
-  const encodedUrl = encodeURIComponent(shareUrl);
-  document.getElementById('knockoutShareX').href =
-    `https://twitter.com/intent/tweet?text=${encoded}&url=${encodedUrl}`;
-  document.getElementById('knockoutShareFB').href =
-    `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encoded}`;
-  document.getElementById('knockoutShareWA').href =
-    `https://wa.me/?text=${encoded}%20${encodedUrl}`;
-}
-
-function showChampion() {
-  document.getElementById('quizScreen').style.display = 'none';
-  journeyStageResults[journeyRoundIdx - 1] = 'done';
-  document.getElementById('championMsg').textContent =
-    'You identified flags from all 5 rounds — Group Stage through to the Final. You know your World Cup flags better than most. Share your result and challenge a friend!';
-  document.getElementById('championProgress').innerHTML = buildJourneyProgressHTML(false);
-  document.getElementById('championScreen').style.display = 'block';
-  // Set share links
-  const shareText = '🏆 I just won the World Cup 2026 Flag Quiz Journey — all 5 rounds! Can you beat me?';
-  const shareUrl = 'https://flagatlas.co.uk/worldcup/';
-  const encoded = encodeURIComponent(shareText);
-  const encodedUrl = encodeURIComponent(shareUrl);
-  document.getElementById('championShareX').href =
-    `https://twitter.com/intent/tweet?text=${encoded}&url=${encodedUrl}`;
-  document.getElementById('championShareFB').href =
-    `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encoded}`;
-  document.getElementById('championShareWA').href =
-    `https://wa.me/?text=${encoded}%20${encodedUrl}`;
-}
-
-function replayFromStage() {
-  document.getElementById('knockoutScreen').style.display = 'none';
-  journeyStageResults[journeyRoundIdx] = 'active';
-  journeyQIdx = 0;
-  startJourneyRound(true);
-}
-
-function retryJourney() {
-  document.getElementById('championScreen').style.display = 'none';
-  journeyMode = true;
-  journeyRoundIdx = 0;
-  journeyQIdx = 0;
-  journeyStageResults = JOURNEY_ROUNDS.map(() => null);
-  startJourneyRound();
+  document.getElementById('resShareX').href = `https://twitter.com/intent/tweet?text=${encoded}&url=${encodedUrl}`;
+  document.getElementById('resShareFB').href = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}&quote=${encoded}`;
+  document.getElementById('resShareWA').href = `https://wa.me/?text=${encoded}%20${encodedUrl}`;
 }
 
 function retryQuiz() {
-  ['resultsScreen','knockoutScreen','championScreen'].forEach(id => {
-    document.getElementById(id).style.display = 'none';
-  });
-  journeyMode = false;
+  document.getElementById('resultsScreen').style.display = 'none';
+  startQuiz();
+}
+
+function backToMenu() {
+  document.getElementById('resultsScreen').style.display = 'none';
+  document.getElementById('quizScreen').style.display = 'none';
   document.getElementById('startScreen').style.display = 'block';
 }
 
-// ── RENDER BROWSE SECTION ────────────────────────────────────────────────────
-const CONTINENTS = [
-  { label: "⭐ Host Nations", color: "#fbbf24", teams: ALL_TEAMS.filter(t => t.continent === "Host") },
-  { label: "🌍 Europe · 16 teams", color: "#14b8a6", teams: ALL_TEAMS.filter(t => t.continent === "Europe") },
-  { label: "🌎 South America · 6 teams", color: "#34d399", teams: ALL_TEAMS.filter(t => t.continent === "South America") },
-  { label: "🌍 Africa · 10 teams", color: "#f43f5e", teams: ALL_TEAMS.filter(t => t.continent === "Africa") },
-  { label: "🌏 Asia · 9 teams", color: "#a78bfa", teams: ALL_TEAMS.filter(t => t.continent === "Asia") },
-  { label: "🌎 CONCACAF & Oceania · 6 teams", color: "#fbbf24", teams: ALL_TEAMS.filter(t => t.continent === "Americas") },
-];
-
-function renderBrowse() {
-  const wrap = document.getElementById('browseTeams');
-  if (!wrap) return;
-  let html = '';
-  CONTINENTS.forEach(group => {
-    html += `<div class="continent-block">
-      <div class="continent-label" style="color:${group.color}">${group.label}</div>
-      <div class="team-chips">`;
-    group.teams.forEach(team => {
-      const fact = FACTS[team.name] || '';
-      const explorerUrl = '/explorer/?q=' + encodeURIComponent(team.name);
-      html += `<div class="team-card" onclick="toggleFact(this)">
-        <div class="team-card-top">
-          <img class="team-card-flag" src="https://flagcdn.com/w40/${team.code}.png" alt="${team.name}" />
-          <span class="team-card-name">${team.name}</span>
-          <span class="team-card-toggle">▼ fact</span>
-        </div>
-        <div class="team-card-fact">
-          ${fact}
-          <a href="${explorerUrl}" style="display:inline-block;margin-top:0.4rem;color:var(--teal-light);font-size:0.75rem;text-decoration:none;">Explore flag →</a>
-        </div>
-      </div>`;
-    });
-    html += `</div></div>`;
+function copyLink() {
+  navigator.clipboard.writeText('https://flagatlas.co.uk/challenges/').then(() => {
+    const el = document.getElementById('copyConfirm');
+    el.textContent = '✓ Link copied!';
+    setTimeout(() => { el.textContent = ''; }, 2500);
   });
-  wrap.innerHTML = html;
 }
-
-function toggleFact(card) {
-  card.classList.toggle('open');
-  const toggle = card.querySelector('.team-card-toggle');
-  toggle.textContent = card.classList.contains('open') ? '▲ close' : '▼ fact';
-}
-
-renderBrowse();
 </script>
-<a href="https://ko-fi.com/flagatlas" target="_blank" rel="noopener" style="position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;align-items:center;gap:8px;background:#FF5E5B;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:700;padding:11px 18px;border-radius:100px;text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,0.3);transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">☕ Buy me a coffee</a>
+
+<section style="max-width:800px;margin:4rem auto 0;padding:0 24px 5rem;font-family:inherit">
+
+  <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--navy);margin-bottom:0.7rem;margin-top:2rem;border-top:1px solid #e2e8f0;padding-top:1.5rem">World Cup 2026 geography challenges — test your knowledge</h2>
+  <p style="color:#475569;line-height:1.75;margin-bottom:1rem;font-size:0.95rem">The 2026 FIFA World Cup features 48 nations from every corner of the world — and each one has a capital city, a currency and a place on the map. How well do you know them? These free geography challenges test your knowledge of the World Cup nations through four different quiz formats: capital cities, currencies, population comparisons and true or false. All free, all playable on any device, no login required.</p>
+
+  <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--navy);margin-bottom:0.7rem;margin-top:2rem;border-top:1px solid #e2e8f0;padding-top:1.5rem">Capital city quiz — World Cup 2026</h2>
+  <p style="color:#475569;line-height:1.75;margin-bottom:1rem;font-size:0.95rem">Can you name the capital cities of all 48 World Cup 2026 nations? Some are easy — Paris for France, Tokyo for Japan, London for England. Others catch people out. What's the capital of Curaçao? Where is Uzbekistan's capital? What about Cape Verde? The capital city quiz covers every World Cup nation and tests your geographical knowledge beyond the football.</p>
+
+  <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--navy);margin-bottom:0.7rem;margin-top:2rem;border-top:1px solid #e2e8f0;padding-top:1.5rem">Which has more? — population geography quiz</h2>
+  <p style="color:#475569;line-height:1.75;margin-bottom:1rem;font-size:0.95rem">Which country has the larger population — Morocco or Portugal? Australia or Ecuador? The "Which Has More?" challenge pits countries head to head on population. It's harder than it sounds — and reveals surprising facts about the size and scale of the nations competing in the 2026 World Cup. Great for classrooms and geography enthusiasts of all ages.</p>
+
+  <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--navy);margin-bottom:0.7rem;margin-top:2rem;border-top:1px solid #e2e8f0;padding-top:1.5rem">More free geography tools on FlagAtlas</h2>
+  <p style="color:#475569;line-height:1.75;margin-bottom:1rem;font-size:0.95rem">FlagAtlas is a collection of free geography tools — no login, no cost, no ads. As well as the geography challenges, you can play the <a href="https://flagatlas.co.uk/worldcup/" style="color:var(--teal);text-decoration:underline;text-underline-offset:3px">World Cup 2026 flag quiz</a>, try the <a href="https://flagatlas.co.uk/quiz/" style="color:var(--teal);text-decoration:underline;text-underline-offset:3px">60-second flag speed quiz</a>, take the <a href="https://flagatlas.co.uk/daily/" style="color:var(--teal);text-decoration:underline;text-underline-offset:3px">daily flag challenge</a> or browse every flag in the <a href="https://flagatlas.co.uk/explorer/" style="color:var(--teal);text-decoration:underline;text-underline-offset:3px">flag explorer</a>.</p>
+
+</section>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4752f8ed08944697a65aba3d409c6ccd"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
