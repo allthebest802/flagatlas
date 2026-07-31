@@ -1334,9 +1334,21 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://flagatlas.co.uk/colouring/uganda/</loc>
+    <lastmod>2026-07-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://flagatlas.co.uk/colouring/ukraine/</loc>
     <lastmod>2026-07-12</lastmod>
     <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://flagatlas.co.uk/colouring/philippines/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
@@ -1784,9 +1796,27 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://flagatlas.co.uk/colouring/papua-new-guinea/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://flagatlas.co.uk/colouring/paraguay/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://flagatlas.co.uk/colouring/peru/</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://flagatlas.co.uk/colouring/portugal/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
@@ -1808,9 +1838,21 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://flagatlas.co.uk/colouring/saudi-arabia/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://flagatlas.co.uk/colouring/scotland/</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://flagatlas.co.uk/colouring/san-marino/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
@@ -1826,9 +1868,27 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://flagatlas.co.uk/colouring/spain/</loc>
+    <lastmod>2026-07-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://flagatlas.co.uk/colouring/sri-lanka/</loc>
+    <lastmod>2026-07-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://flagatlas.co.uk/colouring/sudan/</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://flagatlas.co.uk/colouring/tajikistan/</loc>
+    <lastmod>2026-07-31</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
@@ -1853,6 +1913,12 @@
     <loc>https://flagatlas.co.uk/colouring/trinidad-and-tobago/</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://flagatlas.co.uk/colouring/turkmenistan/</loc>
+    <lastmod>2026-07-31</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
@@ -2013,6 +2079,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://flagatlas.co.uk/colouring/serbia/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://flagatlas.co.uk/colouring/seychelles/</loc>
     <lastmod>2026-07-15</lastmod>
     <changefreq>yearly</changefreq>
@@ -2097,9 +2169,33 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://flagatlas.co.uk/colouring/singapore/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://flagatlas.co.uk/colouring/slovakia/</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://flagatlas.co.uk/colouring/slovenia/</loc>
+    <lastmod>2026-07-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://flagatlas.co.uk/colouring/solomon-islands/</loc>
     <lastmod>2026-07-15</lastmod>
     <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://flagatlas.co.uk/colouring/switzerland/</loc>
+    <lastmod>2026-07-31</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
@@ -2154,6 +2250,30 @@
     <loc>https://flagatlas.co.uk/colouring/suriname/</loc>
     <lastmod>2026-07-17</lastmod>
     <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://flagatlas.co.uk/colouring/uruguay/</loc>
+    <lastmod>2026-07-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://flagatlas.co.uk/colouring/uzbekistan/</loc>
+    <lastmod>2026-07-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://flagatlas.co.uk/colouring/vanuatu/</loc>
+    <lastmod>2026-07-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://flagatlas.co.uk/colouring/vatican-city/</loc>
+    <lastmod>2026-07-31</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
@@ -2376,6 +2496,18 @@
     <loc>https://flagatlas.co.uk/colouring/china/</loc>
     <lastmod>2026-07-18</lastmod>
     <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://flagatlas.co.uk/colouring/zimbabwe/</loc>
+    <lastmod>2026-07-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://flagatlas.co.uk/colouring/zambia/</loc>
+    <lastmod>2026-07-31</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 </urlset>
