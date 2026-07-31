@@ -1741,13 +1741,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  <url>
-    <loc>https://flagatlas.co.uk/colouring/martinique/</loc>
-    <lastmod>2026-07-13</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
+<url>
     <loc>https://flagatlas.co.uk/colouring/mauritius/</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>yearly</changefreq>
@@ -1843,13 +1837,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-  <url>
-    <loc>https://flagatlas.co.uk/colouring/scotland/</loc>
-    <lastmod>2026-07-13</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
+<url>
     <loc>https://flagatlas.co.uk/colouring/san-marino/</loc>
     <lastmod>2026-07-30</lastmod>
     <changefreq>monthly</changefreq>
