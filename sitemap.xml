@@ -2060,13 +2060,7 @@
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
-  <url>
-    <loc>https://flagatlas.co.uk/colouring/faroe-islands/</loc>
-    <lastmod>2026-07-15</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
+<url>
     <loc>https://flagatlas.co.uk/colouring/serbia/</loc>
     <lastmod>2026-07-30</lastmod>
     <changefreq>monthly</changefreq>
