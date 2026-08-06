@@ -184,9 +184,16 @@
   .quiz-hud-num { font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:700; color:var(--cream); line-height:1; }
   .quiz-hud-label { font-size:0.68rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.06em; }
 
-  .quiz-flag-wrap { width:100%; border-radius:var(--radius); overflow:hidden; background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.08); }
+  .quiz-flag-wrap { width:100%; position:relative; border-radius:var(--radius); overflow:hidden; background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.08); }
   .quiz-flag-wrap img { width:100%; max-height:220px; object-fit:contain; padding:1rem; display:block; background:rgba(0,0,0,0.2); transition:opacity 0.15s; }
   .quiz-flag-wrap img.flash { opacity:0; }
+  /* wait-for-flag states */
+  .quiz-flag-wrap.loading { min-height:180px; }
+  .quiz-flag-wrap.loading::after { content:''; position:absolute; top:50%; left:50%; width:34px; height:34px; margin:-17px 0 0 -17px; border:3px solid rgba(255,255,255,0.15); border-top-color:var(--teal-light); border-radius:50%; animation:spin 0.7s linear infinite; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .quiz-flag-wrap.error { min-height:180px; }
+  .quiz-flag-wrap.error::after { content:'⚠ Flag couldn\\2019 t load — tap an answer to continue'; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; text-align:center; padding:1rem; font-size:0.82rem; color:var(--text-muted); }
+  .quiz-answers.awaiting { opacity:0.45; pointer-events:none; }
 
   .quiz-feedback { position:relative; }
   .quiz-feedback-overlay { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:2.5rem; opacity:0; transition:opacity 0.15s; pointer-events:none; border-radius:var(--radius); }
@@ -779,15 +786,16 @@ function startQuiz(continentId) {
 function renderQuizQuestion() {
   const current = quizCountries[quizIdx];
   const conf = CONTINENTS.find(c => c.id === activeContinentId);
-  quizAnswering = false;
+  quizAnswering = true; // block answering until the flag is actually ready
 
   document.getElementById('qNum').textContent  = quizIdx + 1;
   document.getElementById('qScore').textContent = quizScore;
 
-  const img = document.getElementById('quizFlagImg');
-  img.classList.add('flash');
-  img.onload = () => img.classList.remove('flash');
-  img.src = flagUrl(current.code);
+  const wrap = document.getElementById('quizFlagWrap');
+  const img  = document.getElementById('quizFlagImg');
+  wrap.classList.remove('error');
+  wrap.classList.add('loading');
+  img.classList.add('flash'); // hidden until it loads
 
   document.getElementById('quizFeedback').className = 'quiz-feedback-overlay';
   document.getElementById('quizFeedback').textContent = '';
@@ -799,6 +807,7 @@ function renderQuizQuestion() {
 
   const grid = document.getElementById('quizAnswers');
   grid.innerHTML = '';
+  grid.classList.add('awaiting'); // dim + disable answers until the flag is ready
   const keys = ['A','B','C','D'];
 
   options.forEach((opt, i) => {
@@ -809,6 +818,30 @@ function renderQuizQuestion() {
     btn.addEventListener('click', () => handleQuizAnswer(btn, opt.code === current.code, current));
     grid.appendChild(btn);
   });
+
+  // only reveal the flag + enable answering once the image has loaded
+  function ready() {
+    wrap.classList.remove('loading');
+    img.classList.remove('flash');
+    grid.classList.remove('awaiting');
+    quizAnswering = false;
+  }
+  let triedFallback = false;
+  img.onload = ready;
+  img.onerror = () => {
+    if (!triedFallback) {                 // one retry at a different size
+      triedFallback = true;
+      img.src = `https://flagcdn.com/h240/${current.code}.png`;
+      return;
+    }
+    // still failed — don't leave the player stuck: stop the spinner,
+    // show a note and let them answer to move on
+    wrap.classList.remove('loading');
+    wrap.classList.add('error');
+    grid.classList.remove('awaiting');
+    quizAnswering = false;
+  };
+  img.src = flagUrl(current.code);
 }
 
 function handleQuizAnswer(btn, isCorrect, current) {
