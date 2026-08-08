@@ -16,21 +16,24 @@
 <meta property="og:url" content="https://flagatlas.co.uk/explorer/qatar/">
 <meta property="og:title" content="Qatar Flag — Meaning &amp; Facts | FlagAtlas">
 <meta property="og:description" content="Maroon represents blood shed in the many wars Qatar fought. White stands for peace. Qatar is one of the few countries whose flag is taller than it is wide.">
-<meta property="og:image" content="https://flagcdn.com/w640/qa.png">
+<meta property="og:image" content="https://flagatlas.co.uk/flags/qatar-flag.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="900">
+<meta property="og:image:alt" content="Flag of Qatar">
 <meta property="og:site_name" content="FlagAtlas">
 <meta property="og:locale" content="en_GB">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="https://flagatlas.co.uk/explorer/qatar/">
 <meta name="twitter:title" content="Qatar Flag — Meaning &amp; Facts | FlagAtlas">
 <meta name="twitter:description" content="Maroon represents blood shed in the many wars Qatar fought. White stands for peace. Qatar is one of the few countries whose flag is taller than it is wide.">
-<meta name="twitter:image" content="https://flagcdn.com/w640/qa.png">
+<meta name="twitter:image" content="https://flagatlas.co.uk/flags/qatar-flag.png">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Qatar Flag — Meaning, Facts & Capital",
   "description": "Maroon represents blood shed in the many wars Qatar fought. White stands for peace. Qatar is one of the few countries whose flag is taller than it is wide.",
-  "image": "https://flagcdn.com/w640/qa.png",
+  "image": {"@type": "ImageObject", "url": "https://flagatlas.co.uk/flags/qatar-flag.png", "width": 1200, "height": 900, "caption": "Flag of Qatar"},
   "url": "https://flagatlas.co.uk/explorer/qatar/",
   "isPartOf": { "@type": "WebSite", "name": "FlagAtlas", "url": "https://flagatlas.co.uk/" },
   "about": { "@type": "Country", "name": "Qatar" },
@@ -59,9 +62,9 @@
   .breadcrumb { position:relative; z-index:1; max-width:900px; margin:0 auto; padding:1.2rem 1.5rem 0; font-size:0.8rem; color:var(--text-muted); }
   .breadcrumb a { color:var(--teal-light); text-decoration:none; }
   .breadcrumb a:hover { text-decoration:underline; }
-  .country-main { position:relative; z-index:1; max-width:900px; margin:0 auto; padding:1.5rem 1.5rem 3rem; display:grid; grid-template-columns:280px 1fr; gap:2rem; align-items:start; }
-  .flag-hero { border-radius:var(--radius); overflow:hidden; border:1px solid rgba(255,255,255,0.1); background:rgba(0,0,0,0.3); position:sticky; top:1.5rem; }
-  .flag-hero img { width:100%; display:block; aspect-ratio:3/2; object-fit:contain; padding:1rem; background:rgba(255,255,255,0.03); }
+  .country-main { position:relative; z-index:1; max-width:900px; margin:0 auto; padding:1.5rem 1.5rem 3rem; display:grid; grid-template-columns:300px 1fr; gap:2rem; align-items:start; }
+  .flag-hero { border-radius:var(--radius); overflow:hidden; border:1px solid rgba(255,255,255,0.12); background:rgba(0,0,0,0.2); box-shadow:0 8px 24px rgba(0,0,0,0.28); }
+  .flag-hero img { width:100%; height:auto; display:block; }
   .country-continent { font-size:0.75rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--teal-light); margin-bottom:0.4rem; }
   .country-h1 { font-family:'Playfair Display',serif; font-size:clamp(2rem,5vw,2.8rem); font-weight:900; color:var(--cream); line-height:1.1; margin-bottom:0.6rem; }
   .country-intro { font-size:0.98rem; color:var(--text-light); line-height:1.7; margin-bottom:1.5rem; }
@@ -102,6 +105,16 @@
   .copy-chip.alt { background:rgba(245,158,11,0.12); border-color:rgba(245,158,11,0.35); color:var(--gold); }
   .copy-chip.alt:hover { background:rgba(245,158,11,0.2); }
   .copy-chip.copied { background:var(--teal); color:#04211d; border-color:var(--teal); }
+
+  /* --- flag layout: title/intro wrap beside the flag, details flow full-width below --- */
+  .country-main { display:block; }
+  .country-main::after { content:""; display:table; clear:both; }
+  .flag-hero { float:left; width:300px; margin:0 1.75rem 1.25rem 0; }
+  .stat-row { clear:left; }
+  @media(max-width:680px){
+    .flag-hero { float:none; width:100%; max-width:320px; margin:0 0 1.25rem; }
+    .stat-row { clear:none; }
+  }
 </style>
 </head>
 <body>
@@ -117,7 +130,7 @@
 </div>
 <main class="country-main">
   <div class="flag-hero">
-    <img src="https://flagcdn.com/w640/qa.png" alt="Flag of Qatar" width="640" height="427" loading="eager">
+    <img src="/flags/qatar-flag.png" alt="Flag of Qatar" title="Flag of Qatar" width="1200" height="900" loading="eager">
   </div>
   <div>
     <div class="country-continent">Asia</div>

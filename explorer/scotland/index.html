@@ -22,7 +22,10 @@
 <meta property="og:url" content="https://flagatlas.co.uk/explorer/scotland/">
 <meta property="og:title" content="Scotland Flag — Meaning &amp; Facts | FlagAtlas">
 <meta property="og:description" content="A white diagonal cross (saltire) on a blue background, representing St Andrew, Scotland&#x27;s patron saint. Legend holds that St Andrew was crucified on an X-shaped cross, inspiring the design.">
-<meta property="og:image" content="https://flagcdn.com/w640/gb-sct.png">
+<meta property="og:image" content="https://flagatlas.co.uk/flags/scotland-flag.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="900">
+<meta property="og:image:alt" content="Flag of Scotland">
 <meta property="og:site_name" content="FlagAtlas">
 <meta property="og:locale" content="en_GB">
 
@@ -31,7 +34,7 @@
 <meta name="twitter:url" content="https://flagatlas.co.uk/explorer/scotland/">
 <meta name="twitter:title" content="Scotland Flag — Meaning &amp; Facts | FlagAtlas">
 <meta name="twitter:description" content="A white diagonal cross (saltire) on a blue background, representing St Andrew, Scotland&#x27;s patron saint. Legend holds that St Andrew was crucified on an X-shaped cross, inspiring the design.">
-<meta name="twitter:image" content="https://flagcdn.com/w640/gb-sct.png">
+<meta name="twitter:image" content="https://flagatlas.co.uk/flags/scotland-flag.png">
 
 <!-- JSON-LD -->
 <script type="application/ld+json">
@@ -40,7 +43,7 @@
   "@type": "Article",
   "headline": "Scotland Flag — Meaning, Facts & Capital",
   "description": "A white diagonal cross (saltire) on a blue background, representing St Andrew, Scotland's patron saint. Legend holds that St Andrew was crucified on an X-shaped cross, inspiring the design.",
-  "image": "https://flagcdn.com/w640/gb-sct.png",
+  "image": {"@type": "ImageObject", "url": "https://flagatlas.co.uk/flags/scotland-flag.png", "width": 1200, "height": 900, "caption": "Flag of Scotland"},
   "url": "https://flagatlas.co.uk/explorer/scotland/",
   "isPartOf": { "@type": "WebSite", "name": "FlagAtlas", "url": "https://flagatlas.co.uk/" },
   "about": { "@type": "Country", "name": "Scotland" },
@@ -125,7 +128,7 @@
     max-width:900px; margin:0 auto;
     padding:1.5rem 1.5rem 3rem;
     display:grid;
-    grid-template-columns: 280px 1fr;
+    grid-template-columns: 300px 1fr;
     gap:2rem;
     align-items:start;
   }
@@ -135,9 +138,9 @@
     overflow:hidden;
     border:1px solid rgba(255,255,255,0.1);
     background:rgba(0,0,0,0.3);
-    position:sticky; top:1.5rem;
+    box-shadow:0 8px 24px rgba(0,0,0,0.28);
   }
-  .flag-hero img { width:100%; display:block; aspect-ratio:3/2; object-fit:cover; }
+  .flag-hero img { width:100%; height:auto; display:block; }
 
   .country-continent {
     font-size:0.75rem; font-weight:600; letter-spacing:0.1em;
@@ -220,6 +223,16 @@
   .copy-chip.alt { background:rgba(245,158,11,0.12); border-color:rgba(245,158,11,0.35); color:var(--gold); }
   .copy-chip.alt:hover { background:rgba(245,158,11,0.2); }
   .copy-chip.copied { background:var(--teal); color:#04211d; border-color:var(--teal); }
+
+  /* --- flag layout: title/intro wrap beside the flag, details flow full-width below --- */
+  .country-main { display:block; }
+  .country-main::after { content:""; display:table; clear:both; }
+  .flag-hero { float:left; width:300px; margin:0 1.75rem 1.25rem 0; }
+  .stat-row { clear:left; }
+  @media(max-width:680px){
+    .flag-hero { float:none; width:100%; max-width:320px; margin:0 0 1.25rem; }
+    .stat-row { clear:none; }
+  }
 </style>
 </head>
 <body>
@@ -238,7 +251,7 @@
 
 <main class="country-main">
   <div class="flag-hero">
-    <img src="https://flagcdn.com/w640/gb-sct.png" alt="Flag of Scotland" width="640" height="427">
+    <img src="/flags/scotland-flag.png" alt="Flag of Scotland" title="Flag of Scotland" width="1200" height="900" loading="eager">
   </div>
 
   <div>
