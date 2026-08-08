@@ -192,6 +192,16 @@
     gap:0.9rem;
   }
 
+  .letter-divider {
+    grid-column:1/-1;
+    font-family:'Playfair Display',serif;
+    font-size:1.5rem; font-weight:700; color:var(--teal-light);
+    padding:0.7rem 0 0.35rem; margin-top:0.4rem;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+    scroll-margin-top:80px;
+  }
+  .letter-divider:first-child { margin-top:0; padding-top:0; }
+
   .flag-card {
     background:rgba(255,255,255,0.04);
     border:1px solid rgba(255,255,255,0.07);
@@ -659,7 +669,7 @@ function slugify(name) {
 }
 
 function renderGrid() {
-  const filtered = getFiltered();
+  const filtered = getFiltered().slice().sort((a, b) => a.name.localeCompare(b.name));
   countEl.textContent = filtered.length + ' countr' + (filtered.length === 1 ? 'y' : 'ies');
   grid.innerHTML = '';
 
@@ -668,7 +678,17 @@ function renderGrid() {
     return;
   }
 
+  let currentLetter = null;
   filtered.forEach((c, i) => {
+    const letter = c.name.charAt(0).toUpperCase();
+    if (letter !== currentLetter) {
+      currentLetter = letter;
+      const divider = document.createElement('div');
+      divider.className = 'letter-divider';
+      divider.id = 'letter-' + letter;
+      divider.textContent = letter;
+      grid.appendChild(divider);
+    }
     const card = document.createElement('div');
     card.className = 'flag-card' + (c.code === activeCode ? ' active' : '');
     card.style.animationDelay = Math.min(i * 0.02, 0.4) + 's';
