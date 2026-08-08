@@ -7,8 +7,8 @@
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<title>Fiji Flag — Meaning, Facts &amp; Capital | FlagAtlas</title>
-<meta name="description" content="What does the Fiji flag mean? Light blue represents the Pacific Ocean. The Union Jack reflects British colonial history. The shield shows sugarcane, a dove, a British lion, and a… Capital: Suva. GDP per capita: $5,200. HDI: 0.730 (High).">
+<title>Fiji Flag — Meaning, Emoji &amp; Free Printable | FlagAtlas</title>
+<meta name="description" content="What does the Fiji flag mean? Light blue represents the Pacific Ocean. The Union Jack reflects British colonial history. The shield shows sugarcane, a dove, a British lion, and a…. 🇫🇯 Fiji flag emoji to copy and a free printable colouring page.">
 <meta name="author" content="FlagAtlas">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://flagatlas.co.uk/explorer/fiji/">
@@ -93,6 +93,15 @@
   @media(max-width:680px) { .country-main { grid-template-columns:1fr; } .flag-hero { position:static; max-width:320px; } .dev-grid { grid-template-columns:1fr 1fr; } }
   footer { position:relative; z-index:1; text-align:center; padding:1.5rem; border-top:1px solid rgba(255,255,255,0.06); color:var(--text-muted); font-size:0.8rem; margin-top:1rem; }
   footer a { color:var(--teal-light); text-decoration:none; }
+
+  /* QUICK ACTIONS (copy emoji / printable) */
+  .flag-quick { display:flex; gap:0.6rem; flex-wrap:wrap; margin:-0.6rem 0 1.4rem; }
+  .copy-chip { display:inline-flex; align-items:center; gap:0.45rem; padding:0.55rem 1rem; border-radius:100px; font-size:0.85rem; font-weight:600; cursor:pointer; text-decoration:none; font-family:'DM Sans',sans-serif; background:rgba(20,184,166,0.12); border:1px solid rgba(20,184,166,0.35); color:var(--teal-light); transition:all 0.15s; }
+  .copy-chip:hover { background:rgba(20,184,166,0.2); }
+  .copy-chip .emoji { font-size:1.15rem; line-height:1; }
+  .copy-chip.alt { background:rgba(245,158,11,0.12); border-color:rgba(245,158,11,0.35); color:var(--gold); }
+  .copy-chip.alt:hover { background:rgba(245,158,11,0.2); }
+  .copy-chip.copied { background:var(--teal); color:#04211d; border-color:var(--teal); }
 </style>
 </head>
 <body>
@@ -114,6 +123,10 @@
     <div class="country-continent">Oceania</div>
     <h1 class="country-h1">Fiji Flag</h1>
     <p class="country-intro">Light blue represents the Pacific Ocean. The Union Jack reflects British colonial history. The shield shows sugarcane, a dove, a British lion, and a British ship — representing Fiji&#x27;s history and culture.</p>
+    <div class="flag-quick">
+      <button class="copy-chip" id="copyEmoji" data-emoji="🇫🇯"><span class="emoji">🇫🇯</span> <span class="label">Copy flag emoji</span></button>
+      <a class="copy-chip alt" href="/colouring/fiji/">🎨 Free printable colouring page</a>
+    </div>
 
     <div class="stat-row">
       <div class="stat-item">
@@ -185,5 +198,22 @@
   <p>FlagAtlas — free educational tools for everyone &nbsp;·&nbsp; <a href="/contact">Contact</a> &nbsp;·&nbsp; <a href="/privacy/">Privacy &amp; Terms</a></p>
 </footer>
 <a href="https://ko-fi.com/flagatlas" target="_blank" rel="noopener" style="position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;align-items:center;gap:8px;background:#FF5E5B;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:700;padding:11px 18px;border-radius:100px;text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,0.3);transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">☕ Buy me a coffee</a>
+<script>
+(function () {
+  var btn = document.getElementById('copyEmoji');
+  if (!btn) return;
+  btn.addEventListener('click', function () {
+    var emoji = btn.getAttribute('data-emoji');
+    var label = btn.querySelector('.label');
+    var original = label.textContent;
+    var done = function () {
+      btn.classList.add('copied'); label.textContent = 'Copied!';
+      setTimeout(function () { btn.classList.remove('copied'); label.textContent = original; }, 1500);
+    };
+    if (navigator.clipboard) { navigator.clipboard.writeText(emoji).then(done).catch(done); }
+    else { var ta=document.createElement('textarea'); ta.value=emoji; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(e){} document.body.removeChild(ta); done(); }
+  });
+})();
+</script>
 </body>
 </html>
