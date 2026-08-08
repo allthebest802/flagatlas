@@ -38,6 +38,8 @@ nav{position:relative;z-index:10;display:flex;align-items:center;justify-content
 .section-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1.2rem;display:flex;align-items:center;gap:10px}
 .section-label::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.08)}
 .flag-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
+.letter-divider{grid-column:1/-1;font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--teal-light);padding:0.7rem 0 0.35rem;margin-top:0.4rem;border-bottom:1px solid rgba(255,255,255,0.1);scroll-margin-top:80px}
+.letter-divider:first-child{margin-top:0;padding-top:0}
 .flag-card{display:block;background:var(--navy-mid);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius-sm);overflow:hidden;transition:all 0.2s}
 .flag-card:hover{border-color:var(--teal-light);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
 .flag-preview{background:white;padding:14px;display:flex;align-items:center;justify-content:center;height:100px}
@@ -119,6 +121,7 @@ footer a:hover{color:var(--teal-light)}
 <div class="main">
   <div class="section-label">195 flags · A to Z</div>
   <div class="flag-grid">
+    <div class="letter-divider" id="letter-A">A</div>
     <a class="flag-card" href="/colouring/afghanistan/">
       <div class="flag-preview">
         <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
@@ -362,6 +365,7 @@ footer a:hover{color:var(--teal-light)}
         <div class="flag-cta">Colour this flag →</div>
       </div>
     </a>
+    <div class="letter-divider" id="letter-B">B</div>
     <a class="flag-card" href="/colouring/bahamas/">
       <div class="flag-preview">
         <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
@@ -717,6 +721,7 @@ footer a:hover{color:var(--teal-light)}
         <div class="flag-cta">Colour this flag →</div>
       </div>
     </a>
+    <div class="letter-divider" id="letter-C">C</div>
     <a class="flag-card" href="/colouring/cambodia/">
       <div class="flag-preview">
         <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
@@ -1447,6 +1452,7 @@ footer a:hover{color:var(--teal-light)}
         <div class="flag-cta">Colour this flag →</div>
       </div>
     </a>
+    <div class="letter-divider" id="letter-D">D</div>
     <a class="flag-card" href="/colouring/denmark/">
       <div class="flag-preview">
         <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
@@ -1578,6 +1584,7 @@ footer a:hover{color:var(--teal-light)}
         <div class="flag-cta">Colour this flag →</div>
       </div>
     </a>
+    <div class="letter-divider" id="letter-E">E</div>
     <a class="flag-card" href="/colouring/east-timor/">
       <div class="flag-preview">
         <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
@@ -1832,6 +1839,7 @@ footer a:hover{color:var(--teal-light)}
         <div class="flag-cta">Colour this flag →</div>
       </div>
     </a>
+    <div class="letter-divider" id="letter-F">F</div>
     <a class="flag-card" href="/colouring/fiji/">
       <div class="flag-preview">
         <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
@@ -1891,6 +1899,7 @@ footer a:hover{color:var(--teal-light)}
         <div class="flag-cta">Colour this flag →</div>
       </div>
     </a>
+    <div class="letter-divider" id="letter-G">G</div>
     <a class="flag-card" href="/colouring/gabon/">
       <div class="flag-preview">
         <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
@@ -2127,6 +2136,7 @@ footer a:hover{color:var(--teal-light)}
         <div class="flag-cta">Colour this flag →</div>
       </div>
     </a>
+    <div class="letter-divider" id="letter-H">H</div>
     <a class="flag-card" href="/colouring/haiti/">
       <div class="flag-preview">
         <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
@@ -2182,6 +2192,7 @@ footer a:hover{color:var(--teal-light)}
         <div class="flag-cta">Colour this flag →</div>
       </div>
     </a>
+    <div class="letter-divider" id="letter-I">I</div>
     <a class="flag-card" href="/colouring/iceland/">
       <div class="flag-preview">
         <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
@@ -2390,6 +2401,7 @@ footer a:hover{color:var(--teal-light)}
         <div class="flag-cta">Colour this flag →</div>
       </div>
     </a>
+    <div class="letter-divider" id="letter-J">J</div>
     <a class="flag-card" href="/colouring/jamaica/">
       <div class="flag-preview">
         <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
@@ -2453,6 +2465,7 @@ footer a:hover{color:var(--teal-light)}
         <div class="flag-cta">Colour this flag →</div>
       </div>
     </a>
+    <div class="letter-divider" id="letter-K">K</div>
     <a class="flag-card" href="/colouring/kazakhstan/">
       <div class="flag-preview">
         <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
@@ -2678,6 +2691,7 @@ footer a:hover{color:var(--teal-light)}
         <div class="flag-cta">Colour this flag →</div>
       </div>
     </a>
+    <div class="letter-divider" id="letter-L">L</div>
     <a class="flag-card" href="/colouring/laos/">
       <div class="flag-preview">
         <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
@@ -2923,6 +2937,7 @@ footer a:hover{color:var(--teal-light)}
         <div class="flag-cta">Colour this flag →</div>
       </div>
     </a>
+    <div class="letter-divider" id="letter-M">M</div>
     <a class="flag-card" href="/colouring/madagascar/">
       <div class="flag-preview">
         <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
@@ -3360,6 +3375,7 @@ footer a:hover{color:var(--teal-light)}
         <div class="flag-cta">Colour this flag →</div>
       </div>
     </a>
+    <div class="letter-divider" id="letter-N">N</div>
     <a class="flag-card" href="/colouring/namibia/">
       <div class="flag-preview">
         <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
@@ -3590,6 +3606,7 @@ footer a:hover{color:var(--teal-light)}
         <div class="flag-cta">Colour this flag →</div>
       </div>
     </a>
+    <div class="letter-divider" id="letter-O">O</div>
     <a class="flag-card" href="/colouring/oman/">
       <div class="flag-preview">
         <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
@@ -3838,6 +3855,7 @@ footer a:hover{color:var(--teal-light)}
         <div class="flag-cta">Colour this flag →</div>
       </div>
     </a>
+    <div class="letter-divider" id="letter-P">P</div>
     <a class="flag-card" href="/colouring/pakistan/">
       <div class="flag-preview">
         <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
@@ -4116,6 +4134,7 @@ footer a:hover{color:var(--teal-light)}
         <div class="flag-cta">Colour this flag →</div>
       </div>
     </a>
+    <div class="letter-divider" id="letter-Q">Q</div>
     <a class="flag-card" href="/colouring/qatar/">
       <div class="flag-preview">
         <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
@@ -4133,6 +4152,7 @@ footer a:hover{color:var(--teal-light)}
         <div class="flag-cta">Colour this flag →</div>
       </div>
     </a>
+    <div class="letter-divider" id="letter-R">R</div>
     <a class="flag-card" href="/colouring/republic-of-congo/">
       <div class="flag-preview">
         <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
@@ -4210,6 +4230,7 @@ footer a:hover{color:var(--teal-light)}
         <div class="flag-cta">Colour this flag →</div>
       </div>
     </a>
+    <div class="letter-divider" id="letter-S">S</div>
     <a class="flag-card" href="/colouring/saint-kitts-and-nevis/">
       <div class="flag-preview">
         <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
@@ -4874,6 +4895,7 @@ footer a:hover{color:var(--teal-light)}
         <div class="flag-cta">Colour this flag →</div>
       </div>
     </a>
+    <div class="letter-divider" id="letter-T">T</div>
     <a class="flag-card" href="/colouring/tajikistan/">
       <div class="flag-preview">
         <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
@@ -5147,6 +5169,7 @@ footer a:hover{color:var(--teal-light)}
         <div class="flag-cta">Colour this flag →</div>
       </div>
     </a>
+    <div class="letter-divider" id="letter-U">U</div>
     <a class="flag-card" href="/colouring/uae/">
       <div class="flag-preview">
         <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
@@ -5399,6 +5422,7 @@ footer a:hover{color:var(--teal-light)}
         <div class="flag-cta">Colour this flag →</div>
       </div>
     </a>
+    <div class="letter-divider" id="letter-V">V</div>
     <a class="flag-card" href="/colouring/vanuatu/">
       <div class="flag-preview">
         <svg viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg" style="max-height:100%;width:auto">
@@ -5480,6 +5504,7 @@ footer a:hover{color:var(--teal-light)}
         <div class="flag-cta">Colour this flag →</div>
       </div>
     </a>
+    <div class="letter-divider" id="letter-Y">Y</div>
     <a class="flag-card" href="/colouring/yemen/">
       <div class="flag-preview">
         <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
@@ -5496,7 +5521,8 @@ footer a:hover{color:var(--teal-light)}
         <div class="flag-cta">Colour this flag →</div>
       </div>
     </a>
-        <a class="flag-card" href="/colouring/zambia/">
+        <div class="letter-divider" id="letter-Z">Z</div>
+    <a class="flag-card" href="/colouring/zambia/">
       <div class="flag-preview">
         <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
           <rect x="1" y="1" width="298" height="198" fill="white" stroke="#222" stroke-width="2" rx="2"/>
