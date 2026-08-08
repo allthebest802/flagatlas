@@ -62,9 +62,9 @@
   .breadcrumb { position:relative; z-index:1; max-width:900px; margin:0 auto; padding:1.2rem 1.5rem 0; font-size:0.8rem; color:var(--text-muted); }
   .breadcrumb a { color:var(--teal-light); text-decoration:none; }
   .breadcrumb a:hover { text-decoration:underline; }
-  .country-main { position:relative; z-index:1; max-width:900px; margin:0 auto; padding:1.5rem 1.5rem 3rem; display:grid; grid-template-columns:280px 1fr; gap:2rem; align-items:start; }
-  .flag-hero { border-radius:var(--radius); overflow:hidden; border:1px solid rgba(255,255,255,0.1); background:rgba(0,0,0,0.3); position:sticky; top:1.5rem; }
-  .flag-hero img { width:100%; display:block; aspect-ratio:3/2; object-fit:contain; padding:1rem; background:rgba(255,255,255,0.03); }
+  .country-main { position:relative; z-index:1; max-width:900px; margin:0 auto; padding:1.5rem 1.5rem 3rem; display:grid; grid-template-columns:300px 1fr; gap:2rem; align-items:start; }
+  .flag-hero { border-radius:var(--radius); overflow:hidden; border:1px solid rgba(255,255,255,0.12); background:rgba(0,0,0,0.2); box-shadow:0 8px 24px rgba(0,0,0,0.28); }
+  .flag-hero img { width:100%; height:auto; display:block; }
   .country-continent { font-size:0.75rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--teal-light); margin-bottom:0.4rem; }
   .country-h1 { font-family:'Playfair Display',serif; font-size:clamp(2rem,5vw,2.8rem); font-weight:900; color:var(--cream); line-height:1.1; margin-bottom:0.6rem; }
   .country-intro { font-size:0.98rem; color:var(--text-light); line-height:1.7; margin-bottom:1.5rem; }
@@ -104,6 +104,16 @@
   @media(max-width:680px) { .country-main { grid-template-columns:1fr; } .flag-hero { position:static; max-width:320px; } .dev-grid { grid-template-columns:1fr 1fr; } }
   footer { position:relative; z-index:1; text-align:center; padding:1.5rem; border-top:1px solid rgba(255,255,255,0.06); color:var(--text-muted); font-size:0.8rem; margin-top:1rem; }
   footer a { color:var(--teal-light); text-decoration:none; }
+
+  /* --- flag layout: title/intro wrap beside the flag, details flow full-width below --- */
+  .country-main { display:block; }
+  .country-main::after { content:""; display:table; clear:both; }
+  .flag-hero { float:left; width:300px; margin:0 1.75rem 1.25rem 0; }
+  .stat-row { clear:left; }
+  @media(max-width:680px){
+    .flag-hero { float:none; width:100%; max-width:320px; margin:0 0 1.25rem; }
+    .stat-row { clear:none; }
+  }
 </style>
 </head>
 <body>
