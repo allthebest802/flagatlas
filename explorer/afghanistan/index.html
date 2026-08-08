@@ -7,15 +7,15 @@
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<title>Afghanistan Flag — Meaning, Facts &amp; Capital | FlagAtlas</title>
-<meta name="description" content="What does the Afghanistan flag mean? Black represents the dark past, red represents blood shed for independence, and green represents hope for the future. The central emblem features a mosque. Capital: Kabul. GDP per capita: $360. HDI: 0.462 (Low).">
+<title>Afghanistan Flag — Meaning, Emoji &amp; Free Printable | FlagAtlas</title>
+<meta name="description" content="Afghanistan flag meaning explained, plus the 🇦🇫 flag emoji to copy, a free printable colouring page and a quick flag quiz. Capital: Kabul. Continent: Asia.">
 <meta name="author" content="FlagAtlas">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://flagatlas.co.uk/explorer/afghanistan/">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://flagatlas.co.uk/explorer/afghanistan/">
 <meta property="og:title" content="Afghanistan Flag — Meaning &amp; Facts | FlagAtlas">
-<meta property="og:description" content="Black represents the dark past, red represents blood shed for independence, and green represents hope for the future. The central emblem features a mosque.">
+<meta property="og:description" content="Afghanistan flag meaning explained, plus the 🇦🇫 flag emoji to copy and a free printable colouring page. The central emblem features a mosque.">
 <meta property="og:image" content="https://flagcdn.com/w640/af.png">
 <meta property="og:site_name" content="FlagAtlas">
 <meta property="og:locale" content="en_GB">
@@ -65,6 +65,14 @@
   .country-continent { font-size:0.75rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--teal-light); margin-bottom:0.4rem; }
   .country-h1 { font-family:'Playfair Display',serif; font-size:clamp(2rem,5vw,2.8rem); font-weight:900; color:var(--cream); line-height:1.1; margin-bottom:0.6rem; }
   .country-intro { font-size:0.98rem; color:var(--text-light); line-height:1.7; margin-bottom:1.5rem; }
+  /* QUICK ACTIONS */
+  .flag-quick { display:flex; gap:0.6rem; flex-wrap:wrap; margin:-0.6rem 0 1.4rem; }
+  .copy-chip { display:inline-flex; align-items:center; gap:0.45rem; padding:0.55rem 1rem; border-radius:100px; font-size:0.85rem; font-weight:600; cursor:pointer; text-decoration:none; font-family:'DM Sans',sans-serif; background:rgba(20,184,166,0.12); border:1px solid rgba(20,184,166,0.35); color:var(--teal-light); transition:all 0.15s; }
+  .copy-chip:hover { background:rgba(20,184,166,0.2); }
+  .copy-chip .emoji { font-size:1.15rem; line-height:1; }
+  .copy-chip.alt { background:rgba(245,158,11,0.12); border-color:rgba(245,158,11,0.35); color:var(--gold); }
+  .copy-chip.alt:hover { background:rgba(245,158,11,0.2); }
+  .copy-chip.copied { background:var(--teal); color:#04211d; border-color:var(--teal); }
   .stat-row { display:flex; gap:1rem; flex-wrap:wrap; padding:1rem 0; margin-bottom:1rem; border-top:1px solid rgba(255,255,255,0.08); border-bottom:1px solid rgba(255,255,255,0.08); }
   .stat-item { display:flex; flex-direction:column; gap:0.2rem; }
   .stat-label { font-size:0.68rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-muted); }
@@ -114,6 +122,11 @@
     <div class="country-continent">Asia</div>
     <h1 class="country-h1">Afghanistan Flag</h1>
     <p class="country-intro">Black represents the dark past, red represents blood shed for independence, and green represents hope for the future. The central emblem features a mosque.</p>
+
+    <div class="flag-quick">
+      <button class="copy-chip" id="copyEmoji" data-emoji="🇦🇫"><span class="emoji">🇦🇫</span> <span class="label">Copy flag emoji</span></button>
+      <a class="copy-chip alt" href="/colouring/afghanistan/">🎨 Free printable colouring page</a>
+    </div>
 
     <div class="stat-row">
       <div class="stat-item">
@@ -174,7 +187,8 @@
     </div>
 
     <div class="cta-row">
-      <a class="btn-primary" href="/explorer/">🌐 Browse all flags</a>
+      <a class="btn-primary" href="/colouring/afghanistan/">🎨 Free printable colouring page</a>
+      <a class="btn-secondary" href="/explorer/">🌐 Browse all flags</a>
       <a class="btn-secondary" href="/daily/">📅 Daily challenge</a>
       <a class="btn-secondary" href="/quiz/">⚡ Speed quiz</a>
     </div>
@@ -185,5 +199,28 @@
   <p>FlagAtlas — free educational tools for everyone &nbsp;·&nbsp; <a href="/contact">Contact</a> &nbsp;·&nbsp; <a href="/privacy/">Privacy &amp; Terms</a></p>
 </footer>
 <a href="https://ko-fi.com/flagatlas" target="_blank" rel="noopener" style="position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;align-items:center;gap:8px;background:#FF5E5B;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:700;padding:11px 18px;border-radius:100px;text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,0.3);transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">☕ Buy me a coffee</a>
+<script>
+(function () {
+  var btn = document.getElementById('copyEmoji');
+  if (!btn) return;
+  btn.addEventListener('click', function () {
+    var emoji = btn.getAttribute('data-emoji');
+    var label = btn.querySelector('.label');
+    var original = label.textContent;
+    var done = function () {
+      btn.classList.add('copied');
+      label.textContent = 'Copied!';
+      setTimeout(function () { btn.classList.remove('copied'); label.textContent = original; }, 1500);
+    };
+    if (navigator.clipboard) { navigator.clipboard.writeText(emoji).then(done).catch(done); }
+    else {
+      var ta = document.createElement('textarea');
+      ta.value = emoji; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta); done();
+    }
+  });
+})();
+</script>
 </body>
 </html>
