@@ -91,7 +91,7 @@ body{
 /* content */
 .content{transform:rotateY(180deg);background:var(--navy2);border:1px solid var(--line);padding:6px}
 .content.flag{background:#0f2137}
-.content.flag img{width:100%;height:100%;object-fit:contain;border-radius:5px;
+.content.flag img{display:block;width:100%;height:100%;object-fit:contain;border-radius:5px;
   filter:drop-shadow(0 2px 5px rgba(0,0,0,.4))}
 .content.name{background:var(--paper);color:var(--paper-ink)}
 .content.name span{font-family:var(--font-disp);font-weight:600;
@@ -271,14 +271,24 @@ function bestKey(){ return 'flagmemory_best_'+diff; }
 function getBest(){ try{ return JSON.parse(localStorage.getItem(bestKey())); }catch(e){ return null; } }
 function setBest(v){ try{ localStorage.setItem(bestKey(), JSON.stringify(v)); }catch(e){} }
 
-function newGame(){
+function preloadFlags(chosen){
+  return Promise.all(chosen.map(c => new Promise(resolve => {
+    const img = new Image();
+    img.onload = resolve;
+    img.onerror = resolve;
+    img.src = flagUrl(c.flag);
+  })));
+}
+
+async function newGame(){
   const {cols,rows} = LEVELS[diff];
   pairs = (cols*rows)/2;
   matches=0; attempts=0; elapsed=0; first=null; lock=false; started=false;
   clearInterval(timer); timer=null;
 
-  // pick countries, build flag + name cards, shuffle
+  // Pick countries and preload their exact FlagAtlas PNGs.
   const chosen = shuffle([...COUNTRIES]).slice(0,pairs);
+  await preloadFlags(chosen);
   deck = shuffle(chosen.flatMap((c,i)=>[
     {uid:'f'+i, code:c.code, name:c.name, flag:c.flag, type:'flag'},
     {uid:'n'+i, code:c.code, name:c.name, type:'name'}
@@ -288,7 +298,10 @@ function newGame(){
   board.style.maxWidth = Math.min(cols*128, 760)+'px';
   board.innerHTML = deck.map((card,i)=>{
     const content = card.type==='flag'
-      ? `<span class="face content flag"><img src="${flagUrl(card.flag)}" alt="${card.name}" loading="lazy" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', '<span style="color:#E4694E;font-size:.7rem;text-align:center">Flag unavailable</span>');"></span>`
+      ? `<span class="face content flag">
+           <img src="${flagUrl(card.flag)}" alt="${card.name}" title="${card.name}" style="display:block;width:100%;height:100%;object-fit:contain;border-radius:5px;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+           <span class="flag-error" style="display:none;align-items:center;justify-content:center;width:100%;height:100%;font-size:.7rem;color:#E4694E;text-align:center;">Flag unavailable</span>
+         </span>`
       : `<span class="face content name"><span>${card.name}</span></span>`;
     return `<button class="card" data-i="${i}" aria-label="Hidden card">
       <span class="inner">
