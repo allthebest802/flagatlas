@@ -190,29 +190,65 @@ body{
 // To use FlagAtlas's own flag assets instead, change this one line,
 // e.g.  return `/flags/${code}.svg`;
 // ─────────────────────────────────────────────────────────────
-function flagUrl(code){ return `https://flagcdn.com/${code}.svg`; }
+function flagUrl(filename){ return `/flags/${filename}`; }
 
 // Country pool — {code: ISO alpha-2, name: display name}
 const COUNTRIES = [
-  {code:'gb',name:'United Kingdom'},{code:'us',name:'United States'},{code:'fr',name:'France'},
-  {code:'de',name:'Germany'},{code:'it',name:'Italy'},{code:'es',name:'Spain'},
-  {code:'pt',name:'Portugal'},{code:'nl',name:'Netherlands'},{code:'be',name:'Belgium'},
-  {code:'ch',name:'Switzerland'},{code:'se',name:'Sweden'},{code:'no',name:'Norway'},
-  {code:'dk',name:'Denmark'},{code:'fi',name:'Finland'},{code:'ie',name:'Ireland'},
-  {code:'is',name:'Iceland'},{code:'pl',name:'Poland'},{code:'gr',name:'Greece'},
-  {code:'at',name:'Austria'},{code:'cz',name:'Czechia'},{code:'hu',name:'Hungary'},
-  {code:'ro',name:'Romania'},{code:'hr',name:'Croatia'},{code:'ua',name:'Ukraine'},
-  {code:'tr',name:'Turkey'},{code:'jp',name:'Japan'},{code:'cn',name:'China'},
-  {code:'kr',name:'South Korea'},{code:'in',name:'India'},{code:'th',name:'Thailand'},
-  {code:'vn',name:'Vietnam'},{code:'id',name:'Indonesia'},{code:'ph',name:'Philippines'},
-  {code:'my',name:'Malaysia'},{code:'sg',name:'Singapore'},{code:'pk',name:'Pakistan'},
-  {code:'ca',name:'Canada'},{code:'mx',name:'Mexico'},{code:'br',name:'Brazil'},
-  {code:'ar',name:'Argentina'},{code:'cl',name:'Chile'},{code:'co',name:'Colombia'},
-  {code:'pe',name:'Peru'},{code:'au',name:'Australia'},{code:'nz',name:'New Zealand'},
-  {code:'za',name:'South Africa'},{code:'eg',name:'Egypt'},{code:'ng',name:'Nigeria'},
-  {code:'ke',name:'Kenya'},{code:'ma',name:'Morocco'},{code:'gh',name:'Ghana'},
-  {code:'sa',name:'Saudi Arabia'},{code:'ae',name:'UAE'},{code:'il',name:'Israel'},
-  {code:'rs',name:'Serbia'}
+  {code:'gb',name:'United Kingdom',flag:'united-kingdom-flag.png'},
+  {code:'us',name:'United States',flag:'united-states-flag.png'},
+  {code:'fr',name:'France',flag:'france-flag.png'},
+  {code:'de',name:'Germany',flag:'germany-flag.png'},
+  {code:'it',name:'Italy',flag:'italy-flag.png'},
+  {code:'es',name:'Spain',flag:'spain-flag.png'},
+  {code:'pt',name:'Portugal',flag:'portugal-flag.png'},
+  {code:'nl',name:'Netherlands',flag:'netherlands-flag.png'},
+  {code:'be',name:'Belgium',flag:'belgium-flag.png'},
+  {code:'ch',name:'Switzerland',flag:'switzerland-flag.png'},
+  {code:'se',name:'Sweden',flag:'sweden-flag.png'},
+  {code:'no',name:'Norway',flag:'norway-flag.png'},
+  {code:'dk',name:'Denmark',flag:'denmark-flag.png'},
+  {code:'fi',name:'Finland',flag:'finland-flag.png'},
+  {code:'ie',name:'Ireland',flag:'ireland-flag.png'},
+  {code:'is',name:'Iceland',flag:'iceland-flag.png'},
+  {code:'pl',name:'Poland',flag:'poland-flag.png'},
+  {code:'gr',name:'Greece',flag:'greece-flag.png'},
+  {code:'at',name:'Austria',flag:'austria-flag.png'},
+  {code:'cz',name:'Czechia',flag:'czechia-flag.png'},
+  {code:'hu',name:'Hungary',flag:'hungary-flag.png'},
+  {code:'ro',name:'Romania',flag:'romania-flag.png'},
+  {code:'hr',name:'Croatia',flag:'croatia-flag.png'},
+  {code:'ua',name:'Ukraine',flag:'ukraine-flag.png'},
+  {code:'tr',name:'Turkey',flag:'turkey-flag.png'},
+  {code:'jp',name:'Japan',flag:'japan-flag.png'},
+  {code:'cn',name:'China',flag:'china-flag.png'},
+  {code:'kr',name:'South Korea',flag:'south-korea-flag.png'},
+  {code:'in',name:'India',flag:'india-flag.png'},
+  {code:'th',name:'Thailand',flag:'thailand-flag.png'},
+  {code:'vn',name:'Vietnam',flag:'vietnam-flag.png'},
+  {code:'id',name:'Indonesia',flag:'indonesia-flag.png'},
+  {code:'ph',name:'Philippines',flag:'philippines-flag.png'},
+  {code:'my',name:'Malaysia',flag:'malaysia-flag.png'},
+  {code:'sg',name:'Singapore',flag:'singapore-flag.png'},
+  {code:'pk',name:'Pakistan',flag:'pakistan-flag.png'},
+  {code:'ca',name:'Canada',flag:'canada-flag.png'},
+  {code:'mx',name:'Mexico',flag:'mexico-flag.png'},
+  {code:'br',name:'Brazil',flag:'brazil-flag.png'},
+  {code:'ar',name:'Argentina',flag:'argentina-flag.png'},
+  {code:'cl',name:'Chile',flag:'chile-flag.png'},
+  {code:'co',name:'Colombia',flag:'colombia-flag.png'},
+  {code:'pe',name:'Peru',flag:'peru-flag.png'},
+  {code:'au',name:'Australia',flag:'australia-flag.png'},
+  {code:'nz',name:'New Zealand',flag:'new-zealand-flag.png'},
+  {code:'za',name:'South Africa',flag:'south-africa-flag.png'},
+  {code:'eg',name:'Egypt',flag:'egypt-flag.png'},
+  {code:'ng',name:'Nigeria',flag:'nigeria-flag.png'},
+  {code:'ke',name:'Kenya',flag:'kenya-flag.png'},
+  {code:'ma',name:'Morocco',flag:'morocco-flag.png'},
+  {code:'gh',name:'Ghana',flag:'ghana-flag.png'},
+  {code:'sa',name:'Saudi Arabia',flag:'saudi-arabia-flag.png'},
+  {code:'ae',name:'UAE',flag:'united-arab-emirates-flag.png'},
+  {code:'il',name:'Israel',flag:'israel-flag.png'},
+  {code:'rs',name:'Serbia',flag:'serbia-flag.png'}
 ];
 
 const LEVELS = {
@@ -244,7 +280,7 @@ function newGame(){
   // pick countries, build flag + name cards, shuffle
   const chosen = shuffle([...COUNTRIES]).slice(0,pairs);
   deck = shuffle(chosen.flatMap((c,i)=>[
-    {uid:'f'+i, code:c.code, name:c.name, type:'flag'},
+    {uid:'f'+i, code:c.code, name:c.name, flag:c.flag, type:'flag'},
     {uid:'n'+i, code:c.code, name:c.name, type:'name'}
   ]));
 
@@ -252,7 +288,7 @@ function newGame(){
   board.style.maxWidth = Math.min(cols*128, 760)+'px';
   board.innerHTML = deck.map((card,i)=>{
     const content = card.type==='flag'
-      ? `<span class="face content flag"><img src="${flagUrl(card.code)}" alt="${card.name}" loading="lazy"></span>`
+      ? `<span class="face content flag"><img src="${flagUrl(card.flag)}" alt="${card.name}" loading="lazy" onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('beforeend', '<span style="color:#E4694E;font-size:.7rem;text-align:center">Flag unavailable</span>');"></span>`
       : `<span class="face content name"><span>${card.name}</span></span>`;
     return `<button class="card" data-i="${i}" aria-label="Hidden card">
       <span class="inner">
