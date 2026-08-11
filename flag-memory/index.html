@@ -6,6 +6,47 @@
 <title>Flag Memory — Match the Flag to the Country | FlagAtlas</title>
 <meta name="description" content="A free flag memory game: flip the cards and match each flag to its country. Four difficulty levels, timer and scoring. Learn world flags by playing.">
 <link rel="canonical" href="https://flagatlas.co.uk/flag-memory.html">
+<meta name="keywords" content="flag memory game, flag matching game, flags game, match the flags, world flags, learn flags, geography memory game, flag pairs game, free flag game">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Flag Memory — Match the Pairs of World Flags">
+<meta property="og:description" content="A free flag memory game — flip the cards and match the pairs of world flags. Four difficulty levels, timer and scoring. Learn flags by playing.">
+<meta property="og:url" content="https://flagatlas.co.uk/flag-memory.html">
+<meta property="og:site_name" content="FlagAtlas">
+<meta property="og:image" content="https://flagatlas.co.uk/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Flag Memory — Match the Pairs of World Flags">
+<meta name="twitter:description" content="Flip the cards and match the pairs of world flags. Four levels, timer and scoring — learn flags by playing.">
+<meta name="twitter:image" content="https://flagatlas.co.uk/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"Flag Memory",
+  "url":"https://flagatlas.co.uk/flag-memory.html",
+  "applicationCategory":"GameApplication",
+  "operatingSystem":"Any (web browser)",
+  "browserRequirements":"Requires JavaScript",
+  "description":"A free online flag memory game — flip the cards and match the pairs of world flags across four difficulty levels, with a timer and scoring.",
+  "inLanguage":"en-GB",
+  "isAccessibleForFree":true,
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"},
+  "publisher":{"@type":"Organization","name":"FlagAtlas","url":"https://flagatlas.co.uk/"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"What is Flag Memory?","acceptedAnswer":{"@type":"Answer","text":"Flag Memory is a free flag matching (concentration) game: you flip cards two at a time to find pairs of identical world flags until the whole board is cleared."}},
+    {"@type":"Question","name":"Is Flag Memory free to play?","acceptedAnswer":{"@type":"Answer","text":"Yes, it is completely free with no account, no downloads and no ads. It runs in your browser on phones, tablets and computers."}},
+    {"@type":"Question","name":"Does it help you learn world flags?","acceptedAnswer":{"@type":"Answer","text":"Yes. Because you see each flag several times while searching for its pair, its colours and design start to stick, making it a genuinely useful way to learn to recognise world flags."}},
+    {"@type":"Question","name":"What difficulty levels are there?","acceptedAnswer":{"@type":"Answer","text":"Four: Easy (4x4, 8 pairs), Medium (4x6, 12 pairs), Hard (6x6, 18 pairs) and Expert (8x8, 32 pairs). Your best score is saved on your device for each level."}}
+  ]
+}
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -110,12 +151,26 @@
   footer a{color:var(--teal-light);text-decoration:none}
   footer a:hover{text-decoration:underline}
 
+  /* SEO CONTENT */
+  .seo{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:.5rem 1.4rem 1rem}
+  .seo h2{font-family:'Playfair Display',serif;color:var(--cream);font-size:1.4rem;font-weight:700;margin:1.9rem 0 .5rem}
+  .seo h3{color:var(--text-light);font-size:1rem;font-weight:600;margin:1.1rem 0 .3rem}
+  .seo p{color:var(--text-muted);line-height:1.7;margin-bottom:1rem;font-size:.96rem}
+  .seo strong{color:var(--text-light)}
+  .seo a{color:var(--teal-light);text-decoration:none}
+  .seo a:hover{text-decoration:underline}
+  .seo .related-line{border-top:1px solid rgba(255,255,255,.08);padding-top:1.1rem;margin-top:1.5rem}
+
   /* WIN */
   .over{position:fixed;inset:0;background:rgba(8,16,32,.82);backdrop-filter:blur(4px);display:none;
     align-items:center;justify-content:center;padding:20px;z-index:50}
   .over.show{display:flex}
-  .modal{background:var(--navy-mid);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);
+  .modal{position:relative;background:var(--navy-mid);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);
     padding:30px 28px;max-width:380px;width:100%;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.5)}
+  .close-x{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:8px;
+    border:1px solid rgba(255,255,255,.12);background:var(--navy-light);color:var(--text-muted);
+    font-size:1rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
+  .close-x:hover{color:var(--text-light);background:var(--navy);transform:none}
   .modal .trophy{font-size:2.4rem}
   .modal h2{font-family:'Playfair Display',serif;font-weight:900;font-size:1.7rem;color:var(--cream);margin:6px 0 2px}
   .pb{display:inline-block;background:var(--gold);color:#3a2600;font-weight:700;font-size:.72rem;padding:3px 12px;border-radius:100px;margin:8px 0 4px}
@@ -180,12 +235,39 @@
   <p class="hint">Flip the cards and <b>find the matching pairs of flags</b>. Best score is saved on this device.</p>
 </div>
 
+<section class="seo">
+  <h2>A free flag memory game</h2>
+  <p>Flag Memory is a free online matching game where you flip the cards to find pairs of identical world flags. It's a simple, satisfying way to get to know the flags of the world — the more you play, the more you recognise, from familiar flags like France, Japan and Brazil to trickier ones such as South Korea, Croatia and Kenya. There's no account and nothing to download, and it works on phones, tablets and computers.</p>
+
+  <h2>How to play</h2>
+  <p>Every card starts face-down. Tap one to reveal its flag, then tap a second to try to find its match. Find the two matching flags and the pair stays face-up; miss, and the cards flip back — so you'll need to remember where each flag was. Clear the whole board to finish, and try to do it in as few attempts and as little time as possible to earn a higher score.</p>
+
+  <h2>Learn world flags by playing</h2>
+  <p>Matching games are a natural way to build visual memory, and flags are perfect for it. Because you see each flag several times while hunting for its pair, the shapes, colours and emblems start to stick — which makes Flag Memory a fun, low-pressure way for children and adults to learn to recognise the flags of the world. Pair it with the <a href="/quiz">Flag Speed Quiz</a> to test what you've learned, or the flag <a href="/colouring/">colouring pages</a> for younger players.</p>
+
+  <h2>Four difficulty levels</h2>
+  <p>Choose the size that suits you. <strong>Easy</strong> is a 4×4 grid with 8 flag pairs — great for children and quick games. <strong>Medium</strong> (4×6) and <strong>Hard</strong> (6×6) step things up with 12 and 18 pairs. <strong>Expert</strong> is a full 8×8 board with 32 pairs to test even seasoned flag-spotters. Your best score is saved on your device for each level, so you can keep trying to beat it.</p>
+
+  <h2>Frequently asked questions</h2>
+  <h3>What is Flag Memory?</h3>
+  <p>It's a free flag matching (concentration) game: flip cards two at a time to find pairs of identical world flags until the whole board is cleared.</p>
+  <h3>Is it free to play?</h3>
+  <p>Yes — completely free, with no account, no downloads and no ads. It runs in your browser on any device.</p>
+  <h3>Does it help you learn flags?</h3>
+  <p>Yes. Seeing each flag repeatedly as you search for its match helps you remember its colours and design, so it's a genuinely useful way to learn to recognise world flags.</p>
+  <h3>What difficulty levels are there?</h3>
+  <p>Four — Easy (4×4), Medium (4×6), Hard (6×6) and Expert (8×8), from 8 pairs up to 32.</p>
+
+  <p class="related-line">More free flag games and tools: <a href="/quiz">Flag Speed Quiz</a> · <a href="/colouring/">Flag Colouring Pages</a> · <a href="/explorer/">Flag Explorer</a> · <a href="/">all FlagAtlas games</a></p>
+</section>
+
 <footer>
   <p>FlagAtlas — free educational tools for everyone &nbsp;·&nbsp; <a href="/contact">Contact</a> &nbsp;·&nbsp; <a href="/privacy/">Privacy &amp; Terms</a></p>
 </footer>
 
 <div class="over" id="over" role="dialog" aria-modal="true" aria-labelledby="winTitle">
   <div class="modal">
+    <button class="close-x" id="closeX" aria-label="Close results">✕</button>
     <div class="trophy">🏆</div>
     <h2 id="winTitle">Atlas complete!</h2>
     <div id="pbBadge"></div>
@@ -363,6 +445,7 @@ $('levels').addEventListener('click',e=>{
   b.classList.add('on'); diff=b.dataset.diff; newGame();
 });
 $('again').addEventListener('click',()=>{over.classList.remove('show');newGame();});
+$('closeX').addEventListener('click',()=>over.classList.remove('show'));
 $('change').addEventListener('click',()=>{over.classList.remove('show');document.querySelector('.levels').scrollIntoView({behavior:'smooth'});});
 
 newGame();
