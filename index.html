@@ -1,828 +1,518 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
-<title>FlagAtlas — Daily Flag Challenge & Free Flag Quiz Games</title>
-<meta name="description" content="Free daily flag challenge, flag quizzes, and learning games. A new flag of the day every day, plus speed quizzes, fact cards, and a flag explorer covering all 195 countries. No signup, free for kids and families.">
-<meta name="keywords" content="daily flag challenge, flag of the day, flag quiz, flags of the world, flag explorer, world flags for kids, flag facts, geography quiz, learn country flags, free flag games">
-<meta name="author" content="FlagAtlas">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://flagatlas.co.uk/">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flag Memory — Match the Flag to the Country | FlagAtlas</title>
+<meta name="description" content="A free flag memory game: flip the cards and match each flag to its country. Four difficulty levels, timer and scoring. Learn world flags by playing.">
+<link rel="canonical" href="https://flagatlas.co.uk/flag-memory.html">
+<meta name="keywords" content="flag memory game, flag matching game, flags game, match the flags, world flags, learn flags, geography memory game, flag pairs game, free flag game">
 
-<!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://flagatlas.co.uk/">
-<meta property="og:title" content="FlagAtlas — Daily Flag Challenge & Free Flag Quiz Games">
-<meta property="og:description" content="A new flag of the day every day, plus speed quizzes, fact cards and a flag explorer covering all 195 countries. Free, no signup.">
-<meta property="og:image" content="https://flagatlas.co.uk/og-image.png">
+<meta property="og:title" content="Flag Memory — Match the Pairs of World Flags">
+<meta property="og:description" content="A free flag memory game — flip the cards and match the pairs of world flags. Four difficulty levels, timer and scoring. Learn flags by playing.">
+<meta property="og:url" content="https://flagatlas.co.uk/flag-memory.html">
 <meta property="og:site_name" content="FlagAtlas">
-<meta property="og:locale" content="en_GB">
-
-<!-- Twitter Card -->
+<meta property="og:image" content="https://flagatlas.co.uk/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:url" content="https://flagatlas.co.uk/">
-<meta name="twitter:title" content="FlagAtlas — Daily Flag Challenge & Free Flag Quiz Games">
-<meta name="twitter:description" content="A new flag of the day every day, plus speed quizzes, fact cards and a flag explorer. Free, no signup.">
+<meta name="twitter:title" content="Flag Memory — Match the Pairs of World Flags">
+<meta name="twitter:description" content="Flip the cards and match the pairs of world flags. Four levels, timer and scoring — learn flags by playing.">
 <meta name="twitter:image" content="https://flagatlas.co.uk/og-image.png">
 
-<!-- JSON-LD Structured Data -->
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "FlagAtlas",
-  "url": "https://flagatlas.co.uk/",
-  "description": "Free educational flag tools for kids and families — daily challenges, quizzes, explorer, fact cards and more.",
-  "publisher": {
-    "@type": "Organization",
-    "name": "FlagAtlas",
-    "url": "https://flagatlas.co.uk/"
-  },
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://flagatlas.co.uk/explorer.html?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"Flag Memory",
+  "url":"https://flagatlas.co.uk/flag-memory.html",
+  "applicationCategory":"GameApplication",
+  "operatingSystem":"Any (web browser)",
+  "browserRequirements":"Requires JavaScript",
+  "description":"A free online flag memory game — flip the cards and match the pairs of world flags across four difficulty levels, with a timer and scoring.",
+  "inLanguage":"en-GB",
+  "isAccessibleForFree":true,
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"},
+  "publisher":{"@type":"Organization","name":"FlagAtlas","url":"https://flagatlas.co.uk/"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"What is Flag Memory?","acceptedAnswer":{"@type":"Answer","text":"Flag Memory is a free flag matching (concentration) game: you flip cards two at a time to find pairs of identical world flags until the whole board is cleared."}},
+    {"@type":"Question","name":"Is Flag Memory free to play?","acceptedAnswer":{"@type":"Answer","text":"Yes, it is completely free with no account, no downloads and no ads. It runs in your browser on phones, tablets and computers."}},
+    {"@type":"Question","name":"Does it help you learn world flags?","acceptedAnswer":{"@type":"Answer","text":"Yes. Because you see each flag several times while searching for its pair, its colours and design start to stick, making it a genuinely useful way to learn to recognise world flags."}},
+    {"@type":"Question","name":"What difficulty levels are there?","acceptedAnswer":{"@type":"Answer","text":"Four: Easy (4x4, 8 pairs), Medium (4x6, 12 pairs), Hard (6x6, 18 pairs) and Expert (8x8, 32 pairs). Your best score is saved on your device for each level."}}
+  ]
 }
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,900&family=DM+Sans:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+
 <style>
-  :root {
-    --navy: #0f1f3d;
-    --navy-mid: #162847;
-    --navy-light: #1e3460;
-    --teal: #0d9488;
-    --teal-light: #14b8a6;
-    --gold: #f59e0b;
-    --gold-light: #fbbf24;
-    --cream: #fef9f0;
-    --cream-dark: #f5ede0;
-    --text-light: #e2e8f0;
-    --text-muted: #a8b6c8;
-    --red-accent: #ef4444;
-    --radius: 16px;
-    --radius-sm: 10px;
+  :root{
+    --navy:#0f1f3d; --navy-mid:#162847; --navy-light:#1e3460;
+    --teal:#0d9488; --teal-light:#14b8a6;
+    --gold:#f59e0b; --gold-light:#fbbf24;
+    --cream:#fef9f0; --cream-dark:#f5ede0;
+    --text-light:#e2e8f0; --text-muted:#a8b6c8;
+    --red-accent:#ef4444;
+    --radius:16px; --radius-sm:10px;
   }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text-light);min-height:100vh;overflow-x:hidden}
+  /* grid texture — same signature as the homepage */
+  body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:40px 40px}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  /* NAV — matches homepage */
+  nav{position:relative;z-index:10;display:flex;align-items:center;justify-content:space-between;
+    padding:1.2rem 2rem;border-bottom:1px solid rgba(255,255,255,.08)}
+  .nav-logo{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+  .nav-logo-icon{width:36px;height:36px;background:var(--teal);border-radius:8px;display:flex;
+    align-items:center;justify-content:center;font-size:18px}
+  .nav-logo-text{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--cream);letter-spacing:-.01em}
+  .nav-logo-text span{color:var(--teal-light)}
+  .nav-tagline{font-size:.8rem;color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase}
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--navy);
-    color: var(--text-light);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
+  .wrap{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:0 1.2rem 4rem}
 
-  /* ── GRID TEXTURE ── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
-  }
+  /* HERO */
+  .hero{text-align:center;padding:2.6rem 0 1.4rem}
+  .hero-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(13,148,136,.15);
+    border:1px solid rgba(20,184,166,.3);color:var(--teal-light);font-size:.74rem;font-weight:600;
+    letter-spacing:.1em;text-transform:uppercase;padding:.35rem .9rem;border-radius:100px;margin-bottom:1.1rem}
+  h1{font-family:'Playfair Display',serif;font-size:clamp(2.1rem,6vw,3.2rem);font-weight:900;
+    line-height:1.08;color:var(--cream);letter-spacing:-.02em}
+  h1 em{font-style:italic;color:var(--gold)}
+  .hero-sub{font-size:1rem;color:var(--text-muted);line-height:1.6;max-width:460px;margin:.7rem auto 0}
 
-  /* ── NAV ── */
-  nav {
-    position: relative;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.2rem 2rem;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
+  /* LEVELS */
+  .levels{display:flex;gap:6px;background:var(--navy-mid);border:1px solid rgba(255,255,255,.08);
+    border-radius:100px;padding:5px;margin:22px auto 16px;max-width:520px}
+  .lvl{flex:1;border:none;background:none;color:var(--text-muted);cursor:pointer;font-family:'DM Sans',sans-serif;
+    font-weight:700;font-size:.82rem;padding:9px 6px;border-radius:100px;transition:all .15s;
+    display:flex;flex-direction:column;align-items:center;gap:1px;line-height:1.15}
+  .lvl small{font-size:.66rem;font-weight:500;opacity:.75}
+  .lvl:hover{color:var(--text-light)}
+  .lvl.on{background:var(--teal);color:#fff}
+  .lvl.on small{opacity:.9}
 
-  .nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    text-decoration: none;
-  }
+  /* STATS */
+  .panel{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.08);border-radius:var(--radius-sm);overflow:hidden;margin-bottom:22px}
+  .stat{background:var(--navy-mid);padding:11px 8px;text-align:center}
+  .stat .k{font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);font-weight:600}
+  .stat .v{font-weight:700;font-size:1.05rem;color:var(--text-light);margin-top:3px;font-variant-numeric:tabular-nums}
+  .stat .v.gold{color:var(--gold-light)}
+  @media(max-width:520px){.panel{grid-template-columns:repeat(3,1fr)}.stat.s-score{grid-column:span 3}}
 
-  .nav-logo-icon {
-    width: 36px;
-    height: 36px;
-    background: var(--teal);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-  }
+  /* BOARD */
+  .board{display:grid;gap:10px;margin:0 auto;width:100%}
+  .card{position:relative;aspect-ratio:1;min-height:32px;border:none;background:none;padding:0;cursor:pointer;font-family:inherit}
+  .face{position:absolute;inset:0;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;
+    overflow:hidden;transition:opacity .22s ease,transform .22s ease}
+  /* cover (face-down) */
+  .cover{background:var(--navy-light);border:1px solid rgba(255,255,255,.10);opacity:1;z-index:2}
+  .cover .emblem{font-size:clamp(1rem,4vw,1.6rem);color:var(--teal-light);opacity:.55}
+  .cover::after{content:"";position:absolute;inset:6px;border:1px solid rgba(20,184,166,.18);border-radius:7px}
+  /* content (face-up) */
+  .content{opacity:0;transform:scale(.9);z-index:1}
+  .content.flag{background:var(--navy-light);border:1px solid rgba(255,255,255,.10);padding:7px}
+  .content.flag img{width:100%;height:100%;object-fit:contain;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,.35)}
+  .content.flag.nf span{color:var(--teal-light);font-weight:600;font-size:clamp(.55rem,1.7vw,.9rem);
+    line-height:1.1;text-align:center;padding:3px;word-break:break-word}   /* fallback label if a flag file is missing (e.g. in this preview) */
+  .content.name{background:var(--cream);border:1px solid var(--cream-dark)}
+  .content.name span{color:var(--navy);font-weight:600;font-size:clamp(.6rem,1.9vw,.98rem);
+    line-height:1.12;text-align:center;padding:3px;word-break:break-word}
+  /* flipped: hide cover, reveal content */
+  .card.flip .cover{opacity:0;z-index:1}
+  .card.flip .content{opacity:1;transform:scale(1);z-index:2}
+  /* states */
+  .card.matched .content{border-color:var(--teal-light);box-shadow:0 0 0 2px var(--teal-light),0 6px 16px rgba(20,184,166,.28)}
+  .card.matched{animation:pop .4s ease}
+  .card.wrong .content{border-color:var(--red-accent);box-shadow:0 0 0 2px var(--red-accent)}
+  .card.wrong{animation:shake .4s ease}
+  @keyframes pop{0%{transform:scale(1)}45%{transform:scale(1.06)}100%{transform:scale(1)}}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
 
-  .nav-logo-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--cream);
-    letter-spacing: -0.01em;
-  }
+  .hint{text-align:center;color:var(--text-muted);font-size:.82rem;margin-top:18px}
+  .hint b{color:var(--gold-light);font-weight:600}
 
-  .nav-logo-text span {
-    color: var(--teal-light);
-  }
+  /* FOOTER — matches homepage */
+  footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.08);
+    padding:1.6rem 2rem;text-align:center;margin-top:1rem}
+  footer p{color:var(--text-muted);font-size:.85rem}
+  footer a{color:var(--teal-light);text-decoration:none}
+  footer a:hover{text-decoration:underline}
 
-  .nav-tagline {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
+  /* SEO CONTENT */
+  .seo{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:.5rem 1.4rem 1rem}
+  .seo h2{font-family:'Playfair Display',serif;color:var(--cream);font-size:1.4rem;font-weight:700;margin:1.9rem 0 .5rem}
+  .seo h3{color:var(--text-light);font-size:1rem;font-weight:600;margin:1.1rem 0 .3rem}
+  .seo p{color:var(--text-muted);line-height:1.7;margin-bottom:1rem;font-size:.96rem}
+  .seo strong{color:var(--text-light)}
+  .seo a{color:var(--teal-light);text-decoration:none}
+  .seo a:hover{text-decoration:underline}
+  .seo .related-line{border-top:1px solid rgba(255,255,255,.08);padding-top:1.1rem;margin-top:1.5rem}
 
-  /* ── HERO ── */
-  .hero {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    padding: 4rem 1.5rem 3rem;
-    max-width: 780px;
-    margin: 0 auto;
-  }
+  /* WIN */
+  .over{position:fixed;inset:0;background:rgba(8,16,32,.82);backdrop-filter:blur(4px);display:none;
+    align-items:center;justify-content:center;padding:20px;z-index:50}
+  .over.show{display:flex}
+  .modal{position:relative;background:var(--navy-mid);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);
+    padding:30px 28px;max-width:380px;width:100%;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.5)}
+  .close-x{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:8px;
+    border:1px solid rgba(255,255,255,.12);background:var(--navy-light);color:var(--text-muted);
+    font-size:1rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
+  .close-x:hover{color:var(--text-light);background:var(--navy);transform:none}
+  .modal .trophy{font-size:2.4rem}
+  .modal h2{font-family:'Playfair Display',serif;font-weight:900;font-size:1.7rem;color:var(--cream);margin:6px 0 2px}
+  .pb{display:inline-block;background:var(--gold);color:#3a2600;font-weight:700;font-size:.72rem;padding:3px 12px;border-radius:100px;margin:8px 0 4px}
+  .mstats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-sm);overflow:hidden;margin:18px 0}
+  .mstats div{background:var(--navy-mid);padding:12px 8px}
+  .mstats .k{font-size:.62rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);font-weight:600}
+  .mstats .v{font-weight:700;font-size:1.25rem;margin-top:2px;font-variant-numeric:tabular-nums}
+  .mstats .v.gold{color:var(--gold-light)}
+  .btn{display:inline-block;background:var(--teal);color:#fff;border:none;font-family:'DM Sans',sans-serif;
+    font-weight:700;font-size:.95rem;padding:13px 26px;border-radius:100px;cursor:pointer;width:100%;transition:all .15s}
+  .btn:hover{background:var(--teal-light);transform:translateY(-2px)}
+  .btn.ghost{background:none;border:1px solid rgba(255,255,255,.15);color:var(--text-muted);margin-top:9px}
+  .btn.ghost:hover{color:var(--text-light);transform:none}
 
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    background: rgba(13,148,136,0.15);
-    border: 1px solid rgba(20,184,166,0.3);
-    color: var(--teal-light);
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.35rem 0.9rem;
-    border-radius: 100px;
-    margin-bottom: 1.5rem;
-  }
+  /* SHARE ROW — mirrors the Speed Quiz results */
+  .share-eyebrow{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);font-weight:600;margin:2px 0 8px}
+  .share-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:4px}
+  .share-btn{width:38px;height:38px;border-radius:10px;border:1px solid rgba(255,255,255,.1);background:var(--navy-light);
+    display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s;color:var(--text-light);padding:0;text-decoration:none}
+  .share-btn:hover{background:var(--teal);color:#fff;transform:translateY(-2px)}
+  .share-btn svg{width:18px;height:18px;fill:currentColor}
+  #copyMsg{display:block;font-size:.72rem;color:var(--teal-light);min-height:1em;margin:2px 0 4px}
 
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.6rem, 7vw, 4.2rem);
-    font-weight: 900;
-    line-height: 1.1;
-    color: var(--cream);
-    margin-bottom: 1.2rem;
-    letter-spacing: -0.02em;
-  }
-
-  .hero h1 em {
-    font-style: italic;
-    color: var(--gold);
-  }
-
-  .hero-sub {
-    font-size: 1.1rem;
-    color: var(--text-muted);
-    line-height: 1.7;
-    max-width: 520px;
-    margin: 0 auto 2.5rem;
-  }
-
-  .hero-stats {
-    display: flex;
-    justify-content: center;
-    gap: 2.5rem;
-    flex-wrap: wrap;
-  }
-
-
-
-
-
-  /* ── SECTION TITLE ── */
-  .section-title {
-    text-align: center;
-    margin-bottom: 2.5rem;
-  }
-
-  .section-title h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.9rem;
-    font-weight: 700;
-    color: var(--cream);
-    margin-bottom: 0.4rem;
-  }
-
-  .section-title p {
-    font-size: 0.95rem;
-    color: var(--text-muted);
-  }
-
-  /* ── TOOL CARDS ── */
-  .tools-section {
-    position: relative;
-    z-index: 1;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 1.5rem 5rem;
-  }
-
-  .tools-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.2rem;
-  }
-
-  .tool-card {
-    position: relative;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: var(--radius);
-    padding: 1.8rem;
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-    overflow: hidden;
-  }
-
-  .tool-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--card-accent, var(--teal));
-    opacity: 0;
-    transition: opacity 0.2s ease;
-  }
-
-  .tool-card:hover {
-    transform: translateY(-3px);
-    border-color: rgba(255,255,255,0.15);
-    background: rgba(255,255,255,0.07);
-  }
-
-  .tool-card:hover::before { opacity: 1; }
-
-  .tool-card.featured {
-    grid-column: span 2;
-    flex-direction: row;
-    align-items: center;
-    gap: 2rem;
-    background: rgba(13,148,136,0.1);
-    border-color: rgba(20,184,166,0.25);
-  }
-
-  .tool-card.featured::before { opacity: 1; }
-
-  @media (max-width: 700px) {
-    .tool-card.featured {
-      grid-column: span 1;
-      flex-direction: column;
-    }
-  }
-
-  .tool-icon {
-    width: 52px;
-    height: 52px;
-    border-radius: var(--radius-sm);
-    background: var(--card-accent, var(--teal));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    flex-shrink: 0;
-  }
-
-  .tool-card.featured .tool-icon {
-    width: 64px;
-    height: 64px;
-    font-size: 30px;
-  }
-
-  .tool-content { flex: 1; }
-
-  .tool-tag {
-    display: inline-block;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--card-accent, var(--teal-light));
-    margin-bottom: 0.4rem;
-  }
-
-  .tool-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--cream);
-    margin-bottom: 0.5rem;
-    line-height: 1.2;
-  }
-
-  .tool-card.featured .tool-name { font-size: 1.6rem; }
-
-  .tool-desc {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-  }
-
-  .tool-arrow {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--card-accent, var(--teal-light));
-    margin-top: 0.8rem;
-    transition: gap 0.2s ease;
-  }
-
-  .tool-card:hover .tool-arrow { gap: 0.6rem; }
-
-  /* ── COMING SOON BADGE ── */
-  .coming-soon {
-    position: absolute;
-    top: 1rem; right: 1rem;
-    background: rgba(245,158,11,0.15);
-    border: 1px solid rgba(245,158,11,0.3);
-    color: var(--gold);
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 0.2rem 0.6rem;
-    border-radius: 100px;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    padding: 2rem;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    color: var(--text-muted);
-    font-size: 0.82rem;
-  }
-
-  footer a {
-    color: var(--teal-light);
-    text-decoration: underline;
-    text-decoration-color: rgba(20,184,166,0.4);
-    text-underline-offset: 3px;
-  }
-
-  footer a:hover {
-    text-decoration-color: currentColor;
-  }
-
-  /* ── FOOTER SHARE ── */
-  .footer-share { margin-bottom: 1.4rem; }
-  .share-eyebrow { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.9rem; transition: color 0.2s; }
-  .share-row { display: flex; justify-content: center; gap: 0.6rem; flex-wrap: wrap; }
-  .share-btn { width: 44px; height: 44px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); color: var(--text-light); cursor: pointer; padding: 0; text-decoration: none; transition: transform 0.15s, border-color 0.15s, color 0.15s, background 0.15s; }
-  .share-btn svg { width: 19px; height: 19px; fill: currentColor; display: block; }
-  .share-btn:hover { border-color: var(--teal-light); color: var(--teal-light); background: rgba(20,184,166,0.1); transform: translateY(-2px); text-decoration: none; }
-  .share-btn:focus-visible { outline: 2px solid var(--teal-light); outline-offset: 2px; }
-
-  /* ── ANIMATIONS ── */
-  /* Hero no longer animates — it must be visible immediately for LCP.
-     Tool cards keep a very fast, subtle fade that doesn't block paint
-     and is skipped entirely for users who prefer reduced motion. */
-  @keyframes fade-up {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .tool-card:nth-child(1) { animation: fade-up 0.3s 0.02s ease both; }
-    .tool-card:nth-child(2) { animation: fade-up 0.3s 0.04s ease both; }
-    .tool-card:nth-child(3) { animation: fade-up 0.3s 0.06s ease both; }
-    .tool-card:nth-child(4) { animation: fade-up 0.3s 0.08s ease both; }
-    .tool-card:nth-child(5) { animation: fade-up 0.3s 0.10s ease both; }
-    .tool-card:nth-child(6) { animation: fade-up 0.3s 0.12s ease both; }
-  }
+  @media(prefers-reduced-motion:reduce){.face{transition:none}.card.matched,.card.wrong{animation:none}}
 </style>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6627034099195948"
-     crossorigin="anonymous"></script>
 </head>
 <body>
 
 <nav>
   <a class="nav-logo" href="/">
-    <div class="nav-logo-icon">🌍</div>
+    <span class="nav-logo-icon">🌍</span>
     <span class="nav-logo-text">Flag<span>Atlas</span></span>
   </a>
-  <div style="display:flex;align-items:center;gap:1rem;">
-    <a href="/worldcup/" style="display:inline-flex;align-items:center;gap:0.4rem;background:rgba(245,158,11,0.15);border:1px solid rgba(245,158,11,0.3);color:#fbbf24;font-size:0.78rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:0.3rem 0.8rem;border-radius:100px;text-decoration:none;">⚽ World Cup Quiz</a>
-    <a href="/gcse/" style="display:inline-flex;align-items:center;gap:0.4rem;background:rgba(167,139,250,0.12);border:1px solid rgba(167,139,250,0.3);color:#a78bfa;font-size:0.78rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:0.3rem 0.8rem;border-radius:100px;text-decoration:none;">📚 GCSE Revision</a>
-    <a href="/colours/" style="display:inline-flex;align-items:center;gap:0.4rem;background:rgba(247,106,133,0.12);border:1px solid rgba(247,106,133,0.3);color:#f76a85;font-size:0.78rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:0.3rem 0.8rem;border-radius:100px;text-decoration:none;">🎨 By Colour</a>
-    <a href="/flag-history/" style="display:inline-flex;align-items:center;gap:0.4rem;background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.3);color:#fbbf24;font-size:0.78rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:0.3rem 0.8rem;border-radius:100px;text-decoration:none;">📜 Flag History</a>
-    <a href="/colouring/" style="display:inline-flex;align-items:center;gap:0.4rem;background:rgba(167,139,250,0.12);border:1px solid rgba(167,139,250,0.3);color:#a78bfa;font-size:0.78rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:0.3rem 0.8rem;border-radius:100px;text-decoration:none;">🖍️ Colouring</a>
-    <a href="/contact" style="display:inline-flex;align-items:center;gap:0.4rem;background:rgba(20,184,166,0.1);border:1px solid rgba(20,184,166,0.25);color:var(--teal-light);font-size:0.78rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:0.3rem 0.8rem;border-radius:100px;text-decoration:none;">✉️ Contact</a>
-    <span class="nav-tagline">195 countries · 5 tools · free to explore</span>
-  </div>
+  <span class="nav-tagline">Flag Memory</span>
 </nav>
 
-<!-- HERO -->
-<main>
-<section class="hero">
-  
-  <h1>Free Flag Games &amp; <em>Daily</em> Challenges</h1>
-  <p class="hero-sub">Daily challenges · quizzes · fact cards · flag explorer · 195 countries</p>
+<div class="wrap">
+  <div class="hero">
+    <span class="hero-badge">🧠 Learn by matching</span>
+    <h1>Flag <em>Memory</em></h1>
+    <p class="hero-sub">Flip the cards and match every flag to its country.</p>
+  </div>
 
+  <div class="levels" id="levels" role="tablist" aria-label="Difficulty">
+    <button class="lvl on" data-diff="easy"   role="tab">Easy<small>4 × 4</small></button>
+    <button class="lvl"    data-diff="medium" role="tab">Medium<small>4 × 6</small></button>
+    <button class="lvl"    data-diff="hard"   role="tab">Hard<small>6 × 6</small></button>
+    <button class="lvl"    data-diff="expert" role="tab">Expert<small>8 × 8</small></button>
+  </div>
+
+  <div class="panel" aria-live="polite">
+    <div class="stat"><div class="k">Matches</div><div class="v" id="sMatches">0/0</div></div>
+    <div class="stat"><div class="k">Attempts</div><div class="v" id="sAttempts">0</div></div>
+    <div class="stat"><div class="k">Time</div><div class="v" id="sTime">00:00</div></div>
+    <div class="stat s-score"><div class="k">Score</div><div class="v gold" id="sScore">0</div></div>
+    <div class="stat"><div class="k">Best</div><div class="v" id="sBest">—</div></div>
+  </div>
+
+  <div class="board" id="board"></div>
+
+  <p class="hint">Flip the cards and <b>find the matching pairs of flags</b>. Best score is saved on this device.</p>
+</div>
+
+<section class="seo">
+  <h2>A free flag memory game</h2>
+  <p>Flag Memory is a free online matching game where you flip the cards to find pairs of identical world flags. It draws from the flags of every country — all 195 nations and more — so each game is a fresh random selection and boards rarely repeat. It's a simple, satisfying way to get to know the flags of the world, from familiar ones like France, Japan and Brazil to trickier flags such as South Korea, Kiribati and Kyrgyzstan. There's no account and nothing to download, and it works on phones, tablets and computers.</p>
+
+  <h2>How to play</h2>
+  <p>Every card starts face-down. Tap one to reveal its flag, then tap a second to try to find its match. Find the two matching flags and the pair stays face-up; miss, and the cards flip back — so you'll need to remember where each flag was. Clear the whole board to finish, and try to do it in as few attempts and as little time as possible to earn a higher score.</p>
+
+  <h2>Learn world flags by playing</h2>
+  <p>Matching games are a natural way to build visual memory, and flags are perfect for it. Because you see each flag several times while hunting for its pair, the shapes, colours and emblems start to stick — which makes Flag Memory a fun, low-pressure way for children and adults to learn to recognise the flags of the world. Pair it with the <a href="/quiz/">Flag Speed Quiz</a> to test what you've learned, or the flag <a href="/colouring/">colouring pages</a> for younger players.</p>
+
+  <h2>Four difficulty levels</h2>
+  <p>Choose the size that suits you. <strong>Easy</strong> is a 4×4 grid with 8 flag pairs — great for children and quick games. <strong>Medium</strong> (4×6) and <strong>Hard</strong> (6×6) step things up with 12 and 18 pairs. <strong>Expert</strong> is a full 8×8 board with 32 pairs to test even seasoned flag-spotters. Your best score is saved on your device for each level, so you can keep trying to beat it.</p>
+
+  <h2>Frequently asked questions</h2>
+  <h3>What is Flag Memory?</h3>
+  <p>It's a free flag matching (concentration) game: flip cards two at a time to find pairs of identical world flags until the whole board is cleared.</p>
+  <h3>Is it free to play?</h3>
+  <p>Yes — completely free, with no account, no downloads and no ads. It runs in your browser on any device.</p>
+  <h3>Does it help you learn flags?</h3>
+  <p>Yes. Seeing each flag repeatedly as you search for its match helps you remember its colours and design, so it's a genuinely useful way to learn to recognise world flags.</p>
+  <h3>What difficulty levels are there?</h3>
+  <p>Four — Easy (4×4), Medium (4×6), Hard (6×6) and Expert (8×8), from 8 pairs up to 32.</p>
+
+  <p class="related-line">More free flag games and tools: <a href="/quiz/">Flag Speed Quiz</a> · <a href="/colouring/">Flag Colouring Pages</a> · <a href="/explorer/">Flag Explorer</a> · <a href="/">all FlagAtlas games</a></p>
 </section>
-
-
-
-<!-- TOOL CARDS -->
-<section class="tools-section">
-  <div class="section-title">
-  </div>
-
-  <div class="tools-grid">
-
-    <!-- DAILY CHALLENGE — featured -->
-    <a class="tool-card featured" href="/daily/" style="--card-accent: var(--gold);">
-      <div class="tool-icon" style="background: rgba(245,158,11,0.15); color: var(--gold);">📅</div>
-      <div class="tool-content">
-        <span class="tool-tag">✦ Today's Challenge</span>
-        <div class="tool-name">Daily Flag Challenge</div>
-        <p class="tool-desc">A new mystery flag every day. How many attempts will you need? Guess the country and build your winning streak — come back tomorrow to keep it going.</p>
-        <div class="tool-arrow" style="color: var(--gold);">Play today's flag <span>→</span></div>
-      </div>
-    </a>
-
-    <!-- FLAG EXPLORER -->
-    <a class="tool-card" href="/explorer/" style="--card-accent: var(--teal-light);">
-      <div class="tool-icon" style="background: rgba(20,184,166,0.15); color: var(--teal-light);">🌐</div>
-      <div class="tool-content">
-        <span class="tool-tag">Browse</span>
-        <div class="tool-name">Flag Explorer</div>
-        <p class="tool-desc">Browse all 195 flags. Discover capitals, fun facts, and the hidden meaning behind every colour and symbol.</p>
-        <div class="tool-arrow">Explore the world <span>→</span></div>
-      </div>
-    </a>
-
-    <!-- SPEED QUIZ -->
-    <a class="tool-card" href="/quiz/" style="--card-accent: #f76a85;">
-      <div class="tool-icon" style="background: rgba(247,106,133,0.15); color: #f76a85;">⚡</div>
-      <div class="tool-content">
-        <span class="tool-tag">Quiz</span>
-        <div class="tool-name">Speed Quiz</div>
-        <p class="tool-desc">60 seconds. As many flags as you can name. Beat your high score — or challenge a friend to beat yours.</p>
-        <div class="tool-arrow" style="color: #f76a85;">Start the clock <span>→</span></div>
-      </div>
-    </a>
-
-    <!-- FLAG MEMORY -->
-    <a class="tool-card" href="/flag-memory.html" style="--card-accent: #34d399;">
-      <div class="tool-icon" style="background: rgba(52,211,153,0.15); color: #34d399;">🧠</div>
-      <div class="tool-content">
-        <span class="tool-tag">Game</span>
-        <div class="tool-name">Flag Memory</div>
-        <p class="tool-desc">Flip the cards and match the pairs of flags. Four difficulty levels, a timer and scoring — learn the world's flags by playing.</p>
-        <div class="tool-arrow" style="color: #34d399;">Play Flag Memory <span>→</span></div>
-      </div>
-    </a>
-
-    <!-- FACT CARDS -->
-    <a class="tool-card" href="/facts/" style="--card-accent: #a78bfa;">
-      <div class="tool-icon" style="background: rgba(167,139,250,0.15); color: #a78bfa;">🃏</div>
-      <div class="tool-content">
-        <span class="tool-tag">Learn</span>
-        <div class="tool-name">Flag Fact Cards</div>
-        <p class="tool-desc">Swipe through fascinating flag facts. Did you know Nepal is the only country with a non-rectangular flag? Start swiping to find more surprises.</p>
-        <div class="tool-arrow" style="color: #a78bfa;">Browse fact cards <span>→</span></div>
-      </div>
-    </a>
-
-    <!-- CONTINENT ADVENTURE -->
-    <a class="tool-card" href="/adventure/" style="--card-accent: #34d399;">
-      <div class="tool-icon" style="background: rgba(52,211,153,0.15); color: #34d399;">🗺️</div>
-      <div class="tool-content">
-        <span class="tool-tag">Adventure</span>
-        <div class="tool-name">Continent Adventure</div>
-        <p class="tool-desc">Journey through the world continent by continent. Learn all the flags of Europe before unlocking Africa, then Asia, and beyond.</p>
-        <div class="tool-arrow" style="color: #34d399;">Start your journey <span>→</span></div>
-      </div>
-    </a>
-
-    <a class="tool-card" href="/challenges/" style="--card-accent: #f59e0b;">
-      <div class="tool-icon" style="background: rgba(245,158,11,0.15); color: #f59e0b;">🧠</div>
-      <div class="tool-content">
-        <span class="tool-tag">New</span>
-        <div class="tool-name">Geography Challenges</div>
-        <p class="tool-desc">Capital cities, currencies, population battles and true or false — four quiz modes testing your world knowledge beyond flags.</p>
-        <div class="tool-arrow" style="color: #f59e0b;">Take the challenge <span>→</span></div>
-      </div>
-    </a>
-
-    <a class="tool-card" href="/colours/" style="--card-accent: #f76a85;">
-      <div class="tool-icon" style="background: rgba(247,106,133,0.15); color: #f76a85;">🎨</div>
-      <div class="tool-content">
-        <span class="tool-tag">New</span>
-        <div class="tool-name">Flags by Colour</div>
-        <p class="tool-desc">Pick any colour — or combine two or three — and instantly see every flag that contains them. How many red, white and blue flags are there?</p>
-        <div class="tool-arrow" style="color: #f76a85;">Explore by colour <span>→</span></div>
-      </div>
-    </a>
-
-    <a class="tool-card" href="/flag-history/" style="--card-accent: var(--gold);">
-      <div class="tool-icon" style="background: rgba(245,158,11,0.15); color: var(--gold);">📜</div>
-      <div class="tool-content">
-        <span class="tool-tag">New</span>
-        <div class="tool-name">Flag History</div>
-        <p class="tool-desc">How and why flags change. From Libya's all-green banner to South Africa's rainbow flag designed in a week — the stories behind the world's most dramatic transformations.</p>
-        <div class="tool-arrow" style="color: var(--gold);">Explore flag history <span>→</span></div>
-      </div>
-    </a>
-
-    <a class="tool-card" href="/colouring/" style="--card-accent: #a78bfa;">
-      <div class="tool-icon" style="background: rgba(167,139,250,0.15); color: #a78bfa;">🖍️</div>
-      <div class="tool-content">
-        <span class="tool-tag">New</span>
-        <div class="tool-name">Flag Colouring Pages</div>
-        <p class="tool-desc">Free printable flag colouring pages for kids. 20 countries with large outlines, numbered colour guides and fun facts. Perfect for classrooms.</p>
-        <div class="tool-arrow" style="color: #a78bfa;">Start colouring <span>→</span></div>
-      </div>
-    </a>
-
-  </div>
-</section>
-
-
-<!-- ─── WORLD CUP 2026 SECTION ─── -->
-<section style="position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 1.5rem 5rem;">
-
-  <!-- Header -->
-  <div style="text-align:center;margin-bottom:2.5rem;">
-    <div style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.3);color:#fbbf24;font-size:0.75rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:0.35rem 1rem;border-radius:100px;margin-bottom:1.2rem;">
-      ⚽ Starts 11 June 2026
-    </div>
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.7rem,4vw,2.4rem);font-weight:700;color:var(--cream);margin-bottom:0.5rem;">World Cup 2026 — <em style="color:var(--gold);font-style:italic;">Know Their Flags?</em></h2>
-    <p style="font-size:0.95rem;color:var(--text-muted);max-width:540px;margin:0 auto;">48 nations. 3 host countries. 104 matches. How many flags can you recognise? Click any country to explore its flag in the Flag Explorer.</p>
-  </div>
-
-  <!-- Stats bar -->
-  <div style="display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;margin-bottom:2.5rem;">
-    <div style="text-align:center;">
-      <div style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--gold);">48</div>
-      <div style="font-size:0.78rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;">Nations</div>
-    </div>
-    <div style="text-align:center;">
-      <div style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--teal-light);">6</div>
-      <div style="font-size:0.78rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;">Continents</div>
-    </div>
-    <div style="text-align:center;">
-      <div style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:#a78bfa;">104</div>
-      <div style="font-size:0.78rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;">Matches</div>
-    </div>
-    <div style="text-align:center;">
-      <div style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:#34d399;">4</div>
-      <div style="font-size:0.78rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.08em;">Debut Nations</div>
-    </div>
-  </div>
-
-  <!-- Continent groups -->
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.2rem;">
-
-    <!-- Hosts -->
-    <div style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.25);border-radius:var(--radius);padding:1.4rem;">
-      <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:1rem;">
-        <span style="font-size:1.2rem;">⭐</span>
-        <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#fbbf24;">Host Nations</span>
-      </div>
-      <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
-        <a href="/explorer/?q=United+States" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;transition:background 0.2s;" onmouseover="this.style.background='rgba(245,158,11,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇺🇸 USA</a>
-        <a href="/explorer/?q=Canada" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;transition:background 0.2s;" onmouseover="this.style.background='rgba(245,158,11,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇨🇦 Canada</a>
-        <a href="/explorer/?q=Mexico" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;transition:background 0.2s;" onmouseover="this.style.background='rgba(245,158,11,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇲🇽 Mexico</a>
-      </div>
-    </div>
-
-    <!-- Europe -->
-    <div style="background:rgba(20,184,166,0.08);border:1px solid rgba(20,184,166,0.2);border-radius:var(--radius);padding:1.4rem;">
-      <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:1rem;">
-        <span style="font-size:1.2rem;">🌍</span>
-        <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal-light);">Europe · 16 teams</span>
-      </div>
-      <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
-        <a href="/explorer/?q=England" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(20,184,166,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</a>
-        <a href="/explorer/?q=France" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(20,184,166,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇫🇷 France</a>
-        <a href="/explorer/?q=Germany" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(20,184,166,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇩🇪 Germany</a>
-        <a href="/explorer/?q=Spain" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(20,184,166,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇪🇸 Spain</a>
-        <a href="/explorer/?q=Portugal" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(20,184,166,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇵🇹 Portugal</a>
-        <a href="/explorer/?q=Netherlands" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(20,184,166,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇳🇱 Netherlands</a>
-        <a href="/explorer/?q=Belgium" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(20,184,166,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇧🇪 Belgium</a>
-        <a href="/explorer/?q=Croatia" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(20,184,166,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇭🇷 Croatia</a>
-        <a href="/explorer/?q=Switzerland" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(20,184,166,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇨🇭 Switzerland</a>
-        <a href="/explorer/?q=Austria" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(20,184,166,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇦🇹 Austria</a>
-        <a href="/explorer/?q=Scotland" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(20,184,166,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland</a>
-        <a href="/explorer/?q=Norway" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(20,184,166,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇳🇴 Norway</a>
-        <a href="/explorer/?q=Turkey" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(20,184,166,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇹🇷 Türkiye</a>
-        <a href="/explorer/?q=Bosnia+and+Herzegovina" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(20,184,166,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇧🇦 Bosnia</a>
-        <a href="/explorer/?q=Sweden" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(20,184,166,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇸🇪 Sweden</a>
-        <a href="/explorer/?q=Czech+Republic" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(20,184,166,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇨🇿 Czechia</a>
-      </div>
-    </div>
-
-    <!-- South America -->
-    <div style="background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.2);border-radius:var(--radius);padding:1.4rem;">
-      <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:1rem;">
-        <span style="font-size:1.2rem;">🌎</span>
-        <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#34d399;">South America · 6 teams</span>
-      </div>
-      <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
-        <a href="/explorer/?q=Argentina" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(52,211,153,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇦🇷 Argentina</a>
-        <a href="/explorer/?q=Brazil" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(52,211,153,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇧🇷 Brazil</a>
-        <a href="/explorer/?q=Colombia" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(52,211,153,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇨🇴 Colombia</a>
-        <a href="/explorer/?q=Uruguay" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(52,211,153,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇺🇾 Uruguay</a>
-        <a href="/explorer/?q=Ecuador" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(52,211,153,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇪🇨 Ecuador</a>
-        <a href="/explorer/?q=Paraguay" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(52,211,153,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇵🇾 Paraguay</a>
-      </div>
-    </div>
-
-    <!-- Africa -->
-    <div style="background:rgba(244,63,94,0.08);border:1px solid rgba(244,63,94,0.2);border-radius:var(--radius);padding:1.4rem;">
-      <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:1rem;">
-        <span style="font-size:1.2rem;">🌍</span>
-        <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#f76a85;">Africa · 9 teams</span>
-      </div>
-      <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
-        <a href="/explorer/?q=Morocco" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(244,63,94,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇲🇦 Morocco</a>
-        <a href="/explorer/?q=Senegal" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(244,63,94,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇸🇳 Senegal</a>
-        <a href="/explorer/?q=Egypt" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(244,63,94,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇪🇬 Egypt</a>
-        <a href="/explorer/?q=Algeria" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(244,63,94,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇩🇿 Algeria</a>
-        <a href="/explorer/?q=Ghana" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(244,63,94,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇬🇭 Ghana</a>
-        <a href="/explorer/?q=Ivory+Coast" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(244,63,94,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇨🇮 Ivory Coast</a>
-        <a href="/explorer/?q=South+Africa" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(244,63,94,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇿🇦 South Africa</a>
-        <a href="/explorer/?q=Tunisia" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(244,63,94,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇹🇳 Tunisia</a>
-        <a href="/explorer/?q=Cape+Verde" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(244,63,94,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇨🇻 Cape Verde</a>
-        <a href="/explorer/?q=DR+Congo" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(244,63,94,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇨🇩 DR Congo</a>
-      </div>
-    </div>
-
-    <!-- Asia -->
-    <div style="background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.2);border-radius:var(--radius);padding:1.4rem;">
-      <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:1rem;">
-        <span style="font-size:1.2rem;">🌏</span>
-        <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#a78bfa;">Asia · 8 teams</span>
-      </div>
-      <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
-        <a href="/explorer/?q=Japan" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(167,139,250,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇯🇵 Japan</a>
-        <a href="/explorer/?q=South+Korea" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(167,139,250,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇰🇷 South Korea</a>
-        <a href="/explorer/?q=Australia" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(167,139,250,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇦🇺 Australia</a>
-        <a href="/explorer/?q=Iran" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(167,139,250,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇮🇷 Iran</a>
-        <a href="/explorer/?q=Saudi+Arabia" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(167,139,250,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇸🇦 Saudi Arabia</a>
-        <a href="/explorer/?q=Qatar" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(167,139,250,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇶🇦 Qatar</a>
-        <a href="/explorer/?q=Jordan" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(167,139,250,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇯🇴 Jordan</a>
-        <a href="/explorer/?q=Uzbekistan" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(167,139,250,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇺🇿 Uzbekistan</a>
-        <a href="/explorer/?q=Iraq" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(167,139,250,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇮🇶 Iraq</a>
-      </div>
-    </div>
-
-    <!-- North/Central America & Caribbean + Oceania -->
-    <div style="background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.2);border-radius:var(--radius);padding:1.4rem;">
-      <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:1rem;">
-        <span style="font-size:1.2rem;">🌎</span>
-        <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#fbbf24;">Americas &amp; Oceania · 6 teams</span>
-      </div>
-      <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
-        <a href="/explorer/?q=Costa+Rica" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(251,191,36,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇨🇷 Costa Rica</a>
-        <a href="/explorer/?q=Panama" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(251,191,36,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇵🇦 Panama</a>
-        <a href="/explorer/?q=Curacao" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(251,191,36,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇨🇼 Curaçao</a>
-        <a href="/explorer/?q=Haiti" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(251,191,36,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇭🇹 Haiti</a>
-        <a href="/explorer/?q=Honduras" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(251,191,36,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇭🇳 Honduras</a>
-        <a href="/explorer/?q=New+Zealand" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);color:var(--text-light);text-decoration:none;padding:0.3rem 0.7rem;border-radius:6px;font-size:0.82rem;" onmouseover="this.style.background='rgba(251,191,36,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'">🇳🇿 New Zealand</a>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- CTA -->
-  <div style="text-align:center;margin-top:2.5rem;">
-    <a href="/worldcup/" style="display:inline-flex;align-items:center;gap:0.5rem;background:#0a7a70;color:white;text-decoration:none;padding:0.85rem 2rem;border-radius:100px;font-weight:600;font-size:0.95rem;transition:background 0.2s;" onmouseover="this.style.background='#0c8c80'" onmouseout="this.style.background='#0a7a70'">
-      ⚽ Take the World Cup Flag Quiz →
-    </a>
-    <p style="margin-top:0.8rem;font-size:0.8rem;color:var(--text-muted);">Test yourself on all 48 nations — 4 quiz modes, instant feedback</p>
-  </div>
-
-</section>
-
-<!-- ─── SEO CONTENT SECTION ─── -->
-<section class="about-section" style="position:relative;z-index:1;max-width:780px;margin:0 auto;padding:0 1.5rem 5rem;color:var(--text-light);line-height:1.7;font-size:0.95rem">
-
-  <div style="margin-bottom:2.2rem">
-    <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--cream);margin-bottom:0.8rem;font-weight:700">What is FlagAtlas?</h2>
-    <p style="color:var(--text-muted);margin-bottom:0.9rem">FlagAtlas is a free educational website with five interactive flag tools for kids, families, teachers, and anyone curious about the world. There are no ads, no signups, and no subscriptions — every tool is free to use as often as you like.</p>
-    <p style="color:var(--text-muted)">The site covers all 195 countries recognised by the United Nations, with flag images, capital cities, continents, and the meaning behind each flag's colours and symbols.</p>
-  </div>
-
-  <div style="margin-bottom:2.2rem">
-    <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--cream);margin-bottom:0.8rem;font-weight:700">A new flag of the day, every day</h2>
-    <p style="color:var(--text-muted);margin-bottom:0.9rem">The Daily Flag Challenge gives you a new mystery flag each day. You guess the country, build a winning streak, and come back tomorrow for the next one. It's designed to take a couple of minutes, like a flag version of Wordle.</p>
-    <p style="color:var(--text-muted)">If you want a longer session, the Speed Quiz gives you 60 seconds to name as many flags as you can. The Flag Explorer lets you browse all 195 countries at your own pace. Flag Fact Cards reveal surprising trivia (Nepal is the only country with a non-rectangular flag — and there are plenty more like that). Continent Adventure lets you work through the world one region at a time.</p>
-  </div>
-
-  <div style="margin-bottom:2.2rem">
-    <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--cream);margin-bottom:0.8rem;font-weight:700">Who is FlagAtlas for?</h2>
-    <p style="color:var(--text-muted);margin-bottom:0.9rem">The tools work for a range of people: <strong>kids</strong> learning geography for the first time, <strong>teachers</strong> looking for a quick classroom warm-up, <strong>parents</strong> wanting an educational alternative to mindless apps, <strong>quiz fans</strong> who like a daily brain teaser, and <strong>flag enthusiasts</strong> (vexillologists, if you want the technical term) who already know the basics and want to learn the deeper stories.</p>
-    <p style="color:var(--text-muted)">No prior knowledge is needed. Each tool is self-contained, and the difficulty scales naturally — guess familiar flags first, then discover new ones over time.</p>
-  </div>
-
-  <div>
-    <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--cream);margin-bottom:0.8rem;font-weight:700">Free, private, and built to last</h2>
-    <p style="color:var(--text-muted)">FlagAtlas runs in your browser. There is no app to install, no account to create, and no personal data collected. Your daily challenge streak and quiz scores save locally on your device. The tools work on phones, tablets, and computers — at home, in the classroom, or anywhere with a connection.</p>
-  </div>
-
-</section>
-
-</main>
 
 <footer>
-  <div class="footer-share">
-    <p class="share-eyebrow" id="shareLabel">Share FlagAtlas</p>
-    <div class="share-row">
-        <button class="share-btn" id="nativeShare" aria-label="Share…" hidden>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>
-        </button>
-        <a class="share-btn" id="shareX" target="_blank" rel="noopener" aria-label="Share on X">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        </a>
-        <a class="share-btn" id="shareWA" target="_blank" rel="noopener" aria-label="Share on WhatsApp">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        </a>
-        <a class="share-btn" id="shareFB" target="_blank" rel="noopener" aria-label="Share on Facebook">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        </a>
-        <a class="share-btn" id="shareRD" target="_blank" rel="noopener" aria-label="Share on Reddit">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 01-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 01.042.52c0 2.694-3.13 4.87-6.994 4.87-3.865 0-6.994-2.176-6.994-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 014.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 01.14-.197.35.35 0 01.238-.042l2.906.617a1.214 1.214 0 011.108-.701zM9.25 12c-.688 0-1.249.561-1.249 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.248 1.248.688 0 1.25-.561 1.25-1.249 0-.688-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 00-.231.094.33.33 0 000 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 00.029-.463.33.33 0 00-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 00-.232-.095z"/></svg>
-        </a>
-        <a class="share-btn" id="shareBS" target="_blank" rel="noopener" aria-label="Share on Bluesky">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.202 2.857C7.954 4.922 10.913 9.11 12 11.358c1.087-2.247 4.046-6.436 6.798-8.501C20.783 1.366 24 .213 24 3.883c0 .732-.42 6.156-.667 7.037-.856 3.061-3.978 3.842-6.755 3.37 4.854.826 6.089 3.562 3.422 6.299-5.065 5.196-7.28-1.304-7.847-2.97-.104-.305-.152-.448-.153-.327 0-.121-.05.022-.153.327-.568 1.666-2.782 8.166-7.847 2.97-2.667-2.737-1.432-5.473 3.422-6.3-2.777.473-5.899-.308-6.755-3.369C.42 10.04 0 4.615 0 3.883c0-3.67 3.217-2.517 5.202-1.026"/></svg>
-        </a>
-        <a class="share-btn" id="shareTH" target="_blank" rel="noopener" aria-label="Share on Threads">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.263 11.097c-.03-3.486-1.92-5.586-5.111-5.586-2.13 0-3.922.963-4.863 2.499l2.062 1.438c.535-.843 1.272-1.543 2.628-1.543 1.528 0 2.318.85 2.544 2.431a15 15 0 0 0-2.236-.173c-4.125 0-6.068 1.867-6.068 4.336s1.943 3.99 4.804 3.99c3.139 0 5.013-2.115 5.781-4.735.798.361 1.348 1.204 1.348 2.47 0 3.387-3.907 5.232-7.22 5.232-4.885 0-8.077-3.207-8.077-8.424 0-6.392 4.223-10.487 9.9-10.487 3.808 0 5.69 1.671 6.97 3.914l2.108-1.475C21.44 2.078 18.331 0 13.663 0 6.227 0 1.168 5.277 1.168 12.934c0 7 4.953 11.066 10.856 11.066 4.878 0 9.809-2.846 9.809-7.716 0-2.545-1.46-4.231-3.569-5.187m-6.33 4.855c-1.077 0-2.026-.512-2.026-1.453 0-1.483 1.822-1.934 3.606-1.934.678 0 1.34.045 1.927.173-.422 1.927-1.671 3.215-3.508 3.214Z"/></svg>
-        </a>
-        <a class="share-btn" id="shareEM" aria-label="Share by email">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-        </a>
-        <button class="share-btn" id="shareCopy" aria-label="Copy score to clipboard">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-        </button>
-      </div>
-  </div>
   <p>FlagAtlas — free educational tools for everyone &nbsp;·&nbsp; <a href="/contact">Contact</a> &nbsp;·&nbsp; <a href="/privacy/">Privacy &amp; Terms</a></p>
 </footer>
 
+<div class="over" id="over" role="dialog" aria-modal="true" aria-labelledby="winTitle">
+  <div class="modal">
+    <button class="close-x" id="closeX" aria-label="Close results">✕</button>
+    <div class="trophy">🏆</div>
+    <h2 id="winTitle">Atlas complete!</h2>
+    <div id="pbBadge"></div>
+    <div class="mstats">
+      <div><div class="k">Time</div><div class="v" id="mTime">00:00</div></div>
+      <div><div class="k">Attempts</div><div class="v" id="mAttempts">0</div></div>
+      <div><div class="k">Accuracy</div><div class="v" id="mAcc">0%</div></div>
+      <div><div class="k">Score</div><div class="v gold" id="mScore">0</div></div>
+    </div>
+    <p class="share-eyebrow">Share your score</p>
+    <div class="share-row">
+      <button class="share-btn" id="shareNative" aria-label="Share…" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg></button>
+      <a class="share-btn" id="shareX" target="_blank" rel="noopener" aria-label="Share on X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a class="share-btn" id="shareWA" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+      <a class="share-btn" id="shareFB" target="_blank" rel="noopener" aria-label="Share on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+      <a class="share-btn" id="shareRD" target="_blank" rel="noopener" aria-label="Share on Reddit"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 01-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 01.042.52c0 2.694-3.13 4.87-6.994 4.87-3.865 0-6.994-2.176-6.994-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 014.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 01.14-.197.35.35 0 01.238-.042l2.906.617a1.214 1.214 0 011.108-.701zM9.25 12c-.688 0-1.249.561-1.249 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.248 1.248.688 0 1.25-.561 1.25-1.249 0-.688-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 00-.231.094.33.33 0 000 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 00.029-.463.33.33 0 00-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 00-.232-.095z"/></svg></a>
+      <a class="share-btn" id="shareBS" target="_blank" rel="noopener" aria-label="Share on Bluesky"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.202 2.857C7.954 4.922 10.913 9.11 12 11.358c1.087-2.247 4.046-6.436 6.798-8.501C20.783 1.366 24 .213 24 3.883c0 .732-.42 6.156-.667 7.037-.856 3.061-3.978 3.842-6.755 3.37 4.854.826 6.089 3.562 3.422 6.299-5.065 5.196-7.28-1.304-7.847-2.97-.104-.305-.152-.448-.153-.327 0-.121-.05.022-.153.327-.568 1.666-2.782 8.166-7.847 2.97-2.667-2.737-1.432-5.473 3.422-6.3-2.777.473-5.899-.308-6.755-3.369C.42 10.04 0 4.615 0 3.883c0-3.67 3.217-2.517 5.202-1.026"/></svg></a>
+      <a class="share-btn" id="shareTH" target="_blank" rel="noopener" aria-label="Share on Threads"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.263 11.097c-.03-3.486-1.92-5.586-5.111-5.586-2.13 0-3.922.963-4.863 2.499l2.062 1.438c.535-.843 1.272-1.543 2.628-1.543 1.528 0 2.318.85 2.544 2.431a15 15 0 0 0-2.236-.173c-4.125 0-6.068 1.867-6.068 4.336s1.943 3.99 4.804 3.99c3.139 0 5.013-2.115 5.781-4.735.798.361 1.348 1.204 1.348 2.47 0 3.387-3.907 5.232-7.22 5.232-4.885 0-8.077-3.207-8.077-8.424 0-6.392 4.223-10.487 9.9-10.487 3.808 0 5.69 1.671 6.97 3.914l2.108-1.475C21.44 2.078 18.331 0 13.663 0 6.227 0 1.168 5.277 1.168 12.934c0 7 4.953 11.066 10.856 11.066 4.878 0 9.809-2.846 9.809-7.716 0-2.545-1.46-4.231-3.569-5.187m-6.33 4.855c-1.077 0-2.026-.512-2.026-1.453 0-1.483 1.822-1.934 3.606-1.934.678 0 1.34.045 1.927.173-.422 1.927-1.671 3.215-3.508 3.214Z"/></svg></a>
+      <a class="share-btn" id="shareEM" aria-label="Share by email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+      <button class="share-btn" id="shareCopy" aria-label="Copy result"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button>
+    </div>
+    <span id="copyMsg"></span>
+    <button class="btn" id="again">Play again</button>
+    <button class="btn ghost" id="change">Change difficulty</button>
+  </div>
+</div>
 
+<script>
+// ─────────────────────────────────────────────────────────────
+// FLAGS: served from your own site (good for Google Images / SEO).
+// Files are named  {country-name}-flag.png  e.g. south-korea-flag.png
+// Set FLAG_BASE to the folder they live in. If your folder isn't
+// "/flags/", change this one line (e.g. "/images/flags/").
+// ─────────────────────────────────────────────────────────────
+const FLAG_BASE = '/flags/';
+// Flags are served from your own /flags/ folder as {slug}-flag.png (good for
+// Google Images / SEO). Change FLAG_BASE if that folder is named differently.
+const flagSrc = slug => `${FLAG_BASE}${slug}-flag.png`;
+
+// Every flag on the site — {n: display name, s: filename slug} — generated from
+// your flags folder, so every slug matches an actual file. Each game draws a
+// random set from this pool (up to 32 pairs on Expert), so boards rarely repeat.
+const COUNTRIES = [
+  {n:'Afghanistan',s:'afghanistan'}, {n:'Albania',s:'albania'}, {n:'Algeria',s:'algeria'},
+  {n:'Andorra',s:'andorra'}, {n:'Angola',s:'angola'}, {n:'Antigua and Barbuda',s:'antigua-and-barbuda'},
+  {n:'Argentina',s:'argentina'}, {n:'Armenia',s:'armenia'}, {n:'Australia',s:'australia'},
+  {n:'Austria',s:'austria'}, {n:'Azerbaijan',s:'azerbaijan'}, {n:'Bahamas',s:'bahamas'},
+  {n:'Bahrain',s:'bahrain'}, {n:'Bangladesh',s:'bangladesh'}, {n:'Barbados',s:'barbados'},
+  {n:'Belarus',s:'belarus'}, {n:'Belgium',s:'belgium'}, {n:'Belize',s:'belize'},
+  {n:'Benin',s:'benin'}, {n:'Bhutan',s:'bhutan'}, {n:'Bolivia',s:'bolivia'},
+  {n:'Bosnia and Herzegovina',s:'bosnia-and-herzegovina'}, {n:'Botswana',s:'botswana'}, {n:'Brazil',s:'brazil'},
+  {n:'Brunei',s:'brunei'}, {n:'Bulgaria',s:'bulgaria'}, {n:'Burkina Faso',s:'burkina-faso'},
+  {n:'Burundi',s:'burundi'}, {n:'Cambodia',s:'cambodia'}, {n:'Cameroon',s:'cameroon'},
+  {n:'Canada',s:'canada'}, {n:'Cape Verde',s:'cape-verde'}, {n:'Central African Republic',s:'central-african-republic'},
+  {n:'Chad',s:'chad'}, {n:'Chile',s:'chile'}, {n:'China',s:'china'},
+  {n:'Colombia',s:'colombia'}, {n:'Comoros',s:'comoros'}, {n:'Costa Rica',s:'costa-rica'},
+  {n:'Côte d\'Ivoire',s:'cote-divoire'}, {n:'Croatia',s:'croatia'}, {n:'Cuba',s:'cuba'},
+  {n:'Cyprus',s:'cyprus'}, {n:'Czech Republic',s:'czech-republic'}, {n:'Denmark',s:'denmark'},
+  {n:'Djibouti',s:'djibouti'}, {n:'Dominica',s:'dominica'}, {n:'Dominican Republic',s:'dominican-republic'},
+  {n:'DR Congo',s:'dr-congo'}, {n:'East Timor',s:'east-timor'}, {n:'Ecuador',s:'ecuador'},
+  {n:'Egypt',s:'egypt'}, {n:'El Salvador',s:'el-salvador'}, {n:'Equatorial Guinea',s:'equatorial-guinea'},
+  {n:'Eritrea',s:'eritrea'}, {n:'Estonia',s:'estonia'}, {n:'Eswatini',s:'eswatini'},
+  {n:'Ethiopia',s:'ethiopia'}, {n:'Fiji',s:'fiji'}, {n:'Finland',s:'finland'},
+  {n:'France',s:'france'}, {n:'Gabon',s:'gabon'}, {n:'Gambia',s:'gambia'},
+  {n:'Georgia',s:'georgia'}, {n:'Germany',s:'germany'}, {n:'Ghana',s:'ghana'},
+  {n:'Greece',s:'greece'}, {n:'Grenada',s:'grenada'}, {n:'Guatemala',s:'guatemala'},
+  {n:'Guinea-Bissau',s:'guinea-bissau'}, {n:'Guinea',s:'guinea'}, {n:'Guyana',s:'guyana'},
+  {n:'Haiti',s:'haiti'}, {n:'Honduras',s:'honduras'}, {n:'Hungary',s:'hungary'},
+  {n:'Iceland',s:'iceland'}, {n:'India',s:'india'}, {n:'Indonesia',s:'indonesia'},
+  {n:'Iran',s:'iran'}, {n:'Iraq',s:'iraq'}, {n:'Ireland',s:'ireland'},
+  {n:'Israel',s:'israel'}, {n:'Italy',s:'italy'}, {n:'Jamaica',s:'jamaica'},
+  {n:'Japan',s:'japan'}, {n:'Jordan',s:'jordan'}, {n:'Kazakhstan',s:'kazakhstan'},
+  {n:'Kenya',s:'kenya'}, {n:'Kiribati',s:'kiribati'}, {n:'Kosovo',s:'kosovo'},
+  {n:'Kuwait',s:'kuwait'}, {n:'Kyrgyzstan',s:'kyrgyzstan'}, {n:'Laos',s:'laos'},
+  {n:'Latvia',s:'latvia'}, {n:'Lebanon',s:'lebanon'}, {n:'Lesotho',s:'lesotho'},
+  {n:'Liberia',s:'liberia'}, {n:'Libya',s:'libya'}, {n:'Liechtenstein',s:'liechtenstein'},
+  {n:'Lithuania',s:'lithuania'}, {n:'Luxembourg',s:'luxembourg'}, {n:'Madagascar',s:'madagascar'},
+  {n:'Malawi',s:'malawi'}, {n:'Malaysia',s:'malaysia'}, {n:'Maldives',s:'maldives'},
+  {n:'Mali',s:'mali'}, {n:'Malta',s:'malta'}, {n:'Marshall Islands',s:'marshall-islands'},
+  {n:'Mauritania',s:'mauritania'}, {n:'Mauritius',s:'mauritius'}, {n:'Mexico',s:'mexico'},
+  {n:'Micronesia',s:'micronesia'}, {n:'Moldova',s:'moldova'}, {n:'Monaco',s:'monaco'},
+  {n:'Mongolia',s:'mongolia'}, {n:'Montenegro',s:'montenegro'}, {n:'Morocco',s:'morocco'},
+  {n:'Mozambique',s:'mozambique'}, {n:'Myanmar',s:'myanmar'}, {n:'Namibia',s:'namibia'},
+  {n:'Nauru',s:'nauru'}, {n:'Nepal',s:'nepal'}, {n:'Netherlands',s:'netherlands'},
+  {n:'New Zealand',s:'new-zealand'}, {n:'Nicaragua',s:'nicaragua'}, {n:'Niger',s:'niger'},
+  {n:'Nigeria',s:'nigeria'}, {n:'North Korea',s:'north-korea'}, {n:'North Macedonia',s:'north-macedonia'},
+  {n:'Norway',s:'norway'}, {n:'Oman',s:'oman'}, {n:'Pakistan',s:'pakistan'},
+  {n:'Palau',s:'palau'}, {n:'Panama',s:'panama'}, {n:'Papua New Guinea',s:'papua-new-guinea'},
+  {n:'Paraguay',s:'paraguay'}, {n:'Peru',s:'peru'}, {n:'Philippines',s:'philippines'},
+  {n:'Poland',s:'poland'}, {n:'Portugal',s:'portugal'}, {n:'Puerto Rico',s:'puerto-rico'},
+  {n:'Qatar',s:'qatar'}, {n:'Republic of the Congo',s:'republic-of-congo'}, {n:'Romania',s:'romania'},
+  {n:'Rwanda',s:'rwanda'}, {n:'Saint Kitts and Nevis',s:'saint-kitts-and-nevis'}, {n:'Saint Lucia',s:'saint-lucia'},
+  {n:'Samoa',s:'samoa'}, {n:'San Marino',s:'san-marino'}, {n:'São Tomé and Príncipe',s:'sao-tome-and-principe'},
+  {n:'Saudi Arabia',s:'saudi-arabia'}, {n:'Scotland',s:'scotland'}, {n:'Senegal',s:'senegal'},
+  {n:'Serbia',s:'serbia'}, {n:'Seychelles',s:'seychelles'}, {n:'Sierra Leone',s:'sierra-leone'},
+  {n:'Singapore',s:'singapore'}, {n:'Slovakia',s:'slovakia'}, {n:'Slovenia',s:'slovenia'},
+  {n:'Solomon Islands',s:'solomon-islands'}, {n:'Somalia',s:'somalia'}, {n:'South Africa',s:'south-africa'},
+  {n:'South Korea',s:'south-korea'}, {n:'South Sudan',s:'south-sudan'}, {n:'Spain',s:'spain'},
+  {n:'Sri Lanka',s:'sri-lanka'}, {n:'St Vincent and the Grenadines',s:'st-vincent-and-the-grenadines'}, {n:'Sudan',s:'sudan'},
+  {n:'Suriname',s:'suriname'}, {n:'Sweden',s:'sweden'}, {n:'Switzerland',s:'switzerland'},
+  {n:'Syria',s:'syria'}, {n:'Tajikistan',s:'tajikistan'}, {n:'Tanzania',s:'tanzania'},
+  {n:'Thailand',s:'thailand'}, {n:'Togo',s:'togo'}, {n:'Tonga',s:'tonga'},
+  {n:'Trinidad and Tobago',s:'trinidad-and-tobago'}, {n:'Tunisia',s:'tunisia'}, {n:'Turkey',s:'turkey'},
+  {n:'Turkmenistan',s:'turkmenistan'}, {n:'Tuvalu',s:'tuvalu'}, {n:'Uganda',s:'uganda'},
+  {n:'Ukraine',s:'ukraine'}, {n:'United Arab Emirates',s:'united-arab-emirates'}, {n:'United Kingdom',s:'united-kingdom'},
+  {n:'United States',s:'united-states'}, {n:'Uruguay',s:'uruguay'}, {n:'Uzbekistan',s:'uzbekistan'},
+  {n:'Vanuatu',s:'vanuatu'}, {n:'Vatican City',s:'vatican-city'}, {n:'Venezuela',s:'venezuela'},
+  {n:'Vietnam',s:'vietnam'}, {n:'Wales',s:'wales'}, {n:'Western Sahara',s:'western-sahara'},
+  {n:'Yemen',s:'yemen'}, {n:'Zambia',s:'zambia'}, {n:'Zimbabwe',s:'zimbabwe'}
+];
+
+const LEVELS = {
+  easy:{cols:4,rows:4,mult:1}, medium:{cols:4,rows:6,mult:1.5},
+  hard:{cols:6,rows:6,mult:2}, expert:{cols:8,rows:8,mult:3}
+};
+
+const $ = id => document.getElementById(id);
+const board = $('board'), over = $('over');
+let diff='easy', deck=[], first=null, lock=false;
+let matches=0, pairs=0, attempts=0, elapsed=0, timer=null, started=false;
+
+const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]];}return a;};
+const fmt=s=>`${String(s/60|0).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`;
+const bestKey=()=>'flagmemory_best_'+diff;
+const getBest=()=>{try{return JSON.parse(localStorage.getItem(bestKey()));}catch(e){return null;}};
+const setBest=v=>{try{localStorage.setItem(bestKey(),JSON.stringify(v));}catch(e){}};
+
+function newGame(){
+  const {cols,rows}=LEVELS[diff];
+  pairs=(cols*rows)/2; matches=0; attempts=0; elapsed=0; first=null; lock=false; started=false;
+  clearInterval(timer); timer=null;
+
+  const chosen = shuffle([...COUNTRIES]).slice(0,pairs);
+  deck = shuffle(chosen.flatMap((c,i)=>[
+    {uid:'a'+i,name:c.n,slug:c.s},{uid:'b'+i,name:c.n,slug:c.s}
+  ]));
+
+  board.style.gridTemplateColumns=`repeat(${cols},1fr)`;
+  // Fill the available height: width is derived from (viewport height − chrome) × grid ratio,
+  // capped by width so it never overflows. Cards stay square (aspect-ratio:1), so board height follows.
+  board.style.width=`min(94vw, calc((100dvh - 360px) * ${(cols/rows).toFixed(4)}), 760px)`;
+  board.innerHTML=deck.map((c,i)=>{
+    return `<button class="card" data-i="${i}" aria-label="Hidden card">
+        <span class="face cover"><span class="emblem">◍</span></span>
+        <span class="face content flag"><img src="${flagSrc(c.slug)}" alt="${c.name}" loading="lazy"></span>
+      </button>`;
+  }).join('');
+
+  // graceful fallback if a flag file 404s — show the country name instead
+  // (this is also why flags look like text labels in the chat preview:
+  //  they load from your live /flags/ folder, not from this sandbox)
+  board.querySelectorAll('.content.flag img').forEach(img=>{
+    img.addEventListener('error',()=>{ const n=img.alt; img.parentElement.classList.add('nf'); img.parentElement.innerHTML='<span>'+n+'</span>'; });
+  });
+
+  updatePanel();
+  $('sBest').textContent = getBest()? getBest().score : '—';
+  [...board.children].forEach(el=>el.addEventListener('click',()=>flip(el)));
+}
+
+function startTimer(){ started=true; timer=setInterval(()=>{elapsed++;$('sTime').textContent=fmt(elapsed);},1000); }
+function updatePanel(){
+  $('sMatches').textContent=`${matches}/${pairs}`;
+  $('sAttempts').textContent=attempts;
+  $('sTime').textContent=fmt(elapsed);
+  $('sScore').textContent=liveScore();
+}
+
+function flip(el){
+  const i=+el.dataset.i;
+  if(lock||el.classList.contains('flip')||el.classList.contains('matched')) return;
+  if(!started) startTimer();
+  el.classList.add('flip');
+  el.setAttribute('aria-label', 'Flag: '+deck[i].name);
+  if(first===null){ first=el; return; }
+  attempts++;
+  const a=deck[+first.dataset.i], b=deck[i];
+  if(a.slug===b.slug && first!==el){
+    first.classList.add('matched'); el.classList.add('matched');
+    first=null; matches++; updatePanel();
+    if(matches===pairs) setTimeout(win,500);
+  } else {
+    lock=true; const f=first; first=null;
+    f.classList.add('wrong'); el.classList.add('wrong'); updatePanel();
+    setTimeout(()=>{
+      f.classList.remove('flip','wrong'); el.classList.remove('flip','wrong');
+      f.setAttribute('aria-label','Hidden card'); el.setAttribute('aria-label','Hidden card');
+      lock=false;
+    },850);
+  }
+}
+
+// Score rewards accuracy, speed and difficulty.
+function computeScore(done){
+  const acc = attempts? Math.min(1,pairs/attempts):0;
+  const base = matches*100*acc*LEVELS[diff].mult;
+  const speed = done? Math.max(0,(pairs*12-elapsed))*LEVELS[diff].mult*2 : 0;
+  return Math.round(base+speed);
+}
+const liveScore=()=>computeScore(false);
+
+function win(){
+  clearInterval(timer);
+  const score=computeScore(true), acc=attempts?Math.round(pairs/attempts*100):100;
+  $('mTime').textContent=fmt(elapsed); $('mAttempts').textContent=attempts;
+  $('mAcc').textContent=acc+'%'; $('mScore').textContent=score; $('sScore').textContent=score;
+  const best=getBest();
+  if(!best||score>best.score){
+    setBest({score,time:elapsed,attempts});
+    $('pbBadge').innerHTML='<span class="pb">🏆 New personal best!</span>';
+    $('sBest').textContent=score;
+  } else $('pbBadge').innerHTML='';
+  setupShare();
+  over.classList.add('show');
+}
+
+function setupShare(){
+  const url='https://flagatlas.co.uk/flag-memory.html';
+  const txt=`I matched all ${pairs} flags in ${fmt(elapsed)} on FlagAtlas 🌍`;
+  const t=encodeURIComponent(txt), u=encodeURIComponent(url), tu=encodeURIComponent(txt+' '+url);
+  const set=(id,href)=>{const e=$(id); if(e) e.href=href;};
+  set('shareX',`https://twitter.com/intent/tweet?text=${t}&url=${u}`);
+  set('shareWA',`https://wa.me/?text=${tu}`);
+  set('shareFB',`https://www.facebook.com/sharer/sharer.php?u=${u}`);
+  set('shareRD',`https://www.reddit.com/submit?url=${u}&title=${t}`);
+  set('shareBS',`https://bsky.app/intent/compose?text=${tu}`);
+  set('shareTH',`https://www.threads.net/intent/post?text=${tu}`);
+  set('shareEM',`mailto:?subject=${encodeURIComponent('Flag Memory — FlagAtlas')}&body=${tu}`);
+  const nat=$('shareNative');
+  if(navigator.share){ nat.hidden=false; nat.onclick=()=>navigator.share({title:'Flag Memory',text:txt,url}).catch(()=>{}); }
+  $('shareCopy').onclick=async()=>{ try{ await navigator.clipboard.writeText(txt+' '+url); $('copyMsg').textContent='Copied to clipboard'; setTimeout(()=>$('copyMsg').textContent='',1600); }catch(e){} };
+}
+
+$('levels').addEventListener('click',e=>{
+  const b=e.target.closest('.lvl'); if(!b) return;
+  [...e.currentTarget.children].forEach(x=>x.classList.remove('on'));
+  b.classList.add('on'); diff=b.dataset.diff; newGame();
+});
+$('again').addEventListener('click',()=>{over.classList.remove('show');newGame();});
+$('closeX').addEventListener('click',()=>over.classList.remove('show'));
+$('change').addEventListener('click',()=>{over.classList.remove('show');document.querySelector('.levels').scrollIntoView({behavior:'smooth'});});
+
+newGame();
+</script>
 <a href="https://ko-fi.com/flagatlas" target="_blank" rel="noopener" style="position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;align-items:center;gap:8px;background:#d63a37;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:700;padding:11px 18px;border-radius:100px;text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,0.3);transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">☕ Buy me a coffee</a>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4752f8ed08944697a65aba3d409c6ccd"}'></script><!-- End Cloudflare Web Analytics -->
-<script>
-(function () {
-  var SHARE_URL = 'https://flagatlas.co.uk/';
-  var shareText = function () { return 'Free flag quizzes and geography games at FlagAtlas \uD83C\uDF0D'; };
-  var t = encodeURIComponent(shareText());
-  var u = encodeURIComponent(SHARE_URL);
-  var tu = encodeURIComponent(shareText() + ' ' + SHARE_URL);
-  var set = function (id, href) { var e = document.getElementById(id); if (e) e.href = href; };
-  set('shareX',  'https://twitter.com/intent/tweet?text=' + t + '&url=' + u);
-  set('shareWA', 'https://wa.me/?text=' + tu);
-  set('shareFB', 'https://www.facebook.com/sharer/sharer.php?u=' + u);
-  set('shareRD', 'https://www.reddit.com/submit?url=' + u + '&title=' + t);
-  set('shareBS', 'https://bsky.app/intent/compose?text=' + tu);
-  set('shareTH', 'https://www.threads.net/intent/post?text=' + tu);
-  set('shareEM', 'mailto:?subject=' + encodeURIComponent('FlagAtlas') + '&body=' + tu);
-  var nb = document.getElementById('nativeShare');
-  if (navigator.share && nb) {
-    nb.hidden = false;
-    nb.addEventListener('click', function () { navigator.share({ title: 'FlagAtlas', text: shareText(), url: SHARE_URL }).catch(function () {}); });
-  }
-  var cp = document.getElementById('shareCopy');
-  if (cp) cp.addEventListener('click', function () {
-    var text = shareText() + ' ' + SHARE_URL;
-    var done = function () {
-      var l = document.getElementById('shareLabel'), o = l.textContent;
-      l.textContent = 'Copied to clipboard'; l.style.color = 'var(--teal-light)';
-      setTimeout(function () { l.textContent = o; l.style.color = ''; }, 1800);
-    };
-    if (navigator.clipboard) { navigator.clipboard.writeText(text).then(done).catch(done); }
-    else { var ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} document.body.removeChild(ta); done(); }
-  });
-})();
-</script>
 </body>
 </html>
