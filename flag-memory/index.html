@@ -114,7 +114,7 @@
 
   /* BOARD */
   .board{display:grid;gap:10px;margin:0 auto;width:100%}
-  .card{position:relative;aspect-ratio:1;min-height:56px;border:none;background:none;padding:0;cursor:pointer;font-family:inherit}
+  .card{position:relative;aspect-ratio:1;min-height:32px;border:none;background:none;padding:0;cursor:pointer;font-family:inherit}
   .face{position:absolute;inset:0;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;
     overflow:hidden;transition:opacity .22s ease,transform .22s ease}
   /* cover (face-down) */
@@ -237,7 +237,7 @@
 
 <section class="seo">
   <h2>A free flag memory game</h2>
-  <p>Flag Memory is a free online matching game where you flip the cards to find pairs of identical world flags. It's a simple, satisfying way to get to know the flags of the world — the more you play, the more you recognise, from familiar flags like France, Japan and Brazil to trickier ones such as South Korea, Croatia and Kenya. There's no account and nothing to download, and it works on phones, tablets and computers.</p>
+  <p>Flag Memory is a free online matching game where you flip the cards to find pairs of identical world flags. It draws from the flags of every country — all 195 nations and more — so each game is a fresh random selection and boards rarely repeat. It's a simple, satisfying way to get to know the flags of the world, from familiar ones like France, Japan and Brazil to trickier flags such as South Korea, Kiribati and Kyrgyzstan. There's no account and nothing to download, and it works on phones, tablets and computers.</p>
 
   <h2>How to play</h2>
   <p>Every card starts face-down. Tap one to reveal its flag, then tap a second to try to find its match. Find the two matching flags and the pair stays face-up; miss, and the cards flip back — so you'll need to remember where each flag was. Clear the whole board to finish, and try to do it in as few attempts and as little time as possible to earn a higher score.</p>
@@ -303,20 +303,80 @@
 // "/flags/", change this one line (e.g. "/images/flags/").
 // ─────────────────────────────────────────────────────────────
 const FLAG_BASE = '/flags/';
-const slugify = name => name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-const flagSrc = name => `${FLAG_BASE}${slugify(name)}-flag.png`;
+// Flags are served from your own /flags/ folder as {slug}-flag.png (good for
+// Google Images / SEO). Change FLAG_BASE if that folder is named differently.
+const flagSrc = slug => `${FLAG_BASE}${slug}-flag.png`;
 
-// Country pool — display names double as the filename slug.
-// (Verify these few match your files: United States, United Kingdom,
-//  United Arab Emirates, Turkey — rename here if your files differ.)
+// Every flag on the site — {n: display name, s: filename slug} — generated from
+// your flags folder, so every slug matches an actual file. Each game draws a
+// random set from this pool (up to 32 pairs on Expert), so boards rarely repeat.
 const COUNTRIES = [
-  'United Kingdom','United States','France','Germany','Italy','Spain','Portugal',
-  'Netherlands','Belgium','Switzerland','Sweden','Norway','Denmark','Finland','Ireland',
-  'Iceland','Poland','Greece','Austria','Hungary','Romania','Croatia','Ukraine','Turkey',
-  'Japan','China','South Korea','India','Thailand','Vietnam','Indonesia','Philippines',
-  'Malaysia','Singapore','Pakistan','Canada','Mexico','Brazil','Argentina','Chile',
-  'Colombia','Peru','Australia','New Zealand','South Africa','Egypt','Nigeria','Kenya',
-  'Morocco','Ghana','Saudi Arabia','United Arab Emirates','Israel','Serbia'
+  {n:'Afghanistan',s:'afghanistan'}, {n:'Albania',s:'albania'}, {n:'Algeria',s:'algeria'},
+  {n:'Andorra',s:'andorra'}, {n:'Angola',s:'angola'}, {n:'Antigua and Barbuda',s:'antigua-and-barbuda'},
+  {n:'Argentina',s:'argentina'}, {n:'Armenia',s:'armenia'}, {n:'Australia',s:'australia'},
+  {n:'Austria',s:'austria'}, {n:'Azerbaijan',s:'azerbaijan'}, {n:'Bahamas',s:'bahamas'},
+  {n:'Bahrain',s:'bahrain'}, {n:'Bangladesh',s:'bangladesh'}, {n:'Barbados',s:'barbados'},
+  {n:'Belarus',s:'belarus'}, {n:'Belgium',s:'belgium'}, {n:'Belize',s:'belize'},
+  {n:'Benin',s:'benin'}, {n:'Bhutan',s:'bhutan'}, {n:'Bolivia',s:'bolivia'},
+  {n:'Bosnia and Herzegovina',s:'bosnia-and-herzegovina'}, {n:'Botswana',s:'botswana'}, {n:'Brazil',s:'brazil'},
+  {n:'Brunei',s:'brunei'}, {n:'Bulgaria',s:'bulgaria'}, {n:'Burkina Faso',s:'burkina-faso'},
+  {n:'Burundi',s:'burundi'}, {n:'Cambodia',s:'cambodia'}, {n:'Cameroon',s:'cameroon'},
+  {n:'Canada',s:'canada'}, {n:'Cape Verde',s:'cape-verde'}, {n:'Central African Republic',s:'central-african-republic'},
+  {n:'Chad',s:'chad'}, {n:'Chile',s:'chile'}, {n:'China',s:'china'},
+  {n:'Colombia',s:'colombia'}, {n:'Comoros',s:'comoros'}, {n:'Costa Rica',s:'costa-rica'},
+  {n:'Côte d\'Ivoire',s:'cote-divoire'}, {n:'Croatia',s:'croatia'}, {n:'Cuba',s:'cuba'},
+  {n:'Cyprus',s:'cyprus'}, {n:'Czech Republic',s:'czech-republic'}, {n:'Denmark',s:'denmark'},
+  {n:'Djibouti',s:'djibouti'}, {n:'Dominica',s:'dominica'}, {n:'Dominican Republic',s:'dominican-republic'},
+  {n:'DR Congo',s:'dr-congo'}, {n:'East Timor',s:'east-timor'}, {n:'Ecuador',s:'ecuador'},
+  {n:'Egypt',s:'egypt'}, {n:'El Salvador',s:'el-salvador'}, {n:'Equatorial Guinea',s:'equatorial-guinea'},
+  {n:'Eritrea',s:'eritrea'}, {n:'Estonia',s:'estonia'}, {n:'Eswatini',s:'eswatini'},
+  {n:'Ethiopia',s:'ethiopia'}, {n:'Fiji',s:'fiji'}, {n:'Finland',s:'finland'},
+  {n:'France',s:'france'}, {n:'Gabon',s:'gabon'}, {n:'Gambia',s:'gambia'},
+  {n:'Georgia',s:'georgia'}, {n:'Germany',s:'germany'}, {n:'Ghana',s:'ghana'},
+  {n:'Greece',s:'greece'}, {n:'Grenada',s:'grenada'}, {n:'Guatemala',s:'guatemala'},
+  {n:'Guinea-Bissau',s:'guinea-bissau'}, {n:'Guinea',s:'guinea'}, {n:'Guyana',s:'guyana'},
+  {n:'Haiti',s:'haiti'}, {n:'Honduras',s:'honduras'}, {n:'Hungary',s:'hungary'},
+  {n:'Iceland',s:'iceland'}, {n:'India',s:'india'}, {n:'Indonesia',s:'indonesia'},
+  {n:'Iran',s:'iran'}, {n:'Iraq',s:'iraq'}, {n:'Ireland',s:'ireland'},
+  {n:'Israel',s:'israel'}, {n:'Italy',s:'italy'}, {n:'Jamaica',s:'jamaica'},
+  {n:'Japan',s:'japan'}, {n:'Jordan',s:'jordan'}, {n:'Kazakhstan',s:'kazakhstan'},
+  {n:'Kenya',s:'kenya'}, {n:'Kiribati',s:'kiribati'}, {n:'Kosovo',s:'kosovo'},
+  {n:'Kuwait',s:'kuwait'}, {n:'Kyrgyzstan',s:'kyrgyzstan'}, {n:'Laos',s:'laos'},
+  {n:'Latvia',s:'latvia'}, {n:'Lebanon',s:'lebanon'}, {n:'Lesotho',s:'lesotho'},
+  {n:'Liberia',s:'liberia'}, {n:'Libya',s:'libya'}, {n:'Liechtenstein',s:'liechtenstein'},
+  {n:'Lithuania',s:'lithuania'}, {n:'Luxembourg',s:'luxembourg'}, {n:'Madagascar',s:'madagascar'},
+  {n:'Malawi',s:'malawi'}, {n:'Malaysia',s:'malaysia'}, {n:'Maldives',s:'maldives'},
+  {n:'Mali',s:'mali'}, {n:'Malta',s:'malta'}, {n:'Marshall Islands',s:'marshall-islands'},
+  {n:'Mauritania',s:'mauritania'}, {n:'Mauritius',s:'mauritius'}, {n:'Mexico',s:'mexico'},
+  {n:'Micronesia',s:'micronesia'}, {n:'Moldova',s:'moldova'}, {n:'Monaco',s:'monaco'},
+  {n:'Mongolia',s:'mongolia'}, {n:'Montenegro',s:'montenegro'}, {n:'Morocco',s:'morocco'},
+  {n:'Mozambique',s:'mozambique'}, {n:'Myanmar',s:'myanmar'}, {n:'Namibia',s:'namibia'},
+  {n:'Nauru',s:'nauru'}, {n:'Nepal',s:'nepal'}, {n:'Netherlands',s:'netherlands'},
+  {n:'New Zealand',s:'new-zealand'}, {n:'Nicaragua',s:'nicaragua'}, {n:'Niger',s:'niger'},
+  {n:'Nigeria',s:'nigeria'}, {n:'North Korea',s:'north-korea'}, {n:'North Macedonia',s:'north-macedonia'},
+  {n:'Norway',s:'norway'}, {n:'Oman',s:'oman'}, {n:'Pakistan',s:'pakistan'},
+  {n:'Palau',s:'palau'}, {n:'Panama',s:'panama'}, {n:'Papua New Guinea',s:'papua-new-guinea'},
+  {n:'Paraguay',s:'paraguay'}, {n:'Peru',s:'peru'}, {n:'Philippines',s:'philippines'},
+  {n:'Poland',s:'poland'}, {n:'Portugal',s:'portugal'}, {n:'Puerto Rico',s:'puerto-rico'},
+  {n:'Qatar',s:'qatar'}, {n:'Republic of the Congo',s:'republic-of-congo'}, {n:'Romania',s:'romania'},
+  {n:'Rwanda',s:'rwanda'}, {n:'Saint Kitts and Nevis',s:'saint-kitts-and-nevis'}, {n:'Saint Lucia',s:'saint-lucia'},
+  {n:'Samoa',s:'samoa'}, {n:'San Marino',s:'san-marino'}, {n:'São Tomé and Príncipe',s:'sao-tome-and-principe'},
+  {n:'Saudi Arabia',s:'saudi-arabia'}, {n:'Scotland',s:'scotland'}, {n:'Senegal',s:'senegal'},
+  {n:'Serbia',s:'serbia'}, {n:'Seychelles',s:'seychelles'}, {n:'Sierra Leone',s:'sierra-leone'},
+  {n:'Singapore',s:'singapore'}, {n:'Slovakia',s:'slovakia'}, {n:'Slovenia',s:'slovenia'},
+  {n:'Solomon Islands',s:'solomon-islands'}, {n:'Somalia',s:'somalia'}, {n:'South Africa',s:'south-africa'},
+  {n:'South Korea',s:'south-korea'}, {n:'South Sudan',s:'south-sudan'}, {n:'Spain',s:'spain'},
+  {n:'Sri Lanka',s:'sri-lanka'}, {n:'St Vincent and the Grenadines',s:'st-vincent-and-the-grenadines'}, {n:'Sudan',s:'sudan'},
+  {n:'Suriname',s:'suriname'}, {n:'Sweden',s:'sweden'}, {n:'Switzerland',s:'switzerland'},
+  {n:'Syria',s:'syria'}, {n:'Tajikistan',s:'tajikistan'}, {n:'Tanzania',s:'tanzania'},
+  {n:'Thailand',s:'thailand'}, {n:'Togo',s:'togo'}, {n:'Tonga',s:'tonga'},
+  {n:'Trinidad and Tobago',s:'trinidad-and-tobago'}, {n:'Tunisia',s:'tunisia'}, {n:'Turkey',s:'turkey'},
+  {n:'Turkmenistan',s:'turkmenistan'}, {n:'Tuvalu',s:'tuvalu'}, {n:'Uganda',s:'uganda'},
+  {n:'Ukraine',s:'ukraine'}, {n:'United Arab Emirates',s:'united-arab-emirates'}, {n:'United Kingdom',s:'united-kingdom'},
+  {n:'United States',s:'united-states'}, {n:'Uruguay',s:'uruguay'}, {n:'Uzbekistan',s:'uzbekistan'},
+  {n:'Vanuatu',s:'vanuatu'}, {n:'Vatican City',s:'vatican-city'}, {n:'Venezuela',s:'venezuela'},
+  {n:'Vietnam',s:'vietnam'}, {n:'Wales',s:'wales'}, {n:'Western Sahara',s:'western-sahara'},
+  {n:'Yemen',s:'yemen'}, {n:'Zambia',s:'zambia'}, {n:'Zimbabwe',s:'zimbabwe'}
 ];
 
 const LEVELS = {
@@ -341,16 +401,18 @@ function newGame(){
   clearInterval(timer); timer=null;
 
   const chosen = shuffle([...COUNTRIES]).slice(0,pairs);
-  deck = shuffle(chosen.flatMap((name,i)=>[
-    {uid:'a'+i,name,type:'flag'},{uid:'b'+i,name,type:'flag'}
+  deck = shuffle(chosen.flatMap((c,i)=>[
+    {uid:'a'+i,name:c.n,slug:c.s},{uid:'b'+i,name:c.n,slug:c.s}
   ]));
 
   board.style.gridTemplateColumns=`repeat(${cols},1fr)`;
-  board.style.maxWidth=Math.min(cols*128,760)+'px';
+  // Fill the available height: width is derived from (viewport height − chrome) × grid ratio,
+  // capped by width so it never overflows. Cards stay square (aspect-ratio:1), so board height follows.
+  board.style.width=`min(94vw, calc((100dvh - 360px) * ${(cols/rows).toFixed(4)}), 760px)`;
   board.innerHTML=deck.map((c,i)=>{
     return `<button class="card" data-i="${i}" aria-label="Hidden card">
         <span class="face cover"><span class="emblem">◍</span></span>
-        <span class="face content flag"><img src="${flagSrc(c.name)}" alt="${c.name}" loading="lazy"></span>
+        <span class="face content flag"><img src="${flagSrc(c.slug)}" alt="${c.name}" loading="lazy"></span>
       </button>`;
   }).join('');
 
@@ -383,7 +445,7 @@ function flip(el){
   if(first===null){ first=el; return; }
   attempts++;
   const a=deck[+first.dataset.i], b=deck[i];
-  if(a.name===b.name && first!==el){
+  if(a.slug===b.slug && first!==el){
     first.classList.add('matched'); el.classList.add('matched');
     first=null; matches++; updatePanel();
     if(matches===pairs) setTimeout(win,500);
