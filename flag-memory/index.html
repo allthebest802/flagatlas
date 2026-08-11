@@ -84,7 +84,8 @@
   .content{opacity:0;transform:scale(.9);z-index:1}
   .content.flag{background:var(--navy-light);border:1px solid rgba(255,255,255,.10);padding:7px}
   .content.flag img{width:100%;height:100%;object-fit:contain;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,.35)}
-  .content.flag.phf::after{content:'◍';color:var(--gold);font-size:1.5rem;opacity:.6}   /* fallback if a flag file is missing */
+  .content.flag.nf span{color:var(--teal-light);font-weight:600;font-size:clamp(.55rem,1.7vw,.9rem);
+    line-height:1.1;text-align:center;padding:3px;word-break:break-word}   /* fallback label if a flag file is missing (e.g. in this preview) */
   .content.name{background:var(--cream);border:1px solid var(--cream-dark)}
   .content.name span{color:var(--navy);font-weight:600;font-size:clamp(.6rem,1.9vw,.98rem);
     line-height:1.12;text-align:center;padding:3px;word-break:break-word}
@@ -130,6 +131,15 @@
   .btn.ghost{background:none;border:1px solid rgba(255,255,255,.15);color:var(--text-muted);margin-top:9px}
   .btn.ghost:hover{color:var(--text-light);transform:none}
 
+  /* SHARE ROW — mirrors the Speed Quiz results */
+  .share-eyebrow{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);font-weight:600;margin:2px 0 8px}
+  .share-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:4px}
+  .share-btn{width:38px;height:38px;border-radius:10px;border:1px solid rgba(255,255,255,.1);background:var(--navy-light);
+    display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s;color:var(--text-light);padding:0;text-decoration:none}
+  .share-btn:hover{background:var(--teal);color:#fff;transform:translateY(-2px)}
+  .share-btn svg{width:18px;height:18px;fill:currentColor}
+  #copyMsg{display:block;font-size:.72rem;color:var(--teal-light);min-height:1em;margin:2px 0 4px}
+
   @media(prefers-reduced-motion:reduce){.face{transition:none}.card.matched,.card.wrong{animation:none}}
 </style>
 </head>
@@ -167,7 +177,7 @@
 
   <div class="board" id="board"></div>
 
-  <p class="hint">Match a <b>flag</b> with its <b>country name</b> to make a pair. Best score is saved on this device.</p>
+  <p class="hint">Flip the cards and <b>find the matching pairs of flags</b>. Best score is saved on this device.</p>
 </div>
 
 <footer>
@@ -185,6 +195,19 @@
       <div><div class="k">Accuracy</div><div class="v" id="mAcc">0%</div></div>
       <div><div class="k">Score</div><div class="v gold" id="mScore">0</div></div>
     </div>
+    <p class="share-eyebrow">Share your score</p>
+    <div class="share-row">
+      <button class="share-btn" id="shareNative" aria-label="Share…" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg></button>
+      <a class="share-btn" id="shareX" target="_blank" rel="noopener" aria-label="Share on X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a class="share-btn" id="shareWA" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+      <a class="share-btn" id="shareFB" target="_blank" rel="noopener" aria-label="Share on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+      <a class="share-btn" id="shareRD" target="_blank" rel="noopener" aria-label="Share on Reddit"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 01-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 01.042.52c0 2.694-3.13 4.87-6.994 4.87-3.865 0-6.994-2.176-6.994-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 014.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 01.14-.197.35.35 0 01.238-.042l2.906.617a1.214 1.214 0 011.108-.701zM9.25 12c-.688 0-1.249.561-1.249 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.248 1.248.688 0 1.25-.561 1.25-1.249 0-.688-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 00-.231.094.33.33 0 000 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 00.029-.463.33.33 0 00-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 00-.232-.095z"/></svg></a>
+      <a class="share-btn" id="shareBS" target="_blank" rel="noopener" aria-label="Share on Bluesky"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.202 2.857C7.954 4.922 10.913 9.11 12 11.358c1.087-2.247 4.046-6.436 6.798-8.501C20.783 1.366 24 .213 24 3.883c0 .732-.42 6.156-.667 7.037-.856 3.061-3.978 3.842-6.755 3.37 4.854.826 6.089 3.562 3.422 6.299-5.065 5.196-7.28-1.304-7.847-2.97-.104-.305-.152-.448-.153-.327 0-.121-.05.022-.153.327-.568 1.666-2.782 8.166-7.847 2.97-2.667-2.737-1.432-5.473 3.422-6.3-2.777.473-5.899-.308-6.755-3.369C.42 10.04 0 4.615 0 3.883c0-3.67 3.217-2.517 5.202-1.026"/></svg></a>
+      <a class="share-btn" id="shareTH" target="_blank" rel="noopener" aria-label="Share on Threads"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.263 11.097c-.03-3.486-1.92-5.586-5.111-5.586-2.13 0-3.922.963-4.863 2.499l2.062 1.438c.535-.843 1.272-1.543 2.628-1.543 1.528 0 2.318.85 2.544 2.431a15 15 0 0 0-2.236-.173c-4.125 0-6.068 1.867-6.068 4.336s1.943 3.99 4.804 3.99c3.139 0 5.013-2.115 5.781-4.735.798.361 1.348 1.204 1.348 2.47 0 3.387-3.907 5.232-7.22 5.232-4.885 0-8.077-3.207-8.077-8.424 0-6.392 4.223-10.487 9.9-10.487 3.808 0 5.69 1.671 6.97 3.914l2.108-1.475C21.44 2.078 18.331 0 13.663 0 6.227 0 1.168 5.277 1.168 12.934c0 7 4.953 11.066 10.856 11.066 4.878 0 9.809-2.846 9.809-7.716 0-2.545-1.46-4.231-3.569-5.187m-6.33 4.855c-1.077 0-2.026-.512-2.026-1.453 0-1.483 1.822-1.934 3.606-1.934.678 0 1.34.045 1.927.173-.422 1.927-1.671 3.215-3.508 3.214Z"/></svg></a>
+      <a class="share-btn" id="shareEM" aria-label="Share by email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+      <button class="share-btn" id="shareCopy" aria-label="Copy result"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></button>
+    </div>
+    <span id="copyMsg"></span>
     <button class="btn" id="again">Play again</button>
     <button class="btn ghost" id="change">Change difficulty</button>
   </div>
@@ -237,25 +260,23 @@ function newGame(){
 
   const chosen = shuffle([...COUNTRIES]).slice(0,pairs);
   deck = shuffle(chosen.flatMap((name,i)=>[
-    {uid:'f'+i,name,type:'flag'},{uid:'n'+i,name,type:'name'}
+    {uid:'a'+i,name,type:'flag'},{uid:'b'+i,name,type:'flag'}
   ]));
 
   board.style.gridTemplateColumns=`repeat(${cols},1fr)`;
   board.style.maxWidth=Math.min(cols*128,760)+'px';
   board.innerHTML=deck.map((c,i)=>{
-    const content = c.type==='flag'
-      ? `<span class="face content flag"><img src="${flagSrc(c.name)}" alt="${c.name}" loading="lazy"></span>`
-      : `<span class="face content name"><span>${c.name}</span></span>`;
     return `<button class="card" data-i="${i}" aria-label="Hidden card">
         <span class="face cover"><span class="emblem">◍</span></span>
-        ${content}
+        <span class="face content flag"><img src="${flagSrc(c.name)}" alt="${c.name}" loading="lazy"></span>
       </button>`;
   }).join('');
 
-  // graceful fallback if a flag file 404s (also why flags look blank in
-  // this chat preview — they load from your live site, not from here)
+  // graceful fallback if a flag file 404s — show the country name instead
+  // (this is also why flags look like text labels in the chat preview:
+  //  they load from your live /flags/ folder, not from this sandbox)
   board.querySelectorAll('.content.flag img').forEach(img=>{
-    img.addEventListener('error',()=>{ img.parentElement.classList.add('phf'); img.remove(); });
+    img.addEventListener('error',()=>{ const n=img.alt; img.parentElement.classList.add('nf'); img.parentElement.innerHTML='<span>'+n+'</span>'; });
   });
 
   updatePanel();
@@ -276,7 +297,7 @@ function flip(el){
   if(lock||el.classList.contains('flip')||el.classList.contains('matched')) return;
   if(!started) startTimer();
   el.classList.add('flip');
-  el.setAttribute('aria-label', deck[i].type==='flag'?'Flag: '+deck[i].name:deck[i].name);
+  el.setAttribute('aria-label', 'Flag: '+deck[i].name);
   if(first===null){ first=el; return; }
   attempts++;
   const a=deck[+first.dataset.i], b=deck[i];
@@ -315,7 +336,25 @@ function win(){
     $('pbBadge').innerHTML='<span class="pb">🏆 New personal best!</span>';
     $('sBest').textContent=score;
   } else $('pbBadge').innerHTML='';
+  setupShare();
   over.classList.add('show');
+}
+
+function setupShare(){
+  const url='https://flagatlas.co.uk/flag-memory.html';
+  const txt=`I matched all ${pairs} flags in ${fmt(elapsed)} on FlagAtlas 🌍`;
+  const t=encodeURIComponent(txt), u=encodeURIComponent(url), tu=encodeURIComponent(txt+' '+url);
+  const set=(id,href)=>{const e=$(id); if(e) e.href=href;};
+  set('shareX',`https://twitter.com/intent/tweet?text=${t}&url=${u}`);
+  set('shareWA',`https://wa.me/?text=${tu}`);
+  set('shareFB',`https://www.facebook.com/sharer/sharer.php?u=${u}`);
+  set('shareRD',`https://www.reddit.com/submit?url=${u}&title=${t}`);
+  set('shareBS',`https://bsky.app/intent/compose?text=${tu}`);
+  set('shareTH',`https://www.threads.net/intent/post?text=${tu}`);
+  set('shareEM',`mailto:?subject=${encodeURIComponent('Flag Memory — FlagAtlas')}&body=${tu}`);
+  const nat=$('shareNative');
+  if(navigator.share){ nat.hidden=false; nat.onclick=()=>navigator.share({title:'Flag Memory',text:txt,url}).catch(()=>{}); }
+  $('shareCopy').onclick=async()=>{ try{ await navigator.clipboard.writeText(txt+' '+url); $('copyMsg').textContent='Copied to clipboard'; setTimeout(()=>$('copyMsg').textContent='',1600); }catch(e){} };
 }
 
 $('levels').addEventListener('click',e=>{
