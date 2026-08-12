@@ -113,8 +113,16 @@
   @media(max-width:520px){.panel{grid-template-columns:repeat(3,1fr)}.stat.s-score{grid-column:span 3}}
 
   /* BOARD */
+  .board-tools{display:flex;justify-content:flex-end;max-width:760px;margin:0 auto 8px}
+  .fs-btn{background:var(--navy-mid);border:1px solid rgba(255,255,255,.1);color:var(--text-muted);
+    font-family:inherit;font-size:.78rem;font-weight:600;padding:6px 13px;border-radius:100px;cursor:pointer;transition:all .15s}
+  .fs-btn:hover{color:var(--text-light);border-color:var(--teal)}
+  body.fs nav,body.fs .hero,body.fs .hint,body.fs .seo,body.fs footer,body.fs #kofi{display:none!important}
+  body.fs{overflow:hidden}
+  body.fs .wrap{max-width:100vw;padding:8px 10px 0}
+  body.fs .board-tools{max-width:none}
   .board{display:grid;gap:10px;margin:0 auto;width:100%}
-  .card{position:relative;aspect-ratio:1;min-height:32px;border:none;background:none;padding:0;cursor:pointer;font-family:inherit}
+  .card{position:relative;aspect-ratio:1;min-height:56px;border:none;background:none;padding:0;cursor:pointer;font-family:inherit}
   .face{position:absolute;inset:0;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;
     overflow:hidden;transition:opacity .22s ease,transform .22s ease}
   /* cover (face-down) */
@@ -228,6 +236,10 @@
     <div class="stat"><div class="k">Time</div><div class="v" id="sTime">00:00</div></div>
     <div class="stat s-score"><div class="k">Score</div><div class="v gold" id="sScore">0</div></div>
     <div class="stat"><div class="k">Best</div><div class="v" id="sBest">—</div></div>
+  </div>
+
+  <div class="board-tools">
+    <button class="fs-btn" id="fsBtn" aria-label="Toggle full screen">⛶ Full screen</button>
   </div>
 
   <div class="board" id="board"></div>
@@ -395,6 +407,20 @@ const bestKey=()=>'flagmemory_best_'+diff;
 const getBest=()=>{try{return JSON.parse(localStorage.getItem(bestKey()));}catch(e){return null;}};
 const setBest=v=>{try{localStorage.setItem(bestKey(),JSON.stringify(v));}catch(e){}};
 
+function sizeBoard(){
+  const {cols,rows}=LEVELS[diff];
+  board.style.gridTemplateColumns=`repeat(${cols},1fr)`;
+  if(document.body.classList.contains('fs')){
+    // full screen: grow the board to fill the viewport height
+    board.style.maxWidth='none';
+    board.style.width=`min(96vw, calc((100dvh - 150px) * ${(cols/rows).toFixed(4)}))`;
+  } else {
+    // normal: comfortable fixed size (cards stay a good size on every level)
+    board.style.width='';
+    board.style.maxWidth=Math.min(cols*128,760)+'px';
+  }
+}
+
 function newGame(){
   const {cols,rows}=LEVELS[diff];
   pairs=(cols*rows)/2; matches=0; attempts=0; elapsed=0; first=null; lock=false; started=false;
@@ -405,10 +431,7 @@ function newGame(){
     {uid:'a'+i,name:c.n,slug:c.s},{uid:'b'+i,name:c.n,slug:c.s}
   ]));
 
-  board.style.gridTemplateColumns=`repeat(${cols},1fr)`;
-  // Fill the available height: width is derived from (viewport height − chrome) × grid ratio,
-  // capped by width so it never overflows. Cards stay square (aspect-ratio:1), so board height follows.
-  board.style.width=`min(94vw, calc((100dvh - 360px) * ${(cols/rows).toFixed(4)}), 760px)`;
+  sizeBoard();
   board.innerHTML=deck.map((c,i)=>{
     return `<button class="card" data-i="${i}" aria-label="Hidden card">
         <span class="face cover"><span class="emblem">◍</span></span>
@@ -510,9 +533,27 @@ $('again').addEventListener('click',()=>{over.classList.remove('show');newGame()
 $('closeX').addEventListener('click',()=>over.classList.remove('show'));
 $('change').addEventListener('click',()=>{over.classList.remove('show');document.querySelector('.levels').scrollIntoView({behavior:'smooth'});});
 
+// Full screen: expand the board to fill the viewport (uses the native
+// Fullscreen API where available, and always applies a maximized layout).
+const fsBtn=$('fsBtn');
+function setFs(on){
+  document.body.classList.toggle('fs',on);
+  fsBtn.textContent = on ? '⛶ Exit full screen' : '⛶ Full screen';
+  sizeBoard();
+}
+fsBtn.addEventListener('click',()=>{
+  const goingOn=!document.body.classList.contains('fs');
+  if(goingOn){ document.documentElement.requestFullscreen?.().catch(()=>{}); setFs(true); }
+  else { if(document.fullscreenElement) document.exitFullscreen?.().catch(()=>{}); setFs(false); }
+});
+document.addEventListener('fullscreenchange',()=>{
+  if(!document.fullscreenElement && document.body.classList.contains('fs')) setFs(false);
+});
+window.addEventListener('resize',()=>sizeBoard());
+
 newGame();
 </script>
-<a href="https://ko-fi.com/flagatlas" target="_blank" rel="noopener" style="position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;align-items:center;gap:8px;background:#d63a37;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:700;padding:11px 18px;border-radius:100px;text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,0.3);transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">☕ Buy me a coffee</a>
+<a href="https://ko-fi.com/flagatlas" id="kofi" target="_blank" rel="noopener" style="position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;align-items:center;gap:8px;background:#d63a37;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:700;padding:11px 18px;border-radius:100px;text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,0.3);transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">☕ Buy me a coffee</a>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4752f8ed08944697a65aba3d409c6ccd"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
