@@ -124,10 +124,10 @@
       <a class="flag-card" href="/territories/wales/"><div class="flag-img-wrap"><img src="/flags/wales-flag.png" alt="Flag of Wales" loading="lazy"></div><div class="flag-card-label"><div class="flag-card-name">Wales</div><div class="flag-card-region">United Kingdom</div></div></a>
       <div class="flag-card soon"><span class="soon-badge">Soon</span><div class="flag-img-wrap"><img src="/flags/northern-ireland-flag.png" alt="Flag of Northern Ireland" loading="lazy"></div><div class="flag-card-label"><div class="flag-card-name">Northern Ireland</div><div class="flag-card-region">United Kingdom</div></div></div>
       <div class="region-divider">Denmark</div>
-      <a class="flag-card" href="/territories/faroe-islands/"><div class="flag-img-wrap"><img src="/flags/faroe-islands-flag.png" alt="Flag of Faroe Islands" loading="lazy"></div><div class="flag-card-label"><div class="flag-card-name">Faroe Islands</div><div class="flag-card-region">Denmark</div></div></a>
-      <a class="flag-card" href="/territories/greenland/"><div class="flag-img-wrap"><img src="/flags/greenland-flag.png" alt="Flag of Greenland" loading="lazy"></div><div class="flag-card-label"><div class="flag-card-name">Greenland</div><div class="flag-card-region">Denmark</div></div></a>
+      <a class="flag-card" href="/territories/faroe-islands/"><div class="flag-img-wrap"><img src="/flags/faroe-islands-flag.png" alt="Flag of Faroe Islands" loading="lazy" data-fallback="faroe"></div><div class="flag-card-label"><div class="flag-card-name">Faroe Islands</div><div class="flag-card-region">Denmark</div></div></a>
+      <a class="flag-card" href="/territories/greenland/"><div class="flag-img-wrap"><img src="/flags/greenland-flag.png" alt="Flag of Greenland" loading="lazy" data-fallback="greenland"></div><div class="flag-card-label"><div class="flag-card-name">Greenland</div><div class="flag-card-region">Denmark</div></div></a>
       <div class="region-divider">France</div>
-      <div class="flag-card soon"><span class="soon-badge">Soon</span><div class="flag-img-wrap"><img src="/flags/martinique-flag.png" alt="Flag of Martinique" loading="lazy"></div><div class="flag-card-label"><div class="flag-card-name">Martinique</div><div class="flag-card-region">France</div></div></div>
+      <a class="flag-card" href="/territories/martinique/"><div class="flag-img-wrap"><img src="/flags/martinique-flag.png" alt="Flag of Martinique" loading="lazy" data-fallback="martinique"></div><div class="flag-card-label"><div class="flag-card-name">Martinique</div><div class="flag-card-region">France</div></div></a>
       <div class="flag-card soon"><span class="soon-badge">Soon</span><div class="flag-img-wrap"><img src="/flags/guadeloupe-flag.png" alt="Flag of Guadeloupe" loading="lazy"></div><div class="flag-card-label"><div class="flag-card-name">Guadeloupe</div><div class="flag-card-region">France</div></div></div>
       <div class="flag-card soon"><span class="soon-badge">Soon</span><div class="flag-img-wrap"><img src="/flags/reunion-flag.png" alt="Flag of Réunion" loading="lazy"></div><div class="flag-card-label"><div class="flag-card-name">Réunion</div><div class="flag-card-region">France</div></div></div>
       <div class="flag-card soon"><span class="soon-badge">Soon</span><div class="flag-img-wrap"><img src="/flags/french-guiana-flag.png" alt="Flag of French Guiana" loading="lazy"></div><div class="flag-card-label"><div class="flag-card-name">French Guiana</div><div class="flag-card-region">France</div></div></div>
@@ -175,9 +175,41 @@
 <a href="https://ko-fi.com/flagatlas" id="kofi" target="_blank" rel="noopener" style="position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;align-items:center;gap:8px;background:#d63a37;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:700;padding:11px 18px;border-radius:100px;text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,0.3);">☕ Buy me a coffee</a>
 
 <script>
-// If a flag PNG isn't in /flags/ yet, show a subtle placeholder instead of a broken image.
+/*
+ * If a territory flag PNG is missing, use an inline SVG fallback rather
+ * than removing the image and leaving the card blank.
+ */
+const flagFallbacks = {
+  martinique:
+    '<svg viewBox="0 0 300 200" role="img" aria-label="Flag of Martinique" xmlns="http://www.w3.org/2000/svg">' +
+    '<rect width="300" height="100" fill="#009A44"/><rect y="100" width="300" height="100" fill="#000000"/>' +
+    '<polygon points="0,0 130,100 0,200" fill="#EF3340"/></svg>',
+
+  greenland:
+    '<svg viewBox="0 0 300 200" role="img" aria-label="Flag of Greenland" xmlns="http://www.w3.org/2000/svg">' +
+    '<rect width="300" height="200" fill="#fff"/><rect width="300" height="100" fill="#d00"/>' +
+    '<circle cx="100" cy="100" r="55" fill="#fff"/>' +
+    '<path d="M45 100 A55 55 0 0 0 155 100 L155 145 A55 55 0 0 1 45 145Z" fill="#d00"/>' +
+    '</svg>',
+
+  faroe:
+    '<svg viewBox="0 0 300 200" role="img" aria-label="Flag of the Faroe Islands" xmlns="http://www.w3.org/2000/svg">' +
+    '<rect width="300" height="200" fill="#fff"/>' +
+    '<rect x="82" width="38" height="200" fill="#00205B"/><rect y="81" width="300" height="38" fill="#00205B"/>' +
+    '<rect x="89" width="24" height="200" fill="#EF3340"/><rect y="88" width="300" height="24" fill="#EF3340"/>' +
+    '</svg>'
+};
+
 document.querySelectorAll('.flag-img-wrap img').forEach(function(img){
-  img.addEventListener('error',function(){ img.parentElement.classList.add('noflag'); img.remove(); });
+  img.addEventListener('error', function(){
+    const key = img.dataset.fallback;
+    if (key && flagFallbacks[key]) {
+      img.outerHTML = flagFallbacks[key];
+    } else {
+      img.parentElement.classList.add('noflag');
+      img.remove();
+    }
+  });
 });
 </script>
 <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4752f8ed08944697a65aba3d409c6ccd"}'></script><!-- End Cloudflare Web Analytics -->
