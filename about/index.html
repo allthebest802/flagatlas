@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<title>About FlagAtlas — Flags, Countries & Educational Resources</title>
+<meta name="description" content="Learn about FlagAtlas, why it was created, who creates it, and the free flag, country, geography and educational resources available on the site.">
+<meta name="author" content="FlagAtlas">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://flagatlas.co.uk/about/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://flagatlas.co.uk/about/">
+<meta property="og:title" content="About FlagAtlas">
+<meta property="og:description" content="Discover what FlagAtlas is, why it was created and the free educational resources available for learning about flags, countries and territories.">
+<meta property="og:site_name" content="FlagAtlas">
+<meta property="og:locale" content="en_GB">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0f1f3d;--navy-mid:#162847;--teal:#0d9488;--teal-light:#14b8a6;--gold:#f59e0b;--cream:#fef9f0;--text-light:#e2e8f0;--text-muted:#a8b6c8;--radius:16px;--radius-sm:10px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text-light);min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
+nav{position:relative;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 2rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.nav-logo{display:flex;align-items:center;gap:.6rem;text-decoration:none}
+.nav-logo-icon{width:36px;height:36px;background:var(--teal);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.nav-logo-text{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--cream)}
+.nav-logo-text span{color:var(--teal-light)}
+.nav-links{display:flex;align-items:center;gap:.55rem;flex-wrap:wrap;justify-content:flex-end}
+.nav-links a{font-size:.75rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:.32rem .7rem;border-radius:100px;text-decoration:none;color:var(--text-light);border:1px solid rgba(255,255,255,.1)}
+.nav-links a:hover{border-color:var(--teal-light);color:var(--teal-light)}
+.wrap{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:3.5rem 1.5rem 5rem}
+.crumb{font-size:.82rem;color:var(--text-muted);margin-bottom:2rem}
+.crumb a{color:var(--teal-light);text-decoration:none}
+.hero{text-align:center;max-width:760px;margin:0 auto 3.2rem}
+.eyebrow{display:inline-flex;background:rgba(20,184,166,.12);border:1px solid rgba(20,184,166,.28);color:var(--teal-light);font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.35rem .85rem;border-radius:100px;margin-bottom:1.2rem}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.3rem,6vw,3.7rem);line-height:1.1;color:var(--cream);margin-bottom:1rem}
+.hero p{font-size:1.05rem;line-height:1.7;color:var(--text-muted);max-width:650px;margin:0 auto}
+.card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:1.8rem;margin-bottom:1.2rem}
+.card h2{font-family:'Playfair Display',serif;font-size:1.55rem;color:var(--cream);margin-bottom:.75rem}
+.card h3{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--cream);margin:1.5rem 0 .45rem}
+.card p{font-size:.95rem;line-height:1.75;color:var(--text-muted);margin-bottom:.85rem}
+.card p:last-child{margin-bottom:0}
+.card strong{color:var(--text-light)}
+.resource-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;margin-top:1rem}
+.resource{display:block;padding:1rem;background:rgba(20,184,166,.06);border:1px solid rgba(20,184,166,.18);border-radius:var(--radius-sm);text-decoration:none;color:var(--text-light);transition:transform .2s,border-color .2s}
+.resource:hover{transform:translateY(-2px);border-color:rgba(20,184,166,.45)}
+.resource-title{font-family:'Playfair Display',serif;font-size:1rem;color:var(--cream);margin-bottom:.3rem}
+.resource p{font-size:.8rem;line-height:1.5;margin:0}
+.callout{margin-top:1rem;padding:1rem 1.1rem;border-left:3px solid var(--gold);background:rgba(245,158,11,.07);border-radius:0 var(--radius-sm) var(--radius-sm) 0;color:var(--text-light);font-size:.9rem;line-height:1.65}
+.cta{text-align:center;padding:1rem 0 0}
+.cta a{display:inline-flex;align-items:center;gap:.4rem;background:var(--teal);color:white;text-decoration:none;padding:.8rem 1.5rem;border-radius:100px;font-weight:600;font-size:.9rem;margin:.3rem}
+.cta a.alt{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:var(--text-light)}
+footer{position:relative;z-index:1;text-align:center;padding:2rem;border-top:1px solid rgba(255,255,255,.06);color:var(--text-muted);font-size:.82rem}
+footer a{color:var(--teal-light);text-decoration:underline;text-underline-offset:3px}
+@media(max-width:700px){nav{padding:1rem;align-items:flex-start}.nav-links{display:none}.wrap{padding-top:2.2rem}.resource-grid{grid-template-columns:1fr}.card{padding:1.35rem}}
+</style>
+</head>
+<body>
+<nav>
+<a class="nav-logo" href="/"><div class="nav-logo-icon">🌍</div><span class="nav-logo-text">Flag<span>Atlas</span></span></a>
+<div class="nav-links">
+<a href="/explorer/">🌍 Explorer</a>
+<a href="/quiz/">⚡ Quiz</a>
+<a href="/colouring/">🖍️ Colouring</a>
+<a href="/flag-history/">📜 History</a>
+<a href="/contact">✉️ Contact</a>
+</div>
+</nav>
+
+<main class="wrap">
+<p class="crumb"><a href="/">FlagAtlas</a> › About FlagAtlas</p>
+
+<section class="hero">
+<span class="eyebrow">🌍 About FlagAtlas</span>
+<h1>Learning about the world, one flag at a time.</h1>
+<p>FlagAtlas is a free educational resource about the world's flags, countries and territories. We created it to make learning about flags accessible, visual and enjoyable.</p>
+</section>
+
+<section class="card">
+<h2>About FlagAtlas</h2>
+<p>FlagAtlas is an educational resource about the world's flags, countries and territories.</p>
+<p>We created FlagAtlas to make learning about flags <strong>accessible, visual and fun</strong> — whether you're a student, teacher, parent, geography enthusiast or simply someone who enjoys flags.</p>
+<p>Our aim is simple: <strong>help people learn about the world one flag at a time.</strong></p>
+</section>
+
+<section class="card">
+<h2>What you'll find on FlagAtlas</h2>
+<div class="resource-grid">
+<a class="resource" href="/explorer/"><div class="resource-title">🌍 Country Flag Database</div><p>Explore country flags with information about symbolism, history, geography and national identity.</p></a>
+<a class="resource" href="/territories/"><div class="resource-title">🏝️ Territories &amp; Regions</div><p>Discover flags from territories, regions and constituent countries around the world.</p></a>
+<a class="resource" href="/flag-history/"><div class="resource-title">📜 Flag History</div><p>Find out how flags have changed and what historical events influenced their designs.</p></a>
+<a class="resource" href="/guides/"><div class="resource-title">📚 Flag Guides</div><p>Learn about colours, stars, moons, crosses, symbols and the stories behind flag designs.</p></a>
+<a class="resource" href="/quiz/"><div class="resource-title">⚡ Flag Quizzes</div><p>Test your knowledge and see how many countries you can recognise.</p></a>
+<a class="resource" href="/flag-memory.html"><div class="resource-title">🧠 Memory Games</div><p>Match flags and build recognition and recall while playing.</p></a>
+<a class="resource" href="/colouring/"><div class="resource-title">🎨 Colouring Pages</div><p>Free printable flag colouring pages for children, classrooms, families and flag fans.</p></a>
+<a class="resource" href="/"><div class="resource-title">🧭 Flag Explorer &amp; Games</div><p>Explore countries, play games and discover interactive geography resources in one place.</p></a>
+</div>
+</section>
+
+<section class="card">
+<h2>Educational resources</h2>
+<p>FlagAtlas is designed to be useful for learning as well as entertainment. Students and teachers can use the site when studying geography, countries, maps, history and global cultures.</p>
+<p>The resources are also intended to work for parents, homeschooling, classroom activities, quiz fans and anyone who simply wants to learn more about the world.</p>
+<div class="callout"><strong>No prior knowledge is needed.</strong> You can start with a familiar flag, explore its story, and then follow links to discover countries and flags you may not know.</div>
+</section>
+
+<section class="card">
+<h2>Who creates FlagAtlas?</h2>
+<p><strong>FlagAtlas was created and is maintained by an independent UK-based creator with an interest in geography, history, flags and making useful things on the web.</strong></p>
+<p>The site started from a simple idea: <strong>flags are a surprisingly good way of learning about the world.</strong></p>
+<p>A flag can tell you something about a country's history, its people, its politics, its geography and the events that shaped it. But finding that information isn't always straightforward, particularly for students and younger learners.</p>
+<p>So FlagAtlas was built to bring that information together — combining <strong>flags, country information, history, interactive tools and printable resources</strong> in a format that's easy to explore.</p>
+<p>It is an ongoing project, and the site continues to grow with new country pages, games, guides and educational resources.</p>
+</section>
+
+<section class="card">
+<h2>Why did we build FlagAtlas?</h2>
+<p>There are plenty of websites where you can find a picture of a country's flag.</p>
+<p>We wanted to go a little further.</p>
+<p><strong>Why does the flag look like that?</strong></p>
+<p><strong>What do the colours mean?</strong></p>
+<p><strong>Where did the symbols come from?</strong></p>
+<p><strong>Has the flag changed over time?</strong></p>
+<p>And perhaps most importantly:</p>
+<p><strong>What can a flag teach us about the country behind it?</strong></p>
+<p>That's what FlagAtlas is about.</p>
+</section>
+
+<section class="card">
+<h2>A free resource</h2>
+<p>FlagAtlas is intended to be <strong>free to use</strong>. You don't need an account to explore the country pages, learn about flags, play the quizzes or use the printable resources.</p>
+<p>The project is continually being developed, with new content and tools added over time.</p>
+</section>
+
+<section class="card">
+<h2>Explore FlagAtlas</h2>
+<div class="cta">
+<a href="/explorer/">🌍 Explore the world's flags</a>
+<a href="/quiz/">⚡ Take a flag quiz</a>
+<a href="/colouring/">🎨 Colour a flag</a>
+<a href="/flag-memory.html">🧠 Play Flag Memory</a>
+<a href="/guides/">📚 Browse the guides</a>
+<a class="alt" href="/">← Back to FlagAtlas</a>
+</div>
+</section>
+</main>
+
+<footer>
+<p>FlagAtlas — free educational tools for everyone &nbsp;·&nbsp; <a href="/about/">About</a> &nbsp;·&nbsp; <a href="/contact">Contact</a> &nbsp;·&nbsp; <a href="/privacy/">Privacy &amp; Terms</a></p>
+</footer>
+</body>
+</html>
