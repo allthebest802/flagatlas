@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200">
+<rect x="1" y="1" width="298" height="198" fill="white" stroke="black" stroke-width="2"/>
+<!-- Red border -->
+<rect x="7" y="7" width="286" height="186" fill="white" stroke="black" stroke-width="9"/>
+<!-- Central Guam seal -->
+<ellipse cx="150" cy="100" rx="42" ry="70" fill="white" stroke="black" stroke-width="3"/>
+<!-- Simplified beach / sea / palm -->
+<path d="M112 133 Q150 120 188 133" fill="none" stroke="black" stroke-width="2"/>
+<path d="M118 135 Q150 145 182 135" fill="none" stroke="black" stroke-width="2"/>
+<path d="M150 125 V76" stroke="black" stroke-width="3"/>
+<path d="M150 82 Q137 73 129 76 M150 87 Q164 75 174 79 M150 91 Q137 84 126 88"
+      fill="none" stroke="black" stroke-width="3"/>
+<!-- canoe -->
+<path d="M128 118 Q150 130 172 118 Q166 128 150 131 Q134 128 128 118Z"
+      fill="white" stroke="black" stroke-width="2"/>
+<!-- number guide -->
+<g font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#777" text-anchor="middle">
+  <text x="35" y="45">1</text><text x="265" y="45">1</text>
+  <text x="35" y="165">1</text><text x="265" y="165">1</text>
+  <text x="150" y="25">2</text><text x="150" y="183">2</text>
+  <text x="150" y="100">3</text>
+</g>
+</svg>
