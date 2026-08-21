@@ -1,5 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
-<rect x="4" y="4" width="1192" height="792" fill="white" stroke="black" stroke-width="8"/>
-<path d="M400 4H800V250H1196V550H800V796H400V550H4V250H400Z" fill="white" stroke="black" stroke-width="8"/>
-<path d="M480 4H720V310H1196V490H720V796H480V490H4V310H480Z" fill="white" stroke="black" stroke-width="8"/>
+<svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+<title>Åland flag outline for colouring</title>
+<rect x="1" y="1" width="298" height="198" fill="white" stroke="#222" stroke-width="2"/>
+<!-- Yellow Nordic cross -->
+<path d="M75 1H125V75H299V125H125V199H75V125H1V75H75Z"
+      fill="white" stroke="#222" stroke-width="2"/>
+<!-- Red Nordic cross -->
+<path d="M85 1H115V85H299V115H115V199H85V115H1V85H85Z"
+      fill="white" stroke="#222" stroke-width="2"/>
+<!-- Colour numbers: 1 blue, 2 yellow, 3 red -->
+<g font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#777" text-anchor="middle">
+  <text x="38" y="42">1</text><text x="38" y="170">1</text>
+  <text x="170" y="42">1</text><text x="250" y="42">1</text>
+  <text x="170" y="170">1</text><text x="250" y="170">1</text>
+  <text x="100" y="55">2</text><text x="100" y="155">2</text>
+  <text x="150" y="77">2</text><text x="150" y="123">2</text>
+  <text x="150" y="105">3</text>
+  <text x="45" y="105">2</text><text x="255" y="105">2</text>
+  <text x="100" y="105">3</text><text x="200" y="105">3</text>
+</g>
 </svg>
