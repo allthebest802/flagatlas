@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200">
+<rect x="1" y="1" width="298" height="198" fill="white" stroke="black" stroke-width="2"/>
+<!-- Red saltire -->
+<path d="M128 1 H172 L300 83 V117 L172 199 H128 L0 117 V83 Z"
+      fill="white" stroke="black" stroke-width="3"/>
+<path d="M0 83 L128 1 H172 L300 83" fill="none" stroke="black" stroke-width="7"/>
+<path d="M0 117 L128 199 H172 L300 117" fill="none" stroke="black" stroke-width="7"/>
+<!-- Central crest/crown simplified -->
+<path d="M125 42 L175 42 L170 67 Q150 78 130 67 Z"
+      fill="white" stroke="black" stroke-width="3"/>
+<path d="M128 42 L135 30 L150 42 L165 30 L172 42" fill="white" stroke="black" stroke-width="3"/>
+<path d="M132 57 Q150 65 168 57" fill="none" stroke="black" stroke-width="2"/>
+<!-- Numbers -->
+<g font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#777" text-anchor="middle">
+ <text x="40" y="35">1</text><text x="260" y="35">1</text>
+ <text x="40" y="170">1</text><text x="260" y="170">1</text>
+ <text x="150" y="105">2</text><text x="150" y="52">3</text>
+</g>
+</svg>
