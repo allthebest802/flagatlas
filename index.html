@@ -274,6 +274,8 @@
 
   .tool-card:hover::before { opacity: 1; }
 
+  .tool-card.daily-highlight { background: rgba(13,148,136,0.1); border-color: rgba(20,184,166,0.25); }
+
   .tool-card.featured {
     grid-column: span 2;
     flex-direction: row;
@@ -286,7 +288,9 @@
   .tool-card.featured::before { opacity: 1; }
 
   @media (max-width: 700px) {
-    .tool-card.featured {
+    .tool-card.daily-highlight { background: rgba(13,148,136,0.1); border-color: rgba(20,184,166,0.25); }
+
+  .tool-card.featured {
       grid-column: span 1;
       flex-direction: column;
     }
@@ -457,7 +461,7 @@
   <div class="tools-grid">
 
     <!-- DAILY CHALLENGE — featured -->
-    <a class="tool-card featured" href="/daily/" style="--card-accent: var(--gold);">
+    <a class="tool-card daily-highlight" href="/daily/" style="--card-accent: var(--gold);">
       <div class="tool-icon" style="background: rgba(245,158,11,0.15); color: var(--gold);">📅</div>
       <div class="tool-content">
         <span class="tool-tag">✦ Today's Challenge</span>
