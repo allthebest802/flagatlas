@@ -59,6 +59,14 @@ footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.08);p
 footer a{color:var(--text-muted)}
 footer a:hover{color:var(--teal-light)}
 @media(max-width:600px){nav{padding:1rem}.flag-grid{grid-template-columns:1fr 1fr}}
+
+.search-section{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 1.5rem 1.5rem}
+.search-wrap{position:relative}
+.search-icon{position:absolute;left:1rem;top:50%;transform:translateY(-50%);color:var(--text-muted);pointer-events:none;font-size:1rem}
+#colouringSearch{width:100%;padding:0.75rem 1rem 0.75rem 2.8rem;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-sm);color:var(--text-light);font-family:'DM Sans',sans-serif;font-size:0.95rem;outline:none;transition:border-color 0.2s}
+#colouringSearch::placeholder{color:var(--text-muted)}
+#colouringSearch:focus{border-color:var(--teal-light)}
+.search-results{font-size:0.75rem;color:var(--text-muted);margin-top:0.5rem;min-height:1em}
 </style>
 <script type="application/ld+json">
 {
@@ -117,6 +125,14 @@ footer a:hover{color:var(--teal-light)}
     <span class="feat">📚 <strong>Fun facts on every page</strong></span>
     <span class="feat">⭐ <strong>Difficulty rating</strong></span>
   </div>
+</div>
+
+<div class="search-section">
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="colouringSearch" placeholder="Search by country or territory name…" autocomplete="off">
+  </div>
+  <div class="search-results" id="colouringResults"></div>
 </div>
 <div class="main">
   <div class="section-label">196 national flags · A to Z</div>
@@ -7795,6 +7811,53 @@ footer a:hover{color:var(--teal-light)}
   <div style="margin-bottom:8px"><a href="/">FlagAtlas</a> · <a href="/quiz/">Flag Quiz</a> · <a href="/flag-history/">Flag History</a> · <a href="/colours/">Flags by Colour</a> · <a href="/explorer/">Flag Explorer</a></div>
   FlagAtlas — Free flag tools for curious minds · Free for educational use · <a href="/contact">Contact</a>
 </footer>
+
+<script>
+(function(){
+  const searchEl = document.getElementById('colouringSearch');
+  const resultsEl = document.getElementById('colouringResults');
+  const cards = Array.from(document.querySelectorAll('.flag-card'));
+  const dividers = Array.from(document.querySelectorAll('.letter-divider'));
+
+  if (!searchEl || !cards.length) return;
+
+  function updateSearch(){
+    const query = searchEl.value.trim().toLowerCase();
+
+    let visible = 0;
+    cards.forEach(card => {
+      const nameEl = card.querySelector('.flag-card-name');
+      const name = nameEl ? nameEl.textContent.trim().toLowerCase() : '';
+      const match = !query || name.includes(query);
+      card.style.display = match ? '' : 'none';
+      if (match) visible++;
+    });
+
+    // Hide A-Z letter headings when none of their cards are visible.
+    dividers.forEach(divider => {
+      let next = divider.nextElementSibling;
+      let hasVisibleCard = false;
+      while (next && !next.classList.contains('letter-divider')) {
+        if (next.classList.contains('flag-card') && next.style.display !== 'none') {
+          hasVisibleCard = true;
+          break;
+        }
+        next = next.nextElementSibling;
+      }
+      divider.style.display = hasVisibleCard ? '' : 'none';
+    });
+
+    if (query) {
+      resultsEl.textContent = visible + (visible === 1 ? ' colouring page' : ' colouring pages') + ' found';
+    } else {
+      resultsEl.textContent = '';
+    }
+  }
+
+  searchEl.addEventListener('input', updateSearch);
+})();
+</script>
+
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token":"4752f8ed08944697a65aba3d409c6ccd"}'></script>
 </body>
 </html>
