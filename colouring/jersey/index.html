@@ -1,81 +1,87 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
 <title>Jersey Flag Colouring Page — Free Printable | FlagAtlas</title>
-<meta name="description" content="Free printable Jersey flag colouring page. Colour a simplified Jersey flag and learn about the Channel Island.">
+<meta name="description" content="Free printable Jersey flag colouring page with a simple numbered colour guide. Perfect for classrooms and home learning.">
 <link rel="canonical" href="https://flagatlas.co.uk/colouring/jersey/">
-<style>
-:root{--navy:#0f1f3d;--mid:#162847;--teal:#14b8a6;--gold:#fbbf24;--cream:#fef9f0;--muted:#a8b6c8}
-*{box-sizing:border-box}body{margin:0;background:var(--navy);color:#e2e8f0;font:16px/1.6 Arial,sans-serif}
-nav{padding:18px 28px;border-bottom:1px solid #ffffff18;display:flex;justify-content:space-between}
-nav a{color:#a8b6c8;text-decoration:none}.logo{font:bold 22px Georgia;color:var(--cream)}.logo span{color:var(--teal)}
-.wrap{max-width:900px;margin:auto;padding:30px 20px 70px}.crumb{font-size:13px;color:var(--muted);margin-bottom:20px}
-.badge{display:inline-block;padding:5px 13px;border-radius:20px;background:#14b8a61c;border:1px solid #14b8a655;color:#5eead4;font-size:12px;font-weight:bold;text-transform:uppercase;letter-spacing:1px}
-.diff{margin-left:8px;background:#f59e0b1c;border-color:#f59e0b55;color:#fbbf24}
-h1{font-family:Georgia,serif;color:var(--cream);font-size:38px;line-height:1.15;margin:12px 0 8px}
-.lead{color:var(--muted);max-width:650px}.card{background:var(--mid);border:1px solid #ffffff12;border-radius:16px;overflow:hidden;margin-top:24px}
-.flagarea{background:#fff;padding:30px;display:flex;justify-content:center}.flagarea svg{width:100%;max-width:650px;height:auto}
-.grid{display:grid;grid-template-columns:1fr 1fr}.panel{padding:24px}.panel+.panel{border-left:1px solid #ffffff12}
-.label{text-transform:uppercase;font-size:11px;font-weight:bold;letter-spacing:1.5px;color:var(--muted);margin-bottom:14px}
-.row{display:flex;gap:10px;align-items:center;margin:10px 0}.num{width:24px;height:24px;border:1px solid #ffffff44;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:12px}
-.sw{width:28px;height:28px;border-radius:50%;border:1px solid #ffffff44}.txt strong{display:block}.txt small{color:var(--muted)}
-.fact{margin:10px 0;color:var(--muted)}.fact b{color:#e2e8f0}
-.actions{padding:18px 24px;border-top:1px solid #ffffff12;display:flex;gap:10px;flex-wrap:wrap}
-.btn{padding:10px 17px;border-radius:30px;background:var(--teal);color:white;text-decoration:none;font-weight:bold;font-size:14px;border:0;cursor:pointer}
-.alt{background:transparent;border:1px solid #ffffff22;color:var(--muted)}
-footer{text-align:center;color:var(--muted);padding:25px;border-top:1px solid #ffffff12;font-size:13px}
-@media(max-width:650px){h1{font-size:30px}.grid{grid-template-columns:1fr}.panel+.panel{border-left:0;border-top:1px solid #ffffff12}.flagarea{padding:15px}}
-@media print{body{background:white;color:black}nav,.crumb,.badge,.diff,.lead,.actions,footer{display:none}.wrap{padding:0}.card{border:0;background:white}.flagarea{border:2px solid #ddd}.grid{color:black}.panel+.panel{border-color:#ddd}.label,.fact,.txt small{color:#555}h1{color:black}}
-</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+<style>:root{--navy:#0f1f3d;--navy-mid:#162847;--teal:#0d9488;--teal-light:#14b8a6;--gold:#f59e0b;--gold-light:#fbbf24;--cream:#fef9f0;--text-light:#e2e8f0;--text-muted:#a8b6c8;--radius:16px}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--text-light);min-height:100vh}body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}a{color:inherit;text-decoration:none}
+nav{position:relative;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 2rem;border-bottom:1px solid rgba(255,255,255,0.08)}.nav-logo{display:flex;align-items:center;gap:0.6rem}.nav-logo-icon{width:36px;height:36px;background:var(--teal);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px}.nav-logo-text{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--cream)}.nav-logo-text span{color:var(--teal-light)}.nav-back{color:var(--text-muted);font-size:0.82rem}.nav-back:hover{color:var(--teal-light)}
+.page-wrap{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:2rem 1.5rem 5rem}.breadcrumb{font-size:0.78rem;color:var(--text-muted);margin-bottom:1.5rem}.breadcrumb a{color:var(--text-muted)}.breadcrumb a:hover{color:var(--teal-light)}.breadcrumb span{margin:0 6px;opacity:0.4}
+.page-header{margin-bottom:2rem}.page-eyebrow{display:inline-flex;align-items:center;gap:6px;background:rgba(20,184,166,0.12);border:1px solid rgba(20,184,166,0.3);color:var(--teal-light);font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 0.9rem;border-radius:100px;margin-bottom:0.8rem}.diff-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.25);color:var(--gold-light);font-size:0.72rem;font-weight:600;padding:0.3rem 0.9rem;border-radius:100px;margin-bottom:0.8rem;margin-left:8px}.page-header h1{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.4rem);font-weight:900;color:var(--cream);line-height:1.15;margin-bottom:0.5rem}.page-header p{font-size:0.9rem;color:var(--text-muted);line-height:1.6;max-width:560px}
+.colour-card{background:var(--navy-mid);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius);overflow:hidden;margin-bottom:1.5rem}.flag-area{padding:2.5rem;background:white;display:flex;align-items:center;justify-content:center}.flag-svg-wrap{width:100%;max-width:520px}
+.info-row{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid rgba(255,255,255,0.08)}.info-panel{padding:1.5rem 2rem}.info-panel:first-child{border-right:1px solid rgba(255,255,255,0.08)}.info-label{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.8rem}
+.colour-swatches{display:flex;flex-direction:column;gap:10px}.swatch-row{display:flex;align-items:center;gap:10px}.swatch-num{width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;color:rgba(255,255,255,0.6);flex-shrink:0;font-family:monospace}.swatch-circle{width:28px;height:28px;border-radius:50%;flex-shrink:0;border:2px solid rgba(255,255,255,0.15)}.swatch-info{flex:1}.swatch-name{font-size:0.88rem;font-weight:600;color:var(--text-light)}.swatch-where{font-size:0.75rem;color:var(--text-muted);margin-top:2px;line-height:1.4}
+.fact-box{display:flex;flex-direction:column;gap:10px}.fact-item{display:flex;gap:8px;align-items:flex-start}.fact-icon{font-size:1rem;flex-shrink:0;margin-top:1px}.fact-text{font-size:0.85rem;color:var(--text-muted);line-height:1.55}.fact-text strong{color:var(--text-light)}
+.action-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:1.2rem 2rem;border-top:1px solid rgba(255,255,255,0.08)}.print-btn{display:inline-flex;align-items:center;gap:8px;background:var(--teal);border:none;color:white;font-size:0.88rem;font-weight:600;font-family:'DM Sans',sans-serif;padding:10px 20px;border-radius:100px;cursor:pointer;transition:all 0.15s}.print-btn:hover{background:var(--teal-light)}.back-btn{display:inline-flex;align-items:center;gap:6px;background:transparent;border:1px solid rgba(255,255,255,0.15);color:var(--text-muted);font-size:0.85rem;font-weight:600;font-family:'DM Sans',sans-serif;padding:9px 18px;border-radius:100px;cursor:pointer;text-decoration:none;transition:all 0.15s}.back-btn:hover{border-color:var(--teal-light);color:var(--teal-light)}.tip{font-size:0.78rem;color:var(--text-muted);margin-left:auto}
+.nav-strip{display:flex;gap:10px;flex-wrap:wrap;margin-top:1.5rem}.ns-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:100px;font-size:0.82rem;font-weight:600;border:1px solid rgba(255,255,255,0.12);background:var(--navy-mid);color:var(--text-muted);transition:all 0.15s}.ns-btn:hover{border-color:var(--teal-light);color:var(--teal-light)}
+footer{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.08);padding:2rem;text-align:center;color:var(--text-muted);font-size:0.82rem}footer a{color:var(--text-muted)}footer a:hover{color:var(--teal-light)}
+@media print{*{-webkit-print-color-adjust:exact;print-color-adjust:exact}body{background:white!important;color:black}body::before{display:none}nav,.breadcrumb,.page-eyebrow,.diff-badge,.page-header p,.action-row,.nav-strip,footer{display:none!important}.page-wrap{padding:0;max-width:100%}.page-header{margin-bottom:0.5rem}.page-header h1{color:black;font-size:1.8rem}.colour-card{border:none;background:white}.flag-area{padding:1rem;border:2px solid #ddd;border-radius:8px;margin-bottom:1rem}.info-row{border-top:1px solid #ddd}.info-panel{padding:1rem;background:white}.info-panel:first-child{border-right:1px solid #ddd}.info-label{color:#666}.swatch-name{color:black}.swatch-where{color:#555}.fact-text{color:#444}.fact-text strong{color:black}.print-note{display:block!important}}
+.print-note{display:none;font-size:0.75rem;color:#888;margin-top:0.5rem;text-align:center}
+@media(max-width:600px){nav{padding:1rem}.page-wrap{padding:1.5rem 1rem 4rem}.info-row{grid-template-columns:1fr}.info-panel:first-child{border-right:none;border-bottom:1px solid rgba(255,255,255,0.08)}.flag-area{padding:1.5rem}.action-row{padding:1rem}.tip{display:none}}</style>
 </head>
 <body>
-<nav><a class="logo" href="/">Flag<span>Atlas</span></a><a href="/colouring/">← All colouring pages</a></nav>
-<div class="wrap">
-<div class="crumb">FlagAtlas › Flag Colouring Pages › Jersey</div>
-<span class="badge">🎨 Free Colouring Page</span><span class="badge diff">⭐ Easy</span>
-<h1>Jersey Flag Colouring Page</h1>
-<p class="lead">A simplified printable version of the Jersey flag, keeping its distinctive red saltire and central crown while making the design easy to colour.</p>
-<div class="card">
-<div class="flagarea"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 200">
-<rect x="1" y="1" width="298" height="198" fill="white" stroke="black" stroke-width="2"/>
-<!-- Red saltire -->
-<path d="M128 1 H172 L300 83 V117 L172 199 H128 L0 117 V83 Z"
-      fill="white" stroke="black" stroke-width="3"/>
-<path d="M0 83 L128 1 H172 L300 83" fill="none" stroke="black" stroke-width="7"/>
-<path d="M0 117 L128 199 H172 L300 117" fill="none" stroke="black" stroke-width="7"/>
-<!-- Central crest/crown simplified -->
-<path d="M125 42 L175 42 L170 67 Q150 78 130 67 Z"
-      fill="white" stroke="black" stroke-width="3"/>
-<path d="M128 42 L135 30 L150 42 L165 30 L172 42" fill="white" stroke="black" stroke-width="3"/>
-<path d="M132 57 Q150 65 168 57" fill="none" stroke="black" stroke-width="2"/>
-<!-- Numbers -->
-<g font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#777" text-anchor="middle">
- <text x="40" y="35">1</text><text x="260" y="35">1</text>
- <text x="40" y="170">1</text><text x="260" y="170">1</text>
- <text x="150" y="105">2</text><text x="150" y="52">3</text>
-</g>
-</svg></div>
-<div class="grid">
-<div class="panel"><div class="label">🎨 Colour guide</div>
-<div class="row"><div class="num">1</div><div class="sw" style="background:white"></div><div class="txt"><strong>White</strong><small>Main field</small></div></div>
-<div class="row"><div class="num">2</div><div class="sw" style="background:#D71920"></div><div class="txt"><strong>Red</strong><small>Saltire</small></div></div>
-<div class="row"><div class="num">3</div><div class="sw" style="background:#D4AF37"></div><div class="txt"><strong>Gold</strong><small>Crown and crest</small></div></div>
+<nav>
+  <a class="nav-logo" href="/"><div class="nav-logo-icon">🌍</div><div class="nav-logo-text">Flag<span>Atlas</span></div></a>
+  <a class="nav-back" href="/colouring/">← All colouring pages</a>
+</nav>
+<div class="page-wrap">
+  <div class="breadcrumb"><a href="/">FlagAtlas</a><span>›</span><a href="/colouring/">Flag Colouring Pages</a><span>›</span>Jersey</div>
+  <div class="page-header">
+    <div><span class="page-eyebrow">🎨 Free Colouring Page</span><span class="diff-badge">⭐⭐⭐⭐ Tricky</span></div>
+    <h1>Jersey Flag Colouring Page</h1>
+    <p>Print the outline below and colour it in using the numbered guide. The numbers on the flag match the colour swatches — so you always know exactly which colour goes where.</p>
+  </div>
+  <div class="colour-card">
+    <div class="flag-area">
+      <div class="flag-svg-wrap">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 30 18" style="width:100%;height:auto;display:block"><style>*{fill:none!important;stroke:#222!important;stroke-width:0.052px!important;stroke-linejoin:round!important;stroke-linecap:round!important;}</style><rect x="0.12" y="0.12" width="29.76" height="17.76" rx="0.36"/><defs><clipPath id="a"><path d="M0 0h30v18H0z"/></clipPath></defs><path fill="none" d="M0 0h30v18H0z"/><g stroke="#000" stroke-width=".015"><path fill="none" d="M16.57 2.693c.385 1.561.174 3.489-1.567 4.559-1.742-1.07-1.953-2.998-1.568-4.559.41-.373 2.276-.603 3.135 0z"/><path fill="none" d="M15 2.38c.638 0 1.233.169 1.584.388.068-.539.312-1.077.6-1.484-.3-.006-.435.154-.438.32-.075-.213-.37-.2-.46-.085.329.222.075.616-.222.535-.14-.038-.213-.135-.24-.277a.162.162 0 1 0-.068-.01.35.35 0 0 1-.384.165c-.156-.044-.222-.185-.222-.31 0-.325.313-.375.407-.319-.006-.219-.35-.394-.457-.213a.585.585 0 0 0-.1-.713c-.213.2-.219.5-.1.713-.106-.181-.45-.006-.457.213.094-.056.407-.006.407.32a.312.312 0 0 1-.222.31.35.35 0 0 1-.383-.167.162.162 0 1 0-.07.011c-.026.142-.1.239-.239.277-.297.081-.55-.313-.222-.535-.09-.116-.385-.128-.46.084-.003-.165-.138-.325-.438-.319.288.407.532.945.6 1.484.351-.22.946-.388 1.584-.388z"/><g id="b"><g fill="none"><path d="M16.324 3.91c-.038.01-.038.06-.058.06.1-.003.148-.031.179-.081-.022.02-.003.058-.01.067.073-.025.108-.088.082-.13.017.024.064.037.08.039-.052-.04-.016-.133-.098-.18.027-.002.08.03.095.066-.013-.083-.025-.136-.093-.182.007.008.046.016.062 0a.11.11 0 0 1-.053-.103c.005-.04-.022-.05-.074-.036a1.2 1.2 0 0 1-.214.018c-.129 0-.241 0-.348-.074.16.067.364-.073.364-.189 0-.128-.158-.233-.477-.163-.32.07-.709.04-.709-.066 0-.107.279-.121.422-.1.143.023.246.037.514-.058-.066.026-.279.033-.448-.015-.169-.048-.584-.048-.587.176-.004.224.442.204.826.147.224-.033.342-.01.342.063 0 .07-.206.099-.364.08a1.226 1.226 0 0 0-.507.041c-.156.046-.264 0-.437.03-.083.014-.286 0-.386-.166-.062.044-.247.136-.278.226-.045.083-.015.165.044.246.074.102-.037.086-.116.09-.108.005-.253-.012-.329-.097-.067-.076-.156-.137-.227-.081-.037.029-.002.067.027.057.029-.011.063.01.094.024a.127.127 0 0 0-.124.014c-.03.026.006.075.041.058.028-.014.084-.023.12.01-.039-.007-.08-.006-.1.016-.02.021-.005.052.038.05.069-.003.086.045.155.035a.107.107 0 0 0-.077.044c.064-.03.135.05.218.032-.032.013-.084.045-.084.07.05-.058.382.043.39-.081a.105.105 0 0 1-.019.097c.042-.026.18-.035.222-.134.004.03-.002.068-.027.077.044.014.102-.019.161-.107.024-.035.03-.058.025-.084a.197.197 0 0 0 .148-.051c.047-.04.099.033.18-.019.08-.051.15-.007.194-.033.044-.026.105.01.153-.02.047-.03.122.014.2-.048.125.045.27.13.626.064.204-.037.268.032.268.125 0 .065-.038.07-.066.072-.113.007-.162-.043-.207-.027-.03.011-.048.06-.005.077-.036.018-.031.052-.013.065.018.013.066.001.098-.014-.041.019-.084.052-.06.088.015.02.052.039.087-.006.035-.046.1-.084.14-.078zm-2.261-.969c-.103-.042-.137-.043-.114.04.01.036.035.087.06.11 0-.035.014-.132.054-.15z"/><path d="M14.384 2.941c.103-.042.138-.043.114.04a.275.275 0 0 1-.06.11c0-.035-.013-.132-.054-.15z"/><path d="M14.224 2.885c.195 0 .22.091.218.205 0 .123-.067.08-.104.239-.015.061-.064.065-.114.065s-.098-.004-.113-.065c-.038-.158-.104-.116-.105-.24 0-.113.024-.204.218-.204z"/><path d="M13.723 3.336c-.05-.03-.082-.01-.102-.004.064.017.067.1.214.138-.033-.01-.052.01-.083-.007.06.047.128.103.272.104.08.001.024.042-.028.019.054.056.162.01.23.112.013-.08-.127-.204-.063-.294-.198-.009-.214-.118-.328-.206-.093-.07-.102-.143-.143-.278-.018-.062-.09-.1-.13-.085-.035.012-.047.043-.017.065.03.023.068.026.076.083-.039-.047-.097-.064-.125-.034-.017.017-.01.058.026.062.06.006.017.064.085.121-.06-.067-.112-.074-.144-.037-.02.022 0 .061.041.057.06-.006.13.145.219.184zm1.597.567c-.031.006-.022.057-.064.06.1 0 .152-.023.2-.062-.022.013-.031.046-.033.065.053-.046.18-.05.246-.037.066.013.077-.018.1-.06.025-.043-.008-.067-.041-.1s-.04-.079-.033-.156c-.177-.235-.493-.121-.496-.018.114.132.128.117.224.136.095.018.154.018.09.071-.022.019-.114.01-.186.013-.16.007-.233-.11-.28-.05-.04.05 0 .073.08.07-.055 0-.128-.002-.115.049.02.086.103-.016.135.02-.027-.007-.07.01-.071.036-.002.026.06.06.13.005a.2.2 0 0 1 .114-.042z"/><path d="M15.457 3.545a.303.303 0 0 0-.177-.02m-.687-.007c-.047.101-.019.151-.012.198m-.491-.679c.033.017.051-.03.099.02-.013-.015-.03.037-.066.003m.232-.023c-.032.017-.05-.03-.098.02.013-.015.03.037.066.003"/><path d="M14.257 3.056c-.011.01-.012-.007-.004.036.016.08.034.117-.03.117-.066 0-.046-.037-.03-.117.008-.043.007-.026-.004-.036"/></g><path d="M14.224 3.362c.052 0 .082-.001.074-.075-.003-.03.036-.041.022-.089.015.059-.096.053-.096.027 0 .026-.111.032-.097-.027-.013.048.026.06.022.09-.008.073.023.074.075.074zm-.047-.149l-.126-.035m.126.042l-.14-.002m.141.009l-.12.032m.212-.046l.126-.035m-.126.042l.141-.002m-.141.009l.12.032" fill="none" stroke-width=".008"/><path d="M13.573 2.837c-.036-.045-.128-.007-.13.05.031-.037.082.016.11.005.018-.008.035-.036.02-.055zm-.047.108c-.037-.046-.128-.007-.13.05.03-.037.081.015.109.004.02-.007.036-.036.02-.054zm-.024.145c-.041-.042-.128.007-.123.063.026-.04.082.007.108-.007.019-.01.032-.04.015-.056zm.044.448c-.046-.036-.126.022-.116.077.022-.042.083-.002.108-.02.016-.011.026-.043.008-.057zm-.003.098c-.054-.02-.113.06-.085.109.007-.047.077-.028.095-.052.013-.016.013-.049-.01-.057zm.071.074c-.055-.021-.114.059-.086.108.007-.047.078-.028.096-.051.012-.017.012-.05-.01-.058zm1.434.141c-.055-.02-.114.06-.086.11.007-.048.078-.029.096-.052.012-.017.012-.05-.01-.058zm.073.067c-.056-.014-.105.072-.072.118.002-.048.074-.037.089-.062.01-.018.007-.05-.016-.056zm-.051-.161c-.051-.03-.122.04-.104.093.016-.045.082-.014.104-.035.015-.014.02-.046 0-.058zm1.02.115c-.057-.014-.106.072-.073.118.002-.048.074-.037.09-.062.01-.018.006-.05-.017-.056zm.001-.09c-.051-.028-.12.044-.1.096.015-.045.082-.017.103-.038.014-.014.018-.047-.003-.058zm.04.17c-.057-.01-.102.077-.067.122 0-.048.072-.04.086-.066.01-.019.005-.051-.019-.056zm-1.903-.634c.036 0 .05.01.05.075 0 .137-.001.196-.045.196-.045 0-.042-.056-.042-.157 0-.052 0-.079-.01-.074 0-.035.015-.04.047-.04z" fill="none" stroke-width=".002"/></g><use xlink:href="#b" transform="matrix(.9 0 0 .9 1.453 1.671)"/><use xlink:href="#b" transform="matrix(.67 0 0 .75 4.909 3.354)"/></g><path d="M0.000 16.834L0.000 18.000L1.944 18.000L15.000 10.166L28.056 18.000L30.000 18.000L30.000 16.834L16.944 9.000L30.000 1.166L30.000 0.000L28.056 0.000L15.000 7.834L1.944 0.000L0.000 0.000L0.000 1.166L13.056 9.000L0.000 16.834Z" fill="none"/><g stroke="none" fill-opacity="1" font-family="sans-serif" font-weight="700" style="stroke:none"><text x="6" y="13" text-anchor="middle" font-size="1.36" fill="#bbb" style="fill:#bbb;stroke:none">1</text><text x="15" y="10.5" text-anchor="middle" font-size="1.36" fill="#d99" style="fill:#d99;stroke:none">2</text><text x="10.2" y="3.4" text-anchor="middle" font-size="1.36" fill="#d9c060" style="fill:#d9c060;stroke:none">3</text></g></svg>
+        <p class="print-note">FlagAtlas.co.uk · Free educational resource · flagatlas.co.uk/colouring/jersey/</p>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info-panel">
+        <div class="info-label">🎨 Colour guide</div>
+        <div class="colour-swatches">
+          <div class="swatch-row"><div class="swatch-num">1</div><div class="swatch-circle" style="background:#FFFFFF; border-color:#ccc"></div><div class="swatch-info"><div class="swatch-name">White</div><div class="swatch-where">The main field (leave blank)</div></div></div>
+          <div class="swatch-row"><div class="swatch-num">2</div><div class="swatch-circle" style="background:#E8112D; border-color:#E8112D"></div><div class="swatch-info"><div class="swatch-name">Red</div><div class="swatch-where">The diagonal cross (saltire)</div></div></div>
+          <div class="swatch-row"><div class="swatch-num">3</div><div class="swatch-circle" style="background:#D4AF37; border-color:#D4AF37"></div><div class="swatch-info"><div class="swatch-name">Your choice</div><div class="swatch-where">The crowned badge — shield, lions & crown</div></div></div>
+        </div>
+        </div>
+        <div class="info-panel">
+        <div class="info-label">🌍 Flag facts</div>
+        <div class="fact-box">
+          <div class="fact-item"><span class="fact-icon">❌</span><div class="fact-text">The red diagonal cross is called a <strong>saltire</strong>.</div></div>
+          <div class="fact-item"><span class="fact-icon">🦁</span><div class="fact-text">The badge shield carries <strong>three golden lions</strong>.</div></div>
+          <div class="fact-item"><span class="fact-icon">👑</span><div class="fact-text">It is topped by the yellow <strong>Plantagenet crown</strong>.</div></div>
+          <div class="fact-item"><span class="fact-icon">🇫🇷</span><div class="fact-text">Jersey lies closer to <strong>France</strong> than to Britain.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="action-row">
+      <button class="print-btn" onclick="window.print()">🖨️ Print this page</button>
+      <a class="print-btn" href="/colouring/jersey/jersey-flag-colouring.pdf" download>⬇️ Download PDF</a>
+      <a class="back-btn" href="/territories/jersey/">🌍 About the Jersey flag</a>
+      <a class="back-btn" href="/colouring/territories-flags-colouring-book.pdf" download>📕 All territories flags (free book)</a>
+      <a class="back-btn" href="/colouring/">← More flags</a>
+      <span class="tip">💡 Tip: Print in landscape for a larger flag</span>
+    </div>
+  </div>
+  <div class="nav-strip">
+    <a class="ns-btn" href="/colouring/guernsey/">🏳️ Guernsey</a>
+    <a class="ns-btn" href="/colouring/isle-of-man/">🏳️ Isle of Man</a>
+    <a class="ns-btn" href="/colouring/">All colouring pages →</a>
+  </div>
 </div>
-<div class="panel"><div class="label">🌍 Flag facts</div>
-<div class="fact">🇯🇪 Jersey is a <b>Crown Dependency</b> in the English Channel, close to the coast of Normandy.</div>
-<div class="fact">✝️ The flag has a <b>red saltire</b> on a white field.</div>
-<div class="fact">👑 A <b>golden crown</b> and crest are displayed in the centre of the flag.</div>
-<div class="fact">🏝️ Jersey is the largest of the Channel Islands.</div>
-</div>
-</div>
-<div class="actions">
-<button class="btn" onclick="window.print()">🖨️ Print this page</button>
-<a class="btn" href="/colouring/jersey/jersey-flag-colouring.pdf" download>⬇️ Download PDF</a>
-<a class="btn alt" href="/territories/jersey/">🌍 About Jersey</a>
-<a class="btn alt" href="/colouring/">← More flags</a>
-</div>
-</div>
-</div>
-<footer><a href="/">FlagAtlas</a> · <a href="/colouring/">Flag Colouring Pages</a> · <a href="/flag-history/">Flag History</a> · <a href="/quiz/">Flag Quiz</a><br>FlagAtlas — Free educational resource</footer>
-</body></html>
+<footer>
+  <div style="margin-bottom:8px"><a href="/">FlagAtlas</a> · <a href="/colouring/">Flag Colouring Pages</a> · <a href="/quiz/">Flag Quiz</a> · <a href="/flag-history/">Flag History</a></div>
+  FlagAtlas — Free flag tools · Free for educational use · <a href="/contact">Contact</a>
+</footer>
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token":"4752f8ed08944697a65aba3d409c6ccd"}'></script>
+</body>
+</html>
