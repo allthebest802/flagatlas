@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build Your Own Flag — FlagAtlas</title>
+<meta name="description" content="Design your own flag: pick a layout, choose colours, add stars, a crescent or a cross, then download your creation. A free interactive tool from FlagAtlas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=optional" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0f1f3d; --navy-mid:#162a4d; --panel:#1b3157; --panel-2:#22406b;
+    --teal:#14b8a6; --teal-bright:#2dd4bf; --gold:#fbbf24;
+    --cream:#fef9f0; --text:#e6eefb; --muted:#9fb2ce; --line:rgba(255,255,255,.12);
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    font-family:"DM Sans",system-ui,sans-serif;
+    background:
+      radial-gradient(1100px 500px at 78% -8%, rgba(20,184,166,.16), transparent 60%),
+      radial-gradient(900px 500px at 5% 105%, rgba(251,191,36,.10), transparent 55%),
+      var(--navy);
+    color:var(--text);min-height:100vh;line-height:1.55;
+  }
+  a{color:var(--teal-bright)}
+  .wrap{max-width:1180px;margin:0 auto;padding:28px 20px 64px}
+  header.top{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+  .brand{font-family:"Playfair Display",serif;font-weight:800;font-size:1.15rem;color:var(--cream);letter-spacing:.3px}
+  .brand span{color:var(--teal)}
+  h1{font-family:"Playfair Display",serif;font-weight:800;color:var(--cream);
+     font-size:clamp(1.9rem,4.6vw,3rem);line-height:1.04;margin:.1em 0 .15em;letter-spacing:-.5px}
+  .lede{color:var(--muted);max-width:56ch;margin:0 0 26px;font-size:1.02rem}
+  .lede b{color:var(--text);font-weight:600}
+
+  .app{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:26px;align-items:start}
+  @media (max-width:860px){ .app{grid-template-columns:1fr} }
+
+  /* ---- Stage ---- */
+  .stage{position:sticky;top:18px}
+  @media (max-width:860px){ .stage{position:static} }
+  .flag-card{background:var(--navy-mid);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px;box-shadow:0 24px 60px -30px rgba(0,0,0,.8)}
+  .flag-frame{position:relative;border-radius:8px;overflow:hidden;
+    box-shadow:0 10px 34px -12px rgba(0,0,0,.75);line-height:0}
+  .flag-frame svg{display:block;width:100%;height:auto}
+  .stage-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+  .btn{appearance:none;border:1px solid var(--line);background:var(--panel);color:var(--text);
+    font-family:inherit;font-weight:600;font-size:.92rem;padding:11px 15px;border-radius:10px;
+    cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:transform .12s ease,background .18s ease,border-color .18s ease}
+  .btn:hover{background:var(--panel-2);border-color:rgba(255,255,255,.22)}
+  .btn:active{transform:translateY(1px)}
+  .btn:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+  .btn.primary{background:var(--teal);border-color:transparent;color:#06231f}
+  .btn.primary:hover{background:var(--teal-bright)}
+  .btn.ghost{background:transparent}
+  .btn svg{width:17px;height:17px;flex:none}
+
+  /* ---- Controls ---- */
+  .panel{background:var(--navy-mid);border:1px solid var(--line);border-radius:var(--radius);padding:20px 20px 22px;margin-bottom:18px}
+  .panel h2{margin:0 0 14px;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-bright)}
+  .grid{display:grid;gap:10px}
+  .layouts{grid-template-columns:repeat(5,1fr)}
+  @media (max-width:520px){ .layouts{grid-template-columns:repeat(4,1fr)} }
+  .swatch-row{display:flex;flex-wrap:wrap;gap:10px}
+
+  .opt{background:var(--panel);border:1.5px solid transparent;border-radius:10px;padding:7px;cursor:pointer;
+    display:flex;flex-direction:column;align-items:center;gap:6px;transition:background .15s,border-color .15s}
+  .opt:hover{background:var(--panel-2)}
+  .opt[aria-pressed="true"]{border-color:var(--teal);background:var(--panel-2)}
+  .opt:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+  .opt svg{width:100%;height:34px;border-radius:4px;display:block}
+  .opt .cap{font-size:.66rem;color:var(--muted);text-align:center;line-height:1.15}
+  .opt[aria-pressed="true"] .cap{color:var(--text)}
+
+  .colorslot{display:flex;flex-direction:column;align-items:center;gap:6px}
+  .colorslot label{font-size:.7rem;color:var(--muted)}
+  input[type=color]{-webkit-appearance:none;appearance:none;width:52px;height:44px;border:1px solid var(--line);
+    border-radius:10px;background:none;cursor:pointer;padding:3px}
+  input[type=color]::-webkit-color-swatch-wrapper{padding:0}
+  input[type=color]::-webkit-color-swatch{border:none;border-radius:7px}
+  input[type=color]::-moz-color-swatch{border:none;border-radius:7px}
+  input[type=color]:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+  .chip{width:26px;height:26px;border-radius:50%;border:1px solid rgba(255,255,255,.25);cursor:pointer;padding:0;transition:transform .1s}
+  .chip:hover{transform:scale(1.12)}
+  .chip:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+  .hint{font-size:.74rem;color:var(--muted);margin:12px 0 0}
+
+  .row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .seg{display:inline-flex;background:var(--panel);border-radius:10px;padding:3px;gap:3px}
+  .seg button{border:none;background:none;color:var(--muted);font-family:inherit;font-weight:600;font-size:.85rem;
+    padding:7px 13px;border-radius:8px;cursor:pointer}
+  .seg button[aria-pressed="true"]{background:var(--teal);color:#06231f}
+  .seg button:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+
+  .field-inline{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:16px}
+  .field-inline .lbl{font-size:.86rem;color:var(--text);font-weight:600}
+  input[type=range]{accent-color:var(--teal);width:150px}
+  .count-val{font-variant-numeric:tabular-nums;color:var(--teal-bright);font-weight:700;min-width:2ch;text-align:right}
+
+  footer.foot{margin-top:30px;color:var(--muted);font-size:.82rem;text-align:center}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">Flag<span>Atlas</span></div>
+    <nav style="font-size:.9rem"><a href="/">← Back to all flags</a></nav>
+  </header>
+
+  <h1>Build your own flag</h1>
+  <p class="lede">Pick a <b>layout</b>, choose your <b>colours</b>, add a <b>star, crescent or cross</b> — then download your flag to print, share or colour. Nothing to install; everything happens right here.</p>
+
+  <div class="app">
+    <!-- STAGE -->
+    <div class="stage">
+      <div class="flag-card">
+        <div class="flag-frame" id="frame" aria-label="Your flag preview" role="img"></div>
+        <div class="stage-actions">
+          <button class="btn primary" id="dlPng">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/></svg>
+            Download PNG
+          </button>
+          <button class="btn" id="dlSvg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2"/><path d="M14 3v5h5"/></svg>
+            SVG
+          </button>
+          <button class="btn ghost" id="random">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5"/><path d="M8 3H3v5"/><path d="m21 3-7 7"/><path d="m3 3 7 7"/><path d="M21 16v5h-5"/><path d="m14 14 7 7"/><path d="M8 21H3v-5"/><path d="m10 14-7 7"/></svg>
+            Surprise me
+          </button>
+          <button class="btn ghost" id="reset">Reset</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTROLS -->
+    <div class="controls">
+      <section class="panel">
+        <h2>Layout</h2>
+        <div class="grid layouts" id="layouts"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Colours</h2>
+        <div class="swatch-row" id="colorslots"></div>
+        <div class="chips" id="chips" aria-label="Quick colours — applies to the last colour you changed"></div>
+        <p class="hint">Tip: click a quick colour to fill the swatch you last opened.</p>
+      </section>
+
+      <section class="panel">
+        <h2>Emblem</h2>
+        <div class="grid layouts" id="emblems"></div>
+        <div class="field-inline">
+          <span class="lbl">Emblem colour</span>
+          <input type="color" id="emblemColor" value="#ffffff" aria-label="Emblem colour">
+        </div>
+        <div class="field-inline" id="countRow" hidden>
+          <span class="lbl">Number of stars</span>
+          <span class="row"><input type="range" id="count" min="3" max="15" value="12"><span class="count-val" id="countVal">12</span></span>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Shape</h2>
+        <div class="field-inline">
+          <span class="lbl">Proportions</span>
+          <div class="seg" id="ratio" role="group" aria-label="Flag proportions">
+            <button data-r="3:2" aria-pressed="true">3 : 2</button>
+            <button data-r="2:1" aria-pressed="false">2 : 1</button>
+            <button data-r="1:1" aria-pressed="false">1 : 1</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <footer class="foot">FlagAtlas · Free educational resource · Build, download and colour your own flags</footer>
+</div>
+
+<script>
+"use strict";
+(function(){
+  const W = 900;
+  const ratios = {"3:2":600, "2:1":450, "1:1":900};
+
+  const PRESETS = ["#CE1126","#A2231D","#FF7F00","#FCD116","#FFFFFF","#009543","#006233",
+                   "#14b8a6","#4189DD","#003580","#10214b","#5B2C83","#000000","#8B5E3C"];
+
+  const state = {
+    ratio:"3:2",
+    layout:"vertical3",
+    colors:["#CE1126","#FFFFFF","#003580","#FCD116"],
+    emblem:"none",
+    emblemColor:"#FFFFFF",
+    count:12
+  };
+  let lastSlot = 0;
+
+  /* ---------- geometry helpers ---------- */
+  const A = (n,d)=>Math.round(n*d*100)/100;
+  function starPts(cx,cy,R,rot){
+    rot = (rot==null?-90:rot);
+    const r=R*0.382, p=[];
+    for(let k=0;k<10;k++){
+      const a=(rot+k*36)*Math.PI/180, rad=(k%2===0)?R:r;
+      p.push((cx+rad*Math.cos(a)).toFixed(2)+","+(cy+rad*Math.sin(a)).toFixed(2));
+    }
+    return p.join(" ");
+  }
+  const star=(cx,cy,R,fill,rot)=>`<polygon points="${starPts(cx,cy,R,rot)}" fill="${fill}"/>`;
+  const circPath=(cx,cy,r)=>`M${cx-r} ${cy} a${r} ${r} 0 1 0 ${2*r} 0 a${r} ${r} 0 1 0 ${-2*r} 0 Z`;
+
+  /* ---------- layouts ---------- */
+  const LAYOUTS = {
+    solid:      {n:1, name:"Solid",     draw:(w,h,c)=>`<rect width="${w}" height="${h}" fill="${c[0]}"/>`},
+    vertical2:  {n:2, name:"Vert. 2",   draw:(w,h,c)=>`<rect width="${w}" height="${h}" fill="${c[1]}"/><rect width="${w/2}" height="${h}" fill="${c[0]}"/>`},
+    vertical3:  {n:3, name:"Vert. 3",   draw:(w,h,c)=>`<rect width="${w}" height="${h}" fill="${c[1]}"/><rect width="${w/3}" height="${h}" fill="${c[0]}"/><rect x="${2*w/3}" width="${w/3}" height="${h}" fill="${c[2]}"/>`},
+    horizontal2:{n:2, name:"Horiz. 2",  draw:(w,h,c)=>`<rect width="${w}" height="${h}" fill="${c[1]}"/><rect width="${w}" height="${h/2}" fill="${c[0]}"/>`},
+    horizontal3:{n:3, name:"Horiz. 3",  draw:(w,h,c)=>`<rect width="${w}" height="${h}" fill="${c[1]}"/><rect width="${w}" height="${h/3}" fill="${c[0]}"/><rect y="${2*h/3}" width="${w}" height="${h/3}" fill="${c[2]}"/>`},
+    quarters:   {n:4, name:"Quarters",  draw:(w,h,c)=>`<rect width="${w/2}" height="${h/2}" fill="${c[0]}"/><rect x="${w/2}" width="${w/2}" height="${h/2}" fill="${c[1]}"/><rect y="${h/2}" width="${w/2}" height="${h/2}" fill="${c[2]}"/><rect x="${w/2}" y="${h/2}" width="${w/2}" height="${h/2}" fill="${c[3]}"/>`},
+    diagonal:   {n:2, name:"Diagonal",  draw:(w,h,c)=>`<rect width="${w}" height="${h}" fill="${c[1]}"/><polygon points="0,0 ${w},0 0,${h}" fill="${c[0]}"/>`},
+    nordic:     {n:2, name:"Nordic",    draw:(w,h,c)=>{const t=h*0.16,vx=w*0.30;return `<rect width="${w}" height="${h}" fill="${c[0]}"/><rect y="${(h-t)/2}" width="${w}" height="${t}" fill="${c[1]}"/><rect x="${vx-t/2}" width="${t}" height="${h}" fill="${c[1]}"/>`;}},
+    cross:      {n:2, name:"Cross",     draw:(w,h,c)=>{const t=h*0.18;return `<rect width="${w}" height="${h}" fill="${c[0]}"/><rect y="${(h-t)/2}" width="${w}" height="${t}" fill="${c[1]}"/><rect x="${(w-t)/2}" width="${t}" height="${h}" fill="${c[1]}"/>`;}},
+    saltire:    {n:2, name:"Saltire",   draw:(w,h,c)=>{const t=h*0.16;return `<rect width="${w}" height="${h}" fill="${c[0]}"/><g stroke="${c[1]}" stroke-width="${t}"><line x1="0" y1="0" x2="${w}" y2="${h}"/><line x1="0" y1="${h}" x2="${w}" y2="0"/></g>`;}},
+    canton:     {n:2, name:"Canton",    draw:(w,h,c)=>`<rect width="${w}" height="${h}" fill="${c[0]}"/><rect width="${w*0.4}" height="${h*0.5}" fill="${c[1]}"/>`}
+  };
+
+  /* ---------- emblems ---------- */
+  const EMBLEMS = {
+    none:     {name:"None"},
+    starOne:  {name:"Star"},
+    stars:    {name:"Ring", count:true},
+    crescent: {name:"Crescent"},
+    circle:   {name:"Circle"},
+    triangle: {name:"Triangle"},
+    diamond:  {name:"Diamond"}
+  };
+  function emblemSVG(w,h,type,col,count){
+    const cx=w/2, cy=h/2, U=Math.min(w,h);
+    switch(type){
+      case "starOne": return star(cx,cy,U*0.30,col);
+      case "stars":{
+        const R=U*0.30, s=U*0.075, out=[];
+        for(let k=0;k<count;k++){const a=(-90+k*360/count)*Math.PI/180;
+          out.push(star(cx+R*Math.cos(a),cy+R*Math.sin(a),s,col));}
+        return out.join("");
+      }
+      case "crescent":{
+        const R=U*0.30;
+        return `<path fill-rule="evenodd" d="${circPath(cx-U*0.05,cy,R)} ${circPath(cx+U*0.10,cy,R*0.82)}" fill="${col}"/>`
+             + star(cx+U*0.26,cy,U*0.11,col);
+      }
+      case "circle":  return `<circle cx="${cx}" cy="${cy}" r="${U*0.26}" fill="${col}"/>`;
+      case "triangle":return `<polygon points="0,0 ${w*0.34},${h/2} 0,${h}" fill="${col}"/>`;
+      case "diamond": return `<polygon points="${cx},${cy-U*0.32} ${cx+U*0.30},${cy} ${cx},${cy+U*0.32} ${cx-U*0.30},${cy}" fill="${col}"/>`;
+      default: return "";
+    }
+  }
+
+  /* ---------- build the flag SVG ---------- */
+  function buildSVG(){
+    const h = ratios[state.ratio];
+    const field = LAYOUTS[state.layout].draw(W,h,state.colors);
+    const emb = emblemSVG(W,h,state.emblem,state.emblemColor,state.count);
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${h}" width="${W}" height="${h}">`
+         + field + emb
+         + `<rect x="0.5" y="0.5" width="${W-1}" height="${h-1}" fill="none" stroke="rgba(0,0,0,.18)"/></svg>`;
+  }
+
+  /* ---------- render ---------- */
+  const frame = document.getElementById("frame");
+  function render(){ frame.innerHTML = buildSVG(); }
+
+  /* ---------- UI: layout icons ---------- */
+  const layoutsEl = document.getElementById("layouts");
+  Object.entries(LAYOUTS).forEach(([key,def])=>{
+    const b=document.createElement("button");
+    b.className="opt"; b.type="button"; b.setAttribute("aria-pressed", key===state.layout);
+    b.dataset.k=key;
+    const demo=['#365a8c','#e8edf5','#8aa2c4','#c9d4e6'];
+    b.innerHTML = `<svg viewBox="0 0 60 40" preserveAspectRatio="none">${def.draw(60,40,demo)}</svg><span class="cap">${def.name}</span>`;
+    b.addEventListener("click",()=>{ state.layout=key; syncPressed(layoutsEl,key); buildColorSlots(); render(); });
+    layoutsEl.appendChild(b);
+  });
+
+  /* ---------- UI: emblem icons ---------- */
+  const emblemsEl = document.getElementById("emblems");
+  Object.entries(EMBLEMS).forEach(([key,def])=>{
+    const b=document.createElement("button");
+    b.className="opt"; b.type="button"; b.setAttribute("aria-pressed", key===state.emblem);
+    b.dataset.k=key;
+    const demoField=`<rect width="60" height="40" fill="#2a4266"/>`;
+    const demoEmb = key==="none" ? "" : emblemSVG(60,40,key,"#f4d47a",6);
+    b.innerHTML = `<svg viewBox="0 0 60 40">${demoField}${demoEmb}</svg><span class="cap">${def.name}</span>`;
+    b.addEventListener("click",()=>{ state.emblem=key; syncPressed(emblemsEl,key);
+      document.getElementById("countRow").hidden = !EMBLEMS[key].count; render(); });
+    emblemsEl.appendChild(b);
+  });
+
+  function syncPressed(container,key){
+    container.querySelectorAll(".opt").forEach(o=>o.setAttribute("aria-pressed", o.dataset.k===key));
+  }
+
+  /* ---------- UI: colour slots ---------- */
+  const slotsEl = document.getElementById("colorslots");
+  function buildColorSlots(){
+    const n = LAYOUTS[state.layout].n;
+    slotsEl.innerHTML="";
+    for(let i=0;i<n;i++){
+      const wrap=document.createElement("div"); wrap.className="colorslot";
+      const id="col"+i;
+      const inp=document.createElement("input");
+      inp.type="color"; inp.id=id; inp.value=state.colors[i];
+      inp.addEventListener("input",e=>{ state.colors[i]=e.target.value; render(); });
+      inp.addEventListener("focus",()=>{ lastSlot=i; });
+      const lab=document.createElement("label"); lab.htmlFor=id; lab.textContent="Colour "+(i+1);
+      wrap.appendChild(inp); wrap.appendChild(lab); slotsEl.appendChild(wrap);
+    }
+    if(lastSlot>=n) lastSlot=0;
+  }
+
+  /* ---------- UI: quick chips ---------- */
+  const chipsEl=document.getElementById("chips");
+  PRESETS.forEach(hex=>{
+    const c=document.createElement("button");
+    c.className="chip"; c.type="button"; c.style.background=hex;
+    c.title=hex; c.setAttribute("aria-label","Use "+hex);
+    c.addEventListener("click",()=>{
+      state.colors[lastSlot]=hex;
+      const inp=document.getElementById("col"+lastSlot); if(inp) inp.value=hex;
+      render();
+    });
+    chipsEl.appendChild(c);
+  });
+
+  /* ---------- emblem colour + count ---------- */
+  document.getElementById("emblemColor").addEventListener("input",e=>{ state.emblemColor=e.target.value; render(); });
+  const count=document.getElementById("count"), countVal=document.getElementById("countVal");
+  count.addEventListener("input",e=>{ state.count=+e.target.value; countVal.textContent=state.count; render(); });
+
+  /* ---------- ratio ---------- */
+  document.getElementById("ratio").addEventListener("click",e=>{
+    const b=e.target.closest("button"); if(!b) return;
+    state.ratio=b.dataset.r;
+    document.querySelectorAll("#ratio button").forEach(x=>x.setAttribute("aria-pressed", x===b));
+    render();
+  });
+
+  /* ---------- actions ---------- */
+  function download(name,href){ const a=document.createElement("a"); a.download=name; a.href=href; document.body.appendChild(a); a.click(); a.remove(); }
+
+  document.getElementById("dlSvg").addEventListener("click",()=>{
+    const blob=new Blob([buildSVG()],{type:"image/svg+xml"});
+    const url=URL.createObjectURL(blob); download("my-flag.svg",url); setTimeout(()=>URL.revokeObjectURL(url),1500);
+  });
+
+  document.getElementById("dlPng").addEventListener("click",()=>{
+    const h=ratios[state.ratio], scale=2;
+    const svg=buildSVG();
+    const img=new Image();
+    const svgUrl="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svg);
+    img.onload=function(){
+      const cv=document.createElement("canvas"); cv.width=W*scale; cv.height=h*scale;
+      const ctx=cv.getContext("2d"); ctx.drawImage(img,0,0,cv.width,cv.height);
+      download("my-flag.png",cv.toDataURL("image/png"));
+    };
+    img.onerror=function(){ alert("Sorry — the image couldn't be generated in this browser. Try the SVG download instead."); };
+    img.src=svgUrl;
+  });
+
+  const rand=arr=>arr[Math.floor(Math.random()*arr.length)];
+  document.getElementById("random").addEventListener("click",()=>{
+    state.layout=rand(Object.keys(LAYOUTS));
+    state.colors=state.colors.map(()=>rand(PRESETS));
+    // avoid identical neighbours looking blank-ish: nudge if all same
+    state.emblem=rand(Object.keys(EMBLEMS));
+    state.emblemColor=rand(PRESETS);
+    state.ratio=rand(["3:2","2:1","1:1"]);
+    state.count=3+Math.floor(Math.random()*13);
+    syncAll();
+  });
+
+  document.getElementById("reset").addEventListener("click",()=>{
+    state.ratio="3:2"; state.layout="vertical3";
+    state.colors=["#CE1126","#FFFFFF","#003580","#FCD116"];
+    state.emblem="none"; state.emblemColor="#FFFFFF"; state.count=12;
+    syncAll();
+  });
+
+  function syncAll(){
+    syncPressed(layoutsEl,state.layout);
+    syncPressed(emblemsEl,state.emblem);
+    document.getElementById("countRow").hidden=!EMBLEMS[state.emblem].count;
+    document.getElementById("count").value=state.count; countVal.textContent=state.count;
+    document.getElementById("emblemColor").value=state.emblemColor;
+    document.querySelectorAll("#ratio button").forEach(x=>x.setAttribute("aria-pressed", x.dataset.r===state.ratio));
+    buildColorSlots();
+    render();
+  }
+
+  /* ---------- init ---------- */
+  buildColorSlots();
+  render();
+})();
+</script>
+</body>
+</html>
