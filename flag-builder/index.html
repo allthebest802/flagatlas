@@ -46,6 +46,10 @@
   .flag-frame{position:relative;border-radius:8px;overflow:hidden;
     box-shadow:0 10px 34px -12px rgba(0,0,0,.75);line-height:0}
   .flag-frame svg{display:block;width:100%;height:auto}
+  .flag-caption{font-family:"Playfair Display",serif;font-weight:700;color:var(--cream);
+    text-align:center;margin:16px 4px 2px;font-size:clamp(1.1rem,2.6vw,1.5rem);line-height:1.2;
+    min-height:1.2em;word-break:break-word}
+  .flag-caption.empty{color:var(--muted);font-style:italic;font-weight:400;opacity:.6}
   .stage-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
   .btn{appearance:none;border:1px solid var(--line);background:var(--panel);color:var(--text);
     font-family:inherit;font-weight:600;font-size:.92rem;padding:11px 15px;border-radius:10px;
@@ -83,6 +87,11 @@
   input[type=color]::-webkit-color-swatch{border:none;border-radius:7px}
   input[type=color]::-moz-color-swatch{border:none;border-radius:7px}
   input[type=color]:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+
+  input[type=text]{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:10px;
+    color:var(--text);font-family:inherit;font-size:1rem;padding:11px 13px}
+  input[type=text]::placeholder{color:var(--muted);opacity:.7}
+  input[type=text]:focus-visible{outline:3px solid var(--teal);outline-offset:2px;border-color:transparent}
 
   .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
   .chip{width:26px;height:26px;border-radius:50%;border:1px solid rgba(255,255,255,.25);cursor:pointer;padding:0;transition:transform .1s}
@@ -122,6 +131,7 @@
     <div class="stage">
       <div class="flag-card">
         <div class="flag-frame" id="frame" aria-label="Your flag preview" role="img"></div>
+        <div class="flag-caption empty" id="cap">Your flag's name</div>
         <div class="stage-actions">
           <button class="btn primary" id="dlPng">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 21h14"/></svg>
@@ -142,6 +152,13 @@
 
     <!-- CONTROLS -->
     <div class="controls">
+      <section class="panel">
+        <h2>Name your flag</h2>
+        <input type="text" id="flagName" maxlength="40" placeholder="e.g. Republic of the North Star"
+               autocomplete="off" spellcheck="false">
+        <p class="hint">Shown under your flag and used for the download file name.</p>
+      </section>
+
       <section class="panel">
         <h2>Layout</h2>
         <div class="grid layouts" id="layouts"></div>
@@ -199,7 +216,8 @@
     colors:["#CE1126","#FFFFFF","#003580","#FCD116"],
     emblem:"none",
     emblemColor:"#FFFFFF",
-    count:12
+    count:12,
+    name:""
   };
   let lastSlot = 0;
 
@@ -254,8 +272,8 @@
       }
       case "crescent":{
         const R=U*0.30;
-        return `<path fill-rule="evenodd" d="${circPath(cx-U*0.05,cy,R)} ${circPath(cx+U*0.10,cy,R*0.82)}" fill="${col}"/>`
-             + star(cx+U*0.26,cy,U*0.11,col);
+        return `<path fill-rule="evenodd" d="${circPath(cx,cy,R)} ${circPath(cx+R*0.28,cy,R*0.88)}" fill="${col}"/>`
+             + star(cx+R*0.62,cy,R*0.40,col);
       }
       case "circle":  return `<circle cx="${cx}" cy="${cy}" r="${U*0.26}" fill="${col}"/>`;
       case "triangle":return `<polygon points="0,0 ${w*0.34},${h/2} 0,${h}" fill="${col}"/>`;
@@ -269,14 +287,28 @@
     const h = ratios[state.ratio];
     const field = LAYOUTS[state.layout].draw(W,h,state.colors);
     const emb = emblemSVG(W,h,state.emblem,state.emblemColor,state.count);
+    const title = state.name.trim() ? `<title>${state.name.trim().replace(/[<&>]/g,"")}</title>` : "";
     return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${h}" width="${W}" height="${h}">`
-         + field + emb
+         + title + field + emb
          + `<rect x="0.5" y="0.5" width="${W-1}" height="${h-1}" fill="none" stroke="rgba(0,0,0,.18)"/></svg>`;
   }
 
   /* ---------- render ---------- */
   const frame = document.getElementById("frame");
+  const capEl = document.getElementById("cap");
+  function updateCaption(){
+    const n=state.name.trim();
+    capEl.textContent = n || "Your flag's name";
+    capEl.classList.toggle("empty", !n);
+  }
+  function slug(){
+    const s=state.name.trim().toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"");
+    return s || "my-flag";
+  }
   function render(){ frame.innerHTML = buildSVG(); }
+
+  const nameInput=document.getElementById("flagName");
+  nameInput.addEventListener("input",e=>{ state.name=e.target.value; updateCaption(); });
 
   /* ---------- UI: layout icons ---------- */
   const layoutsEl = document.getElementById("layouts");
@@ -358,39 +390,59 @@
 
   document.getElementById("dlSvg").addEventListener("click",()=>{
     const blob=new Blob([buildSVG()],{type:"image/svg+xml"});
-    const url=URL.createObjectURL(blob); download("my-flag.svg",url); setTimeout(()=>URL.revokeObjectURL(url),1500);
+    const url=URL.createObjectURL(blob); download(slug()+".svg",url); setTimeout(()=>URL.revokeObjectURL(url),1500);
   });
 
   document.getElementById("dlPng").addEventListener("click",()=>{
     const h=ratios[state.ratio], scale=2;
+    const name=state.name.trim();
     const svg=buildSVG();
     const img=new Image();
     const svgUrl="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svg);
-    img.onload=function(){
-      const cv=document.createElement("canvas"); cv.width=W*scale; cv.height=h*scale;
-      const ctx=cv.getContext("2d"); ctx.drawImage(img,0,0,cv.width,cv.height);
-      download("my-flag.png",cv.toDataURL("image/png"));
+    const draw=function(){
+      const fw=W*scale, fh=h*scale;
+      const band = name ? Math.round(fh*0.20) : 0;
+      const cv=document.createElement("canvas"); cv.width=fw; cv.height=fh+band;
+      const ctx=cv.getContext("2d");
+      ctx.drawImage(img,0,0,fw,fh);
+      if(name){
+        ctx.fillStyle="#0f1f3d"; ctx.fillRect(0,fh,fw,band);
+        ctx.fillStyle="#fef9f0"; ctx.textAlign="center";
+        let fs=Math.round(band*0.42);
+        ctx.font="700 "+fs+'px "Playfair Display", Georgia, serif';
+        // shrink to fit width
+        while(ctx.measureText(name).width>fw*0.9 && fs>12){ fs-=2; ctx.font="700 "+fs+'px "Playfair Display", Georgia, serif'; }
+        ctx.textBaseline="middle";
+        ctx.fillText(name, fw/2, fh+band*0.42);
+        ctx.fillStyle="#9fb2ce"; ctx.font='500 '+Math.round(band*0.17)+'px "DM Sans", system-ui, sans-serif';
+        ctx.fillText("Made at FlagAtlas.co.uk", fw/2, fh+band*0.75);
+      }
+      download(slug()+".png", cv.toDataURL("image/png"));
     };
+    img.onload=function(){ (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(draw); };
     img.onerror=function(){ alert("Sorry — the image couldn't be generated in this browser. Try the SVG download instead."); };
     img.src=svgUrl;
   });
 
   const rand=arr=>arr[Math.floor(Math.random()*arr.length)];
+  const NAME_A=["Northern","Golden","Free","United","Grand","Azure","Crimson","Emerald","Silver","New","Old","Sovereign","Sunrise","Coral","Highland"];
+  const NAME_B=["Republic","Isles","Dominion","Confederation","Union","Kingdom","Territory","Commonwealth","Federation","Coast","Reach","Provinces"];
+  const NAME_C=["of the North Star","of the Twin Peaks","of the Open Sea","of the Silver River","of the Free Winds","of the Bright Dawn","of the Emerald Vale",""];
   document.getElementById("random").addEventListener("click",()=>{
     state.layout=rand(Object.keys(LAYOUTS));
     state.colors=state.colors.map(()=>rand(PRESETS));
-    // avoid identical neighbours looking blank-ish: nudge if all same
     state.emblem=rand(Object.keys(EMBLEMS));
     state.emblemColor=rand(PRESETS);
     state.ratio=rand(["3:2","2:1","1:1"]);
     state.count=3+Math.floor(Math.random()*13);
+    state.name=(rand(NAME_A)+" "+rand(NAME_B)+" "+rand(NAME_C)).trim();
     syncAll();
   });
 
   document.getElementById("reset").addEventListener("click",()=>{
     state.ratio="3:2"; state.layout="vertical3";
     state.colors=["#CE1126","#FFFFFF","#003580","#FCD116"];
-    state.emblem="none"; state.emblemColor="#FFFFFF"; state.count=12;
+    state.emblem="none"; state.emblemColor="#FFFFFF"; state.count=12; state.name="";
     syncAll();
   });
 
@@ -401,12 +453,14 @@
     document.getElementById("count").value=state.count; countVal.textContent=state.count;
     document.getElementById("emblemColor").value=state.emblemColor;
     document.querySelectorAll("#ratio button").forEach(x=>x.setAttribute("aria-pressed", x.dataset.r===state.ratio));
+    nameInput.value=state.name; updateCaption();
     buildColorSlots();
     render();
   }
 
   /* ---------- init ---------- */
   buildColorSlots();
+  updateCaption();
   render();
 })();
 </script>
