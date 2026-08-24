@@ -162,6 +162,10 @@
       <section class="panel">
         <h2>Layout</h2>
         <div class="grid layouts" id="layouts"></div>
+        <div class="field-inline" id="stripeRow" hidden>
+          <span class="lbl">Number of stripes</span>
+          <span class="row"><input type="range" id="stripes" min="2" max="15" value="13"><span class="count-val" id="stripeVal">13</span></span>
+        </div>
       </section>
 
       <section class="panel">
@@ -217,6 +221,7 @@
     emblem:"none",
     emblemColor:"#FFFFFF",
     count:12,
+    stripeCount:13,
     name:""
   };
   let lastSlot = 0;
@@ -247,7 +252,9 @@
     nordic:     {n:2, name:"Nordic",    draw:(w,h,c)=>{const t=h*0.16,vx=w*0.30;return `<rect width="${w}" height="${h}" fill="${c[0]}"/><rect y="${(h-t)/2}" width="${w}" height="${t}" fill="${c[1]}"/><rect x="${vx-t/2}" width="${t}" height="${h}" fill="${c[1]}"/>`;}},
     cross:      {n:2, name:"Cross",     draw:(w,h,c)=>{const t=h*0.18;return `<rect width="${w}" height="${h}" fill="${c[0]}"/><rect y="${(h-t)/2}" width="${w}" height="${t}" fill="${c[1]}"/><rect x="${(w-t)/2}" width="${t}" height="${h}" fill="${c[1]}"/>`;}},
     saltire:    {n:2, name:"Saltire",   draw:(w,h,c)=>{const t=h*0.16;return `<rect width="${w}" height="${h}" fill="${c[0]}"/><g stroke="${c[1]}" stroke-width="${t}"><line x1="0" y1="0" x2="${w}" y2="${h}"/><line x1="0" y1="${h}" x2="${w}" y2="0"/></g>`;}},
-    canton:     {n:2, name:"Canton",    draw:(w,h,c)=>`<rect width="${w}" height="${h}" fill="${c[0]}"/><rect width="${w*0.4}" height="${h*0.5}" fill="${c[1]}"/>`}
+    canton:     {n:2, name:"Canton",    draw:(w,h,c)=>`<rect width="${w}" height="${h}" fill="${c[0]}"/><rect width="${w*0.4}" height="${h*0.5}" fill="${c[1]}"/>`},
+    stripes:    {n:2, name:"Stripes",   draw:(w,h,c,n)=>{n=n||13;const sh=h/n;let s=`<rect width="${w}" height="${h}" fill="${c[0]}"/>`;for(let i=1;i<n;i+=2){s+=`<rect y="${(i*sh).toFixed(3)}" width="${w}" height="${sh.toFixed(3)}" fill="${c[1]}"/>`;}return s;}},
+    usStyle:    {n:3, name:"US-style",  draw:(w,h,c,n)=>{n=n||13;const sh=h/n;let s=`<rect width="${w}" height="${h}" fill="${c[0]}"/>`;for(let i=1;i<n;i+=2){s+=`<rect y="${(i*sh).toFixed(3)}" width="${w}" height="${sh.toFixed(3)}" fill="${c[1]}"/>`;}const ch=Math.ceil(n/2)*sh;s+=`<rect width="${(w*0.40).toFixed(2)}" height="${ch.toFixed(2)}" fill="${c[2]}"/>`;return s;}}
   };
 
   /* ---------- emblems ---------- */
@@ -271,9 +278,11 @@
         return out.join("");
       }
       case "crescent":{
-        const R=U*0.30;
-        return `<path fill-rule="evenodd" d="${circPath(cx,cy,R)} ${circPath(cx+R*0.28,cy,R*0.88)}" fill="${col}"/>`
-             + star(cx+R*0.62,cy,R*0.40,col);
+        const R=U*0.30, ri=R*0.86, d=R*0.42, ox=cx-R*0.30;
+        const x=(d*d+R*R-ri*ri)/(2*d), y=Math.sqrt(Math.max(R*R-x*x,0));
+        const xt=(ox+x).toFixed(2);
+        const cp=`M${xt} ${(cy-y).toFixed(2)} A${R} ${R} 0 1 1 ${xt} ${(cy+y).toFixed(2)} A${ri} ${ri} 0 0 0 ${xt} ${(cy-y).toFixed(2)} Z`;
+        return `<path d="${cp}" fill="${col}"/>` + star(cx+R*0.48,cy,R*0.42,col);
       }
       case "circle":  return `<circle cx="${cx}" cy="${cy}" r="${U*0.26}" fill="${col}"/>`;
       case "triangle":return `<polygon points="0,0 ${w*0.34},${h/2} 0,${h}" fill="${col}"/>`;
@@ -285,7 +294,7 @@
   /* ---------- build the flag SVG ---------- */
   function buildSVG(){
     const h = ratios[state.ratio];
-    const field = LAYOUTS[state.layout].draw(W,h,state.colors);
+    const field = LAYOUTS[state.layout].draw(W,h,state.colors,state.stripeCount);
     const emb = emblemSVG(W,h,state.emblem,state.emblemColor,state.count);
     const title = state.name.trim() ? `<title>${state.name.trim().replace(/[<&>]/g,"")}</title>` : "";
     return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${h}" width="${W}" height="${h}">`
@@ -310,6 +319,10 @@
   const nameInput=document.getElementById("flagName");
   nameInput.addEventListener("input",e=>{ state.name=e.target.value; updateCaption(); });
 
+  const isStripe=()=>state.layout==="stripes"||state.layout==="usStyle";
+  const stripes=document.getElementById("stripes"), stripeVal=document.getElementById("stripeVal");
+  stripes.addEventListener("input",e=>{ state.stripeCount=+e.target.value; stripeVal.textContent=state.stripeCount; render(); });
+
   /* ---------- UI: layout icons ---------- */
   const layoutsEl = document.getElementById("layouts");
   Object.entries(LAYOUTS).forEach(([key,def])=>{
@@ -317,8 +330,9 @@
     b.className="opt"; b.type="button"; b.setAttribute("aria-pressed", key===state.layout);
     b.dataset.k=key;
     const demo=['#365a8c','#e8edf5','#8aa2c4','#c9d4e6'];
-    b.innerHTML = `<svg viewBox="0 0 60 40" preserveAspectRatio="none">${def.draw(60,40,demo)}</svg><span class="cap">${def.name}</span>`;
-    b.addEventListener("click",()=>{ state.layout=key; syncPressed(layoutsEl,key); buildColorSlots(); render(); });
+    b.innerHTML = `<svg viewBox="0 0 60 40" preserveAspectRatio="none">${def.draw(60,40,demo,7)}</svg><span class="cap">${def.name}</span>`;
+    b.addEventListener("click",()=>{ state.layout=key; syncPressed(layoutsEl,key);
+      document.getElementById("stripeRow").hidden=!isStripe(); buildColorSlots(); render(); });
     layoutsEl.appendChild(b);
   });
 
@@ -435,6 +449,7 @@
     state.emblemColor=rand(PRESETS);
     state.ratio=rand(["3:2","2:1","1:1"]);
     state.count=3+Math.floor(Math.random()*13);
+    state.stripeCount=3+Math.floor(Math.random()*11);
     state.name=(rand(NAME_A)+" "+rand(NAME_B)+" "+rand(NAME_C)).trim();
     syncAll();
   });
@@ -442,7 +457,7 @@
   document.getElementById("reset").addEventListener("click",()=>{
     state.ratio="3:2"; state.layout="vertical3";
     state.colors=["#CE1126","#FFFFFF","#003580","#FCD116"];
-    state.emblem="none"; state.emblemColor="#FFFFFF"; state.count=12; state.name="";
+    state.emblem="none"; state.emblemColor="#FFFFFF"; state.count=12; state.stripeCount=13; state.name="";
     syncAll();
   });
 
@@ -451,6 +466,8 @@
     syncPressed(emblemsEl,state.emblem);
     document.getElementById("countRow").hidden=!EMBLEMS[state.emblem].count;
     document.getElementById("count").value=state.count; countVal.textContent=state.count;
+    document.getElementById("stripes").value=state.stripeCount; stripeVal.textContent=state.stripeCount;
+    document.getElementById("stripeRow").hidden=!isStripe();
     document.getElementById("emblemColor").value=state.emblemColor;
     document.querySelectorAll("#ratio button").forEach(x=>x.setAttribute("aria-pressed", x.dataset.r===state.ratio));
     nameInput.value=state.name; updateCaption();
