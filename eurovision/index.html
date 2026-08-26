@@ -1,44 +1,252 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Eurovision Song Contest — Countries, Flags & History | FlagAtlas</title>
-<meta name="description" content="Explore Eurovision through the countries and flags that take part, with a simple guide to the contest and its history.">
-<meta name="robots" content="index, follow"><meta name="author" content="FlagAtlas">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eurovision Flags — Name Every Eurovision Country | FlagAtlas</title>
+<meta name="description" content="Every country that has taken part in the Eurovision Song Contest, with flags — plus a 'name the flag' quiz and a potted history. All 52 nations from 1956 to today.">
 <link rel="canonical" href="https://flagatlas.co.uk/eurovision/">
+<meta property="og:title" content="Eurovision Flags — Can You Name Every Eurovision Country?">
+<meta property="og:description" content="A free flag quiz and reference for every Eurovision Song Contest nation, with a bit of history.">
+<meta property="og:url" content="https://flagatlas.co.uk/eurovision/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=optional" rel="stylesheet">
 <style>
-:root{--navy:#0f1f3d;--mid:#162847;--teal:#14b8a6;--cream:#fef9f0;--muted:#a8b6c8;--gold:#fbbf24}
-*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,Helvetica,sans-serif;background:var(--navy);color:#e2e8f0;line-height:1.75}
-nav{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 2rem;border-bottom:1px solid #ffffff14}nav a{color:var(--muted);text-decoration:none;font-size:.85rem}
-.logo{font-weight:700;font-size:1.4rem;color:var(--cream);text-decoration:none}.logo span{color:var(--teal)}
-main{max-width:920px;margin:auto;padding:3rem 1.5rem 5rem}.crumb{font-size:.8rem;color:var(--muted);margin-bottom:2rem}.crumb a{color:var(--teal);text-decoration:none}
-.hero{text-align:center;margin-bottom:2rem}.badge{display:inline-block;color:var(--gold);background:#f59e0b1a;border:1px solid #f59e0b40;border-radius:100px;padding:.3rem .9rem;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem}
-h1,h2{font-family:Georgia,serif;color:var(--cream)}h1{font-size:clamp(2.2rem,5vw,3.5rem);line-height:1.1;margin-bottom:1rem}.hero p{color:var(--muted);max-width:780px;margin:auto}
-.intro,article section{background:var(--mid);border:1px solid #ffffff14;border-radius:16px;padding:1.7rem;margin-bottom:1.2rem}h2{font-size:1.5rem;margin-bottom:.75rem}p{color:var(--muted);font-size:.95rem;margin-bottom:.8rem}
-.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}.card{background:#0f1f3d;border:1px solid #ffffff14;border-radius:12px;padding:1.2rem}.card h3{color:var(--cream);font-size:1rem;margin-bottom:.4rem}.card p{font-size:.88rem}
-.timeline{border-left:2px solid #14b8a655;margin:1.5rem 0;padding-left:1.3rem}.timeline-item{margin:0 0 1.45rem}.timeline-item strong{display:block;color:var(--cream);margin-bottom:.25rem}.timeline-item p{margin:0}
-.links{display:flex;flex-wrap:wrap;gap:.6rem}.links a{color:var(--teal);text-decoration:none;border:1px solid #14b8a640;padding:.55rem .85rem;border-radius:100px;font-size:.82rem}
-footer{border-top:1px solid #ffffff14;padding:2rem;text-align:center;color:var(--muted);font-size:.8rem}footer a{color:var(--teal);text-decoration:none}
-@media(max-width:650px){nav{padding:1rem}main{padding-top:2rem}.cards{grid-template-columns:1fr}article section,.intro{padding:1.3rem}}
-</style></head>
+  :root{
+    --navy:#0f1f3d; --navy-mid:#162a4d; --panel:#1b3157; --panel-2:#22406b;
+    --teal:#14b8a6; --teal-bright:#2dd4bf; --gold:#fbbf24; --pink:#ec4899; --violet:#a78bfa;
+    --cream:#fef9f0; --text:#e6eefb; --muted:#9fb2ce; --line:rgba(255,255,255,.12);
+    --good:#34d399; --bad:#f87171; --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    font-family:"DM Sans",system-ui,sans-serif;
+    background:
+      radial-gradient(1100px 520px at 80% -10%, rgba(236,72,153,.14), transparent 60%),
+      radial-gradient(900px 500px at 0% 100%, rgba(20,184,166,.12), transparent 55%),
+      var(--navy);
+    color:var(--text);min-height:100vh;line-height:1.55;
+  }
+  a{color:var(--teal-bright);text-decoration:none}
+  .wrap{max-width:1060px;margin:0 auto;padding:26px 20px 70px}
+  header.top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+  .brand{font-family:"Playfair Display",serif;font-weight:800;font-size:1.15rem;color:var(--cream)}
+  .brand span{color:var(--teal)}
+  h1{font-family:"Playfair Display",serif;font-weight:800;color:var(--cream);
+     font-size:clamp(2rem,5vw,3rem);line-height:1.05;margin:.1em 0 .2em;letter-spacing:-.5px}
+  .lede{color:var(--muted);max-width:60ch;margin:0 0 26px;font-size:1.02rem}
+  .lede b{color:var(--text);font-weight:600}
+  h2.sec{font-family:"Playfair Display",serif;color:var(--cream);font-size:1.5rem;margin:34px 0 4px}
+  .sec-sub{color:var(--muted);font-size:.92rem;margin:0 0 16px}
+
+  /* Quiz */
+  .quiz{background:var(--navy-mid);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px;box-shadow:0 24px 60px -34px rgba(0,0,0,.8)}
+  .quiz-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+  .quiz-q{font-weight:600;color:var(--text)}
+  .scores{display:flex;gap:8px;flex-wrap:wrap}
+  .pill{background:var(--panel);border:1px solid var(--line);border-radius:100px;padding:5px 12px;font-size:.82rem;color:var(--muted)}
+  .pill b{color:var(--teal-bright)}
+  .flag-stage{display:flex;justify-content:center;margin:6px 0 20px}
+  .flag-stage img{width:260px;max-width:78vw;height:auto;border-radius:8px;border:1px solid var(--line);
+    box-shadow:0 10px 30px -12px rgba(0,0,0,.7);background:#0b1730}
+  .opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:520px){.opts{grid-template-columns:1fr}}
+  .opt{appearance:none;text-align:left;font-family:inherit;font-size:.95rem;font-weight:600;
+    background:var(--panel);border:1.5px solid var(--line);color:var(--text);padding:13px 15px;border-radius:11px;cursor:pointer;
+    transition:background .15s,border-color .15s,transform .1s}
+  .opt:hover:not(:disabled){background:var(--panel-2);border-color:rgba(255,255,255,.25)}
+  .opt:active:not(:disabled){transform:translateY(1px)}
+  .opt:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+  .opt.correct{background:rgba(52,211,153,.18);border-color:var(--good);color:#d1fae5}
+  .opt.wrong{background:rgba(248,113,113,.16);border-color:var(--bad);color:#fee2e2}
+  .opt:disabled{cursor:default}
+  .quiz-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:16px;min-height:44px}
+  .verdict{font-weight:600}
+  .verdict.good{color:var(--good)} .verdict.bad{color:var(--bad)}
+  .btn{appearance:none;border:1px solid var(--line);background:var(--teal);color:#06231f;font-family:inherit;
+    font-weight:700;font-size:.92rem;padding:11px 18px;border-radius:100px;cursor:pointer}
+  .btn:hover{background:var(--teal-bright)} .btn:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
+  .btn.ghost{background:transparent;color:var(--muted)}
+  .btn.ghost:hover{color:var(--teal-bright);border-color:var(--teal-bright)}
+
+  /* Reference grid */
+  .tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+  .search{flex:1;min-width:200px;background:var(--navy-mid);border:1px solid var(--line);border-radius:10px;
+    color:var(--text);font-family:inherit;font-size:.95rem;padding:11px 13px}
+  .search::placeholder{color:var(--muted)}
+  .search:focus-visible{outline:3px solid var(--teal);outline-offset:2px;border-color:transparent}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .card{background:var(--navy-mid);border:1px solid var(--line);border-radius:12px;overflow:hidden;position:relative}
+  .card .imgwrap{padding-top:60%;position:relative;background:#0b1730}
+  .card .imgwrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .card .cap{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:9px 11px}
+  .card .nm{font-size:.86rem;font-weight:600;color:var(--text);line-height:1.25}
+  .tag{font-size:.6rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--gold);
+    background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.3);border-radius:100px;padding:2px 7px;white-space:nowrap}
+  .tag.since{color:var(--teal-bright);background:rgba(45,212,191,.12);border-color:rgba(45,212,191,.3)}
+  .count-note{color:var(--muted);font-size:.82rem;margin:10px 2px 0}
+
+  /* Facts */
+  .facts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:640px){.facts{grid-template-columns:1fr}}
+  .fact{background:var(--navy-mid);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+  .fact h3{margin:0 0 4px;font-size:.95rem;color:var(--cream);font-family:"DM Sans",sans-serif;font-weight:700;display:flex;gap:8px;align-items:center}
+  .fact p{margin:0;color:var(--muted);font-size:.9rem}
+  .fact b{color:var(--text)}
+  footer{margin-top:38px;border-top:1px solid var(--line);padding-top:18px;color:var(--muted);font-size:.82rem;text-align:center}
+  .disclaimer{color:var(--muted);font-size:.75rem;margin-top:22px;text-align:center;opacity:.75}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
 <body>
-<nav><a class="logo" href="/">Flag<span>Atlas</span></a><a href="/explorer/">← Flag Explorer</a></nav>
-<main>
-<div class="crumb"><a href="/">FlagAtlas</a> / Eurovision</div>
-<header class="hero"><div class="badge">🎵 Eurovision</div><h1>Eurovision Song Contest</h1><p>Explore Eurovision through the countries, flags and national identities that come together each year for one of Europe's best-known music competitions.</p></header>
-<div class="intro"><p><strong>Music, flags and national identity</strong></p><p>Eurovision brings together performers representing participating countries, making it a natural fit for FlagAtlas. The contest is not just about music — flags, languages, national colours and visual identity are all part of the Eurovision experience.</p></div>
-<article>
-<section><h2>What is Eurovision?</h2><p>The Eurovision Song Contest is an international television music competition in which participating broadcasters send an act to represent them. Performances are followed by voting, with points awarded by participating countries.</p><p>The contest has developed into a major annual cultural event, attracting audiences well beyond the countries that take part.</p></section>
-<section><h2>A brief history</h2><p>The first Eurovision Song Contest was held in <strong>1956</strong>. It was created during a period when European broadcasters were experimenting with new ways of connecting audiences across national borders.</p><p>Over the decades, the contest expanded considerably. More countries joined, the production became larger and the voting system evolved, but the basic idea of bringing different European broadcasting nations together through music remained.</p></section>
-<section><h2>Eurovision and flags</h2><p>Flags are one of the easiest ways for viewers to identify the countries taking part. They appear in broadcasts, graphics, audience displays, ceremonies and online coverage.</p><p>For FlagAtlas, Eurovision also provides an interesting way to explore how the same national flags that appear in history, geography and everyday life become part of a huge international cultural event.</p></section>
-<section><h2>Countries and national identity</h2><div class="cards"><div class="card"><h3>National flags</h3><p>Each participating country has its own flag and visual identity, helping viewers immediately connect an act with its country.</p></div><div class="card"><h3>Languages</h3><p>Eurovision performances can use different languages, giving the contest a strong connection with Europe's linguistic diversity.</p></div><div class="card"><h3>Culture</h3><p>Performances often incorporate musical, visual or cultural elements associated with the country being represented.</p></div><div class="card"><h3>International audience</h3><p>The contest allows national identities to be presented to a large international audience while competing within the same event.</p></div></div></section>
-<section><h2>How Eurovision voting works</h2><p>Eurovision voting has changed over the years. Modern voting includes points awarded by professional juries and public viewers, with countries unable to vote for themselves.</p><p>The familiar points — including the famous <strong>12 points</strong> — have become one of the defining features of the contest.</p></section>
-<section><h2>The famous 12 points</h2><p>Receiving "douze points" has become part of Eurovision's vocabulary. The highest available score from a voting source is awarded to its favourite song, creating some of the most memorable moments of the results show.</p></section>
-<section><h2>Eurovision and FlagAtlas</h2><p>Eurovision gives us another way to explore national flags. A visitor might recognise a flag from a Eurovision performance and then use FlagAtlas to learn about its colours, history and symbolism.</p><p>This page can eventually become a gateway into individual country pages, flag facts, colouring pages and the Flag Explorer.</p></section>
-<section><h2>Eurovision Flag Explorer</h2><p>Use FlagAtlas to explore the flags of Eurovision countries. Learn the colours, shapes and stories behind the flags you see during the contest.</p><div class="links"><a href="/explorer/">Open Flag Explorer</a><a href="/colouring/">Flag Colouring Pages</a><a href="/flag-facts/">Flag Facts</a></div></section>
-<section><h2>Eurovision Timeline</h2><div class="timeline"><div class="timeline-item"><strong>1956 — First Eurovision</strong><p>The first Eurovision Song Contest takes place in Lugano, Switzerland.</p></div><div class="timeline-item"><strong>1960s–1970s — Eurovision grows</strong><p>The contest becomes increasingly established as a major European television event.</p></div><div class="timeline-item"><strong>1980s–1990s — A wider contest</strong><p>More broadcasters and countries become involved as Eurovision continues to develop.</p></div><div class="timeline-item"><strong>2000s — The modern era</strong><p>The contest grows into a large-scale international television production with a much bigger stage and audience.</p></div><div class="timeline-item"><strong>Today — Music, flags and culture</strong><p>Eurovision remains a major annual event where national identities, flags and music meet on an international stage.</p></div></div></section>
-<section><h2>Explore more on FlagAtlas</h2><div class="links"><a href="/explorer/">Flag Explorer</a><a href="/flag-facts/">Flag Facts</a><a href="/colouring/">Flag Colouring</a><a href="/flag-history/">Flag History</a><a href="/apps/">Flag Games &amp; Apps</a></div></section>
-<section><h2>Sources &amp; further reading</h2><p>This FlagAtlas page is intended as a simple introduction. Country participation, voting systems and contest rules can change over time, so detailed Eurovision information should be checked against current official sources.</p></section>
-</article></main>
-<footer>FlagAtlas — free educational tools for everyone · <a href="/about/">About</a> · <a href="/contact">Contact</a> · <a href="/privacy/">Privacy &amp; Terms</a></footer>
-</body></html>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">Flag<span>Atlas</span></div>
+    <nav style="font-size:.9rem"><a href="/">← All flags</a></nav>
+  </header>
+
+  <h1>Eurovision Flags</h1>
+  <p class="lede">Every nation that has ever taken part in the <b>Eurovision Song Contest</b> — <b>52 countries</b> since 1956. Test yourself with the flag quiz, browse them all, and brush up on the history.</p>
+
+  <!-- QUIZ -->
+  <h2 class="sec">🎤 Name the Eurovision flag</h2>
+  <p class="sec-sub">A flag appears — pick the country. Distractors are drawn only from Eurovision nations.</p>
+  <div class="quiz" id="quiz">
+    <div class="quiz-head">
+      <div class="quiz-q">Which country's flag is this?</div>
+      <div class="scores">
+        <span class="pill">Score <b id="score">0</b>/<span id="asked">0</span></span>
+        <span class="pill">Streak <b id="streak">0</b></span>
+      </div>
+    </div>
+    <div class="flag-stage"><img id="qflag" alt="Mystery Eurovision flag" width="260" height="156"></div>
+    <div class="opts" id="opts"></div>
+    <div class="quiz-foot">
+      <span class="verdict" id="verdict"></span>
+      <span style="display:flex;gap:8px">
+        <button class="btn ghost" id="skip">Skip</button>
+        <button class="btn" id="next" hidden>Next flag →</button>
+      </span>
+    </div>
+  </div>
+
+  <!-- REFERENCE -->
+  <h2 class="sec">🌍 All Eurovision countries</h2>
+  <p class="sec-sub">Every all-time participant. The <span style="color:var(--gold)">Big Five</span> qualify for the final automatically as the contest's biggest funders.</p>
+  <div class="tools">
+    <input class="search" id="search" type="search" placeholder="Search a country…" autocomplete="off" aria-label="Search Eurovision countries">
+  </div>
+  <div class="grid" id="grid"></div>
+  <p class="count-note" id="countNote"></p>
+  <p class="count-note">Two former states — <b style="color:#cdd8ec">Yugoslavia</b> and <b style="color:#cdd8ec">Serbia &amp; Montenegro</b> — also competed before splitting into the countries above, bringing the all-time total to <b style="color:#cdd8ec">52</b>.</p>
+
+  <!-- HISTORY -->
+  <h2 class="sec">📖 A little history</h2>
+  <p class="sec-sub">The facts that don't change — handy all year round.</p>
+  <div class="facts">
+    <div class="fact"><h3>🗓️ Born in 1956</h3><p>The first contest was held in <b>Lugano, Switzerland</b> in 1956 with just <b>seven countries</b>. It's now the <b>longest-running annual TV music competition</b> in the world.</p></div>
+    <div class="fact"><h3>🏆 Most wins</h3><p><b>Ireland</b> and <b>Sweden</b> share the record with <b>seven victories each</b>. The UK, France, the Netherlands and Luxembourg follow on five.</p></div>
+    <div class="fact"><h3>🌍 52 nations, and counting</h3><p><b>52 countries</b> have taken part at least once. Around <b>40</b> compete each year, with a record <b>43</b> in 2008, 2011 and 2018.</p></div>
+    <div class="fact"><h3>✈️ Not just Europe</h3><p>Israel, Cyprus, Armenia, Georgia and Azerbaijan take part, and <b>Australia</b> has competed every year since 2015. <b>Morocco</b> appeared just once, in 1980.</p></div>
+    <div class="fact"><h3>💶 The "Big Five"</h3><p><b>France, Germany, Italy, Spain</b> and the <b>United Kingdom</b> skip the semi-finals and go straight to the final, as the contest's largest financial backers.</p></div>
+    <div class="fact"><h3>🚫 One cancellation</h3><p>In <b>70 years</b> the contest has been cancelled only once — in <b>2020</b>, because of the COVID-19 pandemic.</p></div>
+  </div>
+
+  <p class="disclaimer">Flag images via flagcdn.com. Historical facts current as of the 2026 contest. Eurovision Song Contest™ is a trademark of the EBU; FlagAtlas is not affiliated with the contest.</p>
+
+  <footer>
+    <a href="/">FlagAtlas</a> · <a href="/colouring/">Colouring pages</a> · <a href="/flag-builder/">Flag Builder</a> · <a href="/quiz/">Flag Quiz</a><br>
+    Free educational resource
+  </footer>
+</div>
+
+<script>
+"use strict";
+(function(){
+  // All-time Eurovision participants (current sovereign states), ISO-2 for flagcdn.
+  // big5 = automatic finalists; note = short badge.
+  var C = [
+    ['Albania','al'],['Andorra','ad'],['Armenia','am'],['Australia','au','since'],['Austria','at'],
+    ['Azerbaijan','az'],['Belarus','by'],['Belgium','be'],['Bosnia & Herzegovina','ba'],['Bulgaria','bg'],
+    ['Croatia','hr'],['Cyprus','cy'],['Czechia','cz'],['Denmark','dk'],['Estonia','ee'],
+    ['Finland','fi'],['France','fr','big5'],['Georgia','ge'],['Germany','de','big5'],['Greece','gr'],
+    ['Hungary','hu'],['Iceland','is'],['Ireland','ie'],['Israel','il'],['Italy','it','big5'],
+    ['Latvia','lv'],['Lithuania','lt'],['Luxembourg','lu'],['Malta','mt'],['Moldova','md'],
+    ['Monaco','mc'],['Montenegro','me'],['Morocco','ma','once'],['Netherlands','nl'],['North Macedonia','mk'],
+    ['Norway','no'],['Poland','pl'],['Portugal','pt'],['Romania','ro'],['Russia','ru'],
+    ['San Marino','sm'],['Serbia','rs'],['Slovakia','sk'],['Slovenia','si'],['Spain','es','big5'],
+    ['Sweden','se'],['Switzerland','ch'],['Turkey','tr'],['Ukraine','ua'],['United Kingdom','gb','big5']
+  ];
+  var flag = function(iso,w){ return 'https://flagcdn.com/w'+(w||320)+'/'+iso+'.png'; };
+  var shuffle = function(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;} return a; };
+
+  /* ---------------- QUIZ ---------------- */
+  var qflag=document.getElementById('qflag'), optsEl=document.getElementById('opts'),
+      verdict=document.getElementById('verdict'), nextBtn=document.getElementById('next'),
+      skipBtn=document.getElementById('skip'),
+      scoreEl=document.getElementById('score'), askedEl=document.getElementById('asked'), streakEl=document.getElementById('streak');
+  var score=0, asked=0, streak=0, current=null, answered=false;
+
+  function newQuestion(){
+    answered=false; verdict.textContent=''; verdict.className='verdict'; nextBtn.hidden=true;
+    current = C[Math.floor(Math.random()*C.length)];
+    qflag.src = flag(current[1],320);
+    qflag.alt = 'Mystery Eurovision flag';
+    // 3 distractors
+    var others = shuffle(C.filter(function(c){return c[1]!==current[1];})).slice(0,3);
+    var choices = shuffle(others.concat([current]));
+    optsEl.innerHTML='';
+    choices.forEach(function(c){
+      var b=document.createElement('button');
+      b.className='opt'; b.type='button'; b.textContent=c[0]; b.dataset.iso=c[1];
+      b.addEventListener('click',function(){ pick(b,c); });
+      optsEl.appendChild(b);
+    });
+  }
+  function pick(btn,c){
+    if(answered) return; answered=true;
+    asked++; askedEl.textContent=asked;
+    var correct = c[1]===current[1];
+    Array.prototype.forEach.call(optsEl.children,function(b){
+      b.disabled=true;
+      if(b.dataset.iso===current[1]) b.classList.add('correct');
+      else if(b===btn) b.classList.add('wrong');
+    });
+    if(correct){ score++; streak++; verdict.textContent='Correct!'; verdict.className='verdict good'; }
+    else { streak=0; verdict.textContent='It was '+current[0]+'.'; verdict.className='verdict bad'; }
+    scoreEl.textContent=score; streakEl.textContent=streak; nextBtn.hidden=false; nextBtn.focus();
+  }
+  nextBtn.addEventListener('click',newQuestion);
+  skipBtn.addEventListener('click',function(){ if(!answered){ streak=0; streakEl.textContent=0; } newQuestion(); });
+
+  /* ---------------- REFERENCE GRID ---------------- */
+  var grid=document.getElementById('grid'), search=document.getElementById('search'), countNote=document.getElementById('countNote');
+  function render(list){
+    grid.innerHTML='';
+    list.forEach(function(c){
+      var tag = c[2]==='big5' ? '<span class="tag">Big Five</span>'
+              : c[2]==='since' ? '<span class="tag since">Since 2015</span>'
+              : c[2]==='once' ? '<span class="tag since">1980 only</span>' : '';
+      var d=document.createElement('div'); d.className='card';
+      d.innerHTML='<div class="imgwrap"><img loading="lazy" src="'+flag(c[1],160)+'" alt="'+c[0]+' flag" width="160" height="96"></div>'
+                + '<div class="cap"><span class="nm">'+c[0]+'</span>'+tag+'</div>';
+      grid.appendChild(d);
+    });
+    countNote.textContent='Showing '+list.length+' of '+C.length+' countries.';
+  }
+  search.addEventListener('input',function(e){
+    var q=e.target.value.trim().toLowerCase();
+    render(q ? C.filter(function(c){return c[0].toLowerCase().indexOf(q)>-1;}) : sorted);
+  });
+  var sorted = C.slice().sort(function(a,b){return a[0].localeCompare(b[0]);});
+
+  /* init */
+  newQuestion();
+  render(sorted);
+})();
+</script>
+</body>
+</html>
