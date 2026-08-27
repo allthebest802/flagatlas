@@ -12,8 +12,8 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
-<title>Flag of the Day — Daily Flag Challenge | FlagAtlas</title>
-<meta name="description" content="Flag of the day — a new mystery flag every day including World Cup 2026 nations. Guess the country in up to 6 attempts. Build your daily streak. Free, no login.">
+<title>Flag of the Day — Daily Flag Quiz & Challenge | FlagAtlas</title>
+<meta name="description" content="Play the FlagAtlas Flag of the Day quiz. Guess a different country flag each day, use hints, build your streak and test your world flag knowledge. Free to play.">
 <meta name="keywords" content="daily flag challenge, flag wordle, flag guessing game, daily geography quiz, flag of the day, country guessing game, flag streak">
 <meta name="author" content="FlagAtlas">
 <meta name="robots" content="index, follow">
@@ -881,7 +881,7 @@ document.getElementById('btnShare').addEventListener('click', () => {
     return '🟥';
   }).join('');
   const score = won ? guesses.length : 'X';
-  const text = `FlagAtlas Daily — ${getTodayKey()}\n${score}/${MAX_ATTEMPTS}\n${squares}\nflagatlas.netlify.app`;
+  const text = `FlagAtlas Daily — ${getTodayKey()}\n${score}/${MAX_ATTEMPTS}\n${squares}\nflagatlas.co.uk`;
 
   if(navigator.clipboard) {
     navigator.clipboard.writeText(text).then(()=>{
@@ -926,7 +926,7 @@ init();
 <section style="max-width:800px;margin:4rem auto 0;padding:0 24px 5rem;font-family:inherit">
 
   <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--navy);margin-bottom:0.7rem;margin-top:2rem;border-top:1px solid #e2e8f0;padding-top:1.5rem">Daily flag challenge — a new flag every day</h2>
-  <p style="color:#475569;line-height:1.75;margin-bottom:1rem;font-size:0.95rem">The FlagAtlas daily flag challenge gives you a new mystery flag to identify every day. You have six attempts, with hints unlocking as you go — similar to Wordle but for world flags. Each day features a flag from one of the world's nations, including all 48 countries competing in the 2026 FIFA World Cup. Build your daily streak and see how your flag knowledge improves over time.</p>
+  <p style="color:#475569;line-height:1.75;margin-bottom:1rem;font-size:0.95rem">The FlagAtlas daily flag challenge gives you a new mystery flag to identify every day. You have six attempts, with hints unlocking as you go — similar to Wordle but for world flags. It is a quick daily flag quiz for anyone who wants to practise recognising countries from their flags. Each day features a flag from one of the world's nations, including all 48 countries competing in the 2026 FIFA World Cup. Build your daily streak and see how your flag knowledge improves over time.</p>
 
   <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--navy);margin-bottom:0.7rem;margin-top:2rem;border-top:1px solid #e2e8f0;padding-top:1.5rem">How the daily flag challenge works</h2>
   <p style="color:#475569;line-height:1.75;margin-bottom:1rem;font-size:0.95rem">Each day a mystery flag is shown. Type your guess — the country you think the flag belongs to. If you're wrong, a hint unlocks: the continent, then the region, then the first letter of the country. You have six attempts to identify the flag correctly. Get it right and you can share your result — just like Wordle. Miss it and the answer is revealed so you can learn for next time.</p>
@@ -936,7 +936,7 @@ init();
   <p style="color:#475569;line-height:1.75;margin-bottom:1rem;font-size:0.95rem">The 2026 FIFA World Cup is the biggest in history — 48 nations from six continents. Many of the flags are well known: France's blue, white and red tricolour, Brazil's green and yellow diamond, Japan's red circle on white. Others are less familiar — Uzbekistan, Curaçao, Cape Verde, Bosnia and Herzegovina. The daily challenge is a great way to learn them all, one flag at a time. Use the <a href="https://flagatlas.co.uk/explorer/" style="color:var(--teal);text-decoration:underline;text-underline-offset:3px">Flag Explorer</a> to study before you play.</p>
 
   <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--navy);margin-bottom:0.7rem;margin-top:2rem;border-top:1px solid #e2e8f0;padding-top:1.5rem">Flag of the day — a new flag every 24 hours</h2>
-  <p style="color:#475569;line-height:1.75;margin-bottom:1rem;font-size:0.95rem">Looking for a flag of the day challenge? The FlagAtlas daily flag challenge gives you exactly that — a new mystery flag every day, resetting at midnight. Each day you get six attempts to identify the flag correctly, with hints unlocking as you go. It's the best way to build your flag knowledge steadily over time — one flag per day, every day. Come back tomorrow for a new flag.</p>
+  <p style="color:#475569;line-height:1.75;margin-bottom:1rem;font-size:0.95rem">Looking for a flag of the day challenge? The FlagAtlas daily flag challenge gives you exactly that — a new mystery flag every day, resetting at midnight. It is designed to be quick to play, easy to return to and useful for building your knowledge of flags and countries over time. Each day you get six attempts to identify the flag correctly, with hints unlocking as you go. It's the best way to build your flag knowledge steadily over time — one flag per day, every day. Come back tomorrow for a new flag.</p>
 
   <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--navy);margin-bottom:0.7rem;margin-top:2rem;border-top:1px solid #e2e8f0;padding-top:1.5rem">More free flag games on FlagAtlas</h2>
   <p style="color:#475569;line-height:1.75;margin-bottom:1rem;font-size:0.95rem">FlagAtlas is a collection of free geography tools — no login, no cost, no ads. As well as the daily challenge, you can play the <a href="https://flagatlas.co.uk/quiz/" style="color:var(--teal);text-decoration:underline;text-underline-offset:3px">60-second flag speed quiz</a>, try the <a href="https://flagatlas.co.uk/worldcup/" style="color:var(--teal);text-decoration:underline;text-underline-offset:3px">World Cup 2026 flag quiz</a>, explore the <a href="https://flagatlas.co.uk/challenges/" style="color:var(--teal);text-decoration:underline;text-underline-offset:3px">geography challenges</a> or browse flags in the <a href="https://flagatlas.co.uk/explorer/" style="color:var(--teal);text-decoration:underline;text-underline-offset:3px">flag explorer</a>.</p>
