@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Adcash library (Step 1) -->
+<script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -416,8 +418,6 @@
     .tool-card:nth-child(6) { animation: fade-up 0.3s 0.12s ease both; }
   }
 </style>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6627034099195948"
-     crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -721,5 +721,13 @@
   });
 })();
 </script>
+
+<!-- Adcash tag (Step 2) -->
+<script type="text/javascript">
+    aclib.runAutoTag({
+        zoneId: '3frbxqf4vi',
+    });
+</script>
+
 </body>
 </html>
