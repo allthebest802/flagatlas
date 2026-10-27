@@ -1,0 +1,13 @@
+# FlagAtlas _redirects file
+# Fixes trailing slash redirect errors showing in Search Console
+
+/adventure          /adventure/         301
+/privacy            /privacy/           301
+/daily              /daily/             301
+/quiz               /quiz/              301
+/facts              /facts/             301
+/explorer           /explorer/          301
+/explorer.html      /explorer/          301
+/worldcup           /worldcup/          301
+/challenges         /challenges/        301
+/sitemap.xml        /sitemap.xml        200
