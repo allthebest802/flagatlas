@@ -11,3 +11,6 @@
 /worldcup           /worldcup/          301
 /challenges         /challenges/        301
 /sitemap.xml        /sitemap.xml        200
+
+# Colouring book short link (used on the printable PDFs)
+/book               https://consistent.gumroad.com/l/pvqjz   302
