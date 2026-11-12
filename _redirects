@@ -12,5 +12,12 @@
 /challenges         /challenges/        301
 /sitemap.xml        /sitemap.xml        200
 
-# Colouring book short link (used on the printable PDFs)
-/book               https://consistent.gumroad.com/l/pvqjz   302
+# Book link printed on the colouring PDFs
+/book               /books/             301
+/book/              /books/             301
+
+# Old colouring folders with capital letters (replaced by lowercase pages)
+/colouring/Taiwan/*         /colouring/taiwan/          301
+/colouring/Taiwan           /colouring/taiwan/          301
+/colouring/faroe-Islands/*  /colouring/faroe-islands/   301
+/colouring/faroe-Islands    /colouring/faroe-islands/   301
