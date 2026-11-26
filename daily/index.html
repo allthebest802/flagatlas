@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PLEJM6E8KP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PLEJM6E8KP');
+</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6627034099195948"
      crossorigin="anonymous"></script>
 <meta charset="UTF-8">
@@ -12,9 +20,9 @@
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
-<title>Flag of the Day — Daily Flag Quiz & Challenge | FlagAtlas</title>
-<meta name="description" content="Play the FlagAtlas Flag of the Day quiz. Guess a different country flag each day, use hints, build your streak and test your world flag knowledge. Free to play.">
-<meta name="keywords" content="daily flag challenge, flag wordle, flag guessing game, daily geography quiz, flag of the day, country guessing game, flag streak">
+<title>Flag of the Day — Guess the Flag Daily Challenge | FlagAtlas</title>
+<meta name="description" content="Guess the flag of the day in six tries, with hints as you go. A free daily flag challenge with a new mystery flag at midnight. No signup. Build your streak.">
+<meta name="keywords" content="flag of the day, guess the flag of the day, daily flag challenge, flag challenge, flag wordle, flag guessing game, daily geography quiz">
 <meta name="author" content="FlagAtlas">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://flagatlas.co.uk/daily/">
@@ -22,7 +30,7 @@
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://flagatlas.co.uk/daily/">
-<meta property="og:title" content="Daily Flag Challenge — Guess Today's Flag | FlagAtlas">
+<meta property="og:title" content="Flag of the Day — Guess Today's Flag">
 <meta property="og:description" content="A new mystery flag every day. Guess the country in up to 6 attempts. Build your streak — free for everyone.">
 <meta property="og:image" content="https://flagatlas.co.uk/og-image.png">
 <meta property="og:site_name" content="FlagAtlas">
@@ -31,7 +39,7 @@
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="https://flagatlas.co.uk/daily/">
-<meta name="twitter:title" content="Daily Flag Challenge — Guess Today's Flag | FlagAtlas">
+<meta name="twitter:title" content="Flag of the Day — Guess Today's Flag">
 <meta name="twitter:description" content="A new mystery flag every day. Guess the country in up to 6 attempts. Build your streak — free for everyone.">
 <meta name="twitter:image" content="https://flagatlas.co.uk/og-image.png">
 
@@ -384,8 +392,8 @@
 
   <!-- DATE -->
   <div class="date-header">
-    <h1 class="page-main-title">Daily Flag Challenge</h1>
-    <p class="date-label">📅 A new mystery flag every day</p>
+    <h1 class="page-main-title">Flag of the Day</h1>
+    <p class="date-label">📅 Daily flag challenge · a new mystery flag every day</p>
     <div class="date-full" id="dateLabel"></div>
   </div>
 
@@ -488,11 +496,11 @@ const COUNTRIES = [
   {code:"de",name:"Germany",capital:"Berlin",continent:"Europe",population:84000000,funFact:"Germany has over 1,500 types of beer and around 1,300 breweries.",symbolism:"Black, red, and gold are the colours of the German democratic movement from the 19th century."},
   {code:"it",name:"Italy",capital:"Rome",continent:"Europe",population:60000000,funFact:"Italy has more UNESCO World Heritage Sites than any other country in the world.",symbolism:"The green, white, and red tricolore was inspired by France during Napoleon's Italian campaign."},
   {code:"es",name:"Spain",capital:"Madrid",continent:"Europe",population:47000000,funFact:"Spain hosts La Tomatina — a festival where thousands of people throw tomatoes at each other.",symbolism:"Red and yellow date back to the kingdoms of Castile and Aragon."},
-  {code:"pt",name:"Portugal",capital:"Lisbon",continent:"Europe",population:10000000,funFact:"Portugal is the oldest country in Europe with unchanged borders, established in 1139.",symbolism:"Green represents hope; red symbolises the blood of those who died for the country."},
+  {code:"pt",name:"Portugal",capital:"Lisbon",continent:"Europe",population:10000000,funFact:"Portugal's borders are among the oldest in Europe, largely unchanged since 1297.",symbolism:"Green represents hope; red symbolises the blood of those who died for the country."},
   {code:"nl",name:"Netherlands",capital:"Amsterdam",continent:"Europe",population:17000000,funFact:"The Netherlands has more bicycles than people — about 23 million bikes for 17 million people!",symbolism:"The Dutch tricolour inspired many other flags, including France's."},
-  {code:"be",name:"Belgium",capital:"Brussels",continent:"Europe",population:11000000,funFact:"Belgium invented French fries — they actually originated in Belgium in the late 17th century.",symbolism:"Black, yellow, and red come from the coat of arms of the Duchy of Brabant."},
+  {code:"be",name:"Belgium",capital:"Brussels",continent:"Europe",population:11000000,funFact:"Belgians say they invented French fries, and Belgium has thousands of chip shops called friteries.",symbolism:"Black, yellow, and red come from the coat of arms of the Duchy of Brabant."},
   {code:"ch",name:"Switzerland",capital:"Bern",continent:"Europe",population:8700000,funFact:"Switzerland is one of only two countries with a square flag.",symbolism:"The white cross on red has been Switzerland's emblem since the 14th century."},
-  {code:"at",name:"Austria",capital:"Vienna",continent:"Europe",population:9000000,funFact:"Austria is the birthplace of Mozart, Freud, and the croissant.",symbolism:"Legend says the red-white-red design came from a duke's blood-soaked tunic after battle."},
+  {code:"at",name:"Austria",capital:"Vienna",continent:"Europe",population:9000000,funFact:"Austria is the birthplace of Mozart and Freud, and the croissant is said to come from the Austrian kipferl.",symbolism:"Legend says the red-white-red design came from a duke's blood-soaked tunic after battle."},
   {code:"se",name:"Sweden",capital:"Stockholm",continent:"Europe",population:10000000,funFact:"Sweden has around 221,800 islands.",symbolism:"The Nordic cross represents Christianity; blue and yellow come from the Swedish coat of arms."},
   {code:"no",name:"Norway",capital:"Oslo",continent:"Europe",population:5400000,funFact:"In Norway's summer, the sun never fully sets above the Arctic Circle.",symbolism:"The red, white, and blue Nordic cross reflects Norway's ties to Denmark and Sweden."},
   {code:"dk",name:"Denmark",capital:"Copenhagen",continent:"Europe",population:5900000,funFact:"The Dannebrog is the oldest national flag still in use anywhere in the world.",symbolism:"According to legend, the flag fell from the sky during a battle in Estonia in 1219."},
@@ -504,7 +512,7 @@ const COUNTRIES = [
   {code:"hu",name:"Hungary",capital:"Budapest",continent:"Europe",population:10000000,funFact:"Hungary invented the Rubik's Cube, the ballpoint pen, and the hologram.",symbolism:"Red stands for strength, white for faithfulness, and green for hope."},
   {code:"ro",name:"Romania",capital:"Bucharest",continent:"Europe",population:19000000,funFact:"Romania's flag is nearly identical to Chad's — only a tiny shade difference in the blue tells them apart.",symbolism:"Blue for liberty, yellow for justice, red for fraternity — inspired by France's revolution."},
   {code:"gr",name:"Greece",capital:"Athens",continent:"Europe",population:10700000,funFact:"Greece has more archaeological museums than any other country in the world.",symbolism:"The nine stripes represent the syllables of the motto 'Freedom or Death'."},
-  {code:"tr",name:"Turkey",capital:"Ankara",continent:"Europe",population:84000000,funFact:"Turkey produces about 75% of the world's hazelnuts.",symbolism:"Legend says the crescent reflected in pools of blood after a great battle."},
+  {code:"tr",name:"Turkey",capital:"Ankara",continent:"Asia",population:84000000,funFact:"Turkey produces about 75% of the world's hazelnuts.",symbolism:"Legend says the crescent reflected in pools of blood after a great battle."},
   {code:"ua",name:"Ukraine",capital:"Kyiv",continent:"Europe",population:44000000,funFact:"Ukraine is the largest country located entirely within Europe.",symbolism:"Blue represents the sky; yellow symbolises the vast golden wheat fields."},
   {code:"hr",name:"Croatia",capital:"Zagreb",continent:"Europe",population:4000000,funFact:"The necktie was invented in Croatia — Croatian soldiers wore them in the 17th century.",symbolism:"Red, white, and blue are Pan-Slavic colours with a historic chequered coat of arms."},
   {code:"rs",name:"Serbia",capital:"Belgrade",continent:"Europe",population:7000000,funFact:"Serbia is the world's largest exporter of raspberries, producing about 30% of global supply.",symbolism:"Pan-Slavic colours with a double-headed eagle from medieval Serbian heraldry."},
@@ -537,12 +545,12 @@ const COUNTRIES = [
   {code:"jo",name:"Jordan",capital:"Amman",continent:"Asia",population:10300000,funFact:"Jordan's Petra, carved from rose-red rock, is one of the New Seven Wonders of the World.",symbolism:"The seven-pointed star represents faith, humanity, national spirit, humility, virtue, justice, and aspirations."},
   {code:"lb",name:"Lebanon",capital:"Beirut",continent:"Asia",population:6800000,funFact:"Lebanon is one of the oldest wine-producing regions in the world, dating back 5,000 years.",symbolism:"The Cedar of Lebanon is mentioned 75 times in the Bible and symbolises immortality."},
   {code:"za",name:"South Africa",capital:"Pretoria",continent:"Africa",population:60000000,funFact:"South Africa is the only country to have voluntarily dismantled its nuclear weapons.",symbolism:"Designed in one week before the 1994 elections — the Y-shape represents unity in diversity."},
-  {code:"eg",name:"Egypt",capital:"Cairo",continent:"Africa",population:103000000,funFact:"Egypt has more Facebook users than any other country in Africa.",symbolism:"The Eagle of Saladin is an ancient symbol of Arab strength and courage."},
+  {code:"eg",name:"Egypt",capital:"Cairo",continent:"Africa",population:103000000,funFact:"The Great Pyramid of Giza is the only one of the Seven Wonders of the Ancient World still standing.",symbolism:"The Eagle of Saladin is an ancient symbol of Arab strength and courage."},
   {code:"ng",name:"Nigeria",capital:"Abuja",continent:"Africa",population:218000000,funFact:"Nigeria's flag was designed by a 23-year-old student who won a national competition and received £100.",symbolism:"Green represents agriculture and forests; white stands for peace and unity."},
   {code:"et",name:"Ethiopia",capital:"Addis Ababa",continent:"Africa",population:120000000,funFact:"Ethiopia was never colonised by a European power and its colours inspired dozens of African flags.",symbolism:"Green for the land, yellow for peace, red for heroism."},
-  {code:"ke",name:"Kenya",capital:"Nairobi",continent:"Africa",population:54000000,funFact:"Kenyan athletes have won more Olympic marathon medals than any other country.",symbolism:"The Maasai shield and crossed spears represent the defence of freedom."},
+  {code:"ke",name:"Kenya",capital:"Nairobi",continent:"Africa",population:54000000,funFact:"Kenya is named after Mount Kenya, the second-highest mountain in Africa.",symbolism:"The Maasai shield and crossed spears represent the defence of freedom."},
   {code:"tz",name:"Tanzania",capital:"Dodoma",continent:"Africa",population:63000000,funFact:"Tanzania contains Africa's highest peak — Mount Kilimanjaro at 5,895 metres.",symbolism:"The diagonal stripe is a distinctive design; yellow represents the mineral wealth."},
-  {code:"gh",name:"Ghana",capital:"Accra",continent:"Africa",population:32000000,funFact:"Ghana was the first sub-Saharan African country to gain independence, in 1957.",symbolism:"The black star represents African freedom — it directly inspired Jamaica's flag star."},
+  {code:"gh",name:"Ghana",capital:"Accra",continent:"Africa",population:32000000,funFact:"Ghana was the first sub-Saharan African country to gain independence, in 1957.",symbolism:"The black star represents African freedom. Ghana was the first country to use red, gold and green after Ethiopia."},
   {code:"ma",name:"Morocco",capital:"Rabat",continent:"Africa",population:37000000,funFact:"Morocco has the world's oldest university — al-Qarawiyyin, founded in 859 AD.",symbolism:"The green pentagram (Seal of Solomon) represents the link between God and the nation."},
   {code:"dz",name:"Algeria",capital:"Algiers",continent:"Africa",population:44000000,funFact:"Algeria is the largest country in Africa.",symbolism:"Green represents Islam and hope; the crescent and star are symbols of Islam."},
   {code:"ug",name:"Uganda",capital:"Kampala",continent:"Africa",population:47000000,funFact:"The source of the Nile — the world's longest river — is in Uganda at Lake Victoria.",symbolism:"The grey crowned crane is known for its gentle nature and beauty."},
@@ -550,7 +558,7 @@ const COUNTRIES = [
   {code:"cm",name:"Cameroon",capital:"Yaoundé",continent:"Africa",population:27000000,funFact:"Cameroon is called 'Africa in miniature' — it has every climate zone found across the continent.",symbolism:"Pan-African colours with a central star representing unity."},
   {code:"ci",name:"Côte d'Ivoire",capital:"Yamoussoukro",continent:"Africa",population:27000000,funFact:"Côte d'Ivoire produces about 40% of the world's cocoa supply.",symbolism:"Exactly the same colours as Ireland but in reverse order."},
   {code:"sd",name:"Sudan",capital:"Khartoum",continent:"Africa",population:44000000,funFact:"Sudan has more ancient pyramids than Egypt — over 200 of them.",symbolism:"Pan-Arab colours: red for revolution, white for peace, black for Sudan."},
-  {code:"mz",name:"Mozambique",capital:"Maputo",continent:"Africa",population:32000000,funFact:"Mozambique is the only country whose flag features a modern weapon — an AK-47 rifle.",symbolism:"The AK-47, book, and hoe represent defence, education, and agriculture."},
+  {code:"mz",name:"Mozambique",capital:"Maputo",continent:"Africa",population:32000000,funFact:"Mozambique's is the only national flag with a modern assault rifle on it, an AK-47.",symbolism:"The AK-47, book, and hoe represent defence, education, and agriculture."},
   {code:"zw",name:"Zimbabwe",capital:"Harare",continent:"Africa",population:15000000,funFact:"Victoria Falls — shared with Zambia — is the world's largest curtain of falling water.",symbolism:"The Zimbabwe Bird is a famous stone carving from the ancient city of Great Zimbabwe."},
   {code:"rw",name:"Rwanda",capital:"Kigali",continent:"Africa",population:13000000,funFact:"Rwanda has more women in parliament than any other country in the world.",symbolism:"The rising sun represents enlightenment and the end of darkness."},
   {code:"mg",name:"Madagascar",capital:"Antananarivo",continent:"Africa",population:27000000,funFact:"Madagascar is home to 90% of the world's lemur species.",symbolism:"White and red are traditional colours of the Merina kingdom, used for centuries."},
@@ -564,11 +572,11 @@ const COUNTRIES = [
   {code:"ve",name:"Venezuela",capital:"Caracas",continent:"Americas",population:29000000,funFact:"Venezuela has the world's largest proven oil reserves.",symbolism:"Eight stars in an arc represent the original eight provinces that signed independence."},
   {code:"pe",name:"Peru",capital:"Lima",continent:"Americas",population:33000000,funFact:"Peru is home to Machu Picchu and Lake Titicaca — the world's highest navigable lake.",symbolism:"Red and white were the colours of Inca warriors."},
   {code:"cu",name:"Cuba",capital:"Havana",continent:"Americas",population:11000000,funFact:"Cuba has the highest literacy rate in the Americas — over 99%.",symbolism:"The red triangle symbolises equality, fraternity, and liberty."},
-  {code:"jm",name:"Jamaica",capital:"Kingston",continent:"Americas",population:3000000,funFact:"Jamaica is the birthplace of reggae music and Usain Bolt.",symbolism:"One of only two flags with no red, white, or blue. Black, gold, and green were deliberately chosen."},
+  {code:"jm",name:"Jamaica",capital:"Kingston",continent:"Americas",population:3000000,funFact:"Jamaica is the birthplace of reggae music and Usain Bolt.",symbolism:"The only national flag with no red, white or blue. Black, gold and green were deliberately chosen."},
   {code:"ht",name:"Haiti",capital:"Port-au-Prince",continent:"Americas",population:11400000,funFact:"Haiti was the world's first Black republic, gaining independence in 1804.",symbolism:"Revolutionaries tore the white stripe from the French tricolore — removing the white colonisers."},
   {code:"gt",name:"Guatemala",capital:"Guatemala City",continent:"Americas",population:17000000,funFact:"Guatemala is the birthplace of chocolate — the Maya were the first to cultivate cacao.",symbolism:"The quetzal bird represents liberty — it was the symbol of freedom for the Maya people."},
   {code:"pa",name:"Panama",capital:"Panama City",continent:"Americas",population:4300000,funFact:"Panama is the only place where you can see the sun rise over the Pacific and set over the Atlantic.",symbolism:"Blue stands for the Conservative Party, red for the Liberal Party, white represents peace."},
-  {code:"tt",name:"Trinidad and Tobago",capital:"Port of Spain",continent:"Americas",population:1400000,funFact:"Trinidad and Tobago is the birthplace of the steelpan — the only acoustic instrument invented in the 20th century.",symbolism:"Black represents strength; the diagonal design is unique among Caribbean nations."},
+  {code:"tt",name:"Trinidad and Tobago",capital:"Port of Spain",continent:"Americas",population:1400000,funFact:"Trinidad and Tobago is the birthplace of the steelpan — the only acoustic instrument invented in the 20th century.",symbolism:"Black represents the strength of the people, red the warmth of the sun and white the sea."},
   {code:"au",name:"Australia",capital:"Canberra",continent:"Oceania",population:26000000,funFact:"Australia's flag was chosen through the world's first public flag design competition in 1901.",symbolism:"The Commonwealth Star has seven points — six for the states and one for all territories."},
   {code:"nz",name:"New Zealand",capital:"Wellington",continent:"Oceania",population:5100000,funFact:"New Zealand was the first country to give women the right to vote, in 1893.",symbolism:"The four red stars of the Southern Cross are only visible from the Southern Hemisphere."},
   {code:"pg",name:"Papua New Guinea",capital:"Port Moresby",continent:"Oceania",population:10000000,funFact:"Papua New Guinea has over 800 languages — more than any other country on Earth.",symbolism:"The Bird of Paradise represents PNG's extraordinary wildlife and beauty."},
@@ -925,21 +933,21 @@ init();
 
 <section style="max-width:800px;margin:4rem auto 0;padding:0 24px 5rem;font-family:inherit">
 
-  <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--navy);margin-bottom:0.7rem;margin-top:2rem;border-top:1px solid #e2e8f0;padding-top:1.5rem">Daily flag challenge — a new flag every day</h2>
-  <p style="color:#475569;line-height:1.75;margin-bottom:1rem;font-size:0.95rem">The FlagAtlas daily flag challenge gives you a new mystery flag to identify every day. You have six attempts, with hints unlocking as you go — similar to Wordle but for world flags. It is a quick daily flag quiz for anyone who wants to practise recognising countries from their flags. Each day features a flag from one of the world's nations, including all 48 countries competing in the 2026 FIFA World Cup. Build your daily streak and see how your flag knowledge improves over time.</p>
+  <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--cream);margin-bottom:0.7rem;margin-top:2rem;border-top:1px solid rgba(255,255,255,0.08);padding-top:1.5rem">Guess the flag of the day</h2>
+  <p style="color:var(--text-muted);line-height:1.75;margin-bottom:1rem;font-size:0.95rem">The FlagAtlas daily flag challenge gives you a new mystery flag to identify every day. You have six attempts, with hints unlocking as you go — similar to Wordle but for world flags. It is a quick daily flag quiz for anyone who wants to practise recognising countries from their flags, from well-known flags like France and Japan to trickier ones like Bhutan and Mozambique. Build your daily streak and see how your flag knowledge improves over time.</p>
 
-  <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--navy);margin-bottom:0.7rem;margin-top:2rem;border-top:1px solid #e2e8f0;padding-top:1.5rem">How the daily flag challenge works</h2>
-  <p style="color:#475569;line-height:1.75;margin-bottom:1rem;font-size:0.95rem">Each day a mystery flag is shown. Type your guess — the country you think the flag belongs to. If you're wrong, a hint unlocks: the continent, then the region, then the first letter of the country. You have six attempts to identify the flag correctly. Get it right and you can share your result — just like Wordle. Miss it and the answer is revealed so you can learn for next time.</p>
-  <p style="color:#475569;line-height:1.75;margin-bottom:1rem;font-size:0.95rem">The daily challenge is free to play with no login required. Come back every day to keep your streak going — the flags reset at midnight.</p>
+  <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--cream);margin-bottom:0.7rem;margin-top:2rem;border-top:1px solid rgba(255,255,255,0.08);padding-top:1.5rem">How the daily flag challenge works</h2>
+  <p style="color:var(--text-muted);line-height:1.75;margin-bottom:1rem;font-size:0.95rem">Each day a mystery flag is shown. Type your guess — the country you think the flag belongs to. If you're wrong, hints unlock one by one: the continent, then the population, then the first letter of the country, and finally the capital city. You have six attempts to identify the flag correctly. Get it right and you can share your result — just like Wordle. Miss it and the answer is revealed so you can learn for next time.</p>
+  <p style="color:var(--text-muted);line-height:1.75;margin-bottom:1rem;font-size:0.95rem">The daily challenge is free to play with no login required. Come back every day to keep your streak going — the flags reset at midnight.</p>
 
-  <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--navy);margin-bottom:0.7rem;margin-top:2rem;border-top:1px solid #e2e8f0;padding-top:1.5rem">World Cup 2026 — 48 nations, 48 flags to learn</h2>
-  <p style="color:#475569;line-height:1.75;margin-bottom:1rem;font-size:0.95rem">The 2026 FIFA World Cup is the biggest in history — 48 nations from six continents. Many of the flags are well known: France's blue, white and red tricolour, Brazil's green and yellow diamond, Japan's red circle on white. Others are less familiar — Uzbekistan, Curaçao, Cape Verde, Bosnia and Herzegovina. The daily challenge is a great way to learn them all, one flag at a time. Use the <a href="https://flagatlas.co.uk/explorer/" style="color:var(--teal);text-decoration:underline;text-underline-offset:3px">Flag Explorer</a> to study before you play.</p>
+  <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--cream);margin-bottom:0.7rem;margin-top:2rem;border-top:1px solid rgba(255,255,255,0.08);padding-top:1.5rem">Learn a new flag every day</h2>
+  <p style="color:var(--text-muted);line-height:1.75;margin-bottom:1rem;font-size:0.95rem">Some flags are easy, like France's blue, white and red tricolour or Japan's red circle on white. Others are much harder, like Bhutan's dragon or the AK-47 on Mozambique's flag. After each game you see a fun fact about that day's country, so even a wrong guess teaches you something. To study first, browse every flag in the <a href="/explorer/" style="color:var(--teal-light);text-decoration:underline;text-underline-offset:3px">Flag Explorer</a>, or print a <a href="/colouring/" style="color:var(--teal-light);text-decoration:underline;text-underline-offset:3px">flag colouring page</a>.</p>
 
-  <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--navy);margin-bottom:0.7rem;margin-top:2rem;border-top:1px solid #e2e8f0;padding-top:1.5rem">Flag of the day — a new flag every 24 hours</h2>
-  <p style="color:#475569;line-height:1.75;margin-bottom:1rem;font-size:0.95rem">Looking for a flag of the day challenge? The FlagAtlas daily flag challenge gives you exactly that — a new mystery flag every day, resetting at midnight. It is designed to be quick to play, easy to return to and useful for building your knowledge of flags and countries over time. Each day you get six attempts to identify the flag correctly, with hints unlocking as you go. It's the best way to build your flag knowledge steadily over time — one flag per day, every day. Come back tomorrow for a new flag.</p>
+  <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--cream);margin-bottom:0.7rem;margin-top:2rem;border-top:1px solid rgba(255,255,255,0.08);padding-top:1.5rem">Flag of the day — a new flag every 24 hours</h2>
+  <p style="color:var(--text-muted);line-height:1.75;margin-bottom:1rem;font-size:0.95rem">Looking for a flag of the day challenge? The FlagAtlas daily flag challenge gives you exactly that — a new mystery flag every day, resetting at midnight. It is designed to be quick to play, easy to return to and useful for building your knowledge of flags and countries over time. Each day you get six attempts to identify the flag correctly, with hints unlocking as you go. It's the best way to build your flag knowledge steadily over time — one flag per day, every day. Come back tomorrow for a new flag.</p>
 
-  <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--navy);margin-bottom:0.7rem;margin-top:2rem;border-top:1px solid #e2e8f0;padding-top:1.5rem">More free flag games on FlagAtlas</h2>
-  <p style="color:#475569;line-height:1.75;margin-bottom:1rem;font-size:0.95rem">FlagAtlas is a collection of free geography tools — no login, no cost, no ads. As well as the daily challenge, you can play the <a href="https://flagatlas.co.uk/quiz/" style="color:var(--teal);text-decoration:underline;text-underline-offset:3px">60-second flag speed quiz</a>, try the <a href="https://flagatlas.co.uk/worldcup/" style="color:var(--teal);text-decoration:underline;text-underline-offset:3px">World Cup 2026 flag quiz</a>, explore the <a href="https://flagatlas.co.uk/challenges/" style="color:var(--teal);text-decoration:underline;text-underline-offset:3px">geography challenges</a> or browse flags in the <a href="https://flagatlas.co.uk/explorer/" style="color:var(--teal);text-decoration:underline;text-underline-offset:3px">flag explorer</a>.</p>
+  <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--cream);margin-bottom:0.7rem;margin-top:2rem;border-top:1px solid rgba(255,255,255,0.08);padding-top:1.5rem">More free flag games on FlagAtlas</h2>
+  <p style="color:var(--text-muted);line-height:1.75;margin-bottom:1rem;font-size:0.95rem">FlagAtlas is a collection of free geography tools — no login, no cost, no ads. As well as the daily challenge, you can play the <a href="https://flagatlas.co.uk/quiz/" style="color:var(--teal-light);text-decoration:underline;text-underline-offset:3px">60-second flag speed quiz</a>, play <a href="/flag-memory.html" style="color:var(--teal-light);text-decoration:underline;text-underline-offset:3px">Flag Memory</a>, explore the <a href="https://flagatlas.co.uk/challenges/" style="color:var(--teal-light);text-decoration:underline;text-underline-offset:3px">geography challenges</a> or browse flags in the <a href="https://flagatlas.co.uk/explorer/" style="color:var(--teal-light);text-decoration:underline;text-underline-offset:3px">flag explorer</a>.</p>
 
 </section>
 
