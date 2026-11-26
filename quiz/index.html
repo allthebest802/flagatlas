@@ -1,22 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PLEJM6E8KP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-PLEJM6E8KP');
+</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6627034099195948"
      crossorigin="anonymous"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Flag Speed Quiz — 60 Second Challenge | FlagAtlas</title>
-<meta name="description" content="How many flags can you name in 60 seconds? Test your world flag knowledge in this fast-paced quiz. Beat your high score and challenge your friends — free to play.">
-<meta name="keywords" content="flag quiz, speed quiz, world flags quiz, geography quiz for kids, flag game, country quiz, flag challenge">
+<title>Flag Quiz — 195 Country Flags in 60 Seconds | FlagAtlas</title>
+<meta name="description" content="How many of the world's 195 country flags can you name in 60 seconds? A free multiple-choice flag quiz with every country. Beat your high score.">
+<meta name="keywords" content="flag quiz, 195 country flags quiz, country flags quiz, world flags quiz, flag speed quiz, geography quiz for kids, flag game">
 <meta name="author" content="FlagAtlas">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://flagatlas.co.uk/quiz">
+<link rel="canonical" href="https://flagatlas.co.uk/quiz/">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://flagatlas.co.uk/quiz">
-<meta property="og:title" content="Flag Speed Quiz — 60 Second Challenge | FlagAtlas">
-<meta property="og:description" content="How many flags can you name in 60 seconds? Test your world flag knowledge in this fast-paced quiz. Free to play.">
+<meta property="og:url" content="https://flagatlas.co.uk/quiz/">
+<meta property="og:title" content="Flag Quiz — 195 Country Flags in 60 Seconds">
+<meta property="og:description" content="How many of the world's 195 country flags can you name in 60 seconds? Free to play.">
 <meta property="og:image" content="https://flagatlas.co.uk/og-flag-quiz.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -25,8 +33,8 @@
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:url" content="https://flagatlas.co.uk/quiz">
-<meta name="twitter:title" content="Flag Speed Quiz — 60 Second Challenge | FlagAtlas">
+<meta name="twitter:url" content="https://flagatlas.co.uk/quiz/">
+<meta name="twitter:title" content="Flag Quiz — 195 Country Flags in 60 Seconds">
 <meta name="twitter:description" content="How many flags can you name in 60 seconds? Test your world flag knowledge. Free to play.">
 <meta name="twitter:image" content="https://flagatlas.co.uk/og-flag-quiz.png">
 
@@ -36,8 +44,8 @@
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Flag Speed Quiz",
-  "url": "https://flagatlas.co.uk/quiz.html",
-  "description": "A 60-second timed flag quiz — name as many countries as you can from their flags.",
+  "url": "https://flagatlas.co.uk/quiz/",
+  "description": "A 60-second timed flag quiz with the flags of all 195 countries. Name as many as you can.",
   "applicationCategory": "GameApplication",
   "isPartOf": { "@type": "WebSite", "name": "FlagAtlas", "url": "https://flagatlas.co.uk/" },
   "audience": { "@type": "Audience", "audienceType": "Children, Families, Students" },
@@ -434,7 +442,7 @@
   <div class="start-inner">
     <div class="start-badge">⚡ Timed Challenge</div>
     <h1>Can you name <em>60</em> flags?</h1>
-    <p class="start-sub">60 seconds. 4 choices per flag. How many can you get right?</p>
+    <p class="start-sub">60 seconds. 4 choices per flag. Flags from all 195 countries. How many can you get right?</p>
 
     <div class="hiscore-box" id="hiscoreBox">
       <div class="hiscore-item">
@@ -643,6 +651,7 @@ const COUNTRIES = [
   {code:"ws",name:"Samoa"},{code:"to",name:"Tonga"},{code:"ki",name:"Kiribati"},
   {code:"tv",name:"Tuvalu"},{code:"nr",name:"Nauru"},{code:"pw",name:"Palau"},
   {code:"fm",name:"Micronesia"},{code:"mh",name:"Marshall Islands"},
+  {code:"ad",name:"Andorra"},{code:"bh",name:"Bahrain"},{code:"bn",name:"Brunei"},{code:"bi",name:"Burundi"},{code:"cf",name:"Central African Republic"},{code:"cy",name:"Cyprus"},{code:"dj",name:"Djibouti"},{code:"dm",name:"Dominica"},{code:"gq",name:"Equatorial Guinea"},{code:"sz",name:"Eswatini"},{code:"ga",name:"Gabon"},{code:"gd",name:"Grenada"},{code:"gw",name:"Guinea-Bissau"},{code:"ls",name:"Lesotho"},{code:"li",name:"Liechtenstein"},{code:"lu",name:"Luxembourg"},{code:"mv",name:"Maldives"},{code:"mt",name:"Malta"},{code:"mc",name:"Monaco"},{code:"ps",name:"Palestine"},{code:"ru",name:"Russia"},{code:"kn",name:"Saint Kitts & Nevis"},{code:"lc",name:"Saint Lucia"},{code:"vc",name:"Saint Vincent & the Grenadines"},{code:"sm",name:"San Marino"},{code:"st",name:"São Tomé & Príncipe"},{code:"va",name:"Vatican City"},{code:"xk",name:"Kosovo"},
 ];
 
 function flagUrl(code) { return `https://flagcdn.com/w320/${code}.png`; }
@@ -900,7 +909,7 @@ document.addEventListener('keydown', e => {
 });
 
 // ── SHARING ────────────────────────────────────────────────────────────────
-const SHARE_URL = 'https://flagatlas.co.uk/quiz';
+const SHARE_URL = 'https://flagatlas.co.uk/quiz/';
 const shareText = () => `I named ${score} flags in 60 seconds on the FlagAtlas Speed Quiz 🌍 Can you beat it?`;
 
 function updateShareLinks() {
@@ -946,6 +955,15 @@ document.getElementById('shareCopy').addEventListener('click', () => {
 // ── INIT ──────────────────────────────────────────────────────────────────
 initStart();
 </script>
-<footer><p>FlagAtlas — free educational tools for everyone &nbsp;·&nbsp; <a href="/index.html">Home</a> &nbsp;·&nbsp; <a href="/contact">Contact</a> &nbsp;·&nbsp; <a href="/contact">Contact</a> &nbsp;·&nbsp; <a href="/privacy">Privacy &amp; Terms</a></p></footer>
+
+<section class="quiz-info" style="position:relative;z-index:1;max-width:760px;margin:2rem auto 0;padding:0 1.5rem 3rem;line-height:1.75;font-size:0.95rem">
+  <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--cream);margin:2rem 0 0.6rem;border-top:1px solid rgba(255,255,255,0.08);padding-top:1.5rem">A flag quiz with all 195 countries</h2>
+  <p style="color:var(--text-muted);margin-bottom:1rem">This free flag quiz uses the flags of all 195 countries, plus Kosovo, so every game is different. You get 60 seconds and four answers for each flag. Pick the right country to score a point and build a streak, or skip a flag you don't know. At the end you see the flags you missed, so you know which ones to learn next.</p>
+  <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--cream);margin:2rem 0 0.6rem;border-top:1px solid rgba(255,255,255,0.08);padding-top:1.5rem">Tips for a higher score</h2>
+  <p style="color:var(--text-muted);margin-bottom:1rem">Use the keyboard to answer faster: press A, B, C or D (or 1 to 4), and the space bar to skip. Look out for flags that are easy to mix up, like Chad and Romania, Indonesia and Monaco, or Ireland and Côte d'Ivoire. Your best score, best streak and games played are saved on your device, so you can try to beat them next time.</p>
+  <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--cream);margin:2rem 0 0.6rem;border-top:1px solid rgba(255,255,255,0.08);padding-top:1.5rem">More free flag games</h2>
+  <p style="color:var(--text-muted);margin-bottom:1rem">Try the <a href="/daily/" style="color:var(--teal-light)">flag of the day</a> challenge, match pairs in <a href="/flag-memory.html" style="color:var(--teal-light)">Flag Memory</a>, or browse every flag in the <a href="/explorer/" style="color:var(--teal-light)">Flag Explorer</a>. For something away from the screen, print a free <a href="/colouring/" style="color:var(--teal-light)">flag colouring page</a> or get a <a href="/books/" style="color:var(--teal-light)">flag colouring book</a>.</p>
+</section>
+<footer><p>FlagAtlas — free educational tools for everyone &nbsp;·&nbsp; <a href="/index.html">Home</a> &nbsp;·&nbsp; <a href="/contact">Contact</a> &nbsp;·&nbsp; <a href="/privacy">Privacy &amp; Terms</a></p></footer>
 </body>
 </html>
